@@ -1,16 +1,16 @@
 {
-  "name": "cookcook",
+  "name": "base_symfony",
   "version": "0.0.0",
-  "description": "cookcook ========",
+  "description": "base_symfony ========",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "~3.8.11",
-    "gulp-sass": "~2.0.0",
+    "gulp-less": "~3.0.3",
     "gulp-sourcemaps": "~1.5.2",
     "gulp-concat": "~2.5.2",
     "gulp-minify-css": "~1.1.1",

@@ -1,5 +1,5 @@
 {
-    "name": "xav/cookcook",
+    "name": "xav/base_symfony",
     "license": "proprietary",
     "type": "project",
     "autoload": {

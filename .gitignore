@@ -13,5 +13,6 @@
 /web/js
 /web/fonts
 /web/images
+/web/img
 /node_modules
 /app/Resources/assets/rev-manifest.json

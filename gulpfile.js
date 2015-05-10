@@ -4,7 +4,7 @@ var del = require('del');
 var Q = require('q');
 var config = {
     assetsDir: 'app/Resources/assets',
-    sassPattern: 'sass/**/*.scss',
+    lessPattern: 'less/**/*.less',
     production: !!plugins.util.env.production,
     sourceMaps: !plugins.util.env.production,
     bowerDir: 'vendor/bower_components',
@@ -15,7 +15,7 @@ app.addStyle = function(paths, outputFilename) {
     return gulp.src(paths)
         .pipe(plugins.plumber())
         .pipe(plugins.if(config.sourceMaps, plugins.sourcemaps.init()))
-        .pipe(plugins.sass())
+        .pipe(plugins.less())
         .pipe(plugins.concat('css/'+outputFilename))
         .pipe(plugins.if(config.production, plugins.minifyCss()))
         .pipe(plugins.rev())
@@ -76,20 +76,34 @@ gulp.task('styles', function() {
     var pipeline = new Pipeline();
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/css/bootstrap.css',
-        config.bowerDir+'/font-awesome/css/font-awesome.css',
-        config.assetsDir+'/sass/layout.scss',
-        config.assetsDir+'/sass/styles.scss'
-    ], 'main.css');
+        config.assetsDir+'/css/icomoon-social.css',
+        config.assetsDir+'/css/leaflet.css'
+    ], 'vendors.css');
     pipeline.add([
-        config.assetsDir+'/sass/dinosaur.scss'
-    ], 'dinosaur.css');
+        config.assetsDir+'/css/leaflet.ie.css'
+    ], 'leaflet.ie.css');
+    pipeline.add([
+        config.assetsDir+'/less/main.less'
+    ], 'main.css');
     pipeline.run(app.addStyle);
 });
 gulp.task('scripts', function() {
     var pipeline = new Pipeline();
     pipeline.add([
-        config.bowerDir+'/jquery/dist/jquery.js',
-        config.assetsDir+'/js/main.js'
+        config.assetsDir+'/js/modernizr-2.6.2-respond-1.1.0.min.js'
+    ], 'modernizr.js');
+    pipeline.add([
+        config.bowerDir+'/jquery/jquery.js'
+    ], 'jquery.js');
+    pipeline.add([
+        config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
+        config.assetsDir+'/js/jquery.fitvids.js',
+        config.assetsDir+'/js/jquery.sequence.js',
+        config.assetsDir+'/js/jquery.bxslider.js'
+    ], 'vendors.js');
+    pipeline.add([
+        config.assetsDir+'/js/main-menu.js',
+        config.assetsDir+'/js/template.js'
     ], 'site.js');
     pipeline.run(app.addScript);
 });
@@ -99,14 +113,21 @@ gulp.task('fonts', function() {
         'web/fonts'
     );
 });
+gulp.task('images', function() {
+    app.copy(
+        config.assetsDir+'/img/**',
+        'web/img'
+    );
+});
 gulp.task('clean', function() {
     del.sync(config.revManifestPath);
     del.sync('web/css/*');
     del.sync('web/js/*');
     del.sync('web/fonts/*');
+    del.sync('web/img/*');
 });
 gulp.task('watch', function() {
-    gulp.watch(config.assetsDir+'/'+config.sassPattern, ['styles']);
+    gulp.watch(config.assetsDir+'/'+config.lessPattern, ['styles']);
     gulp.watch(config.assetsDir+'/js/**/*.js', ['scripts']);
 });
-gulp.task('default', ['clean', 'styles', 'scripts', 'fonts', 'watch']);
+gulp.task('default', ['clean', 'styles', 'scripts', 'fonts', 'images', 'watch']);

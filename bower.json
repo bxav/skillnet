@@ -1,5 +1,5 @@
 {
-  "name": "cookcook",
+  "name": "base_symfony",
   "version": "0.0.0",
   "authors": [
     "bxav <xavier.b@zoho.com>"
@@ -14,6 +14,6 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.2",
-    "font-awesome": "~4.3.0"
+    "jquery": "~1.9.1"
   }
 }
