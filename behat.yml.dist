@@ -1,0 +1,15 @@
+default:
+  suites:
+    my_suite:
+      contexts:
+        - FeatureContext
+        - Behat\MinkExtension\Context\MinkContext
+  gherkin:
+    filters:
+      tags: ~@ignore
+  extensions:
+    Behat\Symfony2Extension: ~
+    Behat\MinkExtension:
+      sessions:
+        default:
+          symfony2: ~
