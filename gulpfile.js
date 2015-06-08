@@ -96,6 +96,10 @@ gulp.task('scripts', function() {
         config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
     ], 'vendors.js');
     pipeline.add([
+        config.bowerDir+'/angular/angular.js',
+        config.assetsDir+'/js/app.js'
+    ], 'angular_app.js');
+    pipeline.add([
         config.assetsDir+'/js/main.js'
     ], 'site.js');
     pipeline.run(app.addScript);

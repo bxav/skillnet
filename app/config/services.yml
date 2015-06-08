@@ -4,8 +4,18 @@ parameters:
 #    parameter_name: value
 
 services:
-    twig_asset_version_extension:
-        class: AppBundle\Twig\AssetVersionExtension
-        arguments: ["%kernel.root_dir%"]
+    templating.twig_asset_version_extension:
+        class: AppBundle\Templating\Twig\AssetVersionExtension
+        arguments: ["@templating.asset_version_resolver"]
         tags:
             - { name: twig.extension }
+
+    templating.helper.asset_version:
+        class: AppBundle\Templating\Helper\AssetVersionHelper
+        arguments: ["@templating.asset_version_resolver"]
+        tags:
+            - { name: templating.helper, alias: asset_version}
+
+    templating.asset_version_resolver:
+        class: AppBundle\Templating\AssetVersionResolver
+        arguments: ["%kernel.root_dir%"]
