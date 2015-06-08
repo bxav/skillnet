@@ -90,20 +90,13 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
     var pipeline = new Pipeline();
     pipeline.add([
-        config.assetsDir+'/js/modernizr-2.6.2-respond-1.1.0.min.js'
-    ], 'modernizr.js');
-    pipeline.add([
-        config.bowerDir+'/jquery/jquery.js'
+        config.bowerDir+'/jquery/dist/jquery.js'
     ], 'jquery.js');
     pipeline.add([
-        config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
-        config.assetsDir+'/js/jquery.fitvids.js',
-        config.assetsDir+'/js/jquery.sequence.js',
-        config.assetsDir+'/js/jquery.bxslider.js'
+        config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
     ], 'vendors.js');
     pipeline.add([
-        config.assetsDir+'/js/main-menu.js',
-        config.assetsDir+'/js/template.js'
+        config.assetsDir+'/js/main.js'
     ], 'site.js');
     pipeline.run(app.addScript);
 });

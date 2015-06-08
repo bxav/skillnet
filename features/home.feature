@@ -4,5 +4,6 @@ Feature: Access to the Home page
   I need to be able to access the frontend
 
   Scenario: User login
-    Given I am on "/"
-    Then I should see "Home"
+    Given I am on "/helloYou"
+    Then I should see "Bootstrap starter template"
+     And I should see "helloYou"
