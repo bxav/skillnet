@@ -3,6 +3,9 @@ default:
     my_suite:
       contexts:
         - FeatureContext
+        - ApiFeatureContext:
+            parameters:
+              base_uri: ~
         - Behat\MinkExtension\Context\MinkContext
   gherkin:
     filters:
