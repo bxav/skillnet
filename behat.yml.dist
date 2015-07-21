@@ -1,17 +1,30 @@
 default:
+  calls:
+      error_reporting: 16384
   suites:
-    my_suite:
-      contexts:
-        - FeatureContext
-        - ApiFeatureContext:
-            parameters:
-              base_uri: ~
-        - Behat\MinkExtension\Context\MinkContext
+      api:
+          paths:    [ %paths.base%/features/api ]
+          contexts:
+            - FeatureContext
+            - ApiFeatureContext
+            - Knp\FriendlyContexts\Context\EntityContext
+      web:
+          paths:    [ %paths.base%/features/web ]
+          contexts: [ Behat\MinkExtension\Context\MinkContext ]
+      webapp:
+          paths:    [ %paths.base%/features/webapp ]
+          contexts: [ Behat\MinkExtension\Context\MinkContext ]
   gherkin:
     filters:
       tags: ~@ignore
   extensions:
     Behat\Symfony2Extension: ~
+    Knp\FriendlyContexts\Extension:
+        entities:
+            namespaces:
+                - AppBundle
+        api:
+            base_url: 'http://localhost:8000'
     Behat\MinkExtension:
       sessions:
         default:
