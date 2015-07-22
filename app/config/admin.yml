@@ -7,3 +7,12 @@ services:
             - ~
             - AppBundle\Entity\User
             - ~
+
+    sonata.admin.business:
+        class: AppBundle\Admin\BusinessAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Business", label: "Business" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Business
+            - ~

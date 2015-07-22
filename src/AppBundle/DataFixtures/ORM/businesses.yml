@@ -1,0 +1,6 @@
+AppBundle\Entity\Business:
+    Biz{1..5}:
+        Name: <company()>
+        Phone: <phoneNumber()>
+        Website: <domainName()>
+        Description: <paragraph()>

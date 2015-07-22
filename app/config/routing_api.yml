@@ -1,3 +1,7 @@
 users:
     type:     rest
     resource: AppBundle\Controller\Api\UserController
+
+business:
+    type:     rest
+    resource: AppBundle\Controller\Api\BusinessController

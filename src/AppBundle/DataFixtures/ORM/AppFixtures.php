@@ -14,6 +14,7 @@ class AppFixtures extends DataFixtureLoader
     {
         return  array(
             __DIR__ . '/users.yml',
+            __DIR__ . '/businesses.yml',
         );
     }
 }
