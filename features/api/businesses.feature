@@ -19,3 +19,20 @@ Feature: Access to the api
     """
     name
     """
+
+  Scenario: List employees
+    Given there is 1 business like:
+      | name |
+      | HaircutMaster |
+    Given there is 10 employees like:
+      | business |
+      | HaircutMaster |
+    Given I prepare a GET request on "/api/businesses/HaircutMaster/employees"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+    And scope into the first element
+    And the properties exist:
+    """
+    firstname
+    """

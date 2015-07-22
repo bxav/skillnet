@@ -8,32 +8,28 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class BusinessAdmin extends Admin
+class EmployeeAdmin extends Admin
 {
 
-    protected $baseRoutePattern = 'business';
+    protected $baseRoutePattern = 'employee';
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper
-            ->with('General')
-            ->add('name')
-            ->add('phone')
-            ->add('website')
-            ->add('description')
-            ->end()
-            ->with('Employees', ['class' => 'col-md-12'])
-            ->add('employees', 'sonata_type_collection', [
-                'by_reference' => false,
-                'cascade_validation' => true
-            ],
-                [
-                    'edit' => 'inline',
-                    'inline' => 'table'
-                ]
-            )
+            ->with('General');
+
+        if (!$this->hasParentFieldDescription()) {
+            $formMapper->add('business', 'sonata_type_model_autocomplete', ['constraints' => new Assert\NotNull(), 'property'=>'name', 'placeholder' => 'Enter the business name']);
+        }
+
+        $formMapper
+            ->add('firstname')
+            ->add('shortDescription')
+            ->add('speciality')
             ->end();
     }
 
@@ -41,18 +37,17 @@ class BusinessAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('phone')
-            ->add('website');
+            ->add('firstname')
+            ->add('shortDescription')
+            ->add('speciality');
     }
 
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name', null)
-            ->add('website')
-            ->add('phone');
-
+            ->addIdentifier('firstname', null)
+            ->add('shortDescription')
+            ->add('speciality');
     }
 }
