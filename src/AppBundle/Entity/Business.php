@@ -173,4 +173,7 @@ class Business
         return $this->employees;
     }
 
+    public function __toString() {
+        return $this->getName();
+    }
 }

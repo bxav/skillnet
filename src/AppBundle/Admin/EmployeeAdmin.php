@@ -31,6 +31,20 @@ class EmployeeAdmin extends Admin
             ->add('shortDescription')
             ->add('speciality')
             ->end();
+        if (!$this->hasParentFieldDescription()) {
+            $formMapper
+                ->with('Services', ['class' => 'col-md-12'])
+                ->add('services', 'sonata_type_collection', [
+                    'by_reference' => false,
+                    'cascade_validation' => true
+                ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table'
+                    ]
+                )
+                ->end();
+        }
     }
 
     // Fields to be shown on filter forms

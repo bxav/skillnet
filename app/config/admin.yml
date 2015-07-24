@@ -25,3 +25,12 @@ services:
             - ~
             - AppBundle\Entity\Employee
             - ~
+
+    sonata.admin.service:
+        class: AppBundle\Admin\ServiceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Business", label: "Service" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Service
+            - ~

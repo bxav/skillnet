@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -52,8 +53,14 @@ class Employee
      */
     protected $business;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Service", mappedBy="employee", cascade="all")
+     */
+    protected $services;
+
     public function __construct()
     {
+        $this->services = new ArrayCollection();
     }
 
     /**
@@ -121,4 +128,38 @@ class Employee
     }
 
 
+    public function hasServices()
+    {
+        return !$this->services->isEmpty();
+    }
+
+    public function removeService(Service $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    public function addService(Service $service)
+    {
+        $service->setBusiness($this);
+        $this->services->add($service);
+    }
+
+    public function setServices($services)
+    {
+        $this->services = $services;
+        $this->services->clear();
+        foreach ($services as $service) {
+            $this->addService($service);
+        }
+        return $this;
+    }
+
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    public function __toString() {
+        return $this->getFirstname();
+    }
 }
