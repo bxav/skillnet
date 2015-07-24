@@ -23,11 +23,11 @@ Feature: Access to the api
   Scenario: List employees
     Given there is 1 business like:
       | name |
-      | HaircutMaster |
+      | Haircut Master |
     Given there is 10 employees like:
       | business |
-      | HaircutMaster |
-    Given I prepare a GET request on "/api/businesses/HaircutMaster/employees"
+      | Haircut Master |
+    Given I prepare a GET request on "/api/businesses/haircut-master/employees"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

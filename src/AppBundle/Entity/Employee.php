@@ -48,7 +48,7 @@ class Employee
 
     /**
      * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
-     * @ORM\JoinColumn(name="employee_id",referencedColumnName="id")
+     * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      */
     protected $business;
 

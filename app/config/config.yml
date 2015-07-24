@@ -115,3 +115,8 @@ nelmio_api_doc:
                 json: application/json
             method: accept_header
             default_format: json
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

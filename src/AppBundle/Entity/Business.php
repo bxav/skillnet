@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Business
@@ -53,6 +54,12 @@ class Business
      * @Serializer\Expose
      */
     protected $description;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=64, unique=true)
+     */
+    protected $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="Employee", mappedBy="business", cascade="all")
@@ -126,6 +133,14 @@ class Business
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     public function hasEmployees()

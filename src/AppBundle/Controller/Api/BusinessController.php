@@ -33,9 +33,9 @@ class BusinessController extends FOSRestController implements ClassResourceInter
      *  description="Return a collection of Users",
      * )
      */
-    public function getEmployeesAction($name)
+    public function getEmployeesAction($slug)
     {
-        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findOneByName($name);
+        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findOneBySlug($slug);
 
         $employees = $this->getDoctrine()->getRepository("AppBundle:Employee")->findByBusiness($business);
 
