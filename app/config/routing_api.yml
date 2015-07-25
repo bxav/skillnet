@@ -5,3 +5,7 @@ users:
 business:
     type:     rest
     resource: AppBundle\Controller\Api\BusinessController
+
+booking:
+    type:     rest
+    resource: AppBundle\Controller\Api\BookingController
