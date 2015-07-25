@@ -21,7 +21,9 @@ Feature: Access to the api
     Given there is 5 bookings like:
       | service | clientName |
       | haircut | John |
-    Given I prepare a GET request on "/api/bookings?employee=marie"
+    Given I specified the following request queries:
+      | employee | marie |
+    Given I prepare a GET request on "/api/bookings"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

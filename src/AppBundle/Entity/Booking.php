@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Booking
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\BookingRepository")
  * @Serializer\ExclusionPolicy("all")
  */
 class Booking

@@ -97,6 +97,7 @@ jms_serializer:
                 path: "%kernel.root_dir%/serializer/FOSUserBundle"
 
 fos_rest:
+    param_fetcher_listener: true
     view:
         jsonp_handler: ~
     format_listener: true
