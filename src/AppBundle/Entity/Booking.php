@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * Booking
@@ -11,6 +12,12 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\BookingRepository")
  * @Serializer\ExclusionPolicy("all")
+ * @Hateoas\Relation("self", href = "expr('/api/bookings/' ~ object.getId())")
+ * @Hateoas\Relation(
+ *     "service",
+ *     href = "expr('/api/employees/' ~ object.getService().getEmployee().getFirstname() ~ '/services/' ~ object.getService().getId())",
+ *     embedded = "expr(object.getService())"
+ * )
  */
 class Booking
 {

@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * Employee
@@ -12,6 +13,12 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Table()
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
+ * @Hateoas\Relation("self", href = "expr('/api/employees/' ~ object.getId())")
+ * @Hateoas\Relation(
+ *     "business",
+ *     href = "expr('/api/businesses/' ~ object.getBusiness().getSlug())",
+ *     embedded = "expr(object.getBusiness())"
+ * )
  */
 class Employee
 {
@@ -61,6 +68,14 @@ class Employee
     public function __construct()
     {
         $this->services = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
