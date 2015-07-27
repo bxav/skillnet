@@ -1,0 +1,5 @@
+AppBundle\Entity\Employee:
+    employee{1..5}:
+        Firstname: <firstname()>
+        Lastname: <lastname()>
+        business: @biz2
