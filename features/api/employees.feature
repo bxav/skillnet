@@ -18,7 +18,7 @@ Feature: Access to the api
     Given there is 5 services like:
       | employee |
       | marie |
-    Given I prepare a GET request on "/api/businesses/haircut-master/employees/marie/services"
+    Given I prepare a GET request on "/api/employees/marie/services"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
