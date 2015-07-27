@@ -33,11 +33,9 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
      *  description="Return a collection of employee's services",
      * )
      */
-    public function getServicesAction($firstname)
+    public function getServicesAction($slug)
     {
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBy([
-            "firstname" => $firstname
-        ]);
+        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug($slug);
 
         $view = $this->view($employee->getServices(), 200);
 

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Employee
@@ -34,11 +35,20 @@ class Employee
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      * @Serializer\Type("string")
      * @Serializer\Expose
      */
     protected $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -53,6 +63,12 @@ class Employee
      * @Serializer\Expose
      */
     protected $shortDescription;
+
+    /**
+     * @Gedmo\Slug(fields={"firstname", "lastname"})
+     * @ORM\Column(length=64, unique=true)
+     */
+    protected $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
@@ -95,6 +111,22 @@ class Employee
     }
 
     /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
      * @return mixed
      */
     public function getSpeciality()
@@ -124,6 +156,14 @@ class Employee
     public function setShortDescription($shortDescription)
     {
         $this->shortDescription = $shortDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

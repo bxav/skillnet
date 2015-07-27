@@ -43,24 +43,4 @@ class BusinessController extends FOSRestController implements ClassResourceInter
 
         return $this->handleView($view);
     }
-
-    /**
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Return a collection of Users",
-     * )
-     */
-    public function getEmployeeServicesAction($slug, $firstname)
-    {
-        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findOneBySlug($slug);
-
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBy([
-            "business" => $business,
-            "firstname" => $firstname
-        ]);
-
-        $view = $this->view($employee->getServices(), 200);
-
-        return $this->handleView($view);
-    }
 }

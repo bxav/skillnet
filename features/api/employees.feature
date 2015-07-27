@@ -13,12 +13,12 @@ Feature: Access to the api
 
   Scenario: List employee's services
     Given there is 1 employees like:
-      | business | firstname |
-      | Haircut Master | marie |
+      | business | firstname | lastname |
+      | Haircut Master | marie | dupond |
     Given there is 5 services like:
       | employee |
       | marie |
-    Given I prepare a GET request on "/api/employees/marie/services"
+    Given I prepare a GET request on "/api/employees/marie-dupond/services"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
