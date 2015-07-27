@@ -30,6 +30,21 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
     /**
      * @ApiDoc(
      *  resource=true,
+     *  description="Return an employee",
+     * )
+     */
+    public function getAction($slug)
+    {
+        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug($slug);
+
+        $view = $this->view($employee, 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
      *  description="Return a collection of employee's services",
      * )
      */

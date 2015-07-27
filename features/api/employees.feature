@@ -11,6 +11,22 @@ Feature: Access to the api
       | name |
       | Haircut Master |
 
+  Scenario: Get employee
+    Given there is 10 employees
+    Given there is 1 employees like:
+      | business | firstname | lastname |
+      | Haircut Master | marie | dupond |
+    Given I prepare a GET request on "/api/employees/marie-dupond"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+    And the properties exist:
+    """
+    id
+    firstname
+    lastname
+    """
+
   Scenario: List employee's services
     Given there is 1 employees like:
       | business | firstname | lastname |
