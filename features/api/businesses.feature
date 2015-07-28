@@ -36,3 +36,23 @@ Feature: Access to the api
     """
     firstname
     """
+
+  Scenario: List services
+    Given there is 1 business like:
+      | name |
+      | Haircut Master |
+    Given there is 5 services like:
+      | business |
+      | Haircut Master |
+    Given I prepare a GET request on "/api/businesses/haircut-master/services"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+    And scope into the first element
+    And the properties exist:
+    """
+    type
+    duration
+    description
+    price
+    """

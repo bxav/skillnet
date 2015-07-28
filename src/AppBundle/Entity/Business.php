@@ -66,9 +66,15 @@ class Business
      */
     protected $employees;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Service", mappedBy="business", cascade="all")
+     */
+    protected $services;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     /**
@@ -179,6 +185,37 @@ class Business
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    public function hasServices()
+    {
+        return !$this->services->isEmpty();
+    }
+
+    public function removeService(Service $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    public function addService(Service $service)
+    {
+        $service->setBusiness($this);
+        $this->services->add($service);
+    }
+
+    public function setServices($services)
+    {
+        $this->services = $services;
+        $this->services->clear();
+        foreach ($services as $service) {
+            $this->addService($service);
+        }
+        return $this;
+    }
+
+    public function getServices()
+    {
+        return $this->services;
     }
 
     public function __toString() {

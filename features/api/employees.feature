@@ -28,12 +28,17 @@ Feature: Access to the api
     """
 
   Scenario: List employee's services
+    Given there is 1 services like:
+      | type | business |
+      | cut | Haircut Master |
+    Given there is 1 services like:
+      | type | business |
+      | toto | Haircut Master |
     Given there is 1 employees like:
       | business | firstname | lastname |
       | Haircut Master | marie | dupond |
-    Given there is 5 services like:
-      | employee |
-      | marie |
+    Given "marie" propose:
+     | toto | cut |
     Given I prepare a GET request on "/api/employees/marie-dupond/services"
     When I send the request
     Then print the last response

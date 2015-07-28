@@ -11,6 +11,29 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 class FeatureContext implements KernelAwareContext, SnippetAcceptingContext
 {
+
+    /**
+     * @Given :firstname propose:
+     */
+    public function propose($firstname, \Behat\Gherkin\Node\TableNode $table)
+    {
+        /**
+         * @var Doctrine\ORM\EntityManager $em
+         */
+        $em = $this->getService('doctrine.orm.entity_manager');
+        $employee = $em->getRepository("AppBundle:Employee")->findOneByFirstname($firstname);
+        foreach($table->getRow(0) as $row) {
+            var_dump($row);
+            $service = $em->getRepository("AppBundle:Service")->findOneByType($row);
+
+            var_dump($service->getType());
+            $employee->addService($service);
+        }
+        $em->persist($employee);
+        $em->flush();
+    }
+
+
     /**
      * Initializes context.
      *

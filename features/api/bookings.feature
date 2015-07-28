@@ -14,8 +14,8 @@ Feature: Access to the api
       | business | firstname |
       | Haircut Master | marie |
     Given there is 1 service like:
-      | employee | duration | type |
-      | marie | 20 | haircut |
+      | business | duration | type |
+      | Haircut Master | 20 | haircut |
 
   Scenario: List employee's services
     Given there is 5 bookings like:

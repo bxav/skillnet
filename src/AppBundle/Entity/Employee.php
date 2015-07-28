@@ -77,8 +77,12 @@ class Employee
     protected $business;
 
     /**
-     * @ORM\OneToMany(targetEntity="Service", mappedBy="employee", cascade="all")
-     */
+     * @ORM\ManyToMany(targetEntity="Service")
+     * @ORM\JoinTable(name="employees_services",
+     *      joinColumns={@ORM\JoinColumn(name="employee_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="service_id", referencedColumnName="id")}
+     *      )
+     **/
     protected $services;
 
     public function __construct()
@@ -182,7 +186,6 @@ class Employee
         $this->business = $business;
     }
 
-
     public function hasServices()
     {
         return !$this->services->isEmpty();
@@ -195,7 +198,6 @@ class Employee
 
     public function addService(Service $service)
     {
-        $service->setBusiness($this);
         $this->services->add($service);
     }
 

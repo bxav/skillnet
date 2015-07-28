@@ -54,10 +54,10 @@ class Service
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Employee", inversedBy="services")
-     * @ORM\JoinColumn(name="employee_id",referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
+     * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      */
-    protected $employee;
+    protected $business;
 
     /**
      * @return mixed
@@ -142,18 +142,16 @@ class Service
     /**
      * @return mixed
      */
-    public function getEmployee()
+    public function getBusiness()
     {
-        return $this->employee;
+        return $this->business;
     }
 
     /**
-     * @param mixed $employee
+     * @param mixed $business
      */
-    public function setEmployee($employee)
+    public function setBusiness($business)
     {
-        $this->employee = $employee;
+        $this->business = $business;
     }
-
-
 }
