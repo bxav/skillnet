@@ -9,14 +9,20 @@ use Hateoas\Configuration\Annotation as Hateoas;
 /**
  * Booking
  *
+ * @TODO embedded relation too deep
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\BookingRepository")
  * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/bookings/' ~ object.getId())")
  * @Hateoas\Relation(
  *     "service",
- *     href = "expr('/api/employees/' ~ object.getService().getEmployee().getFirstname() ~ '/services/' ~ object.getService().getId())",
+ *     href = "expr('/api/businesses/' ~ object.getService().getBusiness().getSlug() ~ '/services/' ~ object.getService().getId())",
  *     embedded = "expr(object.getService())"
+ * )
+ * @Hateoas\Relation(
+ *     "employee",
+ *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())",
+ *     embedded = "expr(object.getEmployee())"
  * )
  */
 class Booking
@@ -63,6 +69,12 @@ class Booking
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      **/
     protected $service;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Employee")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     **/
+    protected $employee;
 
     public function __construct()
     {
@@ -146,6 +158,22 @@ class Booking
     public function setService($service)
     {
         $this->service = $service;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
+
+    /**
+     * @param mixed $employee
+     */
+    public function setEmployee($employee)
+    {
+        $this->employee = $employee;
     }
 
 

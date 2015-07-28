@@ -19,8 +19,8 @@ Feature: Access to the api
 
   Scenario: List employee's services
     Given there is 5 bookings like:
-      | service | clientName |
-      | haircut | John |
+      | employee | service | clientName |
+      | marie | haircut | John |
     Given I specified the following request queries:
       | employee | marie |
     Given I prepare a GET request on "/api/bookings"
