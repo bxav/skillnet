@@ -34,3 +34,12 @@ services:
             - ~
             - AppBundle\Entity\Service
             - ~
+
+    sonata.admin.booking:
+        class: AppBundle\Admin\BookingAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Booking", label: "Booking" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Booking
+            - ~
