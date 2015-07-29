@@ -34,6 +34,17 @@ class BusinessAdmin extends Admin
                     'inline' => 'table'
                 ]
             )
+            ->end()
+            ->with('Services', ['class' => 'col-md-12'])
+            ->add('services', 'sonata_type_collection', [
+                'by_reference' => false,
+                'cascade_validation' => true
+            ],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table'
+                ]
+            )
             ->end();
     }
 

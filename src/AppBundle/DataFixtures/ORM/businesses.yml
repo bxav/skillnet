@@ -1,5 +1,5 @@
 AppBundle\Entity\Business:
-    biz{1..5}:
+    biz{1..25}:
         Name: <company()>
         Phone: <phoneNumber()>
         Website: <domainName()>

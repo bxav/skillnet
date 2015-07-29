@@ -154,4 +154,9 @@ class Service
     {
         $this->business = $business;
     }
+
+    public function __toString()
+    {
+        return " " . $this->getId();
+    }
 }

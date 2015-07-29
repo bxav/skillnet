@@ -127,3 +127,8 @@ bazinga_hateoas:
         cache:                file
         file_cache:
             dir:              %kernel.cache_dir%/hateoas
+
+
+hautelook_alice:
+    locale: fr_FR   # default
+    seed: 1234

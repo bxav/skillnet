@@ -28,21 +28,24 @@ class EmployeeAdmin extends Admin
 
         $formMapper
             ->add('firstname')
+            ->add('lastname')
             ->add('shortDescription')
             ->add('speciality')
             ->end();
+
+
         if (!$this->hasParentFieldDescription()) {
+        $em = $this->modelManager->getEntityManager('AppBundle\Entity\Service');
+
+        $query = $em->createQueryBuilder('s')
+            ->select('s')
+            ->from('AppBundle:Service', 's')
+            ->where('s.business = :business')
+            ->setParameter('business', $this->getSubject()->getBusiness());
+
             $formMapper
                 ->with('Services', ['class' => 'col-md-12'])
-                ->add('services', 'sonata_type_collection', [
-                    'by_reference' => false,
-                    'cascade_validation' => true
-                ],
-                    [
-                        'edit' => 'inline',
-                        'inline' => 'table'
-                    ]
-                )
+                ->add('services', 'sonata_type_model', array('multiple' => true, 'by_reference' => false, 'btn_add' => false, 'query' => $query))
                 ->end();
         }
     }
@@ -52,6 +55,7 @@ class EmployeeAdmin extends Admin
     {
         $datagridMapper
             ->add('firstname')
+            ->add('lastname')
             ->add('shortDescription')
             ->add('speciality');
     }
@@ -61,6 +65,7 @@ class EmployeeAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('firstname', null)
+            ->add('lastname')
             ->add('shortDescription')
             ->add('speciality');
     }
