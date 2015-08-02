@@ -43,14 +43,14 @@ app.addScript = function(paths, outputFilename) {
         .pipe(gulp.dest('.'));
 };
 app.copy = function(srcFiles, outputDir) {
-    gulp.src(srcFiles)
+    return gulp.src(srcFiles)
         .pipe(gulp.dest(outputDir));
 };
 var Pipeline = function() {
     this.entries = [];
 };
 Pipeline.prototype.add = function() {
-    this.entries.push(arguments);
+    return this.entries.push(arguments);
 };
 Pipeline.prototype.run = function(callable) {
     var deferred = Q.defer();
@@ -76,6 +76,7 @@ gulp.task('styles', function() {
     var pipeline = new Pipeline();
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/css/bootstrap.css',
+        config.bowerDir+'/fullcalendar/dist/fullcalendar.css',
         config.assetsDir+'/css/icomoon-social.css',
         config.assetsDir+'/css/leaflet.css'
     ], 'vendors.css');
@@ -85,7 +86,7 @@ gulp.task('styles', function() {
     pipeline.add([
         config.assetsDir+'/less/main.less'
     ], 'main.css');
-    pipeline.run(app.addStyle);
+    return pipeline.run(app.addStyle);
 });
 gulp.task('scripts', function() {
     var pipeline = new Pipeline();
@@ -93,27 +94,46 @@ gulp.task('scripts', function() {
         config.bowerDir+'/jquery/dist/jquery.js'
     ], 'jquery.js');
     pipeline.add([
-        config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
+        config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
+        config.bowerDir+'/angular/angular.js',
+        config.bowerDir+'/ui-router/release/angular-ui-router.js',
+        config.bowerDir+'/angular-animate/angular-animate.js',
+        config.bowerDir+'/angular-resource/angular-resource.js',
+        config.bowerDir+'/angular-ui-calendar/src/calendar.js',
+        config.bowerDir+'/angular-bootstrap/ui-bootstrap.js',
+        config.bowerDir+'/angular-bootstrap/ui-bootstrap-tpls.js',
+        config.bowerDir+'/angular-base64/angular-base64.js'
     ], 'vendors.js');
     pipeline.add([
-        config.bowerDir+'/angular/angular.js',
-        config.assetsDir+'/js/app.js'
+        config.assetsDir+'/js/app.js',
+        config.assetsDir+'/js/controllers/*.js',
+        config.assetsDir+'/js/services/*.js'
     ], 'angular_app.js');
+    pipeline.add([
+        config.bowerDir+'/moment/moment.js',
+        config.bowerDir+'/fullcalendar/dist/fullcalendar.js'
+    ], 'fullcalendar.js');
     pipeline.add([
         config.assetsDir+'/js/main.js'
     ], 'site.js');
-    pipeline.run(app.addScript);
+    return pipeline.run(app.addScript);
 });
 gulp.task('fonts', function() {
-    app.copy(
+    return app.copy(
         config.bowerDir+'/font-awesome/fonts/*',
         'web/fonts'
     );
 });
 gulp.task('images', function() {
-    app.copy(
+    return app.copy(
         config.assetsDir+'/img/**',
         'web/img'
+    );
+});
+gulp.task('views', function() {
+    return app.copy(
+        config.assetsDir+'/views/**',
+        'web/views'
     );
 });
 gulp.task('clean', function() {
@@ -122,9 +142,11 @@ gulp.task('clean', function() {
     del.sync('web/js/*');
     del.sync('web/fonts/*');
     del.sync('web/img/*');
+    del.sync('web/views/*');
 });
 gulp.task('watch', function() {
     gulp.watch(config.assetsDir+'/'+config.lessPattern, ['styles']);
     gulp.watch(config.assetsDir+'/js/**/*.js', ['scripts']);
+    gulp.watch(config.assetsDir+'/views/**/*', ['views']);
 });
-gulp.task('default', ['clean', 'styles', 'scripts', 'fonts', 'images', 'watch']);
+gulp.task('default', ['clean', 'styles', 'scripts', 'fonts', 'images', 'views', 'watch']);

@@ -16,6 +16,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/pro", name="pro")
+     */
+    public function proAction()
+    {
+        return $this->render('::pro.html.php', []);
+    }
+
+    /**
      * @Route("/webapp/{message}", name="webapp")
      */
     public function webAppAction($message = 'hello')
