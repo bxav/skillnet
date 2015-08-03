@@ -1,9 +1,12 @@
 Feature: Access to the api
 
   Background:
-    Given the following user:
-      | username | plainPassword | roles | enabled |
-      | user | user | ROLE_API | true |
+    Given there is 1 business like:
+      | name |
+      | Haircut Master |
+    Given the following employee:
+      | username | plainPassword | roles | enabled | firstname | lastname | business |
+      | user | user | ROLE_API | true | marie | dupond | Haircut Master |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |
@@ -21,9 +24,6 @@ Feature: Access to the api
     """
 
   Scenario: List employees
-    Given there is 1 business like:
-      | name |
-      | Haircut Master |
     Given there is 10 employees like:
       | business |
       | Haircut Master |
@@ -38,9 +38,6 @@ Feature: Access to the api
     """
 
   Scenario: List services
-    Given there is 1 business like:
-      | name |
-      | Haircut Master |
     Given there is 5 services like:
       | business |
       | Haircut Master |

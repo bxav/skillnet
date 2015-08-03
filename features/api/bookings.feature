@@ -1,18 +1,15 @@
 Feature: Access to the api
 
   Background:
-    Given the following user:
-      | username | plainPassword | roles | enabled |
-      | user | user | ROLE_API | true |
-    Given I specified the following request http basic credentials:
-      | username | user |
-      | password | user |
     Given there is 1 business like:
       | name |
       | Haircut Master |
-    Given there is 1 employees like:
-      | business | firstname |
-      | Haircut Master | marie |
+    Given the following employee:
+      | username | plainPassword | roles | enabled | firstname | lastname | business |
+      | user | user | ROLE_API | true | marie | dupond | Haircut Master |
+    Given I specified the following request http basic credentials:
+      | username | user |
+      | password | user |
     Given there is 1 service like:
       | business | duration | type |
       | Haircut Master | 20 | haircut |

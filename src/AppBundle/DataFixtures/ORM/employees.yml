@@ -1,6 +1,22 @@
 AppBundle\Entity\Employee:
-    employee{1..50}:
+    super:
+        Username: super
+        PlainPassword: super
         Firstname: <firstname()>
         Lastname: <lastname()>
+        Roles: [ROLE_SUPER_ADMIN]
+        Email: <safeEmail()>
+        Enabled: true
         business: @biz*
         services: 5x @service*
+    user:
+        Username: user
+        PlainPassword: user
+        Firstname: <firstname()>
+        Lastname: <lastname()>
+        Roles: [ROLE_API]
+        Email: <safeEmail()>
+        Enabled: true
+        business: @biz*
+        services: 5x @service*
+

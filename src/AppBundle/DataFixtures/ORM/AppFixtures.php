@@ -13,7 +13,6 @@ class AppFixtures extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
-            __DIR__ . '/users.yml',
             __DIR__ . '/businesses.yml',
             __DIR__ . '/services.yml',
             __DIR__ . '/employees.yml',

@@ -21,7 +21,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     embedded = "expr(object.getBusiness())"
  * )
  */
-class Employee
+class Employee extends User
 {
     /**
      * @ORM\Id
@@ -87,6 +87,7 @@ class Employee
 
     public function __construct()
     {
+        parent::__construct();
         $this->services = new ArrayCollection();
     }
 

@@ -1,21 +1,18 @@
 Feature: Access to the api
 
   Background:
-    Given the following user:
-      | username | plainPassword | roles | enabled |
-      | user | user | ROLE_API | true |
-    Given I specified the following request http basic credentials:
-      | username | user |
-      | password | user |
     Given there is 1 business like:
       | name |
       | Haircut Master |
+    Given the following employee:
+      | username | plainPassword | roles | enabled | firstname | lastname | business |
+      | user | user | ROLE_API | true | marie | dupond | Haircut Master |
+    Given I specified the following request http basic credentials:
+      | username | user |
+      | password | user |
 
   Scenario: Get employee
     Given there is 10 employees
-    Given there is 1 employees like:
-      | business | firstname | lastname |
-      | Haircut Master | marie | dupond |
     Given I prepare a GET request on "/api/employees/marie-dupond"
     When I send the request
     Then print the last response
@@ -34,9 +31,6 @@ Feature: Access to the api
     Given there is 1 services like:
       | type | business |
       | toto | Haircut Master |
-    Given there is 1 employees like:
-      | business | firstname | lastname |
-      | Haircut Master | marie | dupond |
     Given "marie" propose:
      | toto | cut |
     Given I prepare a GET request on "/api/employees/marie-dupond/services"

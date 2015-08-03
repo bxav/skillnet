@@ -27,6 +27,16 @@ class EmployeeAdmin extends Admin
         }
 
         $formMapper
+            ->add('username')
+            ->add('email')
+            ->add('roles' ,'choice' ,array('choices' => $this->getRolesNames(),
+                'required'  => true,
+                'expanded' => true,
+                'mapped' => true,
+                'multiple' => true
+            ))
+            ->add('plainPassword', 'text', ['required' => false])
+            ->add('enabled', null, ['required' => false])
             ->add('firstname')
             ->add('lastname')
             ->add('shortDescription')
@@ -56,6 +66,9 @@ class EmployeeAdmin extends Admin
         $datagridMapper
             ->add('firstname')
             ->add('lastname')
+            ->add('username')
+            ->add('enabled')
+            ->add('email')
             ->add('shortDescription')
             ->add('speciality');
     }
@@ -64,9 +77,20 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('firstname', null)
+            ->addIdentifier('username', null)
+            ->add('email')
+            ->add('firstname')
             ->add('lastname')
+            ->add('enabled', null, array('editable' => true))
+            ->add('createdAt')
             ->add('shortDescription')
             ->add('speciality');
+    }
+
+    public function getRolesNames(){
+        return [
+            "ROLE_EMPLOYEE" => "Employee",
+            "ROLE_MANAGER" => "Manager",
+        ];
     }
 }
