@@ -24,6 +24,11 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())",
  *     embedded = "expr(object.getEmployee())"
  * )
+ * @Hateoas\Relation(
+ *     "customer",
+ *     href = "expr('/api/customers/' ~ object.getCustomer().getUsername())",
+ *     embedded = "expr(object.getCustomer())"
+ * )
  */
 class Booking
 {
@@ -55,14 +60,10 @@ class Booking
     protected $endDatetime;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     */
-    protected $clientName;
-
+     * @ORM\ManyToOne(targetEntity="Customer")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     **/
+    protected $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Service")
@@ -129,19 +130,19 @@ class Booking
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getClientName()
+    public function getCustomer()
     {
-        return $this->clientName;
+        return $this->customer;
     }
 
     /**
-     * @param string $clientName
+     * @param mixed $customer
      */
-    public function setClientName($clientName)
+    public function setCustomer($customer)
     {
-        $this->clientName = $clientName;
+        $this->customer = $customer;
     }
 
     /**

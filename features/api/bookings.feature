@@ -14,10 +14,13 @@ Feature: Access to the api
       | business | duration | type |
       | Haircut Master | 20 | haircut |
 
-  Scenario: List employee's services
+  Scenario: List employee's bookings
+    Given there is 1 customer like:
+      | username | firstname | lastname |
+      | customer | John | Duff |
     Given there is 5 bookings like:
-      | employee | service | clientName |
-      | marie | haircut | John |
+      | employee | service | customer |
+      | marie | haircut | customer |
     Given I specified the following request queries:
       | employee | marie |
     Given I prepare a GET request on "/api/bookings"
