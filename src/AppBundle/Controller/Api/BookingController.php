@@ -30,4 +30,33 @@ class BookingController extends FOSRestController implements ClassResourceInterf
 
         return $this->handleView($view);
     }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Create a booking",
+     *  input="AppBundle\Entity\Booking",
+     * )
+     */
+    public function postAction(Request $request)
+    {
+
+        $data = $request->getContent();
+
+        $booking = $this->get("serializer")->deserialize($data, 'AppBundle\Entity\Booking', 'json');
+
+        //@todo so ugly
+        $booking->setCustomer($this->getDoctrine()->getRepository("AppBundle:Customer")->findOneByUsername(json_decode($data)->customer_username));
+        $booking->
+        setEmployee($this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug(json_decode($data)->employee_slug));
+        if(isset(json_decode($data)->service_id)) {
+            $booking->setService($this->getDoctrine()->getRepository("AppBundle:Service")->find(json_decode($data)->service_id));
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($booking);
+        $em->flush();
+
+        $view = $this->view($booking, 201);
+        return $this->handleView($view);
+    }
 }

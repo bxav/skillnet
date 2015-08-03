@@ -33,3 +33,23 @@ Feature: Access to the api
     start_datetime
     end_datetime
     """
+
+  Scenario: post booking
+    Given there is 1 customer like:
+      | username | firstname | lastname |
+      | customer | John | Duff |
+    Given there is 10 bookings
+    Given I specified the following request body:
+    """
+    {
+        "start_datetime":"2015-08-03T08:43:29+0200",
+        "end_datetime":"2015-08-03T08:43:29+0200",
+        "customer_username":"customer",
+        "employee_slug":"marie-dupond",
+        "service_id":20
+    }
+    """
+    Given I prepare a POST request on "/api/bookings"
+    When I send the request
+    Then print the last response
+    Then I should receive a 201 json response

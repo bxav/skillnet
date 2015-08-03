@@ -17,17 +17,15 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * @Hateoas\Relation(
  *     "service",
  *     href = "expr('/api/businesses/' ~ object.getService().getBusiness().getSlug() ~ '/services/' ~ object.getService().getId())",
- *     embedded = "expr(object.getService())"
+ *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getService() === null)")
  * )
  * @Hateoas\Relation(
  *     "employee",
- *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())",
- *     embedded = "expr(object.getEmployee())"
+ *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())"
  * )
  * @Hateoas\Relation(
  *     "customer",
- *     href = "expr('/api/customers/' ~ object.getCustomer().getUsername())",
- *     embedded = "expr(object.getCustomer())"
+ *     href = "expr('/api/customers/' ~ object.getCustomer().getUsername())"
  * )
  */
 class Booking
@@ -67,7 +65,7 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="Service")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", nullable=true)
      **/
     protected $service;
 
