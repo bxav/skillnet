@@ -13,3 +13,7 @@ employee:
 booking:
     type:     rest
     resource: AppBundle\Controller\Api\BookingController
+
+customer:
+    type:     rest
+    resource: AppBundle\Controller\Api\CustomerController
