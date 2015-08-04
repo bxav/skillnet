@@ -35,7 +35,12 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
      */
     public function getAction($slug)
     {
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug($slug);
+        if($slug === "current") {
+            $user = $this->getUser();
+            $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->find($user->getId());
+        } else {
+            $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug($slug);
+        }
 
         $view = $this->view($employee, 200);
 
