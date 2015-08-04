@@ -1,0 +1,8 @@
+<div class="container">
+
+    <pre>Model: {{checkModel}}</pre>
+    <pre>Results: {{checkResults}}</pre>
+    <div class="btn-group" >
+        <button class="btn btn-primary" btn-checkbox data-ng-model="checkModel[$index]" ng-repeat="employee in employees" ng-bind="employee"></button>
+    </div>
+</div>

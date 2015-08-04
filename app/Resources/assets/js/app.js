@@ -55,7 +55,7 @@ angular
           .state('planning', {
             url: '/planning',
             parent: 'dashboard',
-            templateUrl: 'views/dashboard/planning.html'
+            templateUrl: 'views/dashboard/employees-planning.html'
           })
           .state('reports', {
             url: '/reports',

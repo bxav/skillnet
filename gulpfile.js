@@ -107,6 +107,7 @@ gulp.task('scripts', function() {
     ], 'vendors.js');
     pipeline.add([
         config.assetsDir+'/js/app.js',
+        config.assetsDir+'/js/directives/*.js',
         config.assetsDir+'/js/controllers/*.js',
         config.assetsDir+'/js/services/*.js'
     ], 'angular_app.js');
