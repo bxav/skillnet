@@ -31,8 +31,11 @@ angular.module('beauty')
         /* config object */
         $scope.uiConfig = {
             calendar:{
-                height: 450,
-                editable: true,
+                minTime: "06:00:00",
+                maxTime: "19:00:00",
+                slotDuration: "00:15:00",
+                contentHeight: "auto",
+                editable: false,
                 header:{
                     left: 'agendaWeek agendaDay',
                     center: 'title',
