@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ui.calendar',
     'ui.bootstrap',
-      'base64'
+    'base64',
+    "hateoas"
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 

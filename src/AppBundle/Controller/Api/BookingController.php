@@ -24,8 +24,11 @@ class BookingController extends FOSRestController implements ClassResourceInterf
     public function cgetAction(ParamFetcher $paramFetcher)
     {
         $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneByFirstname($paramFetcher->get('employee'));
-        $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByEmployee($employee);
-
+        if ($employee) {
+            $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByEmployee($employee);
+        } else {
+            $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findAll();
+        }
         $view = $this->view($booking, 200);
 
         return $this->handleView($view);

@@ -2,6 +2,6 @@ AppBundle\Entity\Booking:
     booking{1..25}:
         startDatetime: <dateTimeBetween('now', '7 days')>
         endDatetime: <dateTimeBetween('now', '7 days')>
-        clientName: <firstname()>
+        customer: @cus*
         employee: @user
         service: @service*

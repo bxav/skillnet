@@ -102,7 +102,8 @@ gulp.task('scripts', function() {
         config.bowerDir+'/angular-ui-calendar/src/calendar.js',
         config.bowerDir+'/angular-bootstrap/ui-bootstrap.js',
         config.bowerDir+'/angular-bootstrap/ui-bootstrap-tpls.js',
-        config.bowerDir+'/angular-base64/angular-base64.js'
+        config.bowerDir+'/angular-base64/angular-base64.js',
+        config.bowerDir+'/angular-hateoas/src/angular-hateoas.js'
     ], 'vendors.js');
     pipeline.add([
         config.assetsDir+'/js/app.js',

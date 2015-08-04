@@ -1,0 +1,6 @@
+AppBundle\Entity\Customer:
+    cus{1..5}:
+        Username: <firstname()>
+        Firstname: <firstname()>
+        Lastname: <lastname()>
+        Email: <safeEmail()>

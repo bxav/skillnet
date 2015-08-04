@@ -8,9 +8,8 @@
  * Controller of yapp
  */
 angular.module('beauty')
-  .controller('ParameterCtrl', function(business) {
-      business.all().success(function(data) {
-        console.log(data);
-      })
-
+  .controller('ParameterCtrl', function($scope, Business) {
+      Business.get({businessId:"haircut-master"}, function(business){
+          $scope.name = business.name;
+      });
   });

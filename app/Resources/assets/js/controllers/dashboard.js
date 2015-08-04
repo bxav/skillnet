@@ -8,11 +8,7 @@
  * Controller of yapp
  */
 angular.module('beauty')
-  .controller('DashboardCtrl', function($scope, $state, booking) {
+  .controller('DashboardCtrl', function($scope, $state) {
 
     $scope.$state = $state;
-      booking.all().success(function(data) {
-        console.log(data);
-      })
-
   });

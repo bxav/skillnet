@@ -1,10 +1,6 @@
 'use strict';
 
 angular.module('beauty')
-    .factory('business', ['$http', '$base64', function businessFactory($http, $base64) {
-        return {
-            all: function() {
-                return $http({method: 'GET', url: '/api/businesses'});
-            }
-        };
+    .factory('Business', ['$resource', function BusinessFactory($resource) {
+        return $resource('/api/businesses/:businessId', {businessId:'@id'});
     }]);
