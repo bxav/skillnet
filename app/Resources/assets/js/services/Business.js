@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('beauty')
     .factory('Business', ['$resource', function BusinessFactory($resource) {
         var Business = $resource('/api/businesses/:businessId', {businessId:'@id'});

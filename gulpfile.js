@@ -27,10 +27,11 @@ app.addStyle = function(paths, outputFilename) {
         }))
         .pipe(gulp.dest('.'));
 };
-app.addScript = function(paths, outputFilename) {
+app.addScript = function(paths, outputFilename, wrap) {
     return gulp.src(paths)
         .pipe(plugins.plumber())
         .pipe(plugins.if(config.sourceMaps, plugins.sourcemaps.init()))
+        .pipe(plugins.if(wrap, plugins.wrap('(function(){\n"use strict";\n<%= contents %>\n})();')))
         .pipe(plugins.concat('js/'+outputFilename))
         .pipe(plugins.if(config.production, plugins.uglify()))
         .pipe(plugins.rev())
@@ -109,7 +110,7 @@ gulp.task('scripts', function() {
         config.assetsDir+'/js/directives/*.js',
         config.assetsDir+'/js/controllers/*.js',
         config.assetsDir+'/js/services/*.js'
-    ], 'angular_app.js');
+    ], 'angular_app.js', true);
     pipeline.add([
         config.bowerDir+'/moment/moment.js',
         config.bowerDir+'/fullcalendar/dist/fullcalendar.js'

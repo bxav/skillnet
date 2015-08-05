@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('beauty')
     .directive('employeesPlanning', function() {
         return {
