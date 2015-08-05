@@ -33,7 +33,7 @@ class BookingAdmin extends Admin
         $datagridMapper
             ->add('startDatetime')
             ->add('endDatetime')
-            ->add('clientName')
+            ->add('customer.username')
             ->add('employee')
             ->add('service');
     }
@@ -45,7 +45,7 @@ class BookingAdmin extends Admin
             ->addIdentifier('id', null)
             ->add('startDatetime')
             ->add('endDatetime')
-            ->add('clientName')
+            ->add('customer.username')
             ->add('employee')
             ->add('service');
 
