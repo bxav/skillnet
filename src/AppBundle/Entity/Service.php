@@ -54,7 +54,7 @@ class Service
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
+     * @ORM\ManyToOne(targetEntity="Business", inversedBy="services")
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      */
     protected $business;
