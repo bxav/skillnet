@@ -23,7 +23,11 @@ class EmployeeAdmin extends Admin
             ->with('General');
 
         if (!$this->hasParentFieldDescription()) {
-            $formMapper->add('business', 'sonata_type_model_autocomplete', ['constraints' => new Assert\NotNull(), 'property'=>'name', 'placeholder' => 'Enter the business name']);
+            $formMapper->add('business', 'sonata_type_model_autocomplete', [
+                'constraints' => new Assert\NotNull(),
+                'property'=>'name',
+                'placeholder' => 'Enter the business name'
+            ]);
         }
 
         $formMapper

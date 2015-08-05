@@ -143,6 +143,8 @@ class Customer
         $this->email = $email;
     }
 
-    
+    public function __toString() {
+        return $this->getUsername();
+    }
 
 }

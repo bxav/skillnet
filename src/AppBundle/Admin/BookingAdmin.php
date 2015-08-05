@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class BookingAdmin extends Admin
 {
@@ -19,9 +20,13 @@ class BookingAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('startDatetime')
-            ->add('endDatetime')
-            ->add('clientName')
+            ->add('startDatetime', 'sonata_type_datetime_picker')
+            ->add('endDatetime','sonata_type_datetime_picker')
+            ->add('customer', 'sonata_type_model_autocomplete', [
+                'constraints' => new Assert\NotNull(),
+                'property'=>'username',
+                'placeholder' => 'Enter the customer username'
+            ])
             ->add('employee')
             ->add('service')
             ->end();
