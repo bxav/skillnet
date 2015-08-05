@@ -14,6 +14,7 @@
 /web/fonts
 /web/images
 /web/img
+/web/views
 /node_modules
 /app/Resources/assets/rev-manifest.json
 /behat.yml
