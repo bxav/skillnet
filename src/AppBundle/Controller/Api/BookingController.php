@@ -18,16 +18,14 @@ class BookingController extends FOSRestController implements ClassResourceInterf
      *  resource=true,
      *  description="Return a collection of Bookings",
      * )
-     * @QueryParam(name="employee", requirements="[a-z]+", description="Employee's firstname.")
+     * @QueryParam(name="employee", requirements="[a-z-]+", description="Employee's slug.")
      *
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneByFirstname($paramFetcher->get('employee'));
+        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug($paramFetcher->get('employee'));
         if ($employee) {
             $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByEmployee($employee);
-        } else {
-            $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findAll();
         }
         $view = $this->view($booking, 200);
 

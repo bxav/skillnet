@@ -22,7 +22,7 @@ Feature: Access to the api
       | employee | service | customer |
       | marie | haircut | customer |
     Given I specified the following request queries:
-      | employee | marie |
+      | employee | marie-dupond |
     Given I prepare a GET request on "/api/bookings"
     When I send the request
     Then print the last response
