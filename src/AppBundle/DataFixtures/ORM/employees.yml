@@ -17,6 +17,16 @@ AppBundle\Entity\Employee:
         Roles: [ROLE_API]
         Email: <safeEmail()>
         Enabled: true
-        business: @biz*
+        business: @biz1
+        services: 5x @service*
+    user{1..5}:
+        Username: <firstname()>
+        PlainPassword: <firstname()>
+        Firstname: <firstname()>
+        Lastname: <lastname()>
+        Roles: [ROLE_API]
+        Email: <safeEmail()>
+        Enabled: true
+        business: @biz1
         services: 5x @service*
 

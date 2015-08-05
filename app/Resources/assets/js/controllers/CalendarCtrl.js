@@ -17,7 +17,7 @@ angular.module('beauty')
 
         var events_b = [];
 
-        Booking.query({}, function(data){
+        Booking.query({employee: $scope.employee.slug}, function(data){
             bookings = data;
             data.forEach(function(element, index, array) {
                 events_b.push({

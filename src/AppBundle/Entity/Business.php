@@ -58,6 +58,7 @@ class Business
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=64, unique=true)
+     * @Serializer\Expose
      */
     protected $slug;
 

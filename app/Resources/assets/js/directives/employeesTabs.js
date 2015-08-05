@@ -4,8 +4,12 @@ angular.module('beauty')
     .directive('employeesTabs', function() {
         return {
             restrict: 'E',
-            controller: function ($scope) {
-                $scope.employees = ['Marie','John','Duff'];
+            controller: function ($scope, Business) {
+                var currentBusiness = Business.get({businessId: $scope.business.slug}, function (business) {
+                    currentBusiness.getEmployees().query(null, function (employees) {
+                        $scope.employees = employees;
+                    });
+                });
 
                 $scope.checkModel = $scope.employees;
                 $scope.checkResults = [];

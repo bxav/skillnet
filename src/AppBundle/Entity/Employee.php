@@ -67,6 +67,7 @@ class Employee extends User
     /**
      * @Gedmo\Slug(fields={"firstname", "lastname"})
      * @ORM\Column(length=64, unique=true)
+     * @Serializer\Expose
      */
     protected $slug;
 
