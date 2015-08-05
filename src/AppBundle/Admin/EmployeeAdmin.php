@@ -45,17 +45,23 @@ class EmployeeAdmin extends Admin
 
 
         if (!$this->hasParentFieldDescription()) {
-        $em = $this->modelManager->getEntityManager('AppBundle\Entity\Service');
+            $em = $this->modelManager->getEntityManager('AppBundle\Entity\Service');
 
-        $query = $em->createQueryBuilder('s')
-            ->select('s')
-            ->from('AppBundle:Service', 's')
-            ->where('s.business = :business')
-            ->setParameter('business', $this->getSubject()->getBusiness());
+            $query = $em->createQueryBuilder('s')
+                ->select('s')
+                ->from('AppBundle:Service', 's')
+                ->where('s.business = :business')
+                ->setParameter('business', $this->getSubject()->getBusiness());
 
             $formMapper
                 ->with('Services', ['class' => 'col-md-12'])
-                ->add('services', 'sonata_type_model', array('multiple' => true, 'by_reference' => false, 'btn_add' => false, 'query' => $query))
+                ->add('services', 'sonata_type_model', [
+                    'multiple' => true,
+                    'by_reference' => false,
+                    'btn_add' => false,
+                    'query' => $query,
+                    'required' => false
+                ])
                 ->end();
         }
     }
