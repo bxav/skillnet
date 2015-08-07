@@ -1,7 +1,16 @@
 angular.module('beauty')
-    .controller('ModalNewBookingCtrl', function ($scope, $modalInstance, Booking) {
-        $scope.customers = ["John", "Bob"];
-        $scope.services = ["John", "Bob"];
+    .controller('ModalNewBookingCtrl', function ($scope, $modalInstance, Restangular, businessSlug) {
+        Restangular.all('customers').getList().then(function (customers) {
+            $scope.customers = customers;
+        });
+
+        Restangular.one('businesses', businessSlug).getList('employees').then(function (employees) {
+            $scope.employees = employees;
+        });
+
+        Restangular.one('businesses', businessSlug).getList('services').then(function (services) {
+            $scope.services = services;
+        });
 
         $scope.hstep = 1;
         $scope.mstep = 15;
@@ -13,8 +22,7 @@ angular.module('beauty')
         $scope.update = function (booking) {
             console.log("Updated settings ", booking);
 
-            var retBook = new Booking($scope.booking.employee, $scope.booking.customer, $scope.booking.service, $scope.booking.startTime, $scope.booking.endTime);
-            $modalInstance.close(retBook);
+            $modalInstance.close(booking);
         };
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');

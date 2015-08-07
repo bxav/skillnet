@@ -98,6 +98,10 @@ jms_serializer:
             FOSUB:
                 namespace_prefix: "FOS\\UserBundle"
                 path: "%kernel.root_dir%/serializer/FOSUserBundle"
+    handlers:
+        datetime:
+            default_format: "Y-m-d\TH:i:s.uO" # ISO8601
+            default_timezone: "UTC"
 
 fos_rest:
     param_fetcher_listener: true

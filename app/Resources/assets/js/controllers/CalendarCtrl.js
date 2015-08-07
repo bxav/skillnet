@@ -19,7 +19,7 @@ angular.module('beauty')
         Restangular.all('bookings').getList({employee: $scope.employee.slug}).then(function (bookings) {
             bookings.forEach(function(element, index, array) {
                 events_b.push({
-                    title: element.id,
+                    title: "Client: " + element._embedded.customer.username + "|| Pour:" + element._embedded.employee.firstname,
                     start: new Date(element.start_datetime),
                     end: new Date(element.end_datetime)
                 });
