@@ -34,7 +34,5 @@
 
     <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/fullcalendar.js')) ?>"></script>
     <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/angular_app.js')) ?>"></script>
-
-    <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/site.js')) ?>"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ var del = require('del');
 var Q = require('q');
 var config = {
     assetsDir: 'app/Resources/assets',
+    assetsDirProApp: 'app/Resources/assets/pro',
     lessPattern: 'less/**/*.less',
     production: !!plugins.util.env.production,
     sourceMaps: !plugins.util.env.production,
@@ -82,10 +83,7 @@ gulp.task('styles', function() {
         config.assetsDir+'/css/leaflet.css'
     ], 'vendors.css');
     pipeline.add([
-        config.assetsDir+'/css/leaflet.ie.css'
-    ], 'leaflet.ie.css');
-    pipeline.add([
-        config.assetsDir+'/less/main.less'
+        config.assetsDirProApp+'/less/main.less'
     ], 'main.css');
     return pipeline.run(app.addStyle);
 });
@@ -107,10 +105,10 @@ gulp.task('scripts', function() {
         config.bowerDir+'/angular-base64/angular-base64.js'
     ], 'vendors.js');
     pipeline.add([
-        config.assetsDir+'/js/app.js',
-        config.assetsDir+'/js/services/**/*.js',
-        config.assetsDir+'/js/directives/**/*.js',
-        config.assetsDir+'/js/controllers/**/*.js'
+        config.assetsDirProApp+'/js/app.js',
+        config.assetsDirProApp+'/js/services/**/*.js',
+        config.assetsDirProApp+'/js/directives/**/*.js',
+        config.assetsDirProApp+'/js/controllers/**/*.js'
     ], 'angular_app.js', true);
     pipeline.add([
         config.bowerDir+'/moment/moment.js',
@@ -140,7 +138,7 @@ gulp.task('images', function() {
 });
 gulp.task('views', function() {
     return app.copy(
-        config.assetsDir+'/views/**',
+        config.assetsDirProApp+'/views/**',
         'web/views'
     );
 });
@@ -153,8 +151,8 @@ gulp.task('clean', function() {
     del.sync('web/views/*');
 });
 gulp.task('watch', function() {
-    gulp.watch(config.assetsDir+'/'+config.lessPattern, ['styles']);
-    gulp.watch(config.assetsDir+'/js/**/*.js', ['scripts']);
-    gulp.watch(config.assetsDir+'/views/**/*', ['views']);
+    gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles']);
+    gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts']);
+    gulp.watch(config.assetsDirProApp+'/views/**/*', ['views']);
 });
 gulp.task('default', ['clean', 'styles', 'scripts', 'fonts', 'images', 'views', 'watch']);
