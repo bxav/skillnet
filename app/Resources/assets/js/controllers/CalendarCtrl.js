@@ -6,7 +6,7 @@
  * Controller of yapp
  */
 angular.module('beauty')
-    .controller('CalendarCtrl', function($scope,$compile,uiCalendarConfig, Restangular) {
+    .controller('CalendarCtrl', function($scope,$compile, $modal, uiCalendarConfig, Restangular) {
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
@@ -26,6 +26,21 @@ angular.module('beauty')
             });
         });
 
+        $scope.showEditVisitDialog = function (event) {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'views/addEditVisitDialog.html',
+                controller: function () {
+
+                },
+                size: 'lg',
+                resolve: {
+                    title: function () {
+                        return event.title;
+                    }
+                }
+            });
+        };
         /* config object */
         $scope.uiConfig = {
             calendar:{
@@ -51,7 +66,8 @@ angular.module('beauty')
                 },
                 allDaySlot: false,
                 defaultView: 'agendaDay',
-                events: events_b
+                events: events_b,
+                eventClick: $scope.showEditVisitDialog
             }
         };
 });
