@@ -11,9 +11,9 @@
 
     <title>{% block title %}Starter Template for Bootstrap{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/vendors.css' | asset_version ) }}"/>
+        <link rel="stylesheet" href="{{ asset('css/vendors_front.css' | asset_version ) }}"/>
 
-        <link rel="stylesheet" href="{{ asset('css/main.css' | asset_version ) }}"/>
+        <link rel="stylesheet" href="{{ asset('css/main_front.css' | asset_version ) }}"/>
     {% endblock %}
     {% block javascripts_head %}
     {% endblock %}
@@ -26,7 +26,7 @@
     <!-- Javascripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js' | asset_version ) }}"><\/script>')</script>
-    <script src="{{ asset('js/vendors.js' | asset_version ) }}"></script>
+    <script src="{{ asset('js/vendors_front.js' | asset_version ) }}"></script>
 
     <script src="{{ asset('js/site.js' | asset_version ) }}"></script>
 {% endblock %}

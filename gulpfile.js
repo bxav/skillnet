@@ -4,6 +4,7 @@ var del = require('del');
 var Q = require('q');
 var config = {
     assetsDir: 'app/Resources/assets',
+    assetsDirFront: 'app/Resources/assets/front',
     assetsDirProApp: 'app/Resources/assets/pro',
     lessPattern: 'less/**/*.less',
     production: !!plugins.util.env.production,
@@ -77,14 +78,18 @@ Pipeline.prototype.run = function(callable) {
 gulp.task('styles', function() {
     var pipeline = new Pipeline();
     pipeline.add([
+        config.bowerDir+'/bootstrap/dist/css/bootstrap.css'
+    ], 'vendors_front.css');
+    pipeline.add([
+        config.assetsDirFront+'/css/main.css'
+    ], 'main_front.css');
+    pipeline.add([
         config.bowerDir+'/bootstrap/dist/css/bootstrap.css',
-        config.bowerDir+'/fullcalendar/dist/fullcalendar.css',
-        config.assetsDir+'/css/icomoon-social.css',
-        config.assetsDir+'/css/leaflet.css'
-    ], 'vendors.css');
+        config.bowerDir+'/fullcalendar/dist/fullcalendar.css'
+    ], 'vendors_app_pro.css');
     pipeline.add([
         config.assetsDirProApp+'/less/main.less'
-    ], 'main.css');
+    ], 'main_app_pro.css');
     return pipeline.run(app.addStyle);
 });
 gulp.task('scripts', function() {
@@ -92,6 +97,9 @@ gulp.task('scripts', function() {
     pipeline.add([
         config.bowerDir+'/jquery/dist/jquery.js'
     ], 'jquery.js');
+    pipeline.add([
+        config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
+    ], 'vendors_front.js');
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
         config.bowerDir+'/angular/angular.js',
@@ -103,7 +111,7 @@ gulp.task('scripts', function() {
         config.bowerDir+'/angular-bootstrap/ui-bootstrap.js',
         config.bowerDir+'/angular-bootstrap/ui-bootstrap-tpls.js',
         config.bowerDir+'/angular-base64/angular-base64.js'
-    ], 'vendors.js');
+    ], 'vendors_app_pro.js');
     pipeline.add([
         config.assetsDirProApp+'/js/app.js',
         config.assetsDirProApp+'/js/services/**/*.js',
@@ -116,7 +124,7 @@ gulp.task('scripts', function() {
         config.bowerDir+'/fullcalendar/dist/lang/fr.js'
     ], 'fullcalendar.js');
     pipeline.add([
-        config.assetsDir+'/js/main.js'
+        config.assetsDirFront+'/js/main.js'
     ], 'site.js');
     return pipeline.run(app.addScript);
 });
@@ -151,6 +159,8 @@ gulp.task('clean', function() {
     del.sync('web/views/*');
 });
 gulp.task('watch', function() {
+    gulp.watch(config.assetsDirFront+'/css/**/*.css', ['styles']);
+    gulp.watch(config.assetsDirFront+'/js/**/*.js', ['scripts']);
     gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles']);
     gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts']);
     gulp.watch(config.assetsDirProApp+'/views/**/*', ['views']);

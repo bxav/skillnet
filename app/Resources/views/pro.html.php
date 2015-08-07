@@ -10,9 +10,9 @@
     <link rel="icon" type="image/x-icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
 
     <title><?php $view['slots']->output('title', 'Starter Template for Bootstrap') ?></title>
-        <link rel="stylesheet" href="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('css/vendors.css')) ?>"/>
+        <link rel="stylesheet" href="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('css/vendors_app_pro.css')) ?>"/>
 
-        <link rel="stylesheet" href="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('css/main.css')) ?>"/>
+        <link rel="stylesheet" href="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('css/main_app_pro.css')) ?>"/>
 
 
 </head>
@@ -30,7 +30,7 @@
     <!-- Javascripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/jquery.js')) ?>"><\/script>')</script>
-    <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/vendors.js')) ?>"></script>
+    <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/vendors_app_pro.js')) ?>"></script>
 
     <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/fullcalendar.js')) ?>"></script>
     <script src="<?php echo $view['asset_version']->getAssetVersion($view['assets']->getUrl('js/angular_app.js')) ?>"></script>

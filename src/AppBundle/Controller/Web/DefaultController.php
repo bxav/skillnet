@@ -22,12 +22,4 @@ class DefaultController extends Controller
     {
         return $this->render('::pro.html.php', []);
     }
-
-    /**
-     * @Route("/webapp/{message}", name="webapp")
-     */
-    public function webAppAction($message = 'hello')
-    {
-        return $this->render('::webapp.html.php', ['helloMessage' => $message]);
-    }
 }
