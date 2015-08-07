@@ -10,12 +10,24 @@ angular
     .module('beauty', [
         'ui.router',
         'ngAnimate',
-        'ngResource',
         'ui.calendar',
         'ui.bootstrap',
-        'base64'
+        'base64',
+        'restangular'
     ])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function (RestangularProvider) {
+        RestangularProvider.setBaseUrl('/api');
+
+        // In this case we are mapping the id of each element to the _id field.
+        // We also change the Restangular route.
+        // The default value for parentResource remains the same.
+
+        RestangularProvider.setRestangularFields({
+            selfLink: '_links.self.href',
+        });
+
+    })
+    .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.when('/dashboard', '/dashboard/overview');
         $urlRouterProvider.otherwise('/dashboard');
 

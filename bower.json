@@ -19,9 +19,9 @@
     "angular-animate": "~1.4",
     "angular-ui-calendar": "~1.0.1",
     "angular-bootstrap": "~0.13.1",
-    "angular-resource": "~1.4.3",
     "jquery": "~1.11.2",
     "angular": "~1.4.0",
-    "angular-base64": "~2.0.5"
+    "angular-base64": "~2.0.5",
+    "restangular": "~1.5.1"
   }
 }

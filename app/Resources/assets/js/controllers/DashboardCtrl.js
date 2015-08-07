@@ -6,13 +6,11 @@
  * Controller of yapp
  */
 angular.module('beauty')
-    .controller('DashboardCtrl', function ($scope, $state, $resource, Employee) {
-
-        var currentUser = Employee.get({employeeId: "current"}, function (employee) {
+    .controller('DashboardCtrl', function ($scope, $state, Restangular) {
+        var current = Restangular.one('employees', 'current').get();
+        current.then(function (employee) {
             $scope.employee = employee;
-            currentUser.getBusiness().get({}, function (business) {
-                $scope.business = business;
-            });
+            $scope.business = employee._embedded.business;
         });
         $scope.$state = $state;
 

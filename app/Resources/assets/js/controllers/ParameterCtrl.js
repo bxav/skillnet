@@ -6,8 +6,9 @@
  * Controller of yapp
  */
 angular.module('beauty')
-  .controller('ParameterCtrl', function($scope, Business) {
-      Business.get({businessId:"haircut-master"}, function(business){
-          $scope.name = business.name;
-      });
+  .controller('ParameterCtrl', function($scope, Restangular) {
+
+        Restangular.one('businesses', $scope.business.slug).get().then(function (business) {
+            $scope.name = business.name;
+        });
   });
