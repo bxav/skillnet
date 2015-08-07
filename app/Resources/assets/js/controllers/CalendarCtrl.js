@@ -29,6 +29,7 @@ angular.module('beauty')
         /* config object */
         $scope.uiConfig = {
             calendar:{
+                lang: 'fr',
                 minTime: "06:00:00",
                 maxTime: "19:00:00",
                 slotDuration: "00:15:00",

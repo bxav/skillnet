@@ -114,7 +114,8 @@ gulp.task('scripts', function() {
     ], 'angular_app.js', true);
     pipeline.add([
         config.bowerDir+'/moment/moment.js',
-        config.bowerDir+'/fullcalendar/dist/fullcalendar.js'
+        config.bowerDir+'/fullcalendar/dist/fullcalendar.js',
+        config.bowerDir+'/fullcalendar/dist/lang/fr.js'
     ], 'fullcalendar.js');
     pipeline.add([
         config.assetsDir+'/js/main.js'
