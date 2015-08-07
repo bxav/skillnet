@@ -1,8 +1,9 @@
-Feature: Access to the Home page
-  In order to access the app
-  As an user
-  I need to be able to access the frontend
+# language: fr
+Fonctionnalité: acceder à la page d'un salon
+  Afin d'obtenir des info sur un salon
+  En tant que client
+  Je dois être capable d'acceder à la page
 
-  Scenario: User login
-    Given I am on "/"
-    Then I should see "Bootstrap starter template"
+  Scénario: Acceder à la page du salon
+    Etant donné je suis sur la page d'accueil
+    Alors je devrais voir "hello"

@@ -1,9 +1,9 @@
-Feature: Access to the web app
-  In order to access the app
-  As an user
-  I need to be able to access the frontend
+# language: fr
+Fonctionnalité: acceder au portail pro
+  Afin de gérer les réservation
+  En tant qu'employé
+  Je dois être capable d'acceder à mon portail pro
 
-  Scenario: User login
-    Given I am on "/webapp/helloYou"
-    Then I should see "Bootstrap starter template"
-     And I should see "helloYou"
+  Scénario: Acceder à la page du salon
+    Etant donné je suis sur "/pro"
+    Alors je devrais voir "Beauty"
