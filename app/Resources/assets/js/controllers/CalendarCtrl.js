@@ -6,7 +6,7 @@
  * Controller of yapp
  */
 angular.module('beauty')
-    .controller('CalendarCtrl', function($scope,$compile,uiCalendarConfig, Booking) {
+    .controller('CalendarCtrl', function($scope,$compile,uiCalendarConfig, BookingsService) {
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
@@ -15,7 +15,7 @@ angular.module('beauty')
 
         var events_b = [];
 
-        Booking.query({employee: $scope.employee.slug}, function(data){
+        BookingsService.query({employee: $scope.employee.slug}, function(data){
             bookings = data;
             data.forEach(function(element, index, array) {
                 events_b.push({

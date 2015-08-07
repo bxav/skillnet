@@ -1,4 +1,4 @@
 angular.module('beauty')
-    .factory('Booking', ['$resource', function BookingFactory($resource) {
+    .factory('BookingsService', function ($resource) {
         return $resource('/api/bookings/:bookingId', {bookingId:'@id'});
-    }]);
+    });

@@ -107,9 +107,9 @@ gulp.task('scripts', function() {
     ], 'vendors.js');
     pipeline.add([
         config.assetsDir+'/js/app.js',
-        config.assetsDir+'/js/directives/*.js',
-        config.assetsDir+'/js/controllers/*.js',
-        config.assetsDir+'/js/services/*.js'
+        config.assetsDir+'/js/services/**/*.js',
+        config.assetsDir+'/js/directives/**/*.js',
+        config.assetsDir+'/js/controllers/**/*.js'
     ], 'angular_app.js', true);
     pipeline.add([
         config.bowerDir+'/moment/moment.js',
@@ -121,6 +121,10 @@ gulp.task('scripts', function() {
     return pipeline.run(app.addScript);
 });
 gulp.task('fonts', function() {
+    app.copy(
+        config.assetsDir+'/fonts/*',
+        'web/fonts'
+    );
     return app.copy(
         config.bowerDir+'/font-awesome/fonts/*',
         'web/fonts'
