@@ -7,13 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction($message = 'hello')
-    {
-        return $this->render('default/index.html.twig', ['helloMessage' => $message]);
-    }
+
 
     /**
      * @Route("/pro", name="pro")
@@ -21,5 +15,19 @@ class DefaultController extends Controller
     public function proAction()
     {
         return $this->render('::pro.html.php', []);
+    }
+    
+    /**
+     * @Route("/{businessSlug}", name="homepage")
+     */
+    public function indexAction($businessSlug = null)
+    {
+        $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
+        if ($business) {
+            return $this->render('default/show.html.twig', ['business' => $business]);
+        } else {
+            $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
+            return $this->render('default/index.html.twig', ['businesses' => $businesses]);
+        }
     }
 }
