@@ -42,8 +42,8 @@ Feature: Access to the api
     Given I specified the following request body:
     """
     {
-        "start_datetime":"2015-08-03T08:43:29+0200",
-        "end_datetime":"2015-08-03T08:43:29+0200",
+        "start_datetime":"2015-08-03T08:43:29.0200Z",
+        "end_datetime":"2015-08-03T08:43:29.0200Z",
         "customer_username":"customer",
         "employee_slug":"marie-dupond",
         "service_id":20

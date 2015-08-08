@@ -16,7 +16,7 @@ class DefaultController extends Controller
     {
         return $this->render('::pro.html.php', []);
     }
-    
+
     /**
      * @Route("/{businessSlug}", name="homepage")
      */
