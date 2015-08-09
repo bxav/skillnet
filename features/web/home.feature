@@ -4,6 +4,12 @@ Fonctionnalité: acceder à la page d'un salon
   En tant que client
   Je dois être capable d'acceder à la page
 
-  Scénario: Acceder à la page du salon
+  Contexte:
+    Etant donné there is 1 business like:
+      | name |
+      | Haircut Master |
+
+  Scénario: Acceder à la page principal
     Etant donné je suis sur la page d'accueil
-    Alors je devrais voir "hello"
+    Quand je suis "haircut-master"
+    Alors je devrais voir "Toutes Belles"

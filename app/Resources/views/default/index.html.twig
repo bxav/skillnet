@@ -5,9 +5,11 @@
 
         <div class="starter-template">
             <h1>Bootstrap starter template</h1>
-            {% for business in businesses%}
-                <p class="lead">{{ business.slug }}</p>
-            {% endfor %}
+            <tr>
+                {% for business in businesses%}
+                    <td><a href="{{ url('homepage', {'businessSlug': business.slug}) }}">{{ business.slug }}</a></td>
+                {% endfor %}
+            </tr>
 
         </div>
 

@@ -10,7 +10,9 @@ default:
             - Knp\FriendlyContexts\Context\EntityContext
       web:
           paths:    [ %paths.base%/features/web ]
-          contexts: [ Behat\MinkExtension\Context\MinkContext ]
+          contexts:
+            - Behat\MinkExtension\Context\MinkContext
+            - Knp\FriendlyContexts\Context\EntityContext
       webapp:
           paths:    [ %paths.base%/features/webapp ]
           contexts: [ Behat\MinkExtension\Context\MinkContext ]
