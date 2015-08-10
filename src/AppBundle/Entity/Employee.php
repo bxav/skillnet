@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Employee
  *
- * @ORM\Table()
+ * @ORM\Table(name="employee")
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/employees/' ~ object.getSlug())")

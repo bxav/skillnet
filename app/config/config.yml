@@ -79,7 +79,15 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: AppBundle\Entity\Employee
+    user_class: AppBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
+
+pugx_multi_user:
+  users:
+    employee:
+        entity:
+          class: AppBundle\Entity\Employee
 
 sonata_block:
     default_contexts: [cms]
