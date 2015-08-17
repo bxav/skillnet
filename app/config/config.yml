@@ -88,6 +88,9 @@ pugx_multi_user:
     employee:
         entity:
           class: AppBundle\Entity\Employee
+    customer:
+        entity:
+          class: AppBundle\Entity\Customer
 
 sonata_block:
     default_contexts: [cms]

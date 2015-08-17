@@ -11,12 +11,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Customer
  *
- * @ORM\Table()
+ * @ORM\Table(name="customer")
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/customers/' ~ object.getUsername())")
  */
-class Customer
+class Customer extends User
 {
     /**
      * @ORM\Id
@@ -26,15 +26,6 @@ class Customer
      * @Serializer\Expose
      */
     protected $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     */
-    protected $username;
 
     /**
      * @var string
@@ -55,15 +46,6 @@ class Customer
     protected $lastname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     */
-    protected $email;
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -77,22 +59,6 @@ class Customer
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
     }
 
     /**
@@ -125,22 +91,6 @@ class Customer
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
     }
 
     public function __toString() {

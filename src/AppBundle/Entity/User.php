@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Table(name="user")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"employee" = "Employee"})
+ * @ORM\DiscriminatorMap({"employee" = "Employee", "customer" = "Customer"})
  *
  */
 abstract class User extends BaseUser

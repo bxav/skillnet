@@ -1,6 +1,9 @@
 AppBundle\Entity\Customer:
     cus{1..5}:
         Username: <firstname()>
+        PlainPassword: customer
         Firstname: <firstname()>
         Lastname: <lastname()>
+        Roles: [ROLE_CUSTOMER]
         Email: <safeEmail()>
+        Enabled: true
