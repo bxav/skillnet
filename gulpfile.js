@@ -77,12 +77,20 @@ Pipeline.prototype.run = function(callable) {
 };
 gulp.task('styles', function() {
     var pipeline = new Pipeline();
+    return pipeline.run(app.addStyle);
+});
+gulp.task('styles_front', function() {
+    var pipeline = new Pipeline();
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/css/bootstrap.css'
     ], 'vendors_front.css');
     pipeline.add([
         config.assetsDirFront+'/css/main.css'
     ], 'main_front.css');
+    return pipeline.run(app.addStyle);
+});
+gulp.task('styles_app', function() {
+    var pipeline = new Pipeline();
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/css/bootstrap.css',
         config.bowerDir+'/fullcalendar/dist/fullcalendar.css'
@@ -97,9 +105,20 @@ gulp.task('scripts', function() {
     pipeline.add([
         config.bowerDir+'/jquery/dist/jquery.js'
     ], 'jquery.js');
+    return pipeline.run(app.addScript);
+});
+gulp.task('scripts_front', function() {
+    var pipeline = new Pipeline();
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
     ], 'vendors_front.js');
+    pipeline.add([
+        config.assetsDirFront+'/js/main.js'
+    ], 'site.js');
+    return pipeline.run(app.addScript);
+});
+gulp.task('scripts_app', function() {
+    var pipeline = new Pipeline();
     pipeline.add([
         config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
         config.bowerDir+'/angular/angular.js',
@@ -123,9 +142,6 @@ gulp.task('scripts', function() {
         config.bowerDir+'/fullcalendar/dist/fullcalendar.js',
         config.bowerDir+'/fullcalendar/dist/lang/fr.js'
     ], 'fullcalendar.js');
-    pipeline.add([
-        config.assetsDirFront+'/js/main.js'
-    ], 'site.js');
     return pipeline.run(app.addScript);
 });
 gulp.task('fonts', function() {
@@ -159,10 +175,10 @@ gulp.task('clean', function() {
     del.sync('web/views/*');
 });
 gulp.task('watch', function() {
-    gulp.watch(config.assetsDirFront+'/css/**/*.css', ['styles']);
-    gulp.watch(config.assetsDirFront+'/js/**/*.js', ['scripts']);
-    gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles']);
-    gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts']);
+    gulp.watch(config.assetsDirFront+'/css/**/*.css', ['styles_front']);
+    gulp.watch(config.assetsDirFront+'/js/**/*.js', ['scripts_front']);
+    gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles_app']);
+    gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts_app']);
     gulp.watch(config.assetsDirProApp+'/views/**/*', ['views']);
 });
-gulp.task('default', ['clean', 'styles', 'scripts', 'fonts', 'images', 'views', 'watch']);
+gulp.task('default', ['clean', 'styles', 'styles_front', 'styles_app', 'scripts', 'scripts_front', 'scripts_app', 'fonts', 'images', 'views', 'watch']);
