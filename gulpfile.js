@@ -85,7 +85,15 @@ gulp.task('styles_front', function() {
         config.bowerDir+'/bootstrap/dist/css/bootstrap.css'
     ], 'vendors_front.css');
     pipeline.add([
-        config.assetsDirFront+'/css/main.css'
+        config.assetsDirFront+'/plugins/magnific-popup/magnific-popup.css',
+        config.assetsDirFront+'/plugins/rs-plugin/css/settings.css',
+        config.assetsDirFront+'/plugins/owl-carousel/owl.carousel.css',
+        config.assetsDirFront+'/plugins/mowl-carousel/owl.transitions.css',
+        config.assetsDirFront+'/plugins/hover/hover-min.css'
+    ], 'plugins_front.css');
+    pipeline.add([
+        config.assetsDirFront+'/less/style.less',
+        config.assetsDirFront+'/less/skins/pink.less'
     ], 'main_front.css');
     return pipeline.run(app.addStyle);
 });
@@ -113,8 +121,26 @@ gulp.task('scripts_front', function() {
         config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
     ], 'vendors_front.js');
     pipeline.add([
-        config.assetsDirFront+'/js/main.js'
-    ], 'site.js');
+        config.assetsDirFront+'/plugins/modernizr.js',
+        config.assetsDirFront+'/plugins/rs-plugin/js/jquery.themepunch.tools.min.js',
+        config.assetsDirFront+'/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js',
+        config.assetsDirFront+'/plugins/isotope/isotope.pkgd.min.js',
+        config.assetsDirFront+'/plugins/magnific-popup/jquery.magnific-popup.min.js',
+        config.assetsDirFront+'/plugins/waypoints/jquery.waypoints.min.js',
+        config.assetsDirFront+'/plugins/jquery.countTo.js',
+        config.assetsDirFront+'/plugins/jquery.parallax-1.1.3.js',
+        config.assetsDirFront+'/plugins/jquery.validate.js',
+        config.assetsDirFront+'/plugins/vide/jquery.vide.js',
+        config.assetsDirFront+'/plugins/owl-carousel/owl.carousel.js',
+        config.assetsDirFront+'/plugins/jquery.browser.js',
+        config.assetsDirFront+'/plugins/SmoothScroll.js'
+    ], 'plugins.js');
+    pipeline.add([
+        config.assetsDirFront+'/js/template.js'
+    ], 'template.js');
+    pipeline.add([
+        config.assetsDirFront+'/js/custom.js'
+    ], 'custom.js');
     return pipeline.run(app.addScript);
 });
 gulp.task('scripts_app', function() {
@@ -146,7 +172,7 @@ gulp.task('scripts_app', function() {
 });
 gulp.task('fonts', function() {
     app.copy(
-        config.assetsDir+'/fonts/*',
+        config.assetsDir+'/fonts/**/*',
         'web/fonts'
     );
     return app.copy(
@@ -175,7 +201,7 @@ gulp.task('clean', function() {
     del.sync('web/views/*');
 });
 gulp.task('watch', function() {
-    gulp.watch(config.assetsDirFront+'/css/**/*.css', ['styles_front']);
+    gulp.watch(config.assetsDirFront+'/'+config.lessPattern, ['styles_front']);
     gulp.watch(config.assetsDirFront+'/js/**/*.js', ['scripts_front']);
     gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles_app']);
     gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts_app']);
