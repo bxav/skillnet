@@ -38,37 +38,15 @@
     {% block javascripts_head %}
     {% endblock %}
 </head>
-
 <!-- body classes:  -->
 <!-- "boxed": boxed layout mode e.g. <body class="boxed"> -->
 <!-- "pattern-1 ... pattern-9": background patterns for boxed layout mode e.g. <body class="boxed pattern-1"> -->
 <!-- "transparent-header": makes the header transparent and pulls the banner to top -->
 <body class="no-trans  ">
 
-<!-- scrollToTop -->
-<!-- ================ -->
-<div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
 
-<!-- page wrapper start -->
-<!-- ================ -->
-<div class="page-wrapper">
-
-    {% block header %}
-    {% use "header.twig"  %}
-    <!-- header-container start -->
-    <div class="header-container">
-        {{ block('header_top') }}
-        {{ block('header_main') }}
-    </div>
-    <!-- header-container end -->
-    {% endblock %}
-
-</div>
-<!-- page-wrapper end -->
-
-<div id="page-start"></div>
-
-{% block content %}{% endblock %}
+{% block body %}
+{% endblock body %}
 
 
 {% block javascripts %}
