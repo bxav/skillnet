@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<!-- section start -->
+<!-- ================ -->
+<section class="section light-gray-bg clearfix">
+    <div class="container">
+        <div class="row">
+            <!-- main start -->
+            <!-- ================ -->
+            <div class="col-md-8">
+                <!-- pills start -->
+                <!-- ================ -->
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i class="icon-star"></i> Proche de vous</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content clear-style">
+                    <div class="tab-pane active" id="pill-1">
+                        {% for business in businesses%}
+                        <div class="listing-item mb-20">
+                            <div class="row grid-space-0">
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="overlay-container">
+                                        <img src="images/product-1.jpg" alt="">
+                                        <a class="overlay-link" href="{{ url('homepage', {'businessSlug': business.slug}) }}"><i class="fa fa-plus"></i></a>
+                                        <span class="badge">30% OFF</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-8 col-lg-9">
+                                    <div class="body">
+                                        <h3 class="margin-clear"><a href="{{ url('homepage', {'businessSlug': business.slug}) }}">{{ business.name }}</a></h3>
+                                        <p>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#" class="btn-sm-link"><i class="icon-heart pr-5"></i>Add to Wishlist</a>
+                                            <a href="{{ url('homepage', {'businessSlug': business.slug}) }}" class="btn-sm-link"><i class="icon-link pr-5"></i>View Details</a>
+                                        </p>
+                                        <p>{{ business.description }}</p>
+                                        <div class="elements-list clearfix">
+                                            <a href="#" class="pull-right btn btn-sm btn-default-transparent btn-animated">Voir disponibilités<i class="fa fa-shopping-cart"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane" id="pill-2">
+                    </div>
+                    <div class="tab-pane" id="pill-3">
+                    </div>
+                </div>
+                <!-- pills end -->
+                <!-- pagination start -->
+                <nav class="text-center">
+                    <ul class="pagination">
+                        <li><a href="#" aria-label="Previous"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </nav>
+                <!-- pagination end -->
+            </div>
+            <!-- main end -->
+            <!-- sidebar start -->
+            <!-- ================ -->
+            <aside class="col-md-3 col-md-offset-1">
+                <div class="sidebar">
+                    <div class="block clearfix"></div>
+                </div>
+            </aside>
+            <!-- sidebar end -->
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+
+<h4 class="space-top">Employés</h4>
+<hr>
+
+<div class="row grid-space-0">
+{% for employee in employees%}
+    <div class="col-md-3 col-sm-6">
+        <div class="image-box team-member shadow mb-20">
+            <div class="overlay-container overlay-visible">
+                <img src="http://fakeimg.pl/480/" alt="">
+                <a href="http://fakeimg.pl/480/" class="popup-img overlay-link" title="Jane Doe - CEO"><i class="icon-plus-1"></i></a>
+                <div class="overlay-bottom">
+                    <div class="text">
+                        <h3 class="title">{{ employee.firstname }}</h3>
+                        <div class="separator light"></div>
+                        <p class="small margin-clear"><em>employee.description</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+<hr>

@@ -24,10 +24,10 @@ class DefaultController extends Controller
     {
         $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
         if ($business) {
-            return $this->render('default/show.html.twig', ['business' => $business]);
+            return $this->render('Business/show.html.twig', ['business' => $business]);
         } else {
             $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
-            return $this->render('default/index.html.twig', ['businesses' => $businesses]);
+            return $this->render('Business/index.html.twig', ['businesses' => $businesses]);
         }
     }
 }
