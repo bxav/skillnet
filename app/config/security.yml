@@ -12,6 +12,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                success_handler: app.user.success_handler
             logout:       true
             anonymous:    true
 

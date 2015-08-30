@@ -14,7 +14,7 @@ AppBundle\Entity\Employee:
         PlainPassword: user
         Firstname: <firstname()>
         Lastname: <lastname()>
-        Roles: [ROLE_API]
+        Roles: [ROLE_EMPLOYEE]
         Email: <safeEmail()>
         Enabled: true
         business: @biz1
@@ -24,7 +24,7 @@ AppBundle\Entity\Employee:
         PlainPassword: <firstname()>
         Firstname: <firstname()>
         Lastname: <lastname()>
-        Roles: [ROLE_API]
+        Roles: [ROLE_EMPLOYEE]
         Email: <safeEmail()>
         Enabled: true
         business: @biz1
