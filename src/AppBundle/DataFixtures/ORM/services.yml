@@ -1,4 +1,76 @@
 AppBundle\Entity\Service:
+    brushing:
+        Type: Brushing
+        Duration: 20
+        Price: 15€
+        Description: Brushing
+        Business: @bea_coiffure
+    shampoing:
+        Type: Shampoing
+        Duration: 15
+        Price: 15€
+        Description: Shampoing
+        Business: @bea_coiffure
+    chignon:
+        Type: Chignon
+        Duration: 60
+        Price: 60€
+        Description: Chignon
+        Business: @bea_coiffure
+    shampoing_cheveux_femme:
+        Type: Shampoing/Coupe femme/brushing
+        Duration: 45
+        Price: 35€
+        Description: Shampoing/Coupe femme/brushing
+        Business: @bea_coiffure
+    shampoing_cheveux_longs:
+        Type: Shampoing/Couleur cheveux courts/Soin
+        Duration: 70
+        Price: 90€
+        Description: Shampoing/Couleur cheveux courts/Soin
+        Business: @bea_coiffure
+    shampoing_cheveux_courts:
+        Type: Shampoing/Couleur cheveux courts/Soin
+        Duration: 60
+        Price: 70€
+        Description: Shampoing/Couleur cheveux courts/Soin
+        Business: @bea_coiffure
+    epilation_aisselles:
+        Type: Epilation aisselles
+        Duration: 15
+        Price: 15€
+        Description: Epilation aisselles
+        Business: @beautyinstitut
+    epilation_demi_jambe:
+        Type: Epilation demi jambe
+        Duration: 20
+        Price: 30€
+        Description: Epilation demi jambe
+        Business: @beautyinstitut
+    seance_uv:
+        Type: séance UV
+        Duration: 15
+        Price: 15€
+        Description: séance UV
+        Business: @beautyinstitut
+    massage_dos:
+        Type: Massage dos
+        Duration: 60
+        Price: 60€
+        Description: Massage dos
+        Business: @beautyinstitut
+    maquillage_soiree:
+        Type: Maquillage soirée
+        Duration: 60
+        Price: 80€
+        Description: Maquillage soirée
+        Business: @beautyinstitut
+    maquillage_jour:
+        Type: Maquillage jour
+        Duration: 60
+        Price: 75€
+        Description: Maquillage jour
+        Business: @beautyinstitut
     service{1..5}:
         Type: <sentence()>
         Duration: <numberBetween(10, 45)>
