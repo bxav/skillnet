@@ -1,12 +1,22 @@
 AppBundle\Entity\Business:
     bea_coiffure:
         Name: BEA COIFFURE
+        MainService: Salon de coiffure
         Phone: 0142260229
+        Address: 146 rue cardinet 75017 PARIS
+        Email: <safeEmail()>
+        PaymentMethods: Carte bleue -Chèque -Liquide
+        AvailableBrands: LOREAL -SHWARTZKOPF
         Website: beacoiffuretest.com
         Description: Béacoiffure est votre nouveau petit salon parisien. Il a déjà séduit plus de 1000 clients fidèles. N’hésitez pas à venir tester les coupes détonantes de Charles notre patron et les couleurs toujours très tendances de Sylvia qui se fera un plaisir de vous parler chignon pendant des heures.
     beautyinstitut:
         Name: Beautyinstitut
+        MainService: Salon d’esthétique
         Phone: 0134500228
+        Address: 17 rue aux perles 95220 HERBLAY
+        Email: <safeEmail()>
+        PaymentMethods: Carte bleue
+        AvailableBrands: Cinq monde
         Website: beautyinstituttest.com
         Description: Beautyinstitut vous accueil 7j/7 et vous propose de multiples services pour votre bien être. N’hésitez pas à venir déposer un de vos commentaires sur facebook.
     biz{1..25}:

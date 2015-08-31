@@ -49,6 +49,41 @@ class Business
     protected $phone;
 
     /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $address;
+
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $mainService;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $availableBrands;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Serializer\Type("string")
+     * @Serializer\Expose
+     */
+    protected $paymentMethods;
+
+    /**
      * @ORM\Column(type="text",nullable=true)
      * @Serializer\Type("string")
      * @Serializer\Expose
@@ -132,6 +167,86 @@ class Business
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMainService()
+    {
+        return $this->mainService;
+    }
+
+    /**
+     * @param mixed $mainService
+     */
+    public function setMainService($mainService)
+    {
+        $this->mainService = $mainService;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvailableBrands()
+    {
+        return $this->availableBrands;
+    }
+
+    /**
+     * @param mixed $availableBrands
+     */
+    public function setAvailableBrands($availableBrands)
+    {
+        $this->availableBrands = $availableBrands;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPaymentMethods()
+    {
+        return $this->paymentMethods;
+    }
+
+    /**
+     * @param mixed $paymentMethods
+     */
+    public function setPaymentMethods($paymentMethods)
+    {
+        $this->paymentMethods = $paymentMethods;
     }
 
     /**
