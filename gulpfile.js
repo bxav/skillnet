@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var runSequence = require('run-sequence');
 var del = require('del');
 var Q = require('q');
 var config = {
@@ -35,6 +36,7 @@ app.addScript = function(paths, outputFilename, wrap) {
         .pipe(plugins.if(config.sourceMaps, plugins.sourcemaps.init()))
         .pipe(plugins.if(wrap, plugins.wrap('(function(){\n"use strict";\n<%= contents %>\n})();')))
         .pipe(plugins.concat('js/'+outputFilename))
+        .pipe(plugins.if(wrap && config.production, plugins.ngmin({dynamic: true})))
         .pipe(plugins.if(config.production, plugins.uglify()))
         .pipe(plugins.rev())
         .pipe(plugins.if(config.sourceMaps, plugins.sourcemaps.write('.')))
@@ -207,4 +209,9 @@ gulp.task('watch', function() {
     gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts_app']);
     gulp.watch(config.assetsDirProApp+'/views/**/*', ['views']);
 });
-gulp.task('default', ['clean', 'styles', 'styles_front', 'styles_app', 'scripts', 'scripts_front', 'scripts_app', 'fonts', 'images', 'views', 'watch']);
+
+gulp.task('build', function() {
+    runSequence('clean', 'styles', 'styles_front', 'styles_app', 'scripts', 'scripts_front', 'scripts_app', ['fonts', 'images', 'views']);
+});
+
+gulp.task('default', ['build', 'watch']);
