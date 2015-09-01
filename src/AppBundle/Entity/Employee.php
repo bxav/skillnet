@@ -65,6 +65,11 @@ class Employee extends User
     protected $shortDescription;
 
     /**
+     * @ORM\Column(nullable=true)
+     */
+    protected $mainPictureFilename;
+
+    /**
      * @Gedmo\Slug(fields={"firstname", "lastname"})
      * @ORM\Column(length=64, unique=true)
      * @Serializer\Expose
@@ -162,6 +167,22 @@ class Employee extends User
     public function setShortDescription($shortDescription)
     {
         $this->shortDescription = $shortDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMainPictureFilename()
+    {
+        return $this->mainPictureFilename;
+    }
+
+    /**
+     * @param mixed $mainPictureFilename
+     */
+    public function setMainPictureFilename($mainPictureFilename)
+    {
+        $this->mainPictureFilename = $mainPictureFilename;
     }
 
     /**

@@ -91,6 +91,11 @@ class Business
     protected $description;
 
     /**
+     * @ORM\Column(nullable=true)
+     */
+    protected $mainPictureFilename;
+
+    /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=64, unique=true)
      * @Serializer\Expose
@@ -263,6 +268,22 @@ class Business
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMainPictureFilename()
+    {
+        return $this->mainPictureFilename;
+    }
+
+    /**
+     * @param mixed $mainPictureFilename
+     */
+    public function setMainPictureFilename($mainPictureFilename)
+    {
+        $this->mainPictureFilename = $mainPictureFilename;
     }
 
     /**

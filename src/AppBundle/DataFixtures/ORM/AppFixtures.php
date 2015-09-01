@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM\AppFixtures;
+namespace AppBundle\DataFixtures\ORM;
 
 use Faker\Factory;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
@@ -16,6 +16,13 @@ class AppFixtures extends DataFixtureLoader
     public function __construct()
     {
         $this->faker = Factory::create();
+    }
+
+    protected function getProcessors()
+    {
+        return array(
+            new PictureProcessor()
+        );
     }
 
     /**
@@ -42,5 +49,22 @@ class AppFixtures extends DataFixtureLoader
         $endDateTime = clone $this->startDateTime;
         $endDateTime = $endDateTime->modify('+30 minutes');
         return $endDateTime;
+    }
+
+    public function employeePicture()
+    {
+        $filenames = array(
+            'charles.jpg',
+            'sylvia.jpg'
+        );
+        return $filenames[array_rand($filenames)];
+    }
+
+    public function shopPicture()
+    {
+        $filenames = array(
+            'shop.jpg'
+        );
+        return $filenames[array_rand($filenames)];
     }
 }
