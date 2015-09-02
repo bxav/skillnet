@@ -22,12 +22,7 @@
                 <h3>Mardi</h3>
                 <div class="price"><span>21 Septembre</span></div>
             </div>
-            <ul>
-                <li>9:00</li>
-                <li>9:30</li>
-                <li>10:30</li>
-                <li>11:00</li>
-                <li>voir plus</li>
+            <ul id="id01">
             </ul>
         </div>
         <!-- pricing table end -->
@@ -61,3 +56,26 @@
     </div>
 </div>
 <hr>
+
+<script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = Routing.generate('availability');
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var myArr = JSON.parse(xmlhttp.responseText);
+            writeAvailability(myArr);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+    function writeAvailability(arr) {
+        var out = "";
+        var i;
+        for(i = 0; i < arr.length; i++) {
+            out += '<li>' + arr[i] + '</li>';
+        }
+        document.getElementById("id01").innerHTML = out;
+    }
+</script>

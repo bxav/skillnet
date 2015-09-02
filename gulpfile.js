@@ -11,6 +11,7 @@ var config = {
     production: !!plugins.util.env.production,
     sourceMaps: !plugins.util.env.production,
     bowerDir: 'vendor/bower_components',
+    composerDir: 'vendor',
     revManifestPath: 'app/Resources/assets/rev-manifest.json'
 };
 var app = {};
@@ -117,6 +118,14 @@ gulp.task('scripts', function() {
     ], 'jquery.js');
     return pipeline.run(app.addScript);
 });
+gulp.task('scripts_routing', function() {
+    var pipeline = new Pipeline();
+    pipeline.add([
+        config.composerDir+'/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js',
+        'web/js/fos_js_routes.js'
+    ], 'routing.js');
+    return pipeline.run(app.addScript);
+});
 gulp.task('scripts_front', function() {
     var pipeline = new Pipeline();
     pipeline.add([
@@ -194,6 +203,9 @@ gulp.task('views', function() {
         'web/views'
     );
 });
+gulp.task('router', plugins.shell.task([
+    'php app/console fos:js-routing:dump --target=web/js/fos_js_routes.js'
+]));
 gulp.task('clean', function() {
     del.sync(config.revManifestPath);
     del.sync('web/css/*');
@@ -205,13 +217,14 @@ gulp.task('clean', function() {
 gulp.task('watch', function() {
     gulp.watch(config.assetsDirFront+'/'+config.lessPattern, ['styles_front']);
     gulp.watch(config.assetsDirFront+'/js/**/*.js', ['scripts_front']);
+    gulp.watch('web/js/fos_js_routes.js', ['scripts_routing']);
     gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles_app']);
     gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts_app']);
     gulp.watch(config.assetsDirProApp+'/views/**/*', ['views']);
 });
 
 gulp.task('build', function() {
-    runSequence('clean', 'styles', 'styles_front', 'styles_app', 'scripts', 'scripts_front', 'scripts_app', ['fonts', 'images', 'views']);
+    runSequence('clean', 'styles', 'styles_front', 'styles_app', 'router', 'scripts_routing', 'scripts', 'scripts_front', 'scripts_app', ['fonts', 'images', 'views']);
 });
 
 gulp.task('default', ['build', 'watch']);

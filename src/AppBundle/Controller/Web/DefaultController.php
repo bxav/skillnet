@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Web;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -15,6 +16,16 @@ class DefaultController extends Controller
     public function proAction()
     {
         return $this->render('::pro.html.php', []);
+    }
+
+
+    /**
+     * @Route("/availability", name="availability")
+     */
+    public function availabilityAction()
+    {
+        $availability = ['9:30', '10:00', '12:00'];
+        return new JsonResponse($availability);
     }
 
     /**

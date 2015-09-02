@@ -18,6 +18,9 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 app_web:
     resource: "@AppBundle/Controller/Web/"
     type:     annotation

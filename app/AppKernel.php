@@ -33,6 +33,8 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
             new AppBundle\AppBundle(),
 
         );
