@@ -1,5 +1,12 @@
-<h4 class="space-top">Disponibilités</h4>
+<h4 class="space-top">Prochaine disponibilités</h4>
 <hr>
+
+
+<select id="service-selector" class="form-control">
+    {% for service in services%}
+        <option value="{{ service.id }}">{{ service.type }}</option>
+    {% endfor %}
+</select>
 
 <div class="pricing-tables stripped object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="0">
     <div class="row grid-space-0">
@@ -58,17 +65,20 @@
 <hr>
 
 <script>
-    var xmlhttp = new XMLHttpRequest();
-    var url = Routing.generate('availability');
 
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var myArr = JSON.parse(xmlhttp.responseText);
-            writeAvailability(myArr);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    function loadAvailability(serviceId) {
+        var xmlhttp = new XMLHttpRequest();
+        var url = Routing.generate('availability', {'serviceId': serviceId });
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var myArr = JSON.parse(xmlhttp.responseText);
+                writeAvailability(myArr);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
 
     function writeAvailability(arr) {
         var out = "";
@@ -78,4 +88,10 @@
         }
         document.getElementById("id01").innerHTML = out;
     }
+
+    loadAvailability(null);
+    document.getElementById("service-selector").onchange = function () {
+        loadAvailability(this.value);
+    };
+
 </script>
