@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <!-- main-container start -->
+    <!-- ================ -->
+    <section class="main-container">
+
+        <div class="container">
+            <div class="row">
+
+                <!-- main start -->
+                <!-- ================ -->
+                <div class="main col-md-12">
+
+                    <!-- page-title start -->
+                    <!-- ================ -->
+                    <h1 class="page-title">Mes Réservations</h1>
+                    <div class="separator-2"></div>
+                    <!-- page-title end -->
+
+                    <table class="table cart table-hover table-colored">
+                        <thead>
+                        <tr>
+                            <th>Prestation </th>
+                            <th>Date et Heure</th>
+                            <th>Annuler </th>
+                            <th class="amount">Price </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for booking in bookings %}
+                        <tr class="remove-data">
+                            <td class="product"><a href="#">{{ booking.service.type }}</a></td>
+                            <td class="datetime">{{ booking.startDatetime | date }}</td>
+                            <td class="remove"><a class="btn btn-remove btn-sm btn-default">Annuler</a></td>
+                            <td class="amount">{{ booking.service.price }} </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4">Pas de réservations</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- main end -->
+
+            </div>
+        </div>
+    </section>
+    <!-- main-container end -->
+
+
+
+{% endblock %}

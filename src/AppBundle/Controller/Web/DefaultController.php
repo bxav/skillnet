@@ -18,6 +18,15 @@ class DefaultController extends Controller
         return $this->render('::pro.html.php', []);
     }
 
+    /**
+     * @Route("/my-bookings", name="my_bookings")
+     */
+    public function myBookingAction()
+    {
+        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($this->getUser());
+        $bookings = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByCustomer($customer);
+        return $this->render('Customer/myBookings.html.twig', ['bookings' => $bookings]);
+    }
 
     /**
      * @Route("/availability", name="availability")
