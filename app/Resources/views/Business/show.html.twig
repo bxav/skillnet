@@ -24,9 +24,9 @@
                         <!-- ================ -->
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills" role="tablist">
-                            <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="images"><i class="fa fa-camera pr-5"></i> Photo</a></li>
-                            <li><a href="#pill-2" role="tab" data-toggle="tab" title="video"><i class="fa fa-map-marker pr-5"></i> Carte</a></li>
-                            <li><a href="#pill-3" role="tab" data-toggle="tab" title="video"><i class="fa fa-video-camera pr-5"></i> Video</a></li>
+                            <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="images"><i class="fa fa-camera pr-5"></i> {{ 'picture' | trans }}</a></li>
+                            <li><a href="#pill-2" role="tab" data-toggle="tab" title="video"><i class="fa fa-map-marker pr-5"></i> {{ 'map' | trans }}</a></li>
+                            <li><a href="#pill-3" role="tab" data-toggle="tab" title="video"><i class="fa fa-video-camera pr-5"></i> {{ 'video' | trans }}</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content clear-style">
@@ -55,7 +55,7 @@
                         <!-- pills end -->
                     </div>
                     <div class="col-md-8 pv-30">
-                        <h2>Description</h2>
+                        <h2>{{ 'business.description' | trans }}</h2>
                         <p>{{ business.description }}</p>
                         <hr class="mb-10">
                         <div class="clearfix mb-20">
@@ -92,11 +92,11 @@
             <div class="col-md-8">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs style-4" role="tablist">
-                    <li class="active"><a href="#h2tab2" role="tab" data-toggle="tab"><i class="fa fa-files-o pr-5"></i>Disponibilités</a></li>
-                    <li><a href="#h2tab3" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>Services</a></li>
+                    <li class="active"><a href="#h2tab2" role="tab" data-toggle="tab"><i class="fa fa-files-o pr-5"></i>{{ 'disponibility.plural' | trans }}</a></li>
+                    <li><a href="#h2tab3" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'service.plural' | trans }}</a></li>
                     <li><a href="#h2tab4" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>(3) Reviews</a></li>
-                    <li><a href="#h2tab5" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>Employés</a></li>
-                    <li><a href="#h2tab6" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>Détails</a></li>
+                    <li><a href="#h2tab5" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'employee.plural' | trans }}</a></li>
+                    <li><a href="#h2tab6" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'details' | trans }}</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content padding-top-clear padding-bottom-clear">
@@ -115,9 +115,9 @@
                     <div class="tab-pane fade" id="h2tab6">
                         <h4 class="space-top">Détails</h4>
                         <hr>
-                        <p>MARQUES DISPONIBLES : {{ business.availableBrands }}</p>
+                        <p>{{ 'business.available_brands' | trans }} : {{ business.availableBrands }}</p>
                         <hr>
-                        <p>MOYENS DE PAIEMENT : {{ business.paymentMethods }}</p>
+                        <p>{{ 'business.payment_methods' | trans }} : {{ business.paymentMethods }}</p>
 
                     </div>
                 </div>

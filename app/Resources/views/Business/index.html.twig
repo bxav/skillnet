@@ -14,7 +14,7 @@
                 <!-- ================ -->
                 <!-- Nav tabs -->
                 <ul class="nav nav-pills" role="tablist">
-                    <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i class="icon-star"></i> Proche de vous</a></li>
+                    <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i class="icon-star"></i> {{ 'close_to_you' | trans }}</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content clear-style">
@@ -40,11 +40,11 @@
                                             <i class="fa fa-star text-default"></i>
                                             <i class="fa fa-star"></i>
                                             <a href="#" class="btn-sm-link"><i class="icon-heart pr-5"></i>Add to Wishlist</a>
-                                            <a href="{{ url('homepage', {'businessSlug': business.slug}) }}" class="btn-sm-link"><i class="icon-link pr-5"></i>View Details</a>
+                                            <a href="{{ url('homepage', {'businessSlug': business.slug}) }}" class="btn-sm-link"><i class="icon-link pr-5"></i>{{ 'business.details' | trans }}</a>
                                         </p>
                                         <p>{{ business.description }}</p>
                                         <div class="elements-list clearfix">
-                                            <a href="#" class="pull-right btn btn-sm btn-default-transparent btn-animated">Voir disponibilités<i class="fa fa-shopping-cart"></i></a>
+                                            <a href="#" class="pull-right btn btn-sm btn-default-transparent btn-animated">{{ 'disponibility.view' | trans }}<i class="fa fa-shopping-cart"></i></a>
                                         </div>
                                     </div>
                                 </div>

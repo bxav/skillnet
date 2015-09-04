@@ -24,3 +24,9 @@ php app/console server:start
 
 bin/behat --suite=api
 
+Translation
+-----------
+
+```
+php app/console translation:extract fr --dir=./app/Resources/views --output-dir=./app/Resources/translations
+```

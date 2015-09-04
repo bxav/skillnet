@@ -44,5 +44,10 @@ monolog:
 assetic:
     use_controller: true
 
+jms_translation:
+    configs:
+        app:
+            dirs: [%kernel.root_dir%/../app/Resources]
+            output_dir: %kernel.root_dir%/Resources/translations
 #swiftmailer:
 #    delivery_address: me@example.com

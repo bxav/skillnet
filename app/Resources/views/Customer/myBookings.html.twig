@@ -15,17 +15,17 @@
 
                     <!-- page-title start -->
                     <!-- ================ -->
-                    <h1 class="page-title">Mes Réservations</h1>
+                    <h1 class="page-title">{{ 'customer.my_bookings' | trans }}</h1>
                     <div class="separator-2"></div>
                     <!-- page-title end -->
 
                     <table class="table cart table-hover table-colored">
                         <thead>
                         <tr>
-                            <th>Prestation </th>
-                            <th>Date et Heure</th>
-                            <th>Annuler </th>
-                            <th class="amount">Price </th>
+                            <th>{{ 'customer.my_bookings.service' | trans }} </th>
+                            <th>{{ 'customer.my_bookings.date' | trans }} </th>
+                            <th>{{ 'cancel' | trans }}Annuler </th>
+                            <th class="amount">{{ 'price' | trans }} </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,7 +38,7 @@
                         </tr>
                         {% else %}
                         <tr>
-                            <td colspan="4">Pas de réservations</td>
+                            <td colspan="4">{{ 'customer.my_bookings.no_booking' | trans }}</td>
                         </tr>
                         {% endfor %}
                         </tbody>
