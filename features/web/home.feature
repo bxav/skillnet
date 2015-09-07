@@ -1,3 +1,4 @@
+@ignore
 # language: fr
 Fonctionnalité: acceder à la page d'un salon
   Afin d'obtenir des info sur un salon

@@ -4,6 +4,12 @@ Fonctionnalité: Reserver un rendez-vous
   En tant que client
   Je dois être capable d'acceder à la page déservation
 
+  Contexte:
+    Etant donné there is 1 business like:
+      | name |
+      | Béa coiffure |
+
+  @ignore
   Scénario: Recherche un rendez-vous pour une coupe/shampooing/Brushing à 16h Mercredi 6 janvier autour de chez lui
     Etant donné ma géolocalisation
     Quand je recherche dans un rayon de 5km
@@ -14,12 +20,13 @@ Fonctionnalité: Reserver un rendez-vous
 
   Scénario: Visualisation des disponibilité d'une coupe/shampooing/Brushing à 16h Mercredi 6 janvier chez béa coiffure
     Etant donné que je suis sur la page des disponibilités
-       Et une liste de prestataire met proposé suite à une recherche
+       Et une liste de prestataires m'est proposé suite à une recherche
     Quand quand je clique sur un prestataire "Béa coiffure"
-    Alors j’accède à la page du professionnel
+    Alors je suis sur la page du professionnel "Béa coiffure"
        Et je devrais voir les informations sur le salon
        Et je devrais voir ma demande de disponibilité surlignée sur un calendrier
 
+  @ignore
   Scénario: Réservation d'une coupe/shampooing/Brushing à 16h Mercredi 6 janvier chez béa coiffure
     Etant donné que je suis sur la page du salon
        Et que le calendrier des disponibilité me propose un rendez-vous le Mercredi 6 janvier à 16:15
