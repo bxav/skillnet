@@ -43,7 +43,8 @@
         "behat/mink": "^1.6",
         "behat/mink-extension": "^2.0",
         "behat/mink-browserkit-driver": "^1.2",
-        "knplabs/friendly-contexts": "dev-master"
+        "knplabs/friendly-contexts": "dev-master",
+        "cocur/slugify": "*"
     },
     "scripts": {
         "post-root-package-install": [
