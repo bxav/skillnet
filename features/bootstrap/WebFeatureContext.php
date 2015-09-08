@@ -27,6 +27,16 @@ class WebFeatureContext implements SnippetAcceptingContext
         $this->minkContext = $environment->getContext('Knp\FriendlyContexts\Context\MinkContext');
     }
 
+
+    /**
+     * @Given je suis sur la page du professionnel :arg1
+     */
+    public function jeSuisSurLaPageDuProfessionnel($arg1)
+    {
+        $slugifer = new \Cocur\Slugify\Slugify();
+        $this->minkContext->visit('/'. $slugifer->slugify($arg1));
+    }
+
     /**
      * @Given que je suis sur la page des disponibilités
      */
@@ -53,9 +63,9 @@ class WebFeatureContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Then je suis sur la page du professionnel :arg1
+     * @Then je devrais être sur la page du professionnel :arg1
      */
-    public function jeSuisSurLaPageDuProfessionnel($arg1)
+    public function jeDevraisEtreSurLaPageDuProfessionnel($arg1)
     {
         $slugifer = new \Cocur\Slugify\Slugify();
         $this->minkContext->assertPageAddress('/'. $slugifer->slugify($arg1));
@@ -76,5 +86,46 @@ class WebFeatureContext implements SnippetAcceptingContext
     {
         throw new PendingException();
     }
+
+    /**
+     * @Given que le calendrier des disponibilités me propose un rendez-vous le :arg1 septembre à :arg2::arg3
+     */
+    public function queLeCalendrierDesDisponibilitesMeProposeUnRendezVousLeSeptembreA($arg1, $arg2, $arg3)
+    {
+        //todo
+    }
+
+    /**
+     * @When je clique sur :arg1 dans le calendrier
+     */
+    public function jeCliqueSurDansLeCalendrier($arg1)
+    {
+        $this->minkContext->clickLinkContaining($arg1);
+    }
+
+    /**
+     * @When que je clique sur le bouton réserver
+     */
+    public function queJeCliqueSurLeBoutonReserver()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then je vois l’ensemble des données récapitulative apparaît à l’écran (Nom salon,, adresse, soin, date, horaire et employé) avec un bouton validé.
+     */
+    public function jeVoisLEnsembleDesDonneesRecapitulativeApparaitALEcranNomSalonAdresseSoinDateHoraireEtEmployeAvecUnBoutonValide()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then je suis redirigée vers la page d’inscription (pour un non inscrit) ou je rentre directement sur ma page de profil particulier avec le rendez-vous inscrit sur celle-ci
+     */
+    public function jeSuisRedirigeeVersLaPageDInscriptionPourUnNonInscritOuJeRentreDirectementSurMaPageDeProfilParticulierAvecLeRendezVousInscritSurCelleCi()
+    {
+        throw new PendingException();
+    }
+
 
 }

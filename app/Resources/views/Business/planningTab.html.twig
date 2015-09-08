@@ -30,6 +30,9 @@
                 <div class="price"><span>21 Septembre</span></div>
             </div>
             <ul id="id01">
+                {% for availability in availabilities%}
+                    <li><a href="#">{{ availability }}</a></li>
+                {% endfor %}
             </ul>
         </div>
         <!-- pricing table end -->
@@ -84,7 +87,7 @@
         var out = "";
         var i;
         for(i = 0; i < arr.length; i++) {
-            out += '<li>' + arr[i] + '</li>';
+            out += '<li><a href="#">' + arr[i] + '</a></li>';
         }
         document.getElementById("id01").innerHTML = out;
     }

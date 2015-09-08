@@ -33,7 +33,7 @@ class DefaultController extends Controller
      */
     public function availabilityAction()
     {
-        $availability = ['9:30', '10:00', '12:00'];
+        $availability = ['9:30', '10:00', '12:00', '16:15'];
         return new JsonResponse($availability);
     }
 
@@ -44,7 +44,11 @@ class DefaultController extends Controller
     {
         $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
         if ($business) {
-            return $this->render('Business/show.html.twig', ['business' => $business]);
+            $availabilities = ['9:30', '10:00', '12:00', '16:15'];
+            return $this->render('Business/show.html.twig', [
+                'business' => $business,
+                'availabilities' => $availabilities
+            ]);
         } else {
             $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
             return $this->render('Business/index.html.twig', ['businesses' => $businesses]);
