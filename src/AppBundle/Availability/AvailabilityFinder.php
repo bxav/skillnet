@@ -2,6 +2,7 @@
 
 namespace AppBundle\Availability;
 
+use AppBundle\Entity\Employee;
 use AppBundle\Entity\Service;
 use League\Period\Period;
 
@@ -55,7 +56,7 @@ class AvailabilityFinder
         return $timeSlots;
     }
 
-    protected function reverseKey($timeSlots, $calculatedTimeSlots, $employee) {
+    protected function reverseKey($timeSlots, $calculatedTimeSlots, Employee $employee) {
         foreach ($calculatedTimeSlots as $calculatedTimeSlot) {
             $timeSlots[$calculatedTimeSlot][] = ['employeeId' => $employee->getId()];
         }
