@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 
 class CustomerController extends FOSRestController implements ClassResourceInterface
