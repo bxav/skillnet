@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller\Web;
 
+use AppBundle\Entity\Service;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -31,20 +33,26 @@ class DefaultController extends Controller
     /**
      * @Route("/availability", name="availability")
      */
-    public function availabilityAction()
+    public function availabilityAction(Request $request)
     {
-        $availability = ['9:30', '10:00', '12:00', '16:15'];
-        return new JsonResponse($availability);
+        $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get('serviceId'));
+        $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
+        return new JsonResponse($availabilities);
     }
 
     /**
      * @Route("/{businessSlug}", name="homepage")
      */
-    public function indexAction($businessSlug = null)
+    public function indexAction(Request $request, $businessSlug = null)
     {
         $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
+        if ($request->get("service")) {
+            $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business, 'type' => $request->get("service")]);
+        } else {
+            $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business]);
+        }
         if ($business) {
-            $availabilities = ['9:30', '10:00', '12:00', '16:15'];
+            $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
             return $this->render('Business/show.html.twig', [
                 'business' => $business,
                 'availabilities' => $availabilities

@@ -31,3 +31,9 @@ services:
         calls:
           - [setBackendUserRoles, [['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']]]
           - [setAppProUserRoles, [['ROLE_EMPLOYEE']]]
+
+    app.availability.finder:
+        class: AppBundle\Availability\AvailabilityFinder
+        arguments:
+          - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Booking')
+          - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Employee')

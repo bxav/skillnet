@@ -88,12 +88,14 @@ class WebFeatureContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Given que le calendrier des disponibilités me propose un rendez-vous le :arg1 septembre à :arg2::arg3
+     * @Given je suis sur la page du professionnel :arg1 et que je recherche un rendez-vous pour une :arg2
      */
-    public function queLeCalendrierDesDisponibilitesMeProposeUnRendezVousLeSeptembreA($arg1, $arg2, $arg3)
+    public function jeSuisSurLaPageDuProfessionnelEtQueJeRechercheUnRendezVousPourUne($arg1, $arg2)
     {
-        //todo
+        $slugifer = new \Cocur\Slugify\Slugify();
+        $this->minkContext->visit('/'. $slugifer->slugify($arg1)."?service=$arg2");
     }
+
 
     /**
      * @When je clique sur :arg1 dans le calendrier

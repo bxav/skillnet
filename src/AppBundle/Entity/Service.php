@@ -24,7 +24,7 @@ class Service
     protected $id;
 
     /**
-     * @var string
+     * @var integer
      *
      * @ORM\Column(type="integer")
      * @Serializer\Type("integer")

@@ -7,5 +7,8 @@ use Doctrine\ORM\EntityRepository;
 
 class BookingRepository extends EntityRepository
 {
+    public function findByDateAndEmployee()
+    {
 
+    }
 }

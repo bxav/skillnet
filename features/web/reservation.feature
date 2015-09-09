@@ -8,6 +8,13 @@ Fonctionnalité: Reserver un rendez-vous
     Etant donné there is 1 business like:
       | name |
       | Béa coiffure |
+    Et the following employee:
+      | username | plainPassword | roles | enabled | firstname | lastname | business |
+      | user | user | ROLE_API | true | marie | dupond | Béa coiffure |
+    Et the following services:
+      | business | duration | type |
+      | Béa coiffure | 30 | Coiffure |
+      | Béa coiffure | 130 | Brushing |
 
   @ignore
   Scénario: Recherche un rendez-vous pour une coupe/shampooing/Brushing à 16h le 8 septembre autour de chez lui
@@ -27,8 +34,7 @@ Fonctionnalité: Reserver un rendez-vous
        Et je devrais voir ma demande de disponibilité surlignée sur un calendrier
 
   Scénario: Réservation d'une coupe/shampooing/Brushing à 16h le 8 septembre chez béa coiffure
-    Etant donné je suis sur la page du professionnel "Béa coiffure"
-       Et que le calendrier des disponibilités me propose un rendez-vous le 8 septembre à 16:15
+    Etant donné je suis sur la page du professionnel "Béa coiffure" et que je recherche un rendez-vous pour une "Coiffure"
     Quand je clique sur "16:15" dans le calendrier
        Et que je clique sur le bouton réserver
     Alors je vois l’ensemble des données récapitulative apparaît à l’écran (Nom salon,, adresse, soin, date, horaire et employé) avec un bouton validé.

@@ -30,8 +30,8 @@
                 <div class="price"><span>21 Septembre</span></div>
             </div>
             <ul id="id01">
-                {% for availability in availabilities%}
-                    <li><a href="#">{{ availability }}</a></li>
+                {% for availabilityKey in availabilities | keys %}
+                    <li><a href="#">{{ availabilityKey }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -86,13 +86,13 @@
     function writeAvailability(arr) {
         var out = "";
         var i;
+        arr = Object.keys(arr);
         for(i = 0; i < arr.length; i++) {
             out += '<li><a href="#">' + arr[i] + '</a></li>';
         }
         document.getElementById("id01").innerHTML = out;
     }
 
-    loadAvailability(null);
     document.getElementById("service-selector").onchange = function () {
         loadAvailability(this.value);
     };
