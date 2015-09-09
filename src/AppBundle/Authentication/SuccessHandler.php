@@ -55,3 +55,4 @@ class SuccessHandler implements AuthenticationSuccessHandlerInterface
         return (bool) $roles;
     }
 }
+

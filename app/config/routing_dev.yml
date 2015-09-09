@@ -21,3 +21,4 @@ JMSTranslationBundle_ui:
 
 _main:
     resource: routing.yml
+
