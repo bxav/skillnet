@@ -1,10 +1,20 @@
-Base Symfony
-============
+Beauty Booking Engine
+=====================
 
-Install
--------
+Install for dev
+---------------
 
+```
 composer install
+
+npm install
+
+bower install
+
+php app/console doctrine:database:create
+
+php app/console doctrine:database:create
+```
 
 Api
 ---
@@ -20,9 +30,13 @@ Doc
 Test
 ----
 
+```
 php app/console server:start
+php bin/behat --suite=api # Possible suites (web, api)
 
-bin/behat --suite=api
+
+php bin/phpspec run
+```
 
 Translation
 -----------
