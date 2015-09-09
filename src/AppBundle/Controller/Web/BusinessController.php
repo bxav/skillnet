@@ -26,7 +26,8 @@ class BusinessController extends Controller
         $availabilities = $this->get("app.availability.finder")->findByDateAndService($date, $service);
         return $this->render('Business/show.html.twig', [
             'business' => $business,
-            'availabilities' => $availabilities
+            'availabilities' => $availabilities,
+            'date' => $date
         ]);
     }
 }

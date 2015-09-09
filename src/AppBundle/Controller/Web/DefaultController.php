@@ -27,7 +27,7 @@ class DefaultController extends Controller
     {
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get('serviceId'));
         $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
-        return new JsonResponse($availabilities);
+        return $this->render('Business/availabilityCalendar.html.twig', ['availabilities' => $availabilities]);
     }
 
     /**

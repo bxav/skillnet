@@ -101,7 +101,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content padding-top-clear padding-bottom-clear">
                     <div class="tab-pane fade in active" id="h2tab2">
-                        {% include 'Business/planningTab.html.twig' with {"services": business.services, "availabilities": availabilities} only %}
+                        {% include 'Business/planningTab.html.twig' with {"services": business.services, "availabilities": availabilities, 'date': date} only %}
                     </div>
                     <div class="tab-pane fade" id="h2tab3">
                         {% include 'Business/servicesTab.html.twig' with {"services": business.services} only %}

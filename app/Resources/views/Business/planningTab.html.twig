@@ -8,62 +8,8 @@
     {% endfor %}
 </select>
 
-<div class="pricing-tables stripped object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="0">
-    <div class="row grid-space-0">
-        <!-- pricing table start -->
-        <!-- ================ -->
-        <div class="col-sm-3 plan stripped">
-            <div class="header dark-bg">
-                <h3>Lundi</h3>
-                <div class="price"><span>20 Septembre</span></div>
-            </div>
-            <ul>
-                <li>rien</li>
-            </ul>
-        </div>
-        <!-- pricing table end -->
-        <!-- pricing table start -->
-        <!-- ================ -->
-        <div class="col-sm-3 plan stripped best-value">
-            <div class="header default-bg">
-                <h3>Mardi</h3>
-                <div class="price"><span>21 Septembre</span></div>
-            </div>
-            <ul id="id01">
-                {% for availabilityKey in availabilities | keys %}
-                    <li><a href="#">{{ availabilityKey }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-        <!-- pricing table end -->
-
-        <!-- pricing table start -->
-        <!-- ================ -->
-        <div class="col-sm-3 plan stripped">
-            <div class="header dark-bg">
-                <h3>Mercredi</h3>
-                <div class="price"><span>22 Septembre</span></div>
-            </div>
-            <ul>
-                <li>voir</li>
-            </ul>
-        </div>
-        <!-- pricing table end -->
-
-        <!-- pricing table start -->
-        <!-- ================ -->
-        <div class="col-sm-3 plan ">
-            <div class="header dark-bg">
-                <h3>Jeudi</h3>
-                <div class="price"><span>23 Septembre</span></div>
-            </div>
-            <ul>
-                <li>voir</li>
-            </ul>
-        </div>
-        <!-- pricing table end -->
-
-    </div>
+<div id="id01">
+    {% include 'Business/availabilityCalendar.html.twig' with {'availabilities': availabilities, 'date': date} only %}
 </div>
 <hr>
 
@@ -75,22 +21,16 @@
 
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var myArr = JSON.parse(xmlhttp.responseText);
-                writeAvailability(myArr);
+                var text = xmlhttp.responseText;
+                writeAvailability(text);
             }
         };
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     }
 
-    function writeAvailability(arr) {
-        var out = "";
-        var i;
-        arr = Object.keys(arr);
-        for(i = 0; i < arr.length; i++) {
-            out += '<li><a href="#">' + arr[i] + '</a></li>';
-        }
-        document.getElementById("id01").innerHTML = out;
+    function writeAvailability(text) {
+        document.getElementById("id01").innerHTML = text;
     }
 
     document.getElementById("service-selector").onchange = function () {

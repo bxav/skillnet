@@ -9,6 +9,11 @@ services:
         tags:
             - name: twig.extension
 
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
     templating.twig_asset_version_extension:
         class: AppBundle\Templating\Twig\AssetVersionExtension
         arguments: ["@templating.asset_version_resolver"]
