@@ -27,12 +27,12 @@
                                         {% if business.mainPictureFilename %}
                                             <img src="{{ asset('uploads/pictures/'~business.mainPictureFilename) }}" alt="{{ business.name }}"/>
                                         {% endif %}
-                                        <a class="overlay-link" href="{{ url('homepage', {'businessSlug': business.slug}) }}"><i class="fa fa-plus"></i></a>
+                                        <a class="overlay-link" href="{{ url('business_page', {'businessSlug': business.slug}) }}"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-8 col-lg-9">
                                     <div class="body">
-                                        <h3 class="margin-clear"><a href="{{ url('homepage', {'businessSlug': business.slug}) }}">{{ business.name }}</a></h3>
+                                        <h3 class="margin-clear"><a href="{{ url('business_page', {'businessSlug': business.slug}) }}">{{ business.name }}</a></h3>
                                         <p>
                                             <i class="fa fa-star text-default"></i>
                                             <i class="fa fa-star text-default"></i>
@@ -40,7 +40,7 @@
                                             <i class="fa fa-star text-default"></i>
                                             <i class="fa fa-star"></i>
                                             <a href="#" class="btn-sm-link"><i class="icon-heart pr-5"></i>Add to Wishlist</a>
-                                            <a href="{{ url('homepage', {'businessSlug': business.slug}) }}" class="btn-sm-link"><i class="icon-link pr-5"></i>{{ 'business.details' | trans }}</a>
+                                            <a href="{{ url('business_page', {'businessSlug': business.slug}) }}" class="btn-sm-link"><i class="icon-link pr-5"></i>{{ 'business.details' | trans }}</a>
                                         </p>
                                         <p>{{ business.description }}</p>
                                         <div class="elements-list clearfix">

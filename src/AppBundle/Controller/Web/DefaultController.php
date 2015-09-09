@@ -41,9 +41,18 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{businessSlug}", name="homepage")
+     * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request, $businessSlug = null)
+    public function indexAction(Request $request)
+    {
+        $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
+        return $this->render('Business/index.html.twig', ['businesses' => $businesses]);
+    }
+
+    /**
+     * @Route("/{businessSlug}", name="business_page")
+     */
+    public function indexBusinessAction(Request $request, $businessSlug)
     {
         $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
         if ($request->get("service")) {
@@ -51,15 +60,10 @@ class DefaultController extends Controller
         } else {
             $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business]);
         }
-        if ($business) {
-            $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
-            return $this->render('Business/show.html.twig', [
-                'business' => $business,
-                'availabilities' => $availabilities
-            ]);
-        } else {
-            $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
-            return $this->render('Business/index.html.twig', ['businesses' => $businesses]);
-        }
+        $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
+        return $this->render('Business/show.html.twig', [
+            'business' => $business,
+            'availabilities' => $availabilities
+        ]);
     }
 }
