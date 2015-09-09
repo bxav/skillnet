@@ -21,16 +21,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/my-bookings", name="my_bookings")
-     */
-    public function myBookingAction()
-    {
-        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($this->getUser());
-        $bookings = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByCustomer($customer);
-        return $this->render('Customer/myBookings.html.twig', ['bookings' => $bookings]);
-    }
-
-    /**
      * @Route("/availability", name="availability")
      */
     public function availabilityAction(Request $request)
@@ -47,23 +37,5 @@ class DefaultController extends Controller
     {
         $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
         return $this->render('Business/index.html.twig', ['businesses' => $businesses]);
-    }
-
-    /**
-     * @Route("/{businessSlug}", name="business_page")
-     */
-    public function indexBusinessAction(Request $request, $businessSlug)
-    {
-        $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
-        if ($request->get("service")) {
-            $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business, 'type' => $request->get("service")]);
-        } else {
-            $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business]);
-        }
-        $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
-        return $this->render('Business/show.html.twig', [
-            'business' => $business,
-            'availabilities' => $availabilities
-        ]);
     }
 }
