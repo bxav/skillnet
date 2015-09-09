@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
 {% block content %}
 <!-- main-container start -->
@@ -101,16 +101,16 @@
                 <!-- Tab panes -->
                 <div class="tab-content padding-top-clear padding-bottom-clear">
                     <div class="tab-pane fade in active" id="h2tab2">
-                        {% include 'Business/planningTab.html.twig' with {"services": business.services, "availabilities": availabilities, 'date': date} only %}
+                        {% include 'Business/planning_tab.html.twig' with {"services": business.services, "availabilities": availabilities, 'date': date} only %}
                     </div>
                     <div class="tab-pane fade" id="h2tab3">
-                        {% include 'Business/servicesTab.html.twig' with {"services": business.services} only %}
+                        {% include 'Business/services_tab.html.twig' with {"services": business.services} only %}
                     </div>
                     <div class="tab-pane fade" id="h2tab4">
-                        {% include 'Business/reviewsTab.html.twig' %}
+                        {% include 'Business/reviews_tab.html.twig' %}
                     </div>
                     <div class="tab-pane fade" id="h2tab5">
-                        {% include 'Business/employeesTab.html.twig' with {"employees": business.employees} only %}
+                        {% include 'Business/employees_tab.html.twig' with {"employees": business.employees} only %}
                     </div>
                     <div class="tab-pane fade" id="h2tab6">
                         <h4 class="space-top">Détails</h4>
@@ -128,7 +128,7 @@
             <aside class="col-md-4 col-lg-3 col-lg-offset-1">
                 <div class="sidebar">
                     <div class="block clearfix">
-                        {% include 'Business/showSidebar.html.twig' %}
+                        {% include 'Business/show_sidebar.html.twig' %}
                     </div>
                 </div>
             </aside>

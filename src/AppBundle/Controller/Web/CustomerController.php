@@ -18,6 +18,6 @@ class CustomerController extends Controller
     {
         $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($this->getUser());
         $bookings = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByCustomer($customer);
-        return $this->render('Customer/myBookings.html.twig', ['bookings' => $bookings]);
+        return $this->render(':Customer:my_bookings.html.twig', ['bookings' => $bookings]);
     }
 }

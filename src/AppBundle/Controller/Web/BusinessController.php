@@ -24,7 +24,7 @@ class BusinessController extends Controller
             $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business]);
         }
         $availabilities = $this->get("app.availability.finder")->findByDateAndService($date, $service);
-        return $this->render('Business/show.html.twig', [
+        return $this->render(':Business:show.html.twig', [
             'business' => $business,
             'availabilities' => $availabilities,
             'date' => $date

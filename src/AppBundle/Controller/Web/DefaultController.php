@@ -28,7 +28,7 @@ class DefaultController extends Controller
         $date = new \DateTimeImmutable($request->get("date"));
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get('serviceId'));
         $availabilities = $this->get("app.availability.finder")->findByDateAndService($date, $service);
-        return $this->render('Business/availabilityCalendar.html.twig', ['availabilities' => $availabilities, 'date' => $date]);
+        return $this->render(':Business:availability_calendar.html.twig', ['availabilities' => $availabilities, 'date' => $date]);
     }
 
     /**
@@ -37,6 +37,6 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $businesses = $this->getDoctrine()->getRepository('AppBundle:Business')->findAll();
-        return $this->render('Business/index.html.twig', ['businesses' => $businesses]);
+        return $this->render(':Business:index.html.twig', ['businesses' => $businesses]);
     }
 }
