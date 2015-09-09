@@ -1,5 +1,6 @@
 {
     "name": "xav/base_symfony",
+    "description": "Booking engine for the beauty industry",
     "license": "proprietary",
     "type": "project",
     "autoload": {
