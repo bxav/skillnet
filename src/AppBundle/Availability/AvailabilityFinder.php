@@ -62,11 +62,11 @@ class AvailabilityFinder
         return $timeSlots;
     }
 
-    public function realStartTime(\DateTimeImmutable $dateTimeImmutable)
+    public function realStartTime(\DateTimeInterface $dateTime)
     {
-        $realMinute = $dateTimeImmutable->format('i');
+        $realMinute = $dateTime->format('i');
         $realTime = ceil($realMinute / $this->timeSlot) * $this->timeSlot;
-        $realDateTime = clone $dateTimeImmutable;
+        $realDateTime = clone $dateTime;
         $realDateTime = ($realTime >= 60) ? $realDateTime->add(new \DateInterval('PT'. floor($realTime / 60) .'H')) : $realDateTime;
         $realDateTime = $realDateTime->setTime($realDateTime->format('H'), $realTime % 60);
 

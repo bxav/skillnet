@@ -88,12 +88,13 @@ class WebFeatureContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Given je suis sur la page du professionnel :arg1 et que je recherche un rendez-vous pour une :arg2
+     * @Given je suis sur la page du professionnel :arg1 et que je recherche un rendez-vous pour une :arg2, le :arg3
      */
-    public function jeSuisSurLaPageDuProfessionnelEtQueJeRechercheUnRendezVousPourUne($arg1, $arg2)
+    public function jeSuisSurLaPageDuProfessionnelEtQueJeRechercheUnRendezVousPourUne($arg1, $arg2, $arg3)
     {
+
         $slugifer = new \Cocur\Slugify\Slugify();
-        $this->minkContext->visit('/'. $slugifer->slugify($arg1)."?service=$arg2");
+        $this->minkContext->visit('/'. $slugifer->slugify($arg1)."?service=$arg2&date=$arg3");
     }
 
 
