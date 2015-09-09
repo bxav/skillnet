@@ -25,9 +25,10 @@ class DefaultController extends Controller
      */
     public function availabilityAction(Request $request)
     {
+        $date = new \DateTimeImmutable($request->get("date"));
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get('serviceId'));
-        $availabilities = $this->get("app.availability.finder")->findByDateAndService(new \DateTimeImmutable(), $service);
-        return $this->render('Business/availabilityCalendar.html.twig', ['availabilities' => $availabilities]);
+        $availabilities = $this->get("app.availability.finder")->findByDateAndService($date, $service);
+        return $this->render('Business/availabilityCalendar.html.twig', ['availabilities' => $availabilities, 'date' => $date]);
     }
 
     /**

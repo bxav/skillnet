@@ -2,39 +2,31 @@
 <hr>
 
 
-<select id="service-selector" class="form-control">
-    {% for service in services%}
-        <option value="{{ service.id }}">{{ service.type }}</option>
-    {% endfor %}
-</select>
+
+    <div class="row">
+        <div class='col-sm-5'>
+            <select id="service-selector" class="form-control">
+                {% for service in services%}
+                    <option value="{{ service.id }}">{{ service.type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class='col-sm-5'>
+            <div class='input-group date' id='datetimepicker1'>
+                <input id="datetime-selector" type='text' class="form-control" value="{{ date | localizeddate('full', 'none', 'fr_FR', null, 'dd/MM/yyyy HH:mm') }}"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class='col-sm-2'>
+            <div class="">
+                <button id="availability-checker" class="btn btn-default" style="margin: 0px">Check</button>
+            </div>
+        </div>
+    </div>
 
 <div id="id01">
     {% include 'Business/availabilityCalendar.html.twig' with {'availabilities': availabilities, 'date': date} only %}
 </div>
 <hr>
-
-<script>
-
-    function loadAvailability(serviceId) {
-        var xmlhttp = new XMLHttpRequest();
-        var url = Routing.generate('availability', {'serviceId': serviceId });
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var text = xmlhttp.responseText;
-                writeAvailability(text);
-            }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-    }
-
-    function writeAvailability(text) {
-        document.getElementById("id01").innerHTML = text;
-    }
-
-    document.getElementById("service-selector").onchange = function () {
-        loadAvailability(this.value);
-    };
-
-</script>

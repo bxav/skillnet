@@ -85,7 +85,8 @@ gulp.task('styles', function() {
 gulp.task('styles_front', function() {
     var pipeline = new Pipeline();
     pipeline.add([
-        config.bowerDir+'/bootstrap/dist/css/bootstrap.css'
+        config.bowerDir+'/bootstrap/dist/css/bootstrap.css',
+        config.bowerDir+'/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
     ], 'vendors_front.css');
     pipeline.add([
         config.assetsDirFront+'/plugins/magnific-popup/magnific-popup.css',
@@ -129,7 +130,10 @@ gulp.task('scripts_routing', function() {
 gulp.task('scripts_front', function() {
     var pipeline = new Pipeline();
     pipeline.add([
-        config.bowerDir+'/bootstrap/dist/js/bootstrap.js'
+        config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
+        config.bowerDir+'/moment/moment.js',
+        config.bowerDir+'/moment/locale/fr.js',
+        config.bowerDir+'/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
     ], 'vendors_front.js');
     pipeline.add([
         config.assetsDirFront+'/plugins/modernizr.js',
