@@ -20,6 +20,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        return $this->render('::contact.html.twig');
+    }
+
+    /**
      * @Route("/availability", name="availability")
      */
     public function availabilityAction(Request $request)
