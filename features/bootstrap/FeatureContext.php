@@ -46,6 +46,21 @@ class FeatureContext implements KernelAwareContext, SnippetAcceptingContext
     }
 
     /**
+     * @Given l'employee :arg1 travaile le :arg2 de :arg3 à :arg4
+     */
+    public function lEmployeeTravaileLeDeA($arg1, $arg2, $arg3, $arg4)
+    {
+        /**
+         * @var Doctrine\ORM\EntityManager $em
+         */
+        $em = $this->getService('doctrine.orm.entity_manager');
+        $employee = $em->getRepository("AppBundle:Employee")->findOneByUsername($arg1);
+        $employee->setWorkingHoursByDay($arg2, [$arg3, $arg4]);
+        $em->persist($employee);
+        $em->flush();;
+    }
+
+    /**
      * @var KernelInterface
      */
     protected $kernel;

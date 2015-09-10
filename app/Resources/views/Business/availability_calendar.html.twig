@@ -5,8 +5,8 @@
         {% set dateTime = date %}
         <div class="col-sm-3 plan stripped">
             <div class="header dark-bg">
-                <h3>{{ dateTime | localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
-                <div class="price"><span>{{ dateTime | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
+                <h3>{{ dateTime | date_modify("-1 day") | localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
+                <div class="price"><span>{{ dateTime | date_modify("-1 day") | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
             </div>
             <ul>
                 <li>rien</li>
@@ -17,12 +17,14 @@
         <!-- ================ -->
         <div class="col-sm-3 plan stripped best-value">
             <div class="header default-bg">
-                <h3>{{ dateTime | date_modify("+1 day") | localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
-                <div class="price"><span>{{ dateTime | date_modify("+1 day") | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
+                <h3>{{ dateTime | localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
+                <div class="price"><span>{{ dateTime  | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
             </div>
             <ul id="id01">
                 {% for availabilityKey in availabilities | keys %}
                     <li><a href="#">{{ availabilityKey }}</a></li>
+                {% else %}
+                    <li>Rien</li>
                 {% endfor %}
             </ul>
         </div>
@@ -32,8 +34,8 @@
         <!-- ================ -->
         <div class="col-sm-3 plan stripped">
             <div class="header dark-bg">
-                <h3>{{ dateTime | date_modify("+2 day") | localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
-                <div class="price"><span>{{ dateTime | date_modify("+2 day") | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
+                <h3>{{ dateTime | date_modify("+1 day") | localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
+                <div class="price"><span>{{ dateTime | date_modify("+1 day") | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
             </div>
             <ul>
                 <li>voir</li>
@@ -45,8 +47,8 @@
         <!-- ================ -->
         <div class="col-sm-3 plan ">
             <div class="header dark-bg">
-                <h3>{{ dateTime | date_modify("+3 day") |localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
-                <div class="price"><span>{{ dateTime | date_modify("+3 day") | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
+                <h3>{{ dateTime | date_modify("+2 day") |localizeddate('full', 'none', 'fr_FR', null, 'cccc') | capitalize }}</h3>
+                <div class="price"><span>{{ dateTime | date_modify("+2 day") | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
             </div>
             <ul>
                 <li>voir</li>

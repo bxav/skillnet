@@ -24,23 +24,34 @@ class AvailabilityFinder
     public function findByDateAndService(\DateTimeImmutable $date, Service $service)
     {
         $dateForWorkingHours = clone $date;
-        $startWorking = $dateForWorkingHours->setTime(8, 00);
-        $endWorking = $dateForWorkingHours->setTime(19, 00);
 
         $employees = $this->employeeRepository->findBy(['business' => $service->getBusiness()]);
 
         $timeSlots = [];
         foreach($employees as $employee) {
+            $workingHours = $employee->getWorkingHours($dateForWorkingHours);
+            if (is_null($workingHours)) {
+                continue;
+            }
+            $startWorking = $workingHours[0];
+            $endWorking = $workingHours[1];
+
             $bookings = $this->bookingRepository->findByDateAndEmployee($date, $employee);
 
             $startTime = clone $startWorking;
             if (!is_null($bookings)) {
                 foreach($bookings as $booking) {
-                    $availablePeriod = new Period($this->realStartTime($startTime), $booking->getStartDatetime());
+                    $startTime = $this->realStartTime($startTime);
+                    if($endWorking->getTimestamp() < $booking->getEndDatetime()->getTimestamp()) {
+                        break;
+                    } elseif ($startTime->getTimestamp() <= $booking->getStartDatetime()->getTimestamp()) {
+                        $availablePeriod = new Period($startTime, $booking->getStartDatetime());
+                        $timeSlots = $this->reverseKey($timeSlots, $this->calculateTimeSlots($availablePeriod, $service->getDuration()), $employee);
+                    }
 
-                    $timeSlots = $this->reverseKey($timeSlots, $this->calculateTimeSlots($availablePeriod, $service->getDuration()), $employee);
-
-                    $startTime = $booking->getEndDatetime();
+                    if ($startTime->getTimestamp() <= $booking->getEndDatetime()->getTimestamp()) {
+                        $startTime = $booking->getEndDatetime();
+                    }
                 }
                 $availablePeriod = new Period($this->realStartTime($startTime), $endWorking);
 

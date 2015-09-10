@@ -28,7 +28,9 @@ class AvailabilityFinderSpec extends ObjectBehavior
         Booking $booking2
     ) {
         $john->getId()->willReturn(243);
+        $john->getWorkingHours(Argument::any())->willReturn([new \DateTimeImmutable("2042-01-01 09:00:00"), new \DateTimeImmutable("2042-01-01 17:00:00")]);
         $jane->getId()->willReturn(245);
+        $jane->getWorkingHours(Argument::any())->willReturn([new \DateTimeImmutable("2042-01-01 09:00:00"), new \DateTimeImmutable("2042-01-01 10:00:00")]);
         $employeeRepository->findBy(Argument::any())->willReturn([$john, $jane]);
         $booking1->getStartDatetime()->willReturn(new \DateTimeImmutable("2042-01-01 11:25:00"));
         $booking1->getEndDatetime()->willReturn(new \DateTimeImmutable("2042-01-01 11:55:00"));

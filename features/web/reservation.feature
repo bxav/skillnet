@@ -16,11 +16,14 @@ Fonctionnalité: Reserver un rendez-vous
       | Béa coiffure | 30 | Coiffure |
       | Béa coiffure | 130 | Brushing |
     Et there is 1 customer like:
-    | username | firstname | lastname |
-    | customer | John | Duff |
+      | username | firstname | lastname |
+      | customer | John | Duff |
     Et the following bookings:
       | employee | service | customer | startDateTime | endDateTime |
       | user | Coiffure | customer | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
+      | user | Brushing | customer | 2042-01-01 07:30:00.0 | 2042-01-01 09:15:00.0 |
+      | user | Brushing | customer | 2042-01-01 14:30:00.0 | 2042-01-01 16:20:00.0 |
+    Et l'employee "user" travaile le "wednesday" de "09:00" à "18:00"
 
   @ignore
   Scénario: Recherche un rendez-vous pour une coupe/shampooing/Brushing à 16h le 8 septembre autour de chez lui
@@ -41,7 +44,8 @@ Fonctionnalité: Reserver un rendez-vous
 
   Scénario: Réservation d'une coupe/shampooing/Brushing à 16h le 8 septembre chez béa coiffure
     Etant donné je suis sur la page du professionnel "Béa coiffure" et que je recherche un rendez-vous pour une "Coiffure", le "2042-01-01"
-    Alors je devrais voir "10:15"
+    Alors je ne devrais pas voir "09:00"
+       Et je devrais voir "10:15"
        Et je ne devrais pas voir "16:15"
 
   @ignore

@@ -21,6 +21,7 @@ AppBundle\Entity\Employee:
         MainPictureFilename: <employeePicture()>
         business: @bea_coiffure
         services: [@brushing, @shampoing, @chignon, @shampoing_cheveux_femme, @shampoing_cheveux_longs, @shampoing_cheveux_courts]
+        WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     sylvia:
         Username: sylvia
         PlainPassword: sylvia
@@ -33,6 +34,7 @@ AppBundle\Entity\Employee:
         MainPictureFilename: <employeePicture()>
         business: @bea_coiffure
         services: [@brushing, @shampoing, @chignon, @shampoing_cheveux_femme, @shampoing_cheveux_longs, @shampoing_cheveux_courts]
+        WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     benoit:
         Username: benoit
         PlainPassword: benoit
@@ -45,6 +47,7 @@ AppBundle\Entity\Employee:
         MainPictureFilename: <employeePicture()>
         business: @beautyinstitut
         services: [@epilation_aisselles, @epilation_demi_jambe, @seance_uv, @massage_dos, @maquillage_soiree, @maquillage_jour]
+        WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     clea:
         Username: clea
         PlainPassword: clea
@@ -57,6 +60,7 @@ AppBundle\Entity\Employee:
         MainPictureFilename: <employeePicture()>
         business: @beautyinstitut
         services: [@epilation_aisselles, @epilation_demi_jambe, @seance_uv, @massage_dos, @maquillage_soiree, @maquillage_jour]
+        WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     user:
         Username: user
         PlainPassword: user

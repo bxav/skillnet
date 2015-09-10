@@ -91,6 +91,19 @@ class Employee extends User
      **/
     protected $services;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $workingDays = [
+        'monday' => [],
+        'tuesday' => [],
+        'wednesday' => [],
+        'thursday' => [],
+        'friday' => [],
+        'saturday' => [],
+        'sunday' => []
+    ];
+
     public function __construct()
     {
         parent::__construct();
@@ -250,26 +263,26 @@ class Employee extends User
         $this->workingDays[$dayName] = [($startWorkingHour[0] * 60) + $startWorkingHour[1], ($endWorkingHour[0] * 60) + $endWorkingHour[1]];
     }
 
+    public function setWorkingDaysHours($workingDaysHours)
+    {
+        foreach($workingDaysHours as $workingHours) {
+            $this->setWorkingHoursByDay($workingHours[0], $workingHours[1]);
+        }
+    }
+
     public function getWorkingHours(\DateTimeInterface $date)
     {
         $dayName = lcfirst($date->format("l"));
         $startWorking = clone $date;
         $endWorking = clone $date;
 
+        if (!isset($this->workingDays[$dayName][0]) or !isset($this->workingDays[$dayName][1])) {
+            return null;
+        }
         $startWorking = $startWorking->setTime(intval($this->workingDays[$dayName][0] / 60), $this->workingDays[$dayName][0] % 60);
 
         $endWorking = $endWorking->setTime(intval($this->workingDays[$dayName][1] / 60), $this->workingDays[$dayName][1] % 60);
 
         return [$startWorking, $endWorking];
     }
-
-    protected $workingDays = [
-        'monday' => [],
-        'tuesday' => [],
-        'wednesday' => [],
-        'thursday' => [],
-        'friday' => [],
-        'saturday' => [],
-        'sunday' => []
-    ];
 }
