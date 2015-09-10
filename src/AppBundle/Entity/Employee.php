@@ -242,4 +242,34 @@ class Employee extends User
     public function __toString() {
         return $this->getFirstname();
     }
+
+    public function setWorkingHoursByDay($dayName, $workingHours)
+    {
+        $startWorkingHour = explode(":", $workingHours[0]);
+        $endWorkingHour = explode(":", $workingHours[1]);
+        $this->workingDays[$dayName] = [($startWorkingHour[0] * 60) + $startWorkingHour[1], ($endWorkingHour[0] * 60) + $endWorkingHour[1]];
+    }
+
+    public function getWorkingHours(\DateTimeInterface $date)
+    {
+        $dayName = lcfirst($date->format("l"));
+        $startWorking = clone $date;
+        $endWorking = clone $date;
+
+        $startWorking = $startWorking->setTime(intval($this->workingDays[$dayName][0] / 60), $this->workingDays[$dayName][0] % 60);
+
+        $endWorking = $endWorking->setTime(intval($this->workingDays[$dayName][1] / 60), $this->workingDays[$dayName][1] % 60);
+
+        return [$startWorking, $endWorking];
+    }
+
+    protected $workingDays = [
+        'monday' => [],
+        'tuesday' => [],
+        'wednesday' => [],
+        'thursday' => [],
+        'friday' => [],
+        'saturday' => [],
+        'sunday' => []
+    ];
 }
