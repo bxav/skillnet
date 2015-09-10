@@ -2,29 +2,32 @@
 
 {% block body %}
 
-<!-- scrollToTop -->
-<!-- ================ -->
-<div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
+    <!-- scrollToTop -->
+    <!-- ================ -->
+    <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
 
-<!-- page wrapper start -->
-<!-- ================ -->
-<div class="page-wrapper">
+    <!-- page wrapper start -->
+    <!-- ================ -->
+    <div class="page-wrapper">
 
-    {% block header %}
-    {% use "header.twig"  %}
-    <!-- header-container start -->
-    <div class="header-container">
-        {{ block('header_top') }}
-        {{ block('header_main') }}
+        {% block header %}
+        {% use "header.twig"  %}
+        <!-- header-container start -->
+        <div class="header-container">
+            {{ block('header_top') }}
+            {{ block('header_main') }}
+        </div>
+        <!-- header-container end -->
+        {% endblock %}
+
     </div>
-    <!-- header-container end -->
-    {% endblock %}
+    <!-- page-wrapper end -->
 
-</div>
-<!-- page-wrapper end -->
+    <div id="page-start"></div>
 
-<div id="page-start"></div>
+    {% block content %}{% endblock %}
 
-{% block content %}{% endblock %}
+    {% use "footer.twig"  %}
+    {{ block('footer') }}
 
 {% endblock body %}
