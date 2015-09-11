@@ -25,7 +25,9 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills" role="tablist">
                             <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="images"><i class="fa fa-camera pr-5"></i> {{ 'picture' | trans }}</a></li>
-                            <li><a href="#pill-2" role="tab" data-toggle="tab" title="video"><i class="fa fa-map-marker pr-5"></i> {{ 'map' | trans }}</a></li>
+                            {% if business.address %}
+                                <li><a href="#pill-2" role="tab" data-toggle="tab" title="video"><i class="fa fa-map-marker pr-5"></i> {{ 'map' | trans }}</a></li>
+                            {% endif %}
                             <li><a href="#pill-3" role="tab" data-toggle="tab" title="video"><i class="fa fa-video-camera pr-5"></i> {{ 'video' | trans }}</a></li>
                         </ul>
                         <!-- Tab panes -->
@@ -38,13 +40,15 @@
                                     {% endif %}
                                 </div>
                             </div>
+                            {% if business.address %}
                             <div class="tab-pane" id="pill-2">
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?key={{ GOOGLE_API_KEY }}&q={{ business.address }}" allowfullscreen>
                                     </iframe>
-                                    <p><a href="http://vimeo.com/29198414">Introducing Vimeo Music Store</a> from <a href="http://vimeo.com/staff">Vimeo Staff</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                                    <p><a href="https://www.google.com/maps/embed/v1/place?key={{ GOOGLE_API_KEY }}&q={{ business.address }}">{{ business.address }}</a></p>
                                 </div>
                             </div>
+                            {% endif %}
                             <div class="tab-pane" id="pill-3">
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="//player.vimeo.com/video/29198414?byline=0&amp;portrait=0"></iframe>
