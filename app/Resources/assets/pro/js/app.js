@@ -28,7 +28,7 @@ angular
 
     })
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.when('/dashboard', '/dashboard/overview');
+        $urlRouterProvider.when('/dashboard', '/dashboard/planning');
         $urlRouterProvider.otherwise('/dashboard');
 
         $stateProvider
@@ -48,11 +48,6 @@ angular
                 parent: 'base',
                 templateUrl: 'views/dashboard.html',
                 controller: 'DashboardCtrl'
-            })
-            .state('overview', {
-                url: '/overview',
-                parent: 'dashboard',
-                templateUrl: 'views/dashboard/overview.html'
             })
             .state('compte', {
                 url: '/compte',
