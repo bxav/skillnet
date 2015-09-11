@@ -66,6 +66,7 @@ class Employee extends User
 
     /**
      * @ORM\Column(nullable=true)
+     * @Serializer\Expose
      */
     protected $mainPictureFilename;
 
