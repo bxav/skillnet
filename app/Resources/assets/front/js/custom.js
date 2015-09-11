@@ -11,7 +11,8 @@
 
 
 $('#datetimepicker1').datetimepicker({
-    locale: 'fr'
+    locale: 'fr',
+    sideBySide: true
 });
 
 function loadAvailability(serviceId, date) {
