@@ -14,7 +14,7 @@ class CustomerController extends Controller
     public function myBookingAction()
     {
         $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneById($this->getUser());
-        $bookings = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByCustomer($customer);
+        $bookings = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByCustomer($customer, ['startDatetime' => 'ASC']);
         return $this->render(':Customer:my_bookings.html.twig', ['bookings' => $bookings]);
     }
 }
