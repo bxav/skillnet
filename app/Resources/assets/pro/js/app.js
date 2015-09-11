@@ -64,11 +64,6 @@ angular
                 url: '/planning',
                 parent: 'dashboard',
                 templateUrl: 'views/dashboard/employees-planning.html'
-            })
-            .state('reports', {
-                url: '/reports',
-                parent: 'dashboard',
-                templateUrl: 'views/dashboard/reports.html'
             });
 
     });
