@@ -94,9 +94,8 @@
                 <ul class="nav nav-tabs style-4" role="tablist">
                     <li class="active"><a href="#h2tab2" role="tab" data-toggle="tab"><i class="fa fa-files-o pr-5"></i>{{ 'disponibility.plural' | trans }}</a></li>
                     <li><a href="#h2tab3" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'service.plural' | trans }}</a></li>
-                    <li><a href="#h2tab4" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>(3) Reviews</a></li>
-                    <li><a href="#h2tab5" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'employee.plural' | trans }}</a></li>
-                    <li><a href="#h2tab6" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'details' | trans }}</a></li>
+                    <li><a href="#h2tab4" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'employee.plural' | trans }}</a></li>
+                    <li><a href="#h2tab5" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'details' | trans }}</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content padding-top-clear padding-bottom-clear">
@@ -107,12 +106,9 @@
                         {% include 'Business/services_tab.html.twig' with {"services": business.services} only %}
                     </div>
                     <div class="tab-pane fade" id="h2tab4">
-                        {% include 'Business/reviews_tab.html.twig' %}
-                    </div>
-                    <div class="tab-pane fade" id="h2tab5">
                         {% include 'Business/employees_tab.html.twig' with {"employees": business.employees} only %}
                     </div>
-                    <div class="tab-pane fade" id="h2tab6">
+                    <div class="tab-pane fade" id="h2tab5">
                         <h4 class="space-top">Détails</h4>
                         <hr>
                         <p>{{ 'business.available_brands' | trans }} : {{ business.availableBrands }}</p>
