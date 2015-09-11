@@ -27,6 +27,18 @@ class WebFeatureContext implements SnippetAcceptingContext
         $this->minkContext = $environment->getContext('Knp\FriendlyContexts\Context\MinkContext');
     }
 
+    /**
+     * @Given je suis loguer entant que :username
+     */
+    public function jeSuisLoguerEntantQue($username)
+    {
+        $this->minkContext->visit('/login');
+        $this->minkContext->fillField('username', $username);
+        $this->minkContext->fillField('password', $username);
+        $this->minkContext->clickElement('_submit', 'button');
+
+    }
+
 
     /**
      * @Given je suis sur la page du professionnel :arg1

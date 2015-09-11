@@ -15,6 +15,10 @@ class AvailabilityFinder
 
     protected $timeSlot = 15;
 
+    private $service;
+
+    private $date;
+
     public function __construct($bookingRepository, $employeeRepository)
     {
         $this->bookingRepository = $bookingRepository;
@@ -23,6 +27,9 @@ class AvailabilityFinder
 
     public function findByDateAndService(\DateTimeImmutable $date, Service $service)
     {
+        $this->service = $service;
+        $this->date = clone $date;
+
         $dateForWorkingHours = clone $date;
 
         $employees = $this->employeeRepository->findBy(['business' => $service->getBusiness()]);
@@ -69,7 +76,12 @@ class AvailabilityFinder
 
     protected function reverseKey($timeSlots, $calculatedTimeSlots, Employee $employee) {
         foreach ($calculatedTimeSlots as $calculatedTimeSlot) {
-            $timeSlots[$calculatedTimeSlot][] = ['employeeId' => $employee->getId()];
+            if (!isset($timeSlots[$calculatedTimeSlot]['date'])) {
+                $arrayHourAndMinute = explode(":", $calculatedTimeSlot);
+                $timeSlots[$calculatedTimeSlot]['date'] = $this->date->setTime($arrayHourAndMinute[0], $arrayHourAndMinute[1]);
+            }
+            $timeSlots[$calculatedTimeSlot]['service'] = $this->service->getId();
+            $timeSlots[$calculatedTimeSlot]['employees'][] = $employee->getId();
         }
         return $timeSlots;
     }

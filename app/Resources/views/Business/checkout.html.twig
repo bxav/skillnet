@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+{{ date | date }}
+{{ service.type }}
+    {% for employee in employees %}
+
+        {{ employee.username }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="btn btn-default" href="{{ url('checkout_final_page', {'date': date, 'service': service.id, 'employee': employee.id}) }}">Reserver</a>
+        {% else %}
+
+            <a href="{{ url('fos_user_security_login') }}" class="btn btn-default btn-sm"><i class="fa fa-lock pr-10"></i> {{ 'login' | trans }}</a>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

@@ -21,8 +21,8 @@
                 <div class="price"><span>{{ dateTime  | localizeddate('full', 'none', 'fr_FR', null, 'd MMMM') }}</span></div>
             </div>
             <ul id="id01">
-                {% for availabilityKey in availabilities | keys %}
-                    <li><a href="#">{{ availabilityKey }}</a></li>
+                {% for key, availability  in availabilities %}
+                    <li><a href="{{ url('checkout_page', {'date': key, 'date': availability.date, 'service': availability.service, 'employees': availability.employees }) }}">{{ key }}</a></li>
                 {% else %}
                     <li>Rien</li>
                 {% endfor %}

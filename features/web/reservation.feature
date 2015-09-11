@@ -16,14 +16,15 @@ Fonctionnalité: Reserver un rendez-vous
       | Béa coiffure | 30 | Coiffure |
       | Béa coiffure | 130 | Brushing |
     Et there is 1 customer like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | username | plainPassword | enabled | firstname | lastname |
+      | john | john  | true | John | Duff |
     Et the following bookings:
       | employee | service | customer | startDateTime | endDateTime |
-      | user | Coiffure | customer | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
-      | user | Brushing | customer | 2042-01-01 07:30:00.0 | 2042-01-01 09:15:00.0 |
-      | user | Brushing | customer | 2042-01-01 14:30:00.0 | 2042-01-01 16:20:00.0 |
+      | user | Coiffure | john | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
+      | user | Brushing | john | 2042-01-01 07:30:00.0 | 2042-01-01 09:15:00.0 |
+      | user | Brushing | john | 2042-01-01 14:30:00.0 | 2042-01-01 16:20:00.0 |
     Et l'employee "user" travaile le "wednesday" de "09:00" à "18:00"
+    Et je suis loguer entant que "john"
 
   @ignore
   Scénario: Recherche un rendez-vous pour une coupe/shampooing/Brushing à 16h le 8 septembre autour de chez lui
@@ -48,10 +49,15 @@ Fonctionnalité: Reserver un rendez-vous
        Et je devrais voir "10:15"
        Et je ne devrais pas voir "16:15"
 
+  Scénario: Réservation d'une coupe/shampooing/Brushing à 16h le 8 septembre chez béa coiffures
+    Etant donné je suis sur la page du professionnel "Béa coiffure" et que je recherche un rendez-vous pour une "Coiffure", le "2042-01-01"
+    Quand je clique sur "10:15" dans le calendrier
+    Alors je devrais voir "Reserver"
+
   @ignore
   Scénario: Réservation d'une coupe/shampooing/Brushing à 16h le 8 septembre chez béa coiffures
     Etant donné je suis sur la page du professionnel "Béa coiffure" et que je recherche un rendez-vous pour une "Coiffure", le "2042-01-01"
-    Quand je clique sur "16:15" dans le calendrier
-       Et que je clique sur le bouton réserver
+    Quand je clique sur "10:15" dans le calendrier
+    Alors je devrais voir "Reserver"
     Alors je vois l’ensemble des données récapitulative apparaît à l’écran (Nom salon,, adresse, soin, date, horaire et employé) avec un bouton validé.
-       Et je suis redirigée vers la page d’inscription (pour un non inscrit) ou je rentre directement sur ma page de profil particulier avec le rendez-vous inscrit sur celle-ci
+    Et je suis redirigée vers la page d’inscription (pour un non inscrit) ou je rentre directement sur ma page de profil particulier avec le rendez-vous inscrit sur celle-ci
