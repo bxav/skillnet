@@ -96,23 +96,23 @@
             <div class="col-md-8">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs style-4" role="tablist">
-                    <li class="active"><a href="#h2tab2" role="tab" data-toggle="tab"><i class="fa fa-files-o pr-5"></i>{{ 'disponibility.plural' | trans }}</a></li>
-                    <li><a href="#h2tab3" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'service.plural' | trans }}</a></li>
-                    <li><a href="#h2tab4" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'employee.plural' | trans }}</a></li>
-                    <li><a href="#h2tab5" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'details' | trans }}</a></li>
+                    <li class="active"><a href="#disponibilities" role="tab" data-toggle="tab"><i class="fa fa-files-o pr-5"></i>{{ 'disponibility.plural' | trans }}</a></li>
+                    <li><a href="#services" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'service.plural' | trans }}</a></li>
+                    <li><a href="#employees" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'employee.plural' | trans }}</a></li>
+                    <li><a href="#details" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>{{ 'details' | trans }}</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content padding-top-clear padding-bottom-clear">
-                    <div class="tab-pane fade in active" id="h2tab2">
+                    <div class="tab-pane fade in active" id="disponibilities">
                         {% include 'Business/planning_tab.html.twig' with {"services": business.services, "availabilities": availabilities, 'date': date} only %}
                     </div>
-                    <div class="tab-pane fade" id="h2tab3">
+                    <div class="tab-pane fade" id="services">
                         {% include 'Business/services_tab.html.twig' with {"services": business.services} only %}
                     </div>
-                    <div class="tab-pane fade" id="h2tab4">
+                    <div class="tab-pane fade" id="employees">
                         {% include 'Business/employees_tab.html.twig' with {"employees": business.employees} only %}
                     </div>
-                    <div class="tab-pane fade" id="h2tab5">
+                    <div class="tab-pane fade" id="details">
                         <h4 class="space-top">Détails</h4>
                         <hr>
                         <p>{{ 'business.available_brands' | trans }} : {{ business.availableBrands }}</p>
