@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-md-6">
                     <h4>Service</h4>
-                    <input type="text" ng-model="booking.service" typeahead="service as service.id for service in services | filter:{id:$viewValue} | limitTo:8" class="form-control">
+                    <input type="text" ng-model="booking.service" typeahead="service as service.type for service in services | filter:{type:$viewValue} | limitTo:8" class="form-control">
                 </div>
             </div>
             <br>
