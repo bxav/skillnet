@@ -20,9 +20,10 @@ class ServiceAdmin extends Admin
         $formMapper
             ->with('General');
 
+        if (!$this->hasParentFieldDescription()) {
 
-        $formMapper->add('business', 'sonata_type_model_autocomplete', ['constraints' => new Assert\NotNull(), 'property'=>'firstname', 'placeholder' => 'Enter the business name']);
-
+            $formMapper->add('business', 'sonata_type_model_autocomplete', ['constraints' => new Assert\NotNull(), 'property'=>'firstname', 'placeholder' => 'Enter the business name']);
+        }
 
         $formMapper
             ->add('type')

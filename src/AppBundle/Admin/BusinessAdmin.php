@@ -21,6 +21,7 @@ class BusinessAdmin extends Admin
             ->add('phone')
             ->add('website')
             ->add('description')
+            ->add('disponibilityTimeSlot', 'integer')
             ->end()
             ->with('Employees', ['class' => 'col-md-12'])
             ->add('employees', 'sonata_type_collection', [
