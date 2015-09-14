@@ -25,8 +25,8 @@ angular.module('beauty')
             modalInstance.result.then(function (rawBooking) {
 
                 var newBooking = {
-                    start_datetime: rawBooking.date.toISOString(),
-                    end_datetime: rawBooking.date.toISOString(),
+                    start_datetime: rawBooking.startTime.toISOString(),
+                    end_datetime: rawBooking.endTime.toISOString(),
                     customer_username: rawBooking.customer.username,
                     employee_slug: rawBooking.employee.slug,
                     service_id: angular.isDefined(rawBooking.service) ? rawBooking.service.id : null

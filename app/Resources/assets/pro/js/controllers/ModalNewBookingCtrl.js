@@ -13,7 +13,7 @@ angular.module('beauty')
         });
 
         $scope.hstep = 1;
-        $scope.mstep = 15;
+        $scope.mstep = 5;
 
         $scope.changed = function () {
             $scope.booking.endTime = $scope.booking.startTime;
@@ -21,7 +21,10 @@ angular.module('beauty')
 
         $scope.update = function (booking) {
             console.log("Updated settings ", booking);
-
+            booking.startTime = new Date(booking.date.getFullYear(), booking.date.getMonth(), booking.date.getDate(),
+                booking.startTime.getHours(), booking.startTime.getMinutes(), booking.startTime.getSeconds());
+            booking.endTime = new Date(booking.date.getFullYear(), booking.date.getMonth(), booking.date.getDate(),
+                booking.endTime.getHours(), booking.endTime.getMinutes(), booking.endTime.getSeconds());
             $modalInstance.close(booking);
         };
         $scope.cancel = function () {
