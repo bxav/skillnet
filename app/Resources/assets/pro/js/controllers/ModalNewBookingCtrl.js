@@ -1,5 +1,5 @@
 angular.module('beauty')
-    .controller('ModalNewBookingCtrl', function ($scope, $modalInstance, Restangular, businessSlug) {
+    .controller('ModalNewBookingCtrl', function ($scope, $modalInstance, Restangular, date, businessSlug) {
         Restangular.all('customers').getList().then(function (customers) {
             $scope.customers = customers;
         });
@@ -12,6 +12,17 @@ angular.module('beauty')
             $scope.services = services;
         });
 
+        if (date == null) {
+            date = new Date();
+            date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+                date.getHours());
+        }
+
+        $scope.booking = {
+            date: date,
+            startTime: date,
+            endTime: date
+        };
         $scope.hstep = 1;
         $scope.mstep = 5;
 

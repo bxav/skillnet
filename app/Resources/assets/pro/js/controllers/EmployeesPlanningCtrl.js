@@ -9,13 +9,14 @@ angular.module('beauty')
     .controller('EmployeesPlanningCtrl', function($scope, $modal, $log, Restangular) {
 
 
-        $scope.open = function (size) {
+        $scope.open = function (date) {
             var modalInstance = $modal.open({
                 animation: true,
                 templateUrl: 'myModalContent.html',
                 controller: 'ModalNewBookingCtrl',
                 size: 'lg',
                 resolve: {
+                    date: date,
                     businessSlug: function () {
                         return $scope.business.slug;
                     }

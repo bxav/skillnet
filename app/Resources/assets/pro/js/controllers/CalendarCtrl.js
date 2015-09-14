@@ -67,7 +67,10 @@ angular.module('beauty')
                 allDaySlot: false,
                 defaultView: 'agendaDay',
                 events: events_b,
-                eventClick: $scope.showEditVisitDialog
+                eventClick: $scope.showEditVisitDialog,
+                dayClick: function(date) {
+                    $scope.open(date);
+                }
             }
         };
 });
