@@ -91,6 +91,13 @@ class Business
     protected $description;
 
     /**
+     * @ORM\Column(type="text",nullable=true)
+     * @Serializer\Type("integer")
+     * @Serializer\Expose
+     */
+    protected $disponibilityTimeSlot = 15;
+
+    /**
      * @ORM\Column(nullable=true)
      */
     protected $mainPictureFilename;
@@ -268,6 +275,22 @@ class Business
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getDisponibilityTimeSlot()
+    {
+        return $this->disponibilityTimeSlot;
+    }
+
+    /**
+     * @param integer $disponibilityTimeSlot
+     */
+    public function setDisponibilityTimeSlot($disponibilityTimeSlot)
+    {
+        $this->disponibilityTimeSlot = $disponibilityTimeSlot;
     }
 
     /**

@@ -33,6 +33,7 @@ class AvailabilityFinder
         $dateForWorkingHours = clone $date;
 
         $employees = $this->employeeRepository->findBy(['business' => $service->getBusiness()]);
+        $this->timeSlot = $service->getBusiness()->getdisponibilityTimeSlot();
 
         $timeSlots = [];
         foreach($employees as $employee) {

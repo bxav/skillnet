@@ -6,8 +6,8 @@ Fonctionnalité: Reserver un rendez-vous
 
   Contexte:
     Etant donné there is 1 business like:
-      | name |
-      | Béa coiffure |
+      | name | disponibilityTimeSlot |
+      | Béa coiffure | 15 |
     Et the following employee:
       | username | plainPassword | roles | enabled | firstname | lastname | business |
       | user | user | ROLE_API | true | marie | dupond | Béa coiffure |
