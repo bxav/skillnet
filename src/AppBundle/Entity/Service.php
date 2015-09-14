@@ -40,8 +40,8 @@ class Service
     protected $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
+     * @ORM\Column(type="float")
+     * @Serializer\Type("float")
      * @Serializer\Expose
      */
     protected $price;
