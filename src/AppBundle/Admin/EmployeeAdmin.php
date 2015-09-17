@@ -44,7 +44,19 @@ class EmployeeAdmin extends Admin
             ->add('shortDescription')
             ->add('speciality')
             ->end();
-
+        if (!$this->hasParentFieldDescription()) {
+            $formMapper->with('Image', ['class' => 'col-md-12'])
+                ->add('image', 'image', [
+                    'by_reference' => false,
+                    'cascade_validation' => true
+                ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table'
+                    ]
+                )
+                ->end();
+        }
 
         if (!$this->hasParentFieldDescription()) {
             $em = $this->modelManager->getEntityManager('AppBundle\Entity\Service');
@@ -58,6 +70,7 @@ class EmployeeAdmin extends Admin
             $formMapper
                 ->with('Services', ['class' => 'col-md-12'])
                 ->add('services', 'sonata_type_model', [
+                    'property'=> 'type',
                     'multiple' => true,
                     'by_reference' => false,
                     'btn_add' => false,

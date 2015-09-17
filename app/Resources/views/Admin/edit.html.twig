@@ -1,0 +1,24 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin_extra.css' | asset_version ) }}"/>
+
+{% endblock %}
+
+{% form_theme form ':Form:fields.html.twig' %}
+
+{% block navbar_title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sonata_wrapper %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/admin_extra.js' | asset_version ) }}"></script>
+    <script type="text/javascript">
+        $(function(){$(".file-input").fileinput();});
+    </script>
+{% endblock %}
+

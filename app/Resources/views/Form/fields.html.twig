@@ -1,0 +1,18 @@
+{% extends 'SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig' %}
+
+{% block image_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-sm-1"></div>
+            {% if form.vars.value is not empty %}
+                <img src="{{ asset('') ~ form.vars.value.webPath }}"  class="col-sm-4 thumbnail img-responsive" alt="Responsive image" alt="" />
+            {% else %}
+                <div class="col-sm-4"><div class="thumbnail" style="background-color:rgba(0,0,0,0.28);color:white;height:300px;line-height:200px;text-align:center;"> No image found for this entity</div></div>
+            {% endif %}
+            <div class="col-sm-4">
+                {{ form_widget(form.file, {'attr':{'class':'file-input col-md-3'}}) }}
+                {{ form_rest(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

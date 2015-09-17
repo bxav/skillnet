@@ -30,6 +30,11 @@ services:
         class: AppBundle\Templating\AssetVersionResolver
         arguments: ["%kernel.root_dir%"]
 
+    app.form.type.image:
+        class: AppBundle\Form\Type\ImageType
+        tags:
+            - { name: form.type, alias: image }
+
     app.user.success_handler:
         class: %app.user.success_handler.class%
         arguments: [@router]

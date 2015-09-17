@@ -7,6 +7,8 @@ services:
             - ~
             - AppBundle\Entity\Business
             - ~
+        calls:
+            - [ setTemplate, [edit, :Admin:edit.html.twig]]
 
     sonata.admin.employee:
         class: AppBundle\Admin\EmployeeAdmin
@@ -16,6 +18,8 @@ services:
             - ~
             - AppBundle\Entity\Employee
             - ~
+        calls:
+            - [ setTemplate, [edit, :Admin:edit.html.twig]]
 
     sonata.admin.service:
         class: AppBundle\Admin\ServiceAdmin

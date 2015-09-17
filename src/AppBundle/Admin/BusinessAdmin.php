@@ -23,6 +23,17 @@ class BusinessAdmin extends Admin
             ->add('description')
             ->add('disponibilityTimeSlot', 'integer')
             ->end()
+            ->with('Image', ['class' => 'col-md-12'])
+            ->add('image', 'image', [
+                'by_reference' => false,
+                'cascade_validation' => true
+            ],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table'
+                ]
+            )
+            ->end()
             ->with('Employees', ['class' => 'col-md-12'])
             ->add('employees', 'sonata_type_collection', [
                 'by_reference' => false,

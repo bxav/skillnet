@@ -99,6 +99,9 @@ gulp.task('styles_front', function() {
         config.assetsDirFront+'/less/style.less',
         config.assetsDirFront+'/less/skins/pink.less'
     ], 'main_front.css');
+    pipeline.add([
+        config.bowerDir+'/bootstrap-fileinput/css/fileinput.css'
+    ], 'admin_extra.css');
     return pipeline.run(app.addStyle);
 });
 gulp.task('styles_app', function() {
@@ -156,6 +159,9 @@ gulp.task('scripts_front', function() {
     pipeline.add([
         config.assetsDirFront+'/js/custom.js'
     ], 'custom.js');
+    pipeline.add([
+        config.bowerDir+'/bootstrap-fileinput/js/fileinput.min.js'
+    ], 'admin_extra.js');
     return pipeline.run(app.addScript);
 });
 gulp.task('scripts_app', function() {
