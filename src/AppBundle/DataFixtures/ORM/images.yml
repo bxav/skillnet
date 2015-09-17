@@ -1,4 +1,5 @@
 AppBundle\Entity\Image:
     shop{1..15}:
         file: <businessImage()>
-
+    employeePicture{1..5}:
+        file: <employeeImage()>

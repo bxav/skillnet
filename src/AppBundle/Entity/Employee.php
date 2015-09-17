@@ -65,10 +65,10 @@ class Employee extends User
     protected $shortDescription;
 
     /**
-     * @ORM\Column(nullable=true)
-     * @Serializer\Expose
-     */
-    protected $mainPictureFilename;
+     * @Orm\OneToOne(targetEntity="Image", cascade="all")
+     * @Orm\JoinColumn(name="image_id", referencedColumnName="id")
+     **/
+    protected $image;
 
     /**
      * @Gedmo\Slug(fields={"firstname", "lastname"})
@@ -186,17 +186,17 @@ class Employee extends User
     /**
      * @return mixed
      */
-    public function getMainPictureFilename()
+    public function getImage()
     {
-        return $this->mainPictureFilename;
+        return $this->image;
     }
 
     /**
-     * @param mixed $mainPictureFilename
+     * @param mixed $image
      */
-    public function setMainPictureFilename($mainPictureFilename)
+    public function setImage($image)
     {
-        $this->mainPictureFilename = $mainPictureFilename;
+        $this->image = $image;
     }
 
     /**

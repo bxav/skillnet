@@ -22,9 +22,9 @@ class AppFixtures extends DataFixtureLoader
 
     protected function getProcessors()
     {
-        return array(
-            new PictureProcessor()
-        );
+        return [
+
+        ];
     }
 
     /**
@@ -54,22 +54,29 @@ class AppFixtures extends DataFixtureLoader
         return $endDateTime;
     }
 
-    public function employeePicture()
+    public function employeeImage()
     {
         $filenames = array(
             'charles.jpg',
             'sylvia.jpg'
         );
-        return $filenames[array_rand($filenames)];
+
+        return $this->createFakeUploadedImage($filenames);
+
     }
 
     public function businessImage()
     {
-
-        $projectRoot = __DIR__.'/../../../..';
         $filenames = array(
             'shop.jpg'
         );
+
+        return $this->createFakeUploadedImage($filenames);
+    }
+
+    protected function createFakeUploadedImage($filenames) {
+
+        $projectRoot = __DIR__.'/../../../..';
 
         return new UploadedFileForFixture($projectRoot. '/resources/'. $filenames[array_rand($filenames)], $filenames[array_rand($filenames)], null, null, true);
 

@@ -53,8 +53,11 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
                             <div class="overlay-container overlay-visible">
-                                <img src="{{ asset('uploads/pictures/'~employee.mainPictureFilename) }}" alt="{{ employee.firstname }}">
-                                <div class="overlay-bottom">
+                                {% if employee.image %}
+
+                                    <img src="{{ employee.image.webPath() }}" alt="{{ employee.firstname }}">
+                                {% endif %}
+                                    <div class="overlay-bottom">
                                     <p class="small margin-clear">{{ employee.shortDescription }}</p>
                                 </div>
                             </div>
