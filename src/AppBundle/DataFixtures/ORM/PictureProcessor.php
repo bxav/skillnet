@@ -15,7 +15,7 @@ class PictureProcessor implements ProcessorInterface
      */
     public function preProcess($object)
     {
-        if (!$object instanceof Business and !$object instanceof Employee) {
+        if (!$object instanceof Employee) {
             return;
         }
 

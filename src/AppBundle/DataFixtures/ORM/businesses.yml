@@ -10,7 +10,7 @@ AppBundle\Entity\Business:
         Website: beacoiffuretest.com
         Description: Béacoiffure est votre nouveau petit salon parisien. Il a déjà séduit plus de 1000 clients fidèles. N’hésitez pas à venir tester les coupes détonantes de Charles notre patron et les couleurs toujours très tendances de Sylvia qui se fera un plaisir de vous parler chignon pendant des heures.
         disponibilityTimeSlot: 10
-        MainPictureFilename: <shopPicture()>
+        Image (unique): @shop*
     beautyinstitut:
         Name: Beautyinstitut
         MainService: Salon d’esthétique
@@ -22,9 +22,10 @@ AppBundle\Entity\Business:
         Website: beautyinstituttest.com
         Description: Beautyinstitut vous accueil 7j/7 et vous propose de multiples services pour votre bien être. N’hésitez pas à venir déposer un de vos commentaires sur facebook.
         disponibilityTimeSlot: 10
-        MainPictureFilename: <shopPicture()>
-    biz{1..25}:
+        Image (unique): @shop*
+    biz{1..2}:
         Name: <company()>
         Phone: <phoneNumber()>
         Website: <domainName()>
         Description: <paragraph()>
+        Image (unique): @shop*

@@ -1,0 +1,4 @@
+AppBundle\Entity\Image:
+    shop{1..15}:
+        file: <businessImage()>
+

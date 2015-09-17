@@ -6,6 +6,8 @@ use Faker\Factory;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 use Nelmio\Alice\Fixtures;
 use Nelmio\Alice\Loader\FakerProvider;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AppFixtures extends DataFixtureLoader
 {
@@ -31,6 +33,7 @@ class AppFixtures extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
+            __DIR__ . '/images.yml',
             __DIR__ . '/businesses.yml',
             __DIR__ . '/services.yml',
             __DIR__ . '/employees.yml',
@@ -60,11 +63,34 @@ class AppFixtures extends DataFixtureLoader
         return $filenames[array_rand($filenames)];
     }
 
-    public function shopPicture()
+    public function businessImage()
     {
+
+        $projectRoot = __DIR__.'/../../../..';
         $filenames = array(
             'shop.jpg'
         );
-        return $filenames[array_rand($filenames)];
+
+        return new UploadedFileForFixture($projectRoot. '/resources/'. $filenames[array_rand($filenames)], $filenames[array_rand($filenames)], null, null, true);
+
+    }
+}
+
+class UploadedFileForFixture extends UploadedFile
+{
+    public function move($directory, $name = null)
+    {
+        $target = $this->getTargetFile($directory, $name);
+        $fs = new Filesystem();
+        $fs->copy(
+            $this->getPathname(),
+            $target,
+            true
+        );
+
+        @chmod($target, 0666 & ~umask());
+
+        return $target;
+
     }
 }

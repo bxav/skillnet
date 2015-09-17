@@ -34,9 +34,9 @@
                         <div class="tab-content clear-style">
                             <div class="tab-pane active" id="pill-1">
                                 <div class="overlay-container overlay-visible">
-                                    {% if business.mainPictureFilename %}
-                                        <img src="{{ asset('uploads/pictures/'~business.mainPictureFilename) }}" alt="{{ business.name }}"/>
-                                        <a href="{{ asset('uploads/pictures/'~business.mainPictureFilename) }}" class="popup-img overlay-link" title="image title"><i class="icon-plus-1"></i></a>
+                                    {% if business.image %}
+                                        <img src="{{ business.image.webPath() }}" alt="{{ business.name }}"/>
+                                        <a href="{{ business.image.webPath() }}" class="popup-img overlay-link" title="image title"><i class="icon-plus-1"></i></a>
                                     {% endif %}
                                 </div>
                             </div>

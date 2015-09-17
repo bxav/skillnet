@@ -23,7 +23,9 @@
                         <div class="col-md-6">
                             <div class="">
                                 <div class="">
-                                    <img src="{{ asset('uploads/pictures/'~service.business.mainPictureFilename) }}" alt="">
+                                    {% if service.business.image %}
+                                        <img src="{{ service.business.image.webPath() }}" alt="{{ service.business.name }}"/>
+                                    {% endif %}
                                     <div class="overlay-bottom hidden-xs">
                                         <div class="text">
                                             <h3 class="title">We Can Do It</h3>

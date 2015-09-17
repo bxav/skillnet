@@ -98,9 +98,10 @@ class Business
     protected $disponibilityTimeSlot = 15;
 
     /**
-     * @ORM\Column(nullable=true)
-     */
-    protected $mainPictureFilename;
+     * @Orm\OneToOne(targetEntity="Image", cascade="all")
+     * @Orm\JoinColumn(name="image_id", referencedColumnName="id")
+     **/
+    protected $image;
 
     /**
      * @Gedmo\Slug(fields={"name"})
@@ -296,17 +297,17 @@ class Business
     /**
      * @return mixed
      */
-    public function getMainPictureFilename()
+    public function getImage()
     {
-        return $this->mainPictureFilename;
+        return $this->image;
     }
 
     /**
-     * @param mixed $mainPictureFilename
+     * @param mixed $image
      */
-    public function setMainPictureFilename($mainPictureFilename)
+    public function setImage($image)
     {
-        $this->mainPictureFilename = $mainPictureFilename;
+        $this->image = $image;
     }
 
     /**
