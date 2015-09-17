@@ -151,6 +151,20 @@ bazinga_hateoas:
 fos_js_routing:
     routes_to_expose: [ 'availability' ]
 
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        employee_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [260, 260], mode: outbound }
+
+
+
 hautelook_alice:
     locale: fr_FR   # default
     seed: 1234

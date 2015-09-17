@@ -8,7 +8,7 @@
         <div class="image-box team-member shadow mb-20">
             <div class="overlay-container overlay-visible">
                 {% if employee.mainPictureFilename %}
-                    <img src="{{ asset('uploads/pictures/'~employee.mainPictureFilename) }}" alt="{{ employee.firstname }}"/>
+                    <img src="{{ asset('uploads/pictures/'~employee.mainPictureFilename)  | imagine_filter('employee_thumb') }}" alt="{{ employee.firstname }}"/>
                     <a href="{{ asset('uploads/pictures/'~employee.mainPictureFilename) }}" class="popup-img overlay-link" title="Jane Doe - CEO"><i class="icon-plus-1"></i></a>
                 {% else %}
                     <img src="http://fakeimg.pl/480/" alt="">
