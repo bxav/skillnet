@@ -92,7 +92,7 @@ gulp.task('styles_front', function() {
         config.assetsDirFront+'/plugins/magnific-popup/magnific-popup.css',
         config.assetsDirFront+'/plugins/rs-plugin/css/settings.css',
         config.assetsDirFront+'/plugins/owl-carousel/owl.carousel.css',
-        config.assetsDirFront+'/plugins/mowl-carousel/owl.transitions.css',
+        config.assetsDirFront+'/plugins/owl-carousel/owl.transitions.css',
         config.assetsDirFront+'/plugins/hover/hover-min.css'
     ], 'plugins_front.css');
     pipeline.add([
