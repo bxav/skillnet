@@ -1,6 +1,9 @@
 _api:
-    prefix:   /api
+    prefix:   /api/{version}
     resource: routing_api.yml
+    requirements:
+            version: test|v0
+
 
 app_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
