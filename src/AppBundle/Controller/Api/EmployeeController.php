@@ -40,23 +40,6 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
      *  resource=true,
      *  description="Return an employee",
      * )
-     */
-    public function getCurrentAction()
-    {
-        $user = $this->getUser();
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->find($user->getId());
-
-        $view = $this->view($employee, 200);
-
-        return $this->handleView($view);
-    }
-
-
-    /**
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Return an employee",
-     * )
      * @ParamConverter("employee", options={"mapping": {"employee": "slug"}})
      */
     public function getAction(Employee $employee)
