@@ -20,6 +20,7 @@ class BusinessAdmin extends Admin
             ->add('name')
             ->add('phone')
             ->add('website')
+            ->add('address')
             ->add('description')
             ->add('disponibilityTimeSlot', 'integer')
             ->end()
