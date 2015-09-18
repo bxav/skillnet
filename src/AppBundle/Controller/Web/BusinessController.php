@@ -3,11 +3,13 @@
 namespace AppBundle\Controller\Web;
 
 use AppBundle\Entity\Booking;
+use AppBundle\Entity\Business;
 use AppBundle\Entity\Service;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BusinessController extends Controller
 {
@@ -58,11 +60,11 @@ class BusinessController extends Controller
 
     /**
      * @Route("/{businessSlug}", name="business_page")
+     * @ParamConverter("business", options={"mapping": {"businessSlug": "slug"}})
      */
-    public function indexAction(Request $request, $businessSlug)
+    public function indexAction(Request $request, Business $business)
     {
         $date = new \DateTimeImmutable($request->get("date"));
-        $business = $this->getDoctrine()->getRepository('AppBundle:Business')->findOneBySlug($businessSlug);
         if ($request->get("service")) {
             $service = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['business' => $business, 'type' => $request->get("service")]);
         } else {

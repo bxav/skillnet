@@ -7,7 +7,7 @@
  */
 angular.module('beauty')
     .controller('DashboardCtrl', function ($scope, $state, Restangular) {
-        var current = Restangular.one('employees', 'current').get();
+        var current = Restangular.one('employees').get({'current': true});
         current.then(function (employee) {
             $scope.employee = employee;
             $scope.business = employee._embedded.business;

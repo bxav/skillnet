@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller\Api;
 
+use AppBundle\Entity\Business;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Routing\ClassResourceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 class BusinessController extends FOSRestController implements ClassResourceInterface
@@ -31,11 +33,10 @@ class BusinessController extends FOSRestController implements ClassResourceInter
      *  resource=true,
      *  description="Return a business",
      * )
+     * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
-    public function getAction($slug)
+    public function getAction(Business $business)
     {
-        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findOneBySlug($slug);
-
 
         $view = $this->view($business, 200);
 
@@ -47,11 +48,10 @@ class BusinessController extends FOSRestController implements ClassResourceInter
      *  resource=true,
      *  description="Return a collection of Users",
      * )
+     * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
-    public function getEmployeesAction($slug)
+    public function getEmployeesAction(Business $business)
     {
-        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findOneBySlug($slug);
-
         $employees = $this->getDoctrine()->getRepository("AppBundle:Employee")->findByBusiness($business);
 
         $view = $this->view($employees, 200);
@@ -64,11 +64,10 @@ class BusinessController extends FOSRestController implements ClassResourceInter
      *  resource=true,
      *  description="Return a collection of services",
      * )
+     * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
-    public function getServicesAction($slug)
+    public function getServicesAction(Business $business)
     {
-        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findOneBySlug($slug);
-
         $view = $this->view($business->getServices(), 200);
 
         return $this->handleView($view);

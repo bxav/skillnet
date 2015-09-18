@@ -16,7 +16,7 @@ angular
         'restangular'
     ])
     .config(function (RestangularProvider) {
-        RestangularProvider.setBaseUrl('/api');
+        RestangularProvider.setBaseUrl('/api/v0');
 
         // In this case we are mapping the id of each element to the _id field.
         // We also change the Restangular route.

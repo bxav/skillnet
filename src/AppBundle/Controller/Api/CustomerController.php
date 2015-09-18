@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller\Api;
 
+use AppBundle\Entity\Customer;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Routing\ClassResourceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 class CustomerController extends FOSRestController implements ClassResourceInterface
@@ -31,11 +33,10 @@ class CustomerController extends FOSRestController implements ClassResourceInter
      *  resource=true,
      *  description="Return a Customer",
      * )
+     * @ParamConverter("customer", options={"mapping": {"customer": "username"}})
      */
-    public function getAction($username)
+    public function getAction(Customer $customer)
     {
-        $customer = $this->getDoctrine()->getRepository("AppBundle:Customer")->findOneByUsername($username);
-
         $view = $this->view($customer, 200);
 
         return $this->handleView($view);
