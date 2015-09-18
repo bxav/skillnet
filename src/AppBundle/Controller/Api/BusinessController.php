@@ -3,13 +3,11 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Business;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
-class BusinessController extends FOSRestController implements ClassResourceInterface
+class BusinessController extends ApiController
 {
 
     /**
@@ -22,10 +20,7 @@ class BusinessController extends FOSRestController implements ClassResourceInter
     {
         $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findAll();
 
-
-        $view = $this->view($business, 200);
-
-        return $this->handleView($view);
+        return $this->createView($business, 200);
     }
 
     /**
@@ -37,10 +32,7 @@ class BusinessController extends FOSRestController implements ClassResourceInter
      */
     public function getAction(Business $business)
     {
-
-        $view = $this->view($business, 200);
-
-        return $this->handleView($view);
+        return $this->createView($business, 200);
     }
 
     /**
@@ -54,9 +46,7 @@ class BusinessController extends FOSRestController implements ClassResourceInter
     {
         $employees = $this->getDoctrine()->getRepository("AppBundle:Employee")->findByBusiness($business);
 
-        $view = $this->view($employees, 200);
-
-        return $this->handleView($view);
+        return $this->createView($employees, 200);
     }
 
     /**
@@ -68,8 +58,6 @@ class BusinessController extends FOSRestController implements ClassResourceInter
      */
     public function getServicesAction(Business $business)
     {
-        $view = $this->view($business->getServices(), 200);
-
-        return $this->handleView($view);
+        return $this->createView($business->getServices(), 200);
     }
 }

@@ -4,13 +4,11 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Customer;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
-class CustomerController extends FOSRestController implements ClassResourceInterface
+class CustomerController extends ApiController
 {
 
     /**
@@ -23,9 +21,7 @@ class CustomerController extends FOSRestController implements ClassResourceInter
     {
         $customers = $this->getDoctrine()->getRepository("AppBundle:Customer")->findAll();
 
-        $view = $this->view($customers, 200);
-
-        return $this->handleView($view);
+        return $this->createView($customers, 200);
     }
 
     /**
@@ -37,9 +33,7 @@ class CustomerController extends FOSRestController implements ClassResourceInter
      */
     public function getAction(Customer $customer)
     {
-        $view = $this->view($customer, 200);
-
-        return $this->handleView($view);
+        return $this->createView($customer, 200);
     }
 
     /**
@@ -60,7 +54,6 @@ class CustomerController extends FOSRestController implements ClassResourceInter
         $em->persist($customer);
         $em->flush();
 
-        $view = $this->view($customer, 201);
-        return $this->handleView($view);
+        return $this->createView($customer, 201);
     }
 }

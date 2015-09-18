@@ -3,12 +3,10 @@
 namespace AppBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 
 
-class UserController extends FOSRestController implements ClassResourceInterface
+class UserController extends ApiController
 {
 
     /**
@@ -22,10 +20,8 @@ class UserController extends FOSRestController implements ClassResourceInterface
         $users = null;
         $users = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
 
+        return $this->createView($users, 200);
 
-        $view = $this->view($users, 200);
-
-        return $this->handleView($view);
     }
 
     /**
@@ -50,8 +46,7 @@ class UserController extends FOSRestController implements ClassResourceInterface
         $user->setEmail(json_decode($data)->email);
         $user->setPlainPassword(json_decode($data)->password);
         $userManager->updateUser($user);
-        $view = $this->view($user, 200);
 
-        return $this->handleView($view);
+        return $this->createView($user, 200);
     }
 }

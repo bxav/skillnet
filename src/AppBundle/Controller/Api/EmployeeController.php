@@ -3,15 +3,13 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Employee;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
-class EmployeeController extends FOSRestController implements ClassResourceInterface
+class EmployeeController extends ApiController
 {
 
     /**
@@ -30,9 +28,7 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
             $employees = $this->getDoctrine()->getRepository("AppBundle:Employee")->findAll();
         }
 
-        $view = $this->view($employees, 200);
-
-        return $this->handleView($view);
+        return $this->createView($employees, 200);
     }
 
     /**
@@ -44,9 +40,7 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
      */
     public function getAction(Employee $employee)
     {
-        $view = $this->view($employee, 200);
-
-        return $this->handleView($view);
+        return $this->createView($employee, 200);
     }
 
     /**
@@ -58,8 +52,6 @@ class EmployeeController extends FOSRestController implements ClassResourceInter
      */
     public function getServicesAction(Employee $employee)
     {
-        $view = $this->view($employee->getServices(), 200);
-
-        return $this->handleView($view);
+        return $this->createView($employee->getServices(), 200);
     }
 }
