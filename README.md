@@ -13,7 +13,7 @@ bower install
 
 php app/console doctrine:database:create
 
-php app/console doctrine:database:create
+php app/console doctrine:fixtures:load
 ```
 
 Api
