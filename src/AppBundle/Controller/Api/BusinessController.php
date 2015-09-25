@@ -13,7 +13,7 @@ class BusinessController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a collection of Users",
+     *  description="Return a collection of Business",
      * )
      */
     public function cgetAction()
@@ -26,7 +26,15 @@ class BusinessController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a business",
+     *  requirements={
+     *      {
+     *          "name"="business",
+     *          "dataType"="string",
+     *          "requirement"="[a-z-]+",
+     *          "description"="Business's slug"
+     *      }
+     *  },
+     *  description="Return a Business",
      * )
      * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
@@ -38,7 +46,15 @@ class BusinessController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a collection of Users",
+     *  requirements={
+     *      {
+     *          "name"="business",
+     *          "dataType"="string",
+     *          "requirement"="[a-z-]+",
+     *          "description"="Business's slug"
+     *      }
+     *  },
+     *  description="Return a collection of Employee",
      * )
      * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
@@ -52,7 +68,15 @@ class BusinessController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a collection of services",
+     *  requirements={
+     *      {
+     *          "name"="business",
+     *          "dataType"="string",
+     *          "requirement"="[a-z-]+",
+     *          "description"="Business's slug"
+     *      }
+     *  },
+     *  description="Return a collection of Service",
      * )
      * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */

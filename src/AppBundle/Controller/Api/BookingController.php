@@ -14,7 +14,10 @@ class BookingController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a collection of Bookings",
+     *  statusCodes={
+     *      200="Returned if everything is fine"
+     *  },
+     *  description="Return a collection of Booking",
      * )
      * @QueryParam(name="employee", requirements="[a-z-]+", description="Employee's slug.")
      *

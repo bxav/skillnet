@@ -15,9 +15,12 @@ class EmployeeController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a collection of Employees",
+     *  statusCodes={
+     *      200="Returned if everything is fine"
+     *  },
+     *  description="Return a collection of Employee",
      * )
-     * @QueryParam(name="current", requirements="(true|false)+", description="Employee's slug.")
+     * @QueryParam(name="current", requirements="(true|false)+", description="Get the current authenticated user")
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
@@ -34,7 +37,20 @@ class EmployeeController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return an employee",
+     *  requirements={
+     *      {
+     *          "name"="employee",
+     *          "dataType"="string",
+     *          "requirement"="[a-z-]+",
+     *          "description"="Employee's slug"
+     *      }
+     *  },
+     *  output="\AppBundle\Entity\Employee",
+     *  statusCodes={
+     *      200="Returned if everything is fine",
+     *      404="Returned if the slug of the employee does not exists"
+     *  },
+     *  description="Return an Employee",
      * )
      * @ParamConverter("employee", options={"mapping": {"employee": "slug"}})
      */
@@ -46,7 +62,19 @@ class EmployeeController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Return a collection of employee's services",
+     *  requirements={
+     *      {
+     *          "name"="employee",
+     *          "dataType"="string",
+     *          "requirement"="[a-z-]+",
+     *          "description"="Employee's slug"
+     *      }
+     *  },
+     *  statusCodes={
+     *      200="Returned if everything is fine",
+     *      404="Returned if the slug of the employee does not exists"
+     *  },
+     *  description="Return a collection of Service",
      * )
      * @ParamConverter("employee", options={"mapping": {"employee": "slug"}})
      */

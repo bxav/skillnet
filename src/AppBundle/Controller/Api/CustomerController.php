@@ -14,6 +14,9 @@ class CustomerController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
+     *  statusCodes={
+     *      200="Returned if everything is fine"
+     *  },
      *  description="Return a collection Customer",
      * )
      */
@@ -27,6 +30,18 @@ class CustomerController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
+     *  requirements={
+     *      {
+     *          "name"="customer",
+     *          "dataType"="string",
+     *          "requirement"="[a-z-]+",
+     *          "description"="Customer's username"
+     *      }
+     *  },
+     *  statusCodes={
+     *      200="Returned if everything is fine"
+     *  },
+     *  output="\AppBundle\Entity\Customer",
      *  description="Return a Customer",
      * )
      * @ParamConverter("customer", options={"mapping": {"customer": "username"}})
@@ -39,6 +54,9 @@ class CustomerController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
+     *  statusCodes={
+     *      200="Returned if everything is fine"
+     *  },
      *  description="Create a customer",
      *  input="AppBundle\Entity\Booking",
      * )
