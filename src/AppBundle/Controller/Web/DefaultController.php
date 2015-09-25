@@ -9,16 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-
-
-    /**
-     * @Route("/pro", name="pro")
-     */
-    public function proAction()
-    {
-        return $this->render('::pro.html.php', []);
-    }
-
     /**
      * @Route("/contact", name="contact")
      */

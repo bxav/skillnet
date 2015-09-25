@@ -5,8 +5,6 @@ var del = require('del');
 var Q = require('q');
 var config = {
     assetsDir: 'app/Resources/assets',
-    assetsDirFront: 'app/Resources/assets/front',
-    assetsDirProApp: 'app/Resources/assets/pro',
     lessPattern: 'less/**/*.less',
     production: !!plugins.util.env.production,
     sourceMaps: !plugins.util.env.production,
@@ -89,30 +87,19 @@ gulp.task('styles_front', function() {
         config.bowerDir+'/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
     ], 'vendors_front.css');
     pipeline.add([
-        config.assetsDirFront+'/plugins/magnific-popup/magnific-popup.css',
-        config.assetsDirFront+'/plugins/rs-plugin/css/settings.css',
-        config.assetsDirFront+'/plugins/owl-carousel/owl.carousel.css',
-        config.assetsDirFront+'/plugins/owl-carousel/owl.transitions.css',
-        config.assetsDirFront+'/plugins/hover/hover-min.css'
+        config.assetsDir+'/plugins/magnific-popup/magnific-popup.css',
+        config.assetsDir+'/plugins/rs-plugin/css/settings.css',
+        config.assetsDir+'/plugins/owl-carousel/owl.carousel.css',
+        config.assetsDir+'/plugins/owl-carousel/owl.transitions.css',
+        config.assetsDir+'/plugins/hover/hover-min.css'
     ], 'plugins_front.css');
     pipeline.add([
-        config.assetsDirFront+'/less/style.less',
-        config.assetsDirFront+'/less/skins/pink.less'
+        config.assetsDir+'/less/style.less',
+        config.assetsDir+'/less/skins/pink.less'
     ], 'main_front.css');
     pipeline.add([
         config.bowerDir+'/bootstrap-fileinput/css/fileinput.css'
     ], 'admin_extra.css');
-    return pipeline.run(app.addStyle);
-});
-gulp.task('styles_app', function() {
-    var pipeline = new Pipeline();
-    pipeline.add([
-        config.bowerDir+'/bootstrap/dist/css/bootstrap.css',
-        config.bowerDir+'/fullcalendar/dist/fullcalendar.css'
-    ], 'vendors_app_pro.css');
-    pipeline.add([
-        config.assetsDirProApp+'/less/main.less'
-    ], 'main_app_pro.css');
     return pipeline.run(app.addStyle);
 });
 gulp.task('scripts', function() {
@@ -139,56 +126,29 @@ gulp.task('scripts_front', function() {
         config.bowerDir+'/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
     ], 'vendors_front.js');
     pipeline.add([
-        config.assetsDirFront+'/plugins/modernizr.js',
-        config.assetsDirFront+'/plugins/rs-plugin/js/jquery.themepunch.tools.min.js',
-        config.assetsDirFront+'/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js',
-        config.assetsDirFront+'/plugins/isotope/isotope.pkgd.min.js',
-        config.assetsDirFront+'/plugins/magnific-popup/jquery.magnific-popup.min.js',
-        config.assetsDirFront+'/plugins/waypoints/jquery.waypoints.min.js',
-        config.assetsDirFront+'/plugins/jquery.countTo.js',
-        config.assetsDirFront+'/plugins/jquery.parallax-1.1.3.js',
-        config.assetsDirFront+'/plugins/jquery.validate.js',
-        config.assetsDirFront+'/plugins/vide/jquery.vide.js',
-        config.assetsDirFront+'/plugins/owl-carousel/owl.carousel.js',
-        config.assetsDirFront+'/plugins/jquery.browser.js',
-        config.assetsDirFront+'/plugins/SmoothScroll.js'
+        config.assetsDir+'/plugins/modernizr.js',
+        config.assetsDir+'/plugins/rs-plugin/js/jquery.themepunch.tools.min.js',
+        config.assetsDir+'/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js',
+        config.assetsDir+'/plugins/isotope/isotope.pkgd.min.js',
+        config.assetsDir+'/plugins/magnific-popup/jquery.magnific-popup.min.js',
+        config.assetsDir+'/plugins/waypoints/jquery.waypoints.min.js',
+        config.assetsDir+'/plugins/jquery.countTo.js',
+        config.assetsDir+'/plugins/jquery.parallax-1.1.3.js',
+        config.assetsDir+'/plugins/jquery.validate.js',
+        config.assetsDir+'/plugins/vide/jquery.vide.js',
+        config.assetsDir+'/plugins/owl-carousel/owl.carousel.js',
+        config.assetsDir+'/plugins/jquery.browser.js',
+        config.assetsDir+'/plugins/SmoothScroll.js'
     ], 'plugins.js');
     pipeline.add([
-        config.assetsDirFront+'/js/template.js'
+        config.assetsDir+'/js/template.js'
     ], 'template.js');
     pipeline.add([
-        config.assetsDirFront+'/js/custom.js'
+        config.assetsDir+'/js/custom.js'
     ], 'custom.js');
     pipeline.add([
         config.bowerDir+'/bootstrap-fileinput/js/fileinput.min.js'
     ], 'admin_extra.js');
-    return pipeline.run(app.addScript);
-});
-gulp.task('scripts_app', function() {
-    var pipeline = new Pipeline();
-    pipeline.add([
-        config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
-        config.bowerDir+'/angular/angular.js',
-        config.bowerDir+'/ui-router/release/angular-ui-router.js',
-        config.bowerDir+'/angular-animate/angular-animate.js',
-        config.bowerDir+'/lodash/lodash.js',
-        config.bowerDir+'/restangular/dist/restangular.js',
-        config.bowerDir+'/angular-ui-calendar/src/calendar.js',
-        config.bowerDir+'/angular-bootstrap/ui-bootstrap.js',
-        config.bowerDir+'/angular-bootstrap/ui-bootstrap-tpls.js',
-        config.bowerDir+'/angular-base64/angular-base64.js'
-    ], 'vendors_app_pro.js');
-    pipeline.add([
-        config.assetsDirProApp+'/js/app.js',
-        config.assetsDirProApp+'/js/services/**/*.js',
-        config.assetsDirProApp+'/js/directives/**/*.js',
-        config.assetsDirProApp+'/js/controllers/**/*.js'
-    ], 'angular_app.js', true);
-    pipeline.add([
-        config.bowerDir+'/moment/moment.js',
-        config.bowerDir+'/fullcalendar/dist/fullcalendar.js',
-        config.bowerDir+'/fullcalendar/dist/lang/fr.js'
-    ], 'fullcalendar.js');
     return pipeline.run(app.addScript);
 });
 gulp.task('fonts', function() {
@@ -207,12 +167,6 @@ gulp.task('images', function() {
         'web/img'
     );
 });
-gulp.task('views', function() {
-    return app.copy(
-        config.assetsDirProApp+'/views/**',
-        'web/views'
-    );
-});
 gulp.task('router', plugins.shell.task([
     'php app/console fos:js-routing:dump --target=web/js/fos_js_routes.js'
 ]));
@@ -225,16 +179,13 @@ gulp.task('clean', function() {
     del.sync('web/views/*');
 });
 gulp.task('watch', function() {
-    gulp.watch(config.assetsDirFront+'/'+config.lessPattern, ['styles_front']);
-    gulp.watch(config.assetsDirFront+'/js/**/*.js', ['scripts_front']);
+    gulp.watch(config.assetsDir+'/'+config.lessPattern, ['styles_front']);
+    gulp.watch(config.assetsDir+'/js/**/*.js', ['scripts_front']);
     gulp.watch('web/js/fos_js_routes.js', ['scripts_routing']);
-    gulp.watch(config.assetsDirProApp+'/'+config.lessPattern, ['styles_app']);
-    gulp.watch(config.assetsDirProApp+'/js/**/*.js', ['scripts_app']);
-    gulp.watch(config.assetsDirProApp+'/views/**/*', ['views']);
 });
 
 gulp.task('build', function() {
-    runSequence('clean', 'styles', 'styles_front', 'styles_app', 'router', 'scripts_routing', 'scripts', 'scripts_front', 'scripts_app', ['fonts', 'images', 'views']);
+    runSequence('clean', 'styles', 'styles_front', 'router', 'scripts_routing', 'scripts', 'scripts_front', ['fonts', 'images']);
 });
 
 gulp.task('default', ['build', 'watch']);

@@ -35,7 +35,7 @@ class SuccessHandler implements AuthenticationSuccessHandlerInterface
         if ($this->isABackendUser($token->getUser())) {
             return new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
         } else if ($this->isAnAppProUser($token->getUser())) {
-            return new RedirectResponse($this->router->generate('pro'));
+            return new RedirectResponse($this->router->generate('homepage'));
         } else {
             return new RedirectResponse($this->router->generate('homepage'));
         }

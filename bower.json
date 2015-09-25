@@ -13,17 +13,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-animate": "~1.4",
-    "angular-base64": "~2.0.5",
-    "angular-bootstrap": "~0.13.1",
-    "angular-ui-calendar": "~1.0.1",
     "bootstrap": "^3.2.0",
     "bootstrap-btn-outline-rounded": "~0.0.3",
     "bootstrap-fileinput": "~4.2.7",
     "eonasdan-bootstrap-datetimepicker": "~4.15.35",
-    "jquery": "~1.11.2",
-    "restangular": "~1.5.1",
-    "ui-router": "~0.2.13"
+    "jquery": "~1.11.2"
   }
 }
