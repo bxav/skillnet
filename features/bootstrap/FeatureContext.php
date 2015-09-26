@@ -96,7 +96,7 @@ class FeatureContext implements KernelAwareContext, SnippetAcceptingContext
     }
 
     /**
-     * @BeforeScenario
+     * @BeforeScenario ~@reset-schema
      */
     public function purgeDatabase()
     {

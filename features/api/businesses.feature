@@ -53,3 +53,21 @@ Feature: Access to the api
     description
     price
     """
+
+  Scenario: post business
+    Given I specified the following request body:
+    """
+    {
+        "name":"Jean CoifCoif",
+        "website":"coif.com",
+        "phone":"0669696969",
+        "email":"marie-dupond@example.com",
+        "address":"10 rue les moulins",
+        "description":"lorem",
+        "disponibilityTimeSlot":20
+    }
+    """
+    Given I prepare a POST request on "/api/test/businesses"
+    When I send the request
+    Then print the last response
+    Then I should receive a 201 json response

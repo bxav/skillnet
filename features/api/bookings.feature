@@ -1,5 +1,4 @@
 Feature: Access to the api
-
   Background:
     Given there is 1 business like:
       | name |
@@ -11,8 +10,8 @@ Feature: Access to the api
       | username | user |
       | password | user |
     Given there is 1 service like:
-      | business | duration | type |
-      | Haircut Master | 20 | haircut |
+      | business | duration | type | id |
+      | Haircut Master | 20 | haircut | id |
 
   Scenario: List employee's bookings
     Given there is 1 customer like:
@@ -34,6 +33,7 @@ Feature: Access to the api
     end_datetime
     """
 
+  @reset-schema
   Scenario: post booking
     Given there is 1 customer like:
       | username | firstname | lastname |
@@ -42,14 +42,36 @@ Feature: Access to the api
     Given I specified the following request body:
     """
     {
-        "start_datetime":"2015-08-03T08:43:29.0200Z",
-        "end_datetime":"2015-08-03T08:43:29.0200Z",
-        "customer_username":"customer",
-        "employee_slug":"marie-dupond",
-        "service_id":20
+        "start_datetime":"2015-09-26T11:55:20.000000+0200",
+        "end_datetime":"2015-09-26T11:75:20.000000+0200",
+        "employee":{"id":1},
+        "customer":{"id":2},
+        "service":{"id":1}
     }
     """
     Given I prepare a POST request on "/api/test/bookings"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
+
+  @reset-schema
+  Scenario: put booking
+    Given there is 1 customer like:
+      | username | firstname | lastname |
+      | customer | John | Duff |
+    Given the following bookings:
+      | employee | service | customer | startDateTime | endDateTime |
+      | user | haircut | customer | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
+    Given I specified the following request body:
+    """
+    {
+        "end_datetime":"2015-09-26T11:75:20.000000+0200",
+        "employee":{"id":1},
+        "customer":{"id":2},
+        "service":{"id":1}
+    }
+    """
+    Given I prepare a Put request on "/api/test/bookings/1"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response

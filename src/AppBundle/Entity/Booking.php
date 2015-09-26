@@ -62,18 +62,24 @@ class Booking
     /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @Serializer\Type("AppBundle\Entity\Customer")
+     * @Serializer\Expose
      **/
     protected $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id", nullable=true)
+     * @Serializer\Type("AppBundle\Entity\Service")
+     * @Serializer\Expose
      **/
     protected $service;
 
     /**
      * @ORM\ManyToOne(targetEntity="Employee")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @Serializer\Type("AppBundle\Entity\Employee")
+     * @Serializer\Expose
      **/
     protected $employee;
 
@@ -140,7 +146,7 @@ class Booking
     /**
      * @param mixed $customer
      */
-    public function setCustomer($customer)
+    public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
     }
@@ -156,7 +162,7 @@ class Booking
     /**
      * @param mixed $service
      */
-    public function setService($service)
+    public function setService(Service $service)
     {
         $this->service = $service;
     }
@@ -172,7 +178,7 @@ class Booking
     /**
      * @param mixed $employee
      */
-    public function setEmployee($employee)
+    public function setEmployee(Employee $employee)
     {
         $this->employee = $employee;
     }

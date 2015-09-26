@@ -3,8 +3,10 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Business;
+use AppBundle\Form\Type\BusinessType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class BusinessController extends ApiController
@@ -83,5 +85,24 @@ class BusinessController extends ApiController
     public function getServicesAction(Business $business)
     {
         return $this->createView($business->getServices(), 200);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  statusCodes={
+     *      201="Returned if business created successfully"
+     *  },
+     *  description="Create a Business",
+     *  input="AppBundle\Entity\Business",
+     * )
+     */
+    public function postAction(Request $request)
+    {
+        $business = $this->hydrateWithRequest($request, 'AppBundle\Entity\Business');
+
+        $this->persistAndFlush($business);
+
+        return $this->createView($business, 201);
     }
 }

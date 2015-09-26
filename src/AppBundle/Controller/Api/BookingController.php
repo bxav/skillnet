@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Api;
 
+use AppBundle\Entity\Booking;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -41,22 +42,38 @@ class BookingController extends ApiController
      */
     public function postAction(Request $request)
     {
+        $booking = new Booking();
 
-        $data = $request->getContent();
+        //$context = new \JMS\Serializer\DeserializationContext();
+        //$context->attributes->set('target', $booking);
 
-        $booking = $this->get("serializer")->deserialize($data, 'AppBundle\Entity\Booking', 'json');
+        $booking = $this->hydrateWithRequest($request, 'AppBundle\Entity\Booking');
 
-        //@todo so ugly
-        $booking->setCustomer($this->getDoctrine()->getRepository("AppBundle:Customer")->findOneByUsername(json_decode($data)->customer_username));
-        $booking->
-        setEmployee($this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug(json_decode($data)->employee_slug));
-        if(isset(json_decode($data)->service_id)) {
-            $booking->setService($this->getDoctrine()->getRepository("AppBundle:Service")->find(json_decode($data)->service_id));
-        }
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($booking);
-        $em->flush();
+        $this->resolvePartialNestedEntity($booking);
+
+        $this->persistAndFlush($booking);
 
         return $this->createView($booking, 201);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Create a booking",
+     *  input="AppBundle\Entity\Booking",
+     * )
+     */
+    public function putAction(Request $request, Booking $booking)
+    {
+
+        $bookingFromRequest = $this->hydrateWithRequest($request, 'AppBundle\Entity\Booking');
+
+        $this->resolvePartialNestedEntity($bookingFromRequest);
+
+        $updatedBooking = $this->patchWithSameTypeObject($booking, $bookingFromRequest);
+
+        $this->persistAndFlush($updatedBooking);
+
+        return $this->createView($updatedBooking, 200);
     }
 }
