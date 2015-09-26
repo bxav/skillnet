@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class CustomerController extends ApiController
 {
 
+    protected $class = 'AppBundle\Entity\Customer';
+
     /**
      * @ApiDoc(
      *  resource=true,
@@ -63,15 +65,6 @@ class CustomerController extends ApiController
      */
     public function postAction(Request $request)
     {
-
-        $data = $request->getContent();
-
-        $customer = $this->get("serializer")->deserialize($data, 'AppBundle\Entity\Customer', 'json');
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($customer);
-        $em->flush();
-
-        return $this->createView($customer, 201);
+        return $this->post($request);
     }
 }

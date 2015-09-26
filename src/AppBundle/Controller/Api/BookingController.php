@@ -12,6 +12,8 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 class BookingController extends ApiController
 {
 
+    protected $class = 'AppBundle\Entity\Booking';
+
     /**
      * @ApiDoc(
      *  resource=true,
@@ -42,18 +44,7 @@ class BookingController extends ApiController
      */
     public function postAction(Request $request)
     {
-        $booking = new Booking();
-
-        //$context = new \JMS\Serializer\DeserializationContext();
-        //$context->attributes->set('target', $booking);
-
-        $booking = $this->hydrateWithRequest($request, 'AppBundle\Entity\Booking');
-
-        $this->resolvePartialNestedEntity($booking);
-
-        $this->persistAndFlush($booking);
-
-        return $this->createView($booking, 201);
+        return $this->post($request);
     }
 
     /**
@@ -64,15 +55,6 @@ class BookingController extends ApiController
      */
     public function putAction(Request $request, Booking $booking)
     {
-
-        $bookingFromRequest = $this->hydrateWithRequest($request, 'AppBundle\Entity\Booking');
-
-        $this->resolvePartialNestedEntity($bookingFromRequest);
-
-        $updatedBooking = $this->patchWithSameTypeObject($booking, $bookingFromRequest);
-
-        $this->persistAndFlush($updatedBooking);
-
-        return $this->createView($updatedBooking, 200);
+        return $this->put($request, $booking);
     }
 }

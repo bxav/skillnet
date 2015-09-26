@@ -10,6 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 Abstract class ApiController extends FOSRestController implements ClassResourceInterface
 {
+    /**
+     * The class name managed by the controller class.
+     *
+     * @var string
+     */
+    protected $class = '';
+
     protected function createView($object, $code)
     {
         $view = $this->view($object, $code);
@@ -73,5 +80,35 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
         $em = $this->getDoctrine()->getManager();
         $em->persist($object);
         $em->flush();
+    }
+
+    protected function post(Request $request) {
+        $object = $this->hydrateWithRequest($request, $this->getClass());
+
+        $this->resolvePartialNestedEntity($object);
+
+        $this->persistAndFlush($object);
+
+        return $this->createView($object, 201);
+    }
+
+    protected function put(Request $request, $object) {
+        $objectFromRequest = $this->hydrateWithRequest($request, $this->getClass());
+
+        $this->resolvePartialNestedEntity($objectFromRequest);
+
+        $updatedObject = $this->patchWithSameTypeObject($object, $objectFromRequest);
+
+        $this->persistAndFlush($updatedObject);
+
+        return $this->createView($updatedObject, 200);
+    }
+
+    protected function getClass() {
+        if (is_null($this->class)) {
+            throw new \Exception("Class not set");
+        } else {
+            return $this->class;
+        }
     }
 }

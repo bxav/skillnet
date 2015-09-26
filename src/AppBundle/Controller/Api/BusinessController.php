@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 class BusinessController extends ApiController
 {
 
+    protected $class = 'AppBundle\Entity\Business';
+
     /**
      * @ApiDoc(
      *  resource=true,
@@ -20,7 +22,7 @@ class BusinessController extends ApiController
      */
     public function cgetAction()
     {
-        $business = $this->getDoctrine()->getRepository("AppBundle:Business")->findAll();
+        $business = $this->getDoctrine()->getRepository($this->class)->findAll();
 
         return $this->createView($business, 200);
     }
@@ -99,13 +101,7 @@ class BusinessController extends ApiController
      */
     public function postAction(Request $request)
     {
-        $business = $this->hydrateWithRequest($request, 'AppBundle\Entity\Business');
-
-        $this->resolvePartialNestedEntity($business);
-
-        $this->persistAndFlush($business);
-
-        return $this->createView($business, 201);
+        return $this->post($request);
     }
 
     /**
@@ -116,15 +112,6 @@ class BusinessController extends ApiController
      */
     public function putAction(Request $request, Business $business)
     {
-
-        $businessFromRequest = $this->hydrateWithRequest($request, 'AppBundle\Entity\Business');
-
-        $this->resolvePartialNestedEntity($businessFromRequest);
-
-        $updatedBusiness = $this->patchWithSameTypeObject($business, $businessFromRequest);
-
-        $this->persistAndFlush($updatedBusiness);
-
-        return $this->createView($updatedBusiness, 200);
+        return $this->put($request, $business);
     }
 }
