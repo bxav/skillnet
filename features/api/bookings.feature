@@ -56,9 +56,10 @@ Feature: Access to the api
 
   @reset-schema
   Scenario: put booking
-    Given there is 1 customer like:
+    Given the following customers:
       | username | firstname | lastname |
       | customer | John | Duff |
+      | joe | Joe | Duff |
     Given the following bookings:
       | employee | service | customer | startDateTime | endDateTime |
       | user | haircut | customer | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
@@ -67,7 +68,7 @@ Feature: Access to the api
     {
         "end_datetime":"2015-09-26T11:75:20.000000+0200",
         "employee":{"id":1},
-        "customer":{"id":2},
+        "customer":{"id":3},
         "service":{"id":1}
     }
     """

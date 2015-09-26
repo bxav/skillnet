@@ -47,17 +47,15 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
 
     protected function patchWithSameTypeObject($objectToPatch, $object)
     {
-        if (get_class($objectToPatch) === get_class($object)) {
-            $class = new \ReflectionClass(get_class($object));
-            $methods = $class->getMethods();
-            foreach($methods as $method) {
-                if ((strpos($method->getName(), 'set') !== false)) {
-                    $setterMethod = $method->getName();
-                    $getterMethod = $setterMethod;
-                    $getterMethod[0] = 'g';
-                    if ($object->{$getterMethod}() != null) {
-                        $objectToPatch->{$setterMethod}($object->{$getterMethod}());
-                    }
+        $class = new \ReflectionClass(get_class($objectToPatch));
+        $methods = $class->getMethods();
+        foreach($methods as $method) {
+            if ((strpos($method->getName(), 'set') !== false)) {
+                $setterMethod = $method->getName();
+                $getterMethod = $setterMethod;
+                $getterMethod[0] = 'g';
+                if (method_exists($object, $getterMethod) && $object->{$getterMethod}() != null) {
+                    $objectToPatch->{$setterMethod}($object->{$getterMethod}());
                 }
             }
         }

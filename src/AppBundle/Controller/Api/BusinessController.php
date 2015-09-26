@@ -101,8 +101,30 @@ class BusinessController extends ApiController
     {
         $business = $this->hydrateWithRequest($request, 'AppBundle\Entity\Business');
 
+        $this->resolvePartialNestedEntity($business);
+
         $this->persistAndFlush($business);
 
         return $this->createView($business, 201);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Update a business",
+     * )
+     */
+    public function putAction(Request $request, Business $business)
+    {
+
+        $businessFromRequest = $this->hydrateWithRequest($request, 'AppBundle\Entity\Business');
+
+        $this->resolvePartialNestedEntity($businessFromRequest);
+
+        $updatedBusiness = $this->patchWithSameTypeObject($business, $businessFromRequest);
+
+        $this->persistAndFlush($updatedBusiness);
+
+        return $this->createView($updatedBusiness, 200);
     }
 }

@@ -59,8 +59,7 @@ class BookingController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="Create a booking",
-     *  input="AppBundle\Entity\Booking",
+     *  description="Update a booking",
      * )
      */
     public function putAction(Request $request, Booking $booking)

@@ -64,10 +64,29 @@ Feature: Access to the api
         "email":"marie-dupond@example.com",
         "address":"10 rue les moulins",
         "description":"lorem",
-        "disponibilityTimeSlot":20
+        "disponibility_time_slot":20
     }
     """
     Given I prepare a POST request on "/api/test/businesses"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
+
+  @reset-schema
+  Scenario: put business
+    Given I specified the following request body:
+    """
+    {
+        "name":"Jean CoifCoif",
+        "website":"coif.com",
+        "phone":"0669696969",
+        "email":"marie-dupond@example.com",
+        "address":"10 rue les moulins",
+        "description":"lorem",
+        "disponibility_time_slot":20
+    }
+    """
+    Given I prepare a PUT request on "/api/test/businesses/1"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
