@@ -7,10 +7,13 @@ use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class EmployeeController extends ApiController
 {
+
+    protected $class = 'AppBundle\Entity\Employee';
 
     /**
      * @ApiDoc(
@@ -81,5 +84,31 @@ class EmployeeController extends ApiController
     public function getServicesAction(Employee $employee)
     {
         return $this->createView($employee->getServices(), 200);
+    }
+
+    /**
+     * todo create with business linked
+     * @ApiDoc(
+     *  resource=true,
+     *  statusCodes={
+     *      200="Returned if everything is fine"
+     *  },
+     *  description="Create an Employee",
+     * )
+     */
+    public function postAction(Request $request)
+    {
+        return $this->postUser($request);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Update a Employee",
+     * )
+     */
+    public function putAction(Request $request, Employee $employee)
+    {
+        return $this->putUser($request, $employee);
     }
 }

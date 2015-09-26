@@ -59,12 +59,22 @@ class CustomerController extends ApiController
      *  statusCodes={
      *      200="Returned if everything is fine"
      *  },
-     *  description="Create a customer",
-     *  input="AppBundle\Entity\Booking",
+     *  description="Create a Customer",
      * )
      */
     public function postAction(Request $request)
     {
-        return $this->post($request);
+        return $this->postUser($request);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Update a Customer",
+     * )
+     */
+    public function putAction(Request $request, Customer $customer)
+    {
+        return $this->putUser($request, $customer);
     }
 }

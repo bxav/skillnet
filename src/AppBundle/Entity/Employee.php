@@ -18,7 +18,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Hateoas\Relation(
  *     "business",
  *     href = "expr('/api/businesses/' ~ object.getBusiness().getSlug())",
- *     embedded = "expr(object.getBusiness())"
+ *     embedded = "expr(object.getBusiness())",
+ *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBusiness() === null)")
  * )
  */
 class Employee extends User
@@ -80,6 +81,8 @@ class Employee extends User
     /**
      * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
+     * @Serializer\Type("AppBundle\Entity\Business")
+     * @Serializer\Expose
      */
     protected $business;
 

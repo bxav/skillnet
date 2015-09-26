@@ -3,3 +3,10 @@ FOS\UserBundle\Model\User:
     properties :
       username :
         expose : true
+      email :
+        expose : true
+      enabled :
+        expose : true
+      plainPassword:
+        expose : true
+        type: "string"

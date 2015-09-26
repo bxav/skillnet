@@ -5,6 +5,8 @@ namespace AppBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Routing\ClassResourceInterface;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -44,7 +46,7 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
                 $setterMethod = $method->getName();
                 $getterMethod = $setterMethod;
                 $getterMethod[0] = 'g';
-                if (method_exists($object->{$getterMethod}(), 'getId')) {
+                if (method_exists($object, $getterMethod) && method_exists($object->{$getterMethod}(), 'getId')) {
                     $repository = $method->getParameters()[0]->getClass()->getName();
                     $object->{$setterMethod}($this->getDoctrine()->getRepository($repository)->find($object->{$getterMethod}()->getId()));
                 }
@@ -92,6 +94,36 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
         return $this->createView($object, 201);
     }
 
+    protected function postUser(Request $request) {
+        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
+        $discriminator->setClass($this->getClass());
+
+        $userManager = $this->container->get('pugx_user_manager');
+
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $dispatcher = $this->container->get('event_dispatcher');
+
+        $user = $userManager->createUser();
+        $user->setEnabled(true);
+
+        $event = new GetResponseUserEvent($user, $request);
+        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
+
+        if (null !== $event->getResponse()) {
+            return $event->getResponse();
+        }
+
+        $user = $this->patchWithSameTypeObject($user, $this->hydrateWithRequest($request, $this->getClass()));
+
+
+        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+
+        $userManager->updateUser($user);
+
+
+        return $this->createView($user, 201);
+    }
+
     protected function put(Request $request, $object) {
         $objectFromRequest = $this->hydrateWithRequest($request, $this->getClass());
 
@@ -102,6 +134,19 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
         $this->persistAndFlush($updatedObject);
 
         return $this->createView($updatedObject, 200);
+    }
+
+    protected function putUser(Request $request, $user) {
+        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
+        $discriminator->setClass($this->getClass());
+
+        $userManager = $this->container->get('pugx_user_manager');
+
+        $user = $this->patchWithSameTypeObject($user, $this->hydrateWithRequest($request, $this->getClass()));
+
+        $userManager->updateUser($user);
+
+        return $this->createView($user, 200);
     }
 
     protected function getClass() {
