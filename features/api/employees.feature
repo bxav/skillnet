@@ -46,6 +46,7 @@ Feature: Access to the api
     price
     """
 
+  @reset-schema
   Scenario: Post employee
     Given I specified the following request body:
     """
@@ -55,6 +56,7 @@ Feature: Access to the api
         "enabled":true,
         "firstname":"bob",
         "lastname":"duff",
+        "business":{"id":1},
         "email":"janne@example.com"
     }
     """

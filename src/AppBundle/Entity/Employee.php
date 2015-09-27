@@ -205,7 +205,7 @@ class Employee extends User
     /**
      * @param mixed $image
      */
-    public function setImage($image)
+    public function setImage(Image $image)
     {
         $this->image = $image;
     }
@@ -229,7 +229,7 @@ class Employee extends User
     /**
      * @param mixed $business
      */
-    public function setBusiness($business)
+    public function setBusiness(Business $business)
     {
         $this->business = $business;
     }

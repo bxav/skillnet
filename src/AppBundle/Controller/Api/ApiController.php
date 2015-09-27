@@ -47,7 +47,12 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
                 $getterMethod = $setterMethod;
                 $getterMethod[0] = 'g';
                 if (method_exists($object, $getterMethod) && method_exists($object->{$getterMethod}(), 'getId')) {
-                    $repository = $method->getParameters()[0]->getClass()->getName();
+                    try {
+                        $repository = $method->getParameters()[0]->getClass()->getName();
+                    } catch (\Exception $e) {
+                        //todo find out why it doen't catch the FatalErrorException
+                        throw new \Exception("Method $setterMethod not typed");
+                    }
                     $object->{$setterMethod}($this->getDoctrine()->getRepository($repository)->find($object->{$getterMethod}()->getId()));
                 }
             }
@@ -113,7 +118,10 @@ Abstract class ApiController extends FOSRestController implements ClassResourceI
             return $event->getResponse();
         }
 
-        $user = $this->patchWithSameTypeObject($user, $this->hydrateWithRequest($request, $this->getClass()));
+        $userFromRequest = $this->hydrateWithRequest($request, $this->getClass());
+        $this->resolvePartialNestedEntity($userFromRequest);
+
+        $user = $this->patchWithSameTypeObject($user, $userFromRequest);
 
 
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
