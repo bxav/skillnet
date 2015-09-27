@@ -6,9 +6,10 @@ use AppBundle\Entity\Customer;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
 
-class CustomerController extends ApiController
+class CustomerController extends ApiController implements ClassResourceInterface
 {
 
     protected $class = 'AppBundle\Entity\Customer';

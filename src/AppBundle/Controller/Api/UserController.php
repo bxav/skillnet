@@ -4,9 +4,10 @@ namespace AppBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
 
-class UserController extends ApiController
+class UserController extends ApiController implements ClassResourceInterface
 {
 
     /**

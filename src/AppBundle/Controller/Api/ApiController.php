@@ -4,13 +4,12 @@ namespace AppBundle\Controller\Api;
 
 
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\HttpFoundation\Request;
 
 
-Abstract class ApiController extends FOSRestController implements ClassResourceInterface
+Abstract class ApiController extends FOSRestController
 {
     /**
      * The class name managed by the controller class.

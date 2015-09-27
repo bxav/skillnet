@@ -7,9 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
 
-class BookingController extends ApiController
+class BookingController extends ApiController implements ClassResourceInterface
 {
 
     protected $class = 'AppBundle\Entity\Booking';

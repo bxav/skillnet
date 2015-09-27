@@ -8,9 +8,10 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
 
-class EmployeeController extends ApiController
+class EmployeeController extends ApiController implements ClassResourceInterface
 {
 
     protected $class = 'AppBundle\Entity\Employee';

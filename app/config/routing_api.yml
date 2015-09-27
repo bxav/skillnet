@@ -10,6 +10,10 @@ employee:
     type:     rest
     resource: AppBundle\Controller\Api\EmployeeController
 
+current_employee:
+    type:     rest
+    resource: AppBundle\Controller\Api\CurrentEmployeeController
+
 booking:
     type:     rest
     resource: AppBundle\Controller\Api\BookingController

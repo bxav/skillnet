@@ -7,9 +7,10 @@ use AppBundle\Form\Type\BusinessType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
 
-class BusinessController extends ApiController
+class BusinessController extends ApiController implements ClassResourceInterface
 {
 
     protected $class = 'AppBundle\Entity\Business';
