@@ -18,7 +18,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Hateoas\Relation(
  *     "business",
  *     href = "expr('/api/businesses/' ~ object.getBusiness().getSlug())",
- *     embedded = "expr(object.getBusiness())",
  *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBusiness() === null)")
  * )
  */
