@@ -40,14 +40,6 @@ class EmployeeController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  requirements={
-     *      {
-     *          "name"="employee",
-     *          "dataType"="string",
-     *          "requirement"="[a-z-]+",
-     *          "description"="Employee's slug"
-     *      }
-     *  },
      *  output="\AppBundle\Entity\Employee",
      *  statusCodes={
      *      200="Returned if everything is fine",
@@ -64,14 +56,6 @@ class EmployeeController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  requirements={
-     *      {
-     *          "name"="employee",
-     *          "dataType"="string",
-     *          "requirement"="[a-z-]+",
-     *          "description"="Employee's slug"
-     *      }
-     *  },
      *  statusCodes={
      *      200="Returned if everything is fine",
      *      404="Returned if the slug of the employee does not exists"
@@ -85,7 +69,6 @@ class EmployeeController extends ApiController
     }
 
     /**
-     * todo create with business linked
      * @ApiDoc(
      *  resource=true,
      *  statusCodes={
