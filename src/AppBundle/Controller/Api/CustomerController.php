@@ -46,7 +46,6 @@ class CustomerController extends ApiController
      *  output="\AppBundle\Entity\Customer",
      *  description="Return a Customer",
      * )
-     * @ParamConverter("customer", options={"mapping": {"customer": "username"}})
      */
     public function getAction(Customer $customer)
     {

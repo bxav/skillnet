@@ -11,9 +11,9 @@ Feature: Access to the api
       | username | user |
       | password | user |
 
+  @reset-schema
   Scenario: Get employee
-    Given there is 10 employees
-    Given I prepare a GET request on "/api/test/employees/marie-dupond"
+    Given I prepare a GET request on "/api/test/employees/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -24,6 +24,7 @@ Feature: Access to the api
     lastname
     """
 
+  @reset-schema
   Scenario: List employee's services
     Given there is 1 services like:
       | type | business |
@@ -33,7 +34,7 @@ Feature: Access to the api
       | toto | Haircut Master |
     Given "marie" propose:
      | toto | cut |
-    Given I prepare a GET request on "/api/test/employees/marie-dupond/services"
+    Given I prepare a GET request on "/api/test/employees/1/services"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

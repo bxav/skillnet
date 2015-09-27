@@ -11,11 +11,12 @@ Feature: Access to the api
       | username | user |
       | password | user |
 
+  @reset-schema
   Scenario: Get customer
     Given there is 1 customer like:
       | username | firstname | lastname |
       | customer | John | Duff |
-    Given I prepare a GET request on "/api/test/customers/customer"
+    Given I prepare a GET request on "/api/test/customers/2"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

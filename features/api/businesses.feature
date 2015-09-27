@@ -23,11 +23,12 @@ Feature: Access to the api
     name
     """
 
+  @reset-schema
   Scenario: List employees
     Given there is 10 employees like:
       | business |
       | Haircut Master |
-    Given I prepare a GET request on "/api/test/businesses/haircut-master/employees"
+    Given I prepare a GET request on "/api/test/businesses/1/employees"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -37,11 +38,12 @@ Feature: Access to the api
     firstname
     """
 
+  @reset-schema
   Scenario: List services
     Given there is 5 services like:
       | business |
       | Haircut Master |
-    Given I prepare a GET request on "/api/test/businesses/haircut-master/services"
+    Given I prepare a GET request on "/api/test/businesses/1/services"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

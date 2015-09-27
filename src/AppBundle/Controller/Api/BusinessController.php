@@ -60,7 +60,6 @@ class BusinessController extends ApiController
      *  },
      *  description="Return a collection of Employee",
      * )
-     * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
     public function getEmployeesAction(Business $business)
     {
@@ -82,7 +81,6 @@ class BusinessController extends ApiController
      *  },
      *  description="Return a collection of Service",
      * )
-     * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
     public function getServicesAction(Business $business)
     {

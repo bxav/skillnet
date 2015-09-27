@@ -55,7 +55,6 @@ class EmployeeController extends ApiController
      *  },
      *  description="Return an Employee",
      * )
-     * @ParamConverter("employee", options={"mapping": {"employee": "slug"}})
      */
     public function getAction(Employee $employee)
     {
@@ -79,7 +78,6 @@ class EmployeeController extends ApiController
      *  },
      *  description="Return a collection of Service",
      * )
-     * @ParamConverter("employee", options={"mapping": {"employee": "slug"}})
      */
     public function getServicesAction(Employee $employee)
     {
