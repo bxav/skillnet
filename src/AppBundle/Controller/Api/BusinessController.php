@@ -41,7 +41,6 @@ class BusinessController extends ApiController implements ClassResourceInterface
      *  },
      *  description="Return a Business",
      * )
-     * @ParamConverter("business", options={"mapping": {"business": "slug"}})
      */
     public function getAction(Business $business)
     {
