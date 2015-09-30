@@ -29,6 +29,7 @@ class Employee extends User
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Type("integer")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $id;
 
@@ -38,6 +39,7 @@ class Employee extends User
      * @ORM\Column(type="string", length=255)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $firstname;
 
@@ -47,6 +49,7 @@ class Employee extends User
      * @ORM\Column(type="string", length=255)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $lastname;
 
@@ -54,6 +57,7 @@ class Employee extends User
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $speciality;
 
@@ -61,12 +65,16 @@ class Employee extends User
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $shortDescription;
 
     /**
      * @Orm\OneToOne(targetEntity="Image", cascade="all")
      * @Orm\JoinColumn(name="image_id", referencedColumnName="id")
+     * @Serializer\Type("AppBundle\Entity\Image")
+     * @Serializer\Expose
+     * @Serializer\Groups({"read"})
      **/
     protected $image;
 
@@ -74,6 +82,7 @@ class Employee extends User
      * @Gedmo\Slug(fields={"firstname", "lastname"})
      * @ORM\Column(length=64, unique=true)
      * @Serializer\Expose
+     * @Serializer\Groups({"read"})
      */
     protected $slug;
 
@@ -82,6 +91,7 @@ class Employee extends User
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      * @Serializer\Type("AppBundle\Entity\Business")
      * @Serializer\Expose
+     * @Serializer\Groups({"read"})
      */
     protected $business;
 

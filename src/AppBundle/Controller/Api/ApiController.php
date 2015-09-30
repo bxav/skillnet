@@ -6,6 +6,8 @@ namespace AppBundle\Controller\Api;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
+use JMS\Serializer\DeserializationContext;
+use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -21,13 +23,14 @@ Abstract class ApiController extends FOSRestController
     protected function createView($object, $code)
     {
         $view = $this->view($object, $code);
-
+        $view->setSerializationContext(SerializationContext::create()->setGroups(['Default', 'read']));
         return $this->handleView($view);
     }
 
-    protected function hydrateWithRequest(Request $request, $type, $context = null)
+    protected function hydrateWithRequest(Request $request, $type)
     {
         $data = $request->getContent();
+        $context = DeserializationContext::create()->setGroups(['Default', 'write']);
         $object = $this->get("serializer")->deserialize($data, $type, 'json', $context);
 
         return $object;
