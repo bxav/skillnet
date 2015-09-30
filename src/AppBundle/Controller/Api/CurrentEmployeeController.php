@@ -27,7 +27,7 @@ class CurrentEmployeeController extends ApiController
      *  description="Return an Employee",
      * )
      */
-    public function getEmployeeAction()
+    public function getCurrentEmployeeAction()
     {
         $employee = $this->getUser();
         return $this->createView($employee, 200);
@@ -39,7 +39,7 @@ class CurrentEmployeeController extends ApiController
      *  description="Update a Employee",
      * )
      */
-    public function putEmployeeAction(Request $request)
+    public function putCurrentEmployeeAction(Request $request)
     {
         $employee = $this->getUser();
         return $this->putUser($request, $employee);
