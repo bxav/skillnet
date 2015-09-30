@@ -13,7 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="customer")
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
- * @Hateoas\Relation("self", href = "expr('/api/customers/' ~ object.getUsername())")
+ * @Hateoas\Relation("self", href = "expr('/api/customers/' ~ object.getId())")
  */
 class Customer extends User
 {

@@ -22,7 +22,7 @@ Feature: Access to the api
       | marie | haircut | customer |
     Given I specified the following request queries:
       | employee | marie-dupond |
-    Given I prepare a GET request on "/api/test/bookings"
+    Given I prepare a GET request on "/api/bookings"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -49,7 +49,7 @@ Feature: Access to the api
         "service":{"id":1}
     }
     """
-    Given I prepare a POST request on "/api/test/bookings"
+    Given I prepare a POST request on "/api/bookings"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -72,7 +72,7 @@ Feature: Access to the api
         "service":{"id":1}
     }
     """
-    Given I prepare a Put request on "/api/test/bookings/1"
+    Given I prepare a Put request on "/api/bookings/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

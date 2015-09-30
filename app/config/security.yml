@@ -8,7 +8,7 @@ security:
 
     firewalls:
         rest_webservice:
-            pattern: ^/api/test/.*
+            pattern: ^/api/.*
             stateless: true
             http_basic:
                 provider: fos_userbundle

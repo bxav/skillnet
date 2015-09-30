@@ -13,7 +13,7 @@ Feature: Access to the api
 
   Scenario: List business
     Given there is 10 business
-    Given I prepare a GET request on "/api/test/businesses"
+    Given I prepare a GET request on "/api/businesses"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -28,7 +28,7 @@ Feature: Access to the api
     Given there is 10 employees like:
       | business |
       | Haircut Master |
-    Given I prepare a GET request on "/api/test/businesses/1/employees"
+    Given I prepare a GET request on "/api/businesses/1/employees"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -43,7 +43,7 @@ Feature: Access to the api
     Given there is 5 services like:
       | business |
       | Haircut Master |
-    Given I prepare a GET request on "/api/test/businesses/1/services"
+    Given I prepare a GET request on "/api/businesses/1/services"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -69,7 +69,7 @@ Feature: Access to the api
         "disponibility_time_slot":20
     }
     """
-    Given I prepare a POST request on "/api/test/businesses"
+    Given I prepare a POST request on "/api/businesses"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -88,7 +88,7 @@ Feature: Access to the api
         "disponibility_time_slot":20
     }
     """
-    Given I prepare a PUT request on "/api/test/businesses/1"
+    Given I prepare a PUT request on "/api/businesses/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

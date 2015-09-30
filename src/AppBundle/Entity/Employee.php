@@ -14,10 +14,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="employee")
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
- * @Hateoas\Relation("self", href = "expr('/api/employees/' ~ object.getSlug())")
+ * @Hateoas\Relation("self", href = "expr('/api/employees/' ~ object.getId())")
  * @Hateoas\Relation(
  *     "business",
- *     href = "expr('/api/businesses/' ~ object.getBusiness().getSlug())",
+ *     href = "expr('/api/businesses/' ~ object.getBusiness().getId())",
  *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBusiness() === null)")
  * )
  */

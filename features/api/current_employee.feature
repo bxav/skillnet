@@ -13,7 +13,7 @@ Feature: Access to the api
 
   @reset-schema
   Scenario: Get employee
-    Given I prepare a GET request on "/api/test/employee"
+    Given I prepare a GET request on "/api/current/employee"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -38,7 +38,7 @@ Feature: Access to the api
         "email":"janne@example.com"
     }
     """
-    Given I prepare a PUT request on "/api/test/employee"
+    Given I prepare a PUT request on "/api/current/employee"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
