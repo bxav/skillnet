@@ -35,6 +35,12 @@ services:
         tags:
             - { name: form.type, alias: image }
 
+    app.listener.image.post_load:
+        class: AppBundle\EventListener\SetRealPathFile
+        arguments: [@request_stack]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+
     app.user.success_handler:
         class: %app.user.success_handler.class%
         arguments: [@router]

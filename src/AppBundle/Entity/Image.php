@@ -4,12 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Image
  * @ORM\Table()
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
+ * @Serializer\ExclusionPolicy("all")
  */
 class Image
 {
@@ -31,6 +33,8 @@ class Image
 
     protected $file;
 
+    protected $host;
+
     public function getAbsolutePath()
     {
         return null === $this->path
@@ -43,6 +47,25 @@ class Image
         return null === $this->path
             ? null
             : $this->getUploadDir().'/'.$this->path;
+    }
+
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("real_path")
+     *
+     * @return string
+     */
+    public function getRealPath()
+    {
+        return $this->host .'/'. $this->getWebPath();
+    }
+
+    /**
+     * @param mixed $host
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
     }
 
     protected function getUploadRootDir()
