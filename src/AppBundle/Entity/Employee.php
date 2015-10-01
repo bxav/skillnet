@@ -91,7 +91,7 @@ class Employee extends User
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      * @Serializer\Type("AppBundle\Entity\Business")
      * @Serializer\Expose
-     * @Serializer\Groups({"read"})
+     * @Serializer\Groups({"read", "write"})
      */
     protected $business;
 

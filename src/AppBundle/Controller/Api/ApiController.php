@@ -152,7 +152,10 @@ Abstract class ApiController extends FOSRestController
 
         $userManager = $this->container->get('pugx_user_manager');
 
-        $user = $this->patchWithSameTypeObject($user, $this->hydrateWithRequest($request, $this->getClass()));
+        $userFromRequest = $this->hydrateWithRequest($request, $this->getClass());
+        $this->resolvePartialNestedEntity($userFromRequest);
+
+        $user = $this->patchWithSameTypeObject($user, $userFromRequest);
 
         $userManager->updateUser($user);
 
