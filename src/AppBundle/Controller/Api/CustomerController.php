@@ -44,7 +44,6 @@ class CustomerController extends ApiController implements ClassResourceInterface
      *  statusCodes={
      *      200="Returned if everything is fine"
      *  },
-     *  output="\AppBundle\Entity\Customer",
      *  description="Return a Customer",
      * )
      */

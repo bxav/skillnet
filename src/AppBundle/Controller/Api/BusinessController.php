@@ -93,8 +93,7 @@ class BusinessController extends ApiController implements ClassResourceInterface
      *  statusCodes={
      *      201="Returned if business created successfully"
      *  },
-     *  description="Create a Business",
-     *  input="AppBundle\Entity\Business",
+     *  description="Create a Business"
      * )
      */
     public function postAction(Request $request)

@@ -106,6 +106,7 @@ class Employee extends User
 
     /**
      * @ORM\Column(type="array")
+     * @Serializer\Expose
      */
     protected $workingDays = [
         'monday' => [],
@@ -306,4 +307,22 @@ class Employee extends User
 
         return [$startWorking, $endWorking];
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getWorkingDays()
+    {
+        return $this->workingDays;
+    }
+
+    /**
+     * @param mixed $workingDays
+     */
+    public function setWorkingDays($workingDays)
+    {
+        $this->workingDays = $workingDays;
+    }
+
 }

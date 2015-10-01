@@ -40,7 +40,6 @@ class BookingController extends ApiController implements ClassResourceInterface
      * @ApiDoc(
      *  resource=true,
      *  description="Create a booking",
-     *  input="AppBundle\Entity\Booking",
      * )
      */
     public function postAction(Request $request)

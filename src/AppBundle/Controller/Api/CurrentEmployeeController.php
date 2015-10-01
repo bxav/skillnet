@@ -19,7 +19,6 @@ class CurrentEmployeeController extends ApiController
     /**
      * @ApiDoc(
      *  resource=true,
-     *  output="\AppBundle\Entity\Employee",
      *  statusCodes={
      *      200="Returned if everything is fine",
      *      404="Returned if the slug of the employee does not exists"
