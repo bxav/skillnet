@@ -21,11 +21,13 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * )
  * @Hateoas\Relation(
  *     "employee",
- *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())"
+ *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())",
+ *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getEmployee() === null)")
  * )
  * @Hateoas\Relation(
  *     "customer",
- *     href = "expr('/api/customers/' ~ object.getCustomer().getUsername())"
+ *     href = "expr('/api/customers/' ~ object.getCustomer().getUsername())",
+ *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getCustomer() === null)")
  * )
  */
 class Booking
