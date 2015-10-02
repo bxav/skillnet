@@ -23,7 +23,7 @@ Fonctionnalité: Reserver un rendez-vous
       | user | Coiffure | john | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
       | user | Brushing | john | 2042-01-01 07:30:00.0 | 2042-01-01 09:15:00.0 |
       | user | Brushing | john | 2042-01-01 14:30:00.0 | 2042-01-01 16:20:00.0 |
-    Et l'employee "user" travaile le "wednesday" de "09:00" à "18:00"
+    Et le business "bea-coiffure" travaile le "wednesday" de "09:00" à "18:00"
     Et je suis loguer entant que "john"
 
   @ignore

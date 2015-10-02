@@ -50,7 +50,10 @@ class AvailabilityFinderSpec extends ObjectBehavior
 
     function it_should_find_availabilities_by_date_and_service(Service $service, Business $business)
     {
+        $business->getDisponibilityTimeSlot()->willReturn(15);
+        $business->getWorkingHours(Argument::any())->willReturn([new \DateTimeImmutable("2042-01-01 09:00:00"), new \DateTimeImmutable("2042-01-01 17:00:00")]);
         $date = new \DateTimeImmutable("2042-01-01 00:00:01");
+        $service->getId()->willReturn(42);
         $service->getBusiness()->willReturn($business);
         $service->getDuration()->willReturn(45);
 
@@ -81,13 +84,15 @@ class AvailabilityFinderSpec extends ObjectBehavior
         $this->realStartTime($startTime)->shouldBeLike($startTime->setTime(8,00));
     }
 
-    function it_should_calculate_the_time_slots()
+    function it_should_calculate_the_time_slots(Service $service)
     {
-        $serviceDuration = 45;
+        $service->getDuration()->willReturn(45);
+
         $startTime = new \DateTimeImmutable();
         $availablePeriod = new Period($startTime->setTime(8,45), $startTime->setTime(9,45));
 
-        $this->calculateTimeSlots($availablePeriod, $serviceDuration)->shouldReturn(['08:45', '09:00']);
+        $this->setService($service);
+        $this->calculateTimeSlots($availablePeriod)->shouldReturn(['08:45', '09:00']);
     }
 
 }
