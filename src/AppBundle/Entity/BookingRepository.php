@@ -20,4 +20,18 @@ class BookingRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    public function findByEmployeeAndBetween($employee, \DateTimeImmutable $start, \DateTimeImmutable $end)
+    {
+        $query = $this->createQueryBuilder('b')
+            ->where('b.employee = :employee')
+            ->andWhere('b.startDatetime BETWEEN :start AND :end')
+            ->setParameter('employee', $employee)
+            ->setParameter('start', $start->format('Y-m-d H:i:s'))
+            ->setParameter('end', $end->format('Y-m-d H:i:s'))
+            ->orderBy('b.startDatetime', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }
