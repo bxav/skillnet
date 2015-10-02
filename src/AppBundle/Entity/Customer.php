@@ -23,6 +23,7 @@ class Customer extends User
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Type("integer")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $id;
 
@@ -32,6 +33,7 @@ class Customer extends User
      * @ORM\Column(type="string", length=255)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $firstname;
 
@@ -41,6 +43,7 @@ class Customer extends User
      * @ORM\Column(type="string", length=255)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"read", "write"})
      */
     protected $lastname;
 
