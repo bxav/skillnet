@@ -60,6 +60,24 @@ class Booking
     protected $endDatetime;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     * @Serializer\Type("text")
+     * @Serializer\Expose
+     */
+    protected $customerNote;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     * @Serializer\Type("text")
+     * @Serializer\Expose
+     */
+    protected $employeeNote;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      * @Serializer\Type("AppBundle\Entity\Customer")
@@ -133,6 +151,38 @@ class Booking
     public function setEndDatetime($endDatetime)
     {
         $this->endDatetime = $endDatetime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerNote()
+    {
+        return $this->customerNote;
+    }
+
+    /**
+     * @param string $customerNote
+     */
+    public function setCustomerNote($customerNote)
+    {
+        $this->customerNote = $customerNote;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmployeeNote()
+    {
+        return $this->employeeNote;
+    }
+
+    /**
+     * @param string $employeeNote
+     */
+    public function setEmployeeNote($employeeNote)
+    {
+        $this->employeeNote = $employeeNote;
     }
 
     /**
