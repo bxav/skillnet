@@ -162,6 +162,14 @@ Abstract class ApiController extends FOSRestController
         return $this->createView($user, 200);
     }
 
+    /**
+     * @param string $class
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+    }
+
     protected function getClass() {
         if (is_null($this->class)) {
             throw new \Exception("Class not set");

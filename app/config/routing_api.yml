@@ -21,3 +21,7 @@ booking:
 customer:
     type:     rest
     resource: AppBundle\Controller\Api\CustomerController
+
+customer_personalization:
+    type:     rest
+    resource: AppBundle\Controller\Api\CustomerPersonalizationController

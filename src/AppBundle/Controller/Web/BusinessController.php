@@ -22,13 +22,25 @@ class BusinessController extends Controller
         $date = new \DateTimeImmutable($request->get("date")['date'], new \DateTimeZone($request->get("date")['timezone']));
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get("service"));
         $employee = $this->getDoctrine()->getRepository('AppBundle:Employee')->find($request->get("employee"));
+        $personalizedService = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['customer' => $this->getUser(), $service]);
+
+
+        $startTime = clone $date;
+        if ($personalizedService) {
+            $price = $personalizedService->getPrice();
+            $endTime = $date->add(new \DateInterval('PT' . $personalizedService->getDuration() . 'M'));
+        }
+
+        $price = $price ?  : $service->getPrice();
+        $endTime = $endTime ? : $date->add(new \DateInterval('PT'.$service->getDuration().'M'));
 
         $booking = new Booking();
+        $booking->setPrice($price);
         $booking->setCustomer($this->getUser());
         $booking->setService($service);
-        $booking->setStartDatetime(clone $date);
+        $booking->setStartDatetime($startTime);
         $booking->setEmployee($employee);
-        $booking->setEndDatetime($date->add(new \DateInterval('PT'.$service->getDuration().'M')));
+        $booking->setEndDatetime($endTime);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($booking);

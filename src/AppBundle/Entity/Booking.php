@@ -60,10 +60,17 @@ class Booking
     protected $endDatetime;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     * @Serializer\Type("float")
+     * @Serializer\Expose
+     */
+    protected $price;
+
+    /**
      * @var string
      *
-     * @ORM\Column(type="text")
-     * @Serializer\Type("text")
+     * @ORM\Column(type="text", nullable=true)
+     * @Serializer\Type("string")
      * @Serializer\Expose
      */
     protected $customerNote;
@@ -71,15 +78,15 @@ class Booking
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
-     * @Serializer\Type("text")
+     * @ORM\Column(type="text", nullable=true)
+     * @Serializer\Type("string")
      * @Serializer\Expose
      */
     protected $employeeNote;
 
     /**
      * @ORM\ManyToOne(targetEntity="Customer")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", nullable=true)
      * @Serializer\Type("AppBundle\Entity\Customer")
      * @Serializer\Expose
      **/
@@ -95,7 +102,7 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="Employee")
-     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=true)
      * @Serializer\Type("AppBundle\Entity\Employee")
      * @Serializer\Expose
      **/
