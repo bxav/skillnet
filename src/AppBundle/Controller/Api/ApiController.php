@@ -98,10 +98,10 @@ Abstract class ApiController extends FOSRestController
 
         //inject dependencies
         if (is_array($inject)) {
-            foreach ($inject as $key => $object) {
+            foreach ($inject as $key => $objectToInject) {
                 $setterMethod = 'set'.ucfirst($key);
                 if(method_exists($object, $setterMethod)) {
-                    $object->{$setterMethod}($object);
+                    $object->{$setterMethod}($objectToInject);
                 }
             }
         }

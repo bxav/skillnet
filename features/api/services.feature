@@ -28,7 +28,7 @@ Feature: Access to the api
     description
     price
     """
-    
+
   @reset-schema
   Scenario: post service
     Given I specified the following request body:
