@@ -22,17 +22,19 @@ class BusinessController extends Controller
         $date = new \DateTimeImmutable($request->get("date")['date'], new \DateTimeZone($request->get("date")['timezone']));
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get("service"));
         $employee = $this->getDoctrine()->getRepository('AppBundle:Employee')->find($request->get("employee"));
-        $personalizedService = $this->getDoctrine()->getRepository('AppBundle:PersonalizedService')->findOneBy(['customer' => $this->getUser(), $service]);
 
+        $personalizedService = $this->getDoctrine()->getRepository('AppBundle:PersonalizedService')->findOneBy(['customer' => $this->getUser(), 'service' => $service]);
 
+        $price = null;
         $startTime = clone $date;
+        $endTime = null;
         if ($personalizedService) {
             $price = $personalizedService->getPrice();
             $endTime = $date->add(new \DateInterval('PT' . $personalizedService->getDuration() . 'M'));
         }
 
         $price = $price ?  : $service->getPrice();
-        $endTime = $endTime ? : $date->add(new \DateInterval('PT'.$service->getDuration().'M'));
+        $endTime = $endTime ? $endTime : $date->add(new \DateInterval('PT'.$service->getDuration().'M'));
 
         $booking = new Booking();
         $booking->setPrice($price);
