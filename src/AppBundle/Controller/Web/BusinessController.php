@@ -22,7 +22,7 @@ class BusinessController extends Controller
         $date = new \DateTimeImmutable($request->get("date")['date'], new \DateTimeZone($request->get("date")['timezone']));
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($request->get("service"));
         $employee = $this->getDoctrine()->getRepository('AppBundle:Employee')->find($request->get("employee"));
-        $personalizedService = $this->getDoctrine()->getRepository('AppBundle:Service')->findOneBy(['customer' => $this->getUser(), $service]);
+        $personalizedService = $this->getDoctrine()->getRepository('AppBundle:PersonalizedService')->findOneBy(['customer' => $this->getUser(), $service]);
 
 
         $startTime = clone $date;
