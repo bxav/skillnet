@@ -11,66 +11,54 @@ Feature: Access to the api
       | username | user |
       | password | user |
 
-  Scenario: List business
-    Given there is 10 business
-    Given I prepare a GET request on "/api/businesses"
-    When I send the request
-    Then print the last response
-    Then I should receive a 200 json response
-    And scope into the first element
-    And the properties exist:
-    """
-    name
-    """
-
   @reset-schema
-  Scenario: List employees
-    Given there is 10 employees like:
+  Scenario: List services
+    Given there is 5 services like:
       | business |
       | Haircut Master |
-    Given I prepare a GET request on "/api/businesses/1/employees"
+    Given I prepare a GET request on "/api/businesses/1/services"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
     And scope into the first element
     And the properties exist:
     """
-    firstname
+    type
+    duration
+    description
+    price
     """
-
-  Scenario: post business
+    
+  @reset-schema
+  Scenario: post service
     Given I specified the following request body:
     """
     {
-        "name":"Jean CoifCoif",
-        "website":"coif.com",
-        "phone":"0669696969",
-        "email":"marie-dupond@example.com",
-        "address":"10 rue les moulins",
+        "type":"Brushing",
+        "duration":45,
         "description":"lorem",
-        "disponibility_time_slot":20
+        "price":20.00
     }
     """
-    Given I prepare a POST request on "/api/businesses"
+    Given I prepare a POST request on "/api/businesses/1/services"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
 
   @reset-schema
   Scenario: put business
+    Given there is 1 services like:
+      | business | type | duration |
+      | Haircut Master | hair | 45 |
     Given I specified the following request body:
     """
     {
-        "name":"Jean CoifCoif",
-        "website":"coif.com",
-        "phone":"0669696969",
-        "email":"marie-dupond@example.com",
-        "address":"10 rue les moulins",
-        "description":"lorem",
-        "disponibility_time_slot":20
+        "type":"brushing",
+        "duration":30,
+        "price":20.00
     }
     """
-    Given I prepare a PUT request on "/api/businesses/1"
+    Given I prepare a PUT request on "/api/businesses/1/services/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

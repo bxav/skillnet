@@ -91,10 +91,20 @@ Abstract class ApiController extends FOSRestController
         $em->flush();
     }
 
-    protected function post(Request $request) {
+    protected function post(Request $request, $inject = null) {
         $object = $this->hydrateWithRequest($request, $this->getClass());
 
         $this->resolvePartialNestedEntity($object);
+
+        //inject dependencies
+        if (is_array($inject)) {
+            foreach ($inject as $key => $object) {
+                $setterMethod = 'set'.ucfirst($key);
+                if(method_exists($object, $setterMethod)) {
+                    $object->{$setterMethod}($object);
+                }
+            }
+        }
 
         $this->persistAndFlush($object);
 

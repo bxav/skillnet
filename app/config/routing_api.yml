@@ -6,6 +6,10 @@ business:
     type:     rest
     resource: AppBundle\Controller\Api\BusinessController
 
+business_service:
+    type:     rest
+    resource: AppBundle\Controller\Api\BusinessServiceController
+
 employee:
     type:     rest
     resource: AppBundle\Controller\Api\EmployeeController
