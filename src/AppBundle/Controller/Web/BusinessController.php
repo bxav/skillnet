@@ -28,9 +28,11 @@ class BusinessController extends Controller
         $price = null;
         $startTime = clone $date;
         $endTime = null;
+        $isPersonalized = false;
         if ($personalizedService) {
             $price = $personalizedService->getPrice();
             $endTime = $date->add(new \DateInterval('PT' . $personalizedService->getDuration() . 'M'));
+            $isPersonalized = true;
         }
 
         $price = $price ?  : $service->getPrice();
@@ -38,6 +40,7 @@ class BusinessController extends Controller
 
         $booking = new Booking();
         $booking->setPrice($price);
+        $booking->setPersonalized($isPersonalized);
         $booking->setCustomer($this->getUser());
         $booking->setService($service);
         $booking->setStartDatetime($startTime);

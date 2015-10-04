@@ -55,7 +55,7 @@ class PersonalizedService
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id", nullable=true)
      * @Serializer\Type("AppBundle\Entity\Service")
-     * @Serializer\Groups({"read"})
+     * @Serializer\Groups({"read", "write"})
      * @Serializer\Expose
      **/
     protected $service;

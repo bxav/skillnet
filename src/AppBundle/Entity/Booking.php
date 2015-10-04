@@ -67,6 +67,13 @@ class Booking
     protected $price;
 
     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     * @Serializer\Type("boolean")
+     * @Serializer\Expose
+     */
+    protected $personalized = false;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
@@ -174,6 +181,22 @@ class Booking
     public function setPrice($price)
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPersonalized()
+    {
+        return $this->personalized == true;
+    }
+
+    /**
+     * @param boolean $personalized
+     */
+    public function setPersonalized($personalized)
+    {
+        $this->personalized = $personalized;
     }
 
     /**
