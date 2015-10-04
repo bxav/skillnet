@@ -10,6 +10,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 
@@ -18,21 +19,21 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
  * Class CustomerPersonalizationController
  * @package AppBundle\Controller\Api
  */
-class CustomerPersonalizationController extends ApiController implements ClassResourceInterface
+class CustomerPersonalizedServiceController extends ApiController
 {
 
 
     /**
-     * @Get("/customers/{customer}/personalizations/services")
+     * @Get("/customers/{customer}/personalized-services")
      * @ApiDoc(
      *  resource=true,
      * )
-     * @QueryParam(name="service", requirements="[a-z-]+", description="real service's id.")
+     * @QueryParam(name="service-id", description="real service's id.")
      */
     public function getServicesAction(ParamFetcher $paramFetcher, $customer)
     {
         $personalizedService = null;
-        $service = $this->getDoctrine()->getRepository("AppBundle:Service")->find($paramFetcher->get('service'));
+        $service = $this->getDoctrine()->getRepository("AppBundle:Service")->find($paramFetcher->get('service-id'));
         if ($service) {
             $personalizedService = $this->getDoctrine()->getRepository("AppBundle:PersonalizedService")->findOneBy([
                 'service' => $service,
@@ -43,17 +44,18 @@ class CustomerPersonalizationController extends ApiController implements ClassRe
     }
 
     /**
-     * @Get("/customers/{customer}/personalizations/services/{service}")
+     * @Get("/customers/{customer}/personalized-services/{service}")
      * @ApiDoc(
      *  resource=true,
      * )
      */
-    public function getServiceAction($customer, PersonalizedService $service)
+    public function getServiceAction($customer, PersonalizedService $personalizedService)
     {
-        return $this->createView($service, 200);
+        return $this->createView($personalizedService, 200);
     }
 
     /**
+     * @Post("/customers/{customer}/personalized-services")
      * @ApiDoc(
      *  resource=true,
      * )
@@ -74,20 +76,20 @@ class CustomerPersonalizationController extends ApiController implements ClassRe
     }
 
     /**
-     * @Put("/customers/{customer}/personalizations/services/{service}")
+     * @Put("/customers/{customer}/personalized-services/{service}")
      * @ApiDoc(
      *  resource=true,
      * )
      */
-    public function putServiceAction(Request $request, $customer, PersonalizedService $service)
+    public function putServiceAction(Request $request, $customer, PersonalizedService $personalizedService)
     {
         $this->setClass('AppBundle\Entity\PersonalizedService');
 
         $personalizedServiceFromRequest = $this->hydrateWithRequest($request, $this->getClass());
 
-        $this->resolvePartialNestedEntity($service);
+        $this->resolvePartialNestedEntity($personalizedService);
 
-        $updatedPersonalizedService = $this->patchWithSameTypeObject($service, $personalizedServiceFromRequest);
+        $updatedPersonalizedService = $this->patchWithSameTypeObject($personalizedService, $personalizedServiceFromRequest);
 
         $this->persistAndFlush($updatedPersonalizedService);
 

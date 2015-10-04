@@ -65,6 +65,28 @@ Feature: Access to the api
     Then I should receive a 200 json response
 
 
+
+  @reset-schema
+  Scenario: Get personalized services by service
+    Given there is 1 customer like:
+      | username | firstname | lastname |
+      | customer | John | Duff |
+    And the following services:
+      | business | duration | type |
+      | Haircut Master | 30 | Coiffure |
+    And the following personalizedServices:
+      | duration | customer | service |
+      | 30 | customer | Coiffure |
+    Given I prepare a GET request on "/api/customers/2/personalized-services?service-id=1"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+    And the properties exist:
+    """
+    duration
+    price
+    """
+
   @reset-schema
   Scenario: Post personalized service
     Given there is 1 customer like:
@@ -81,7 +103,7 @@ Feature: Access to the api
         "service":{"id":1}
     }
     """
-    Given I prepare a POST request on "/api/customers/2/personalizations/services"
+    Given I prepare a POST request on "/api/customers/2/personalized-services"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -104,7 +126,7 @@ Feature: Access to the api
         "price": 30.00
     }
     """
-    Given I prepare a Put request on "/api/customers/2/personalizations/services/1"
+    Given I prepare a Put request on "/api/customers/2/personalized-services/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
