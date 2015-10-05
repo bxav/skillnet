@@ -80,7 +80,10 @@
         "compile": [
             "npm install",
             "bower install",
-            "gulp build"
+            "gulp build",
+            "mkdir -p web/uploads/images",
+            "app/console doctrine:schema:update --force",
+            "app/console doctrine:fixtures:load"
         ]
     },
     "config": {
