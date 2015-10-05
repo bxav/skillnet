@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "bower": "~1.5.3",
     "gulp": "~3.8.11",
     "gulp-less": "~3.0.3",
     "gulp-sourcemaps": "~1.5.2",
