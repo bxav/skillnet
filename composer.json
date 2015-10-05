@@ -10,7 +10,9 @@
         }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": "~5.6.0",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
         "symfony/symfony": "2.7.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
@@ -54,6 +56,9 @@
         "post-root-package-install": [
             "SymfonyStandard\\Composer::hookRootPackageInstall"
         ],
+        "pre-install-cmd": [
+            "AppBundle\\Composer\\HerokuEnvironment::populateEnvironment"
+        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -71,6 +76,11 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "compile": [
+            "npm insall",
+            "bower install",
+            "gulp build"
         ]
     },
     "config": {
@@ -81,7 +91,22 @@
         "symfony-web-dir": "web",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_name": "SYMFONY__DATABASE_NAME",
+                "database_user": "SYMFONY__DATABASE_USER",
+                "database_host": "SYMFONY__DATABASE_HOST",
+                "database_password": "SYMFONY__DATABASE_PASSWORD"
+            }
+        },
+        "heroku": {
+            "framework": "symfony2",
+            "document-root": "web",
+            "php-config": [
+                "date.timezone=Europe/Paris",
+                "display_errors=off",
+                "short_open_tag=off"
+            ]
         }
     }
 }
