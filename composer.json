@@ -78,7 +78,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "compile": [
-            "npm insall",
+            "npm install",
             "bower install",
             "gulp build"
         ]
