@@ -96,6 +96,7 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
             "env-map": {
+                "locale": "LOCALE",
                 "database_name": "SYMFONY__DATABASE_NAME",
                 "database_user": "SYMFONY__DATABASE_USER",
                 "database_host": "SYMFONY__DATABASE_HOST",
