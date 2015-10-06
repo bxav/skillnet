@@ -12,6 +12,7 @@
     "require": {
         "php": "~5.5.0",
         "ext-gd": "*",
+        "ext-exif": "*",
         "ext-intl": "*",
         "ext-mbstring": "*",
         "symfony/symfony": "2.7.*",
