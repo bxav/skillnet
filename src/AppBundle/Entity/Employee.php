@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use AppBundle\Model\UserTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -15,7 +14,6 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  *
  * @ORM\Table(name="employee")
  * @ORM\Entity
- * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/employees/' ~ object.getId())")
  * @Hateoas\Relation(
  *     "business",
@@ -32,9 +30,6 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $id;
 
@@ -42,9 +37,6 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $firstname;
 
@@ -52,43 +44,28 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $speciality;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $shortDescription;
 
     /**
      * @Orm\OneToOne(targetEntity="Image", cascade="all")
      * @Orm\JoinColumn(name="image_id", referencedColumnName="id")
-     * @Serializer\Type("AppBundle\Entity\Image")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read"})
      **/
     protected $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
-     * @Serializer\Type("AppBundle\Entity\Business")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $business;
 
@@ -103,7 +80,6 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
 
     /**
      * @ORM\Column(type="array")
-     * @Serializer\Expose
      */
     protected $workingDays = [
         'monday' => [],

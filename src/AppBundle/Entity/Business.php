@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -12,7 +11,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @Serializer\ExclusionPolicy("all")
  */
 class Business
 {
@@ -20,8 +18,6 @@ class Business
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
      */
     protected $id;
 
@@ -29,71 +25,51 @@ class Business
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $name;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $website;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $phone;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $email;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $address;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $mainService;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $availableBrands;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $paymentMethods;
 
     /**
      * @ORM\Column(type="text",nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $description;
 
     /**
      * @ORM\Column(type="text",nullable=true)
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
      */
     protected $disponibilityTimeSlot = 15;
 
@@ -106,7 +82,6 @@ class Business
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=64, unique=true)
-     * @Serializer\Expose
      */
     protected $slug;
 
@@ -123,7 +98,6 @@ class Business
 
     /**
      * @ORM\Column(type="array")
-     * @Serializer\Expose
      */
     protected $workingDays = [
         'monday' => [],

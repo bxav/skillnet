@@ -1,0 +1,6 @@
+AppBundle\Entity\Image:
+    exclusion_policy: ALL
+    virtual_properties:
+        getRealPath:
+            serialized_name: real_path
+            type: string

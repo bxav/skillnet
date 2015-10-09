@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
@@ -12,7 +11,6 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * @TODO embedded relation too deep
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\BookingRepository")
- * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/bookings/' ~ object.getId())")
  * @Hateoas\Relation(
  *     "service",
@@ -36,8 +34,6 @@ class Booking
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
      */
     protected $id;
 
@@ -45,8 +41,6 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
-     * @Serializer\Type("DateTime")
-     * @Serializer\Expose
      */
     protected $startDatetime;
 
@@ -54,22 +48,16 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
-     * @Serializer\Type("DateTime")
-     * @Serializer\Expose
      */
     protected $endDatetime;
 
     /**
      * @ORM\Column(type="float", nullable=true)
-     * @Serializer\Type("float")
-     * @Serializer\Expose
      */
     protected $price;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
-     * @Serializer\Type("boolean")
-     * @Serializer\Expose
      */
     protected $personalized = false;
 
@@ -77,8 +65,6 @@ class Booking
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $customerNote;
 
@@ -86,32 +72,24 @@ class Booking
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $employeeNote;
 
     /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", nullable=true)
-     * @Serializer\Type("AppBundle\Entity\Customer")
-     * @Serializer\Expose
      **/
     protected $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id", nullable=true)
-     * @Serializer\Type("AppBundle\Entity\Service")
-     * @Serializer\Expose
      **/
     protected $service;
 
     /**
      * @ORM\ManyToOne(targetEntity="Employee")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=true)
-     * @Serializer\Type("AppBundle\Entity\Employee")
-     * @Serializer\Expose
      **/
     protected $employee;
 

@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="customer")
  * @ORM\Entity
- * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/customers/' ~ object.getId())")
  */
 class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
@@ -27,9 +26,6 @@ class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $id;
 
@@ -37,9 +33,6 @@ class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $firstname;
 
@@ -47,9 +40,6 @@ class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $lastname;
 

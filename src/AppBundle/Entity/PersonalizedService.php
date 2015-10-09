@@ -3,14 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
  * PersonalizedService
  *
  * @ORM\Table()
  * @ORM\Entity
- * @Serializer\ExclusionPolicy("all")
  */
 class PersonalizedService
 {
@@ -18,9 +16,6 @@ class PersonalizedService
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Type("integer")
-     * @Serializer\Groups({"read"})
-     * @Serializer\Expose
      */
     protected $id;
 
@@ -28,35 +23,23 @@ class PersonalizedService
      * @var integer
      *
      * @ORM\Column(type="integer")
-     * @Serializer\Type("integer")
-     * @Serializer\Groups({"read", "write"})
-     * @Serializer\Expose
      */
     protected $duration;
 
     /**
      * @ORM\Column(type="float")
-     * @Serializer\Type("float")
-     * @Serializer\Groups({"read", "write"})
-     * @Serializer\Expose
      */
     protected $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
-     * @Serializer\Type("AppBundle\Entity\Customer")
-     * @Serializer\Groups({"read"})
-     * @Serializer\Expose
      **/
     protected $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id", nullable=true)
-     * @Serializer\Type("AppBundle\Entity\Service")
-     * @Serializer\Groups({"read", "write"})
-     * @Serializer\Expose
      **/
     protected $service;
 

@@ -1,0 +1,23 @@
+AppBundle\Entity\PersonalizedService:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+            groups: [read]
+        duration:
+            expose: true
+            type: integer
+            groups: [read, write]
+        price:
+            expose: true
+            type: float
+            groups: [read, write]
+        customer:
+            expose: true
+            type: AppBundle\Entity\Customer
+            groups: [read]
+        service:
+            expose: true
+            type: AppBundle\Entity\Service
+            groups: [read, write]

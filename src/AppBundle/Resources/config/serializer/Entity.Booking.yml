@@ -1,0 +1,27 @@
+AppBundle\Entity\Booking:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+        startDatetime:
+            expose: true
+            type: DateTime
+        endDatetime:
+            expose: true
+            type: DateTime
+        price:
+            expose: true
+            type: float
+        personalized:
+            expose: true
+            type: boolean
+        customer:
+            expose: true
+            type: AppBundle\Entity\Customer
+        service:
+            expose: true
+            type: AppBundle\Entity\Service
+        employee:
+            expose: true
+            type: AppBundle\Entity\Employee

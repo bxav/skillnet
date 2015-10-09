@@ -4,14 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Image
  * @ORM\Table()
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
- * @Serializer\ExclusionPolicy("all")
  */
 class Image
 {
@@ -50,9 +48,6 @@ class Image
     }
 
     /**
-     * @Serializer\VirtualProperty
-     * @Serializer\SerializedName("real_path")
-     *
      * @return string
      */
     public function getRealPath()

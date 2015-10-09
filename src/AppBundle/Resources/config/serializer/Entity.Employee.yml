@@ -1,0 +1,38 @@
+AppBundle\Entity\Employee:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+            groups: [read, write]
+        firstname:
+            expose: true
+            type: string
+            groups: [read, write]
+        lastname:
+            expose: true
+            type: string
+            groups: [read, write]
+        speciality:
+            expose: true
+            type: string
+            groups: [read, write]
+        shortDescription:
+            expose: true
+            type: string
+            groups: [read, write]
+        image:
+            expose: true
+            type: AppBundle\Entity\Image
+            groups: [read]
+        slug:
+            expose: true
+            type: string
+            groups: [read]
+        business:
+            expose: true
+            type: AppBundle\Entity\Business
+            groups: [read, write]
+        workingDays:
+            expose: true
+            type: array

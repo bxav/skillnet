@@ -3,14 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Service
  *
  * @ORM\Table()
  * @ORM\Entity
- * @Serializer\ExclusionPolicy("all")
  */
 class Service
 {
@@ -18,8 +16,6 @@ class Service
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
      */
     protected $id;
 
@@ -27,29 +23,21 @@ class Service
      * @var integer
      *
      * @ORM\Column(type="integer")
-     * @Serializer\Type("integer")
-     * @Serializer\Expose
      */
     protected $duration;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $type;
 
     /**
      * @ORM\Column(type="float")
-     * @Serializer\Type("float")
-     * @Serializer\Expose
      */
     protected $price;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Serializer\Type("string")
-     * @Serializer\Expose
      */
     protected $description;
 
