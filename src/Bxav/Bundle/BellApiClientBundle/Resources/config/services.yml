@@ -1,0 +1,17 @@
+parameters:
+    bxav_bell_api_client.api_url.param: https://localhost:8000/api
+    bxav_bell_api_client.user_id.param: user_id
+    bxav_bell_api_client.api_key.param: api_key
+
+services:
+    bxav_bellapi_client.client:
+        class: Bxav\Bundle\BellApiClientBundle\Model\BellApiClient
+        arguments: 
+          - @bxav_bell_api_client.guzzle_client
+          - %bxav_bell_api_client.api_url.param%
+          - %bxav_bell_api_client.user_id.param%
+          - %bxav_bell_api_client.api_key.param%
+
+        
+    bxav_bell_api_client.guzzle_client:
+        class: GuzzleHttp\Client

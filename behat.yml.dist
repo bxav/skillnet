@@ -18,6 +18,15 @@ default:
       webapp:
           paths:    [ %paths.base%/features/webapp ]
           contexts: [ Behat\MinkExtension\Context\MinkContext ]
+
+      bellapi_client:
+          contexts:
+            - Bxav\Bundle\BellApiClientBundle\Behat\BellApiClientContext:
+                apiUrl:   'http://localhost:8000/api'
+                userId:   'userId'
+                apiKey:   'apiKey'
+          filters:
+            tags: "@bellapi_client"
   gherkin:
     filters:
       tags: ~@ignore

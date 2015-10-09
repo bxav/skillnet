@@ -1,0 +1,7 @@
+suites:
+    app:
+        namespace: AppBundle
+        spec_path: .
+    bellapi:
+        namespace: Bxav\Bundle\BellApiClientBundle
+        spec_path: src/Bxav/Bundle/BellApiClientBundle
