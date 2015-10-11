@@ -8,9 +8,6 @@ trait UserTrait
 
     /**
      * @ORM\Column(type="string")
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     * @Serializer\Groups({"read", "write"})
      */
     protected $username;
 
@@ -31,9 +28,6 @@ trait UserTrait
     protected $roles;
 
     /**
-     * @Serializer\Expose
-     * @Serializer\Type("string")
-     * @Serializer\Groups({"read", "write"})
      */
     protected $plainPassword;
 

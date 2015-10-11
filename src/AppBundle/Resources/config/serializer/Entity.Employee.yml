@@ -25,10 +25,14 @@ AppBundle\Entity\Employee:
             expose: true
             type: AppBundle\Entity\Image
             groups: [read]
-        slug:
+        username:
             expose: true
             type: string
-            groups: [read]
+            groups: [read, write]
+        plainPassword:
+            expose: true
+            type: string
+            groups: [read, write]
         business:
             expose: true
             type: AppBundle\Entity\Business
