@@ -23,12 +23,12 @@ class BookingController extends ApiController implements ClassResourceInterface
      *  },
      *  description="Return a collection of Booking",
      * )
-     * @QueryParam(name="employee", requirements="[a-z-]+", description="Employee's slug.")
+     * @QueryParam(name="employee", requirements="\d+", description="Employee's id.")
      *
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->findOneBySlug($paramFetcher->get('employee'));
+        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->find($paramFetcher->get('employee'));
         if ($employee) {
             $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByEmployee($employee);
         }

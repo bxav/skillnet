@@ -78,21 +78,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: AppBundle\Entity\User
-    service:
-        user_manager: pugx_user_manager
-
-pugx_multi_user:
-  users:
-    employee:
-        entity:
-          class: AppBundle\Entity\Employee
-    customer:
-        entity:
-          class: AppBundle\Entity\Customer
 
 sonata_block:
     default_contexts: [cms]
@@ -106,11 +91,6 @@ sonata_admin:
         handler: sonata.admin.security.handler.role
 
 jms_serializer:
-    metadata:
-        directories:
-            FOSUB:
-                namespace_prefix: "FOS\\UserBundle"
-                path: "%kernel.root_dir%/serializer/FOSUserBundle"
     handlers:
         datetime:
             default_format: "Y-m-d\TH:i:s.uO" # ISO8601

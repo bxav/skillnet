@@ -5,8 +5,8 @@ Feature: Access to the api
       | name |
       | Haircut Master |
     Given the following employee:
-      | username | plainPassword | roles | enabled | firstname | lastname | business |
-      | user | user | ROLE_API | true | marie | dupond | Haircut Master |
+      | username | plainPassword | roles | firstname | lastname | business |
+      | user | user | ROLE_API | marie | dupond | Haircut Master |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |

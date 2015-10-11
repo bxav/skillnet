@@ -2,11 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Model\UserTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * Employee
@@ -21,8 +23,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBusiness() === null)")
  * )
  */
-class Employee extends User
+class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
 {
+
+    use UserTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -79,14 +84,6 @@ class Employee extends User
     protected $image;
 
     /**
-     * @Gedmo\Slug(fields={"firstname", "lastname"})
-     * @ORM\Column(length=64, unique=true)
-     * @Serializer\Expose
-     * @Serializer\Groups({"read"})
-     */
-    protected $slug;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Business", inversedBy="employees")
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      * @Serializer\Type("AppBundle\Entity\Business")
@@ -120,7 +117,7 @@ class Employee extends User
 
     public function __construct()
     {
-        parent::__construct();
+        $this->initUser();
         $this->services = new ArrayCollection();
     }
 
@@ -223,14 +220,6 @@ class Employee extends User
     /**
      * @return mixed
      */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getBusiness()
     {
         return $this->business;
@@ -272,10 +261,6 @@ class Employee extends User
     public function getServices()
     {
         return $this->services;
-    }
-
-    public function __toString() {
-        return $this->getFirstname();
     }
 
     public function setWorkingHoursByDay($dayName, $workingHours)
@@ -323,6 +308,12 @@ class Employee extends User
     public function setWorkingDays($workingDays)
     {
         $this->workingDays = $workingDays;
+    }
+
+
+    public function __toString()
+    {
+        return (string) $this->getUsername();
     }
 
 }

@@ -63,7 +63,9 @@ class CustomerController extends ApiController implements ClassResourceInterface
      */
     public function postAction(Request $request)
     {
-        return $this->postUser($request);
+        $userManager = $this->container->get('app.user.user_manager.customer');
+
+        return $this->postUser($request, $userManager);
     }
 
     /**
@@ -74,6 +76,8 @@ class CustomerController extends ApiController implements ClassResourceInterface
      */
     public function putAction(Request $request, Customer $customer)
     {
-        return $this->putUser($request, $customer);
+        $userManager = $this->container->get('app.user.user_manager.customer');
+
+        return $this->putUser($request, $customer, $userManager);
     }
 }

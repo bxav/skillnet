@@ -80,7 +80,9 @@ class EmployeeController extends ApiController implements ClassResourceInterface
      */
     public function postAction(Request $request)
     {
-        return $this->postUser($request);
+        $userManager = $this->container->get('app.user.user_manager.employee');
+
+        return $this->postUser($request, $userManager);
     }
 
     /**
@@ -91,6 +93,8 @@ class EmployeeController extends ApiController implements ClassResourceInterface
      */
     public function putAction(Request $request, Employee $employee)
     {
-        return $this->putUser($request, $employee);
+        $userManager = $this->container->get('app.user.user_manager.employee');
+
+        return $this->putUser($request, $employee, $userManager);
     }
 }

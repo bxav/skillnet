@@ -53,3 +53,35 @@ services:
         arguments:
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Booking')
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Employee')
+
+    app.user.employee_provider:
+        class: AppBundle\Security\UserProvider
+        arguments:
+            - @app.user.user_manager.employee
+
+    app.user.customer_provider:
+        class: AppBundle\Security\UserProvider
+        arguments:
+            - @app.user.user_manager.customer
+
+    app.user.user_manager.customer:
+        class: AppBundle\Doctrine\UserManager
+        arguments:
+            - @security.encoder_factory
+            - @doctrine.orm.default_entity_manager
+            - AppBundle\Entity\Customer
+
+    app.user.user_manager.employee:
+        class: AppBundle\Doctrine\UserManager
+        arguments:
+            - @security.encoder_factory
+            - @doctrine.orm.default_entity_manager
+            - AppBundle\Entity\Employee
+
+    app.user.user_listener:
+        class: AppBundle\Doctrine\Orm\UserListener
+        public: false
+        arguments:
+            - @service_container
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

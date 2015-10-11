@@ -5,8 +5,8 @@ Feature: Access to the api
       | name |
       | Haircut Master |
     Given the following employee:
-      | username | plainPassword | roles | enabled | firstname | lastname | business |
-      | user | user | ROLE_API | true | marie | dupond | Haircut Master |
+      | username | plainPassword | roles | firstname | lastname | business |
+      | user | user | ROLE_API | marie | dupond | Haircut Master |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |
@@ -16,7 +16,7 @@ Feature: Access to the api
     Given there is 1 customer like:
       | username | firstname | lastname |
       | customer | John | Duff |
-    Given I prepare a GET request on "/api/customers/2"
+    Given I prepare a GET request on "/api/customers/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -59,7 +59,7 @@ Feature: Access to the api
         "email":"janne@example.com"
     }
     """
-    Given I prepare a PUT request on "/api/customers/2"
+    Given I prepare a PUT request on "/api/customers/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -77,7 +77,7 @@ Feature: Access to the api
     And the following personalizedServices:
       | duration | customer | service |
       | 30 | customer | Coiffure |
-    Given I prepare a GET request on "/api/customers/2/personalized-services?service-id=1"
+    Given I prepare a GET request on "/api/customers/1/personalized-services?service-id=1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -103,7 +103,7 @@ Feature: Access to the api
         "service":{"id":1}
     }
     """
-    Given I prepare a POST request on "/api/customers/2/personalized-services"
+    Given I prepare a POST request on "/api/customers/1/personalized-services"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -126,7 +126,7 @@ Feature: Access to the api
         "price": 30.00
     }
     """
-    Given I prepare a Put request on "/api/customers/2/personalized-services/1"
+    Given I prepare a Put request on "/api/customers/1/personalized-services/1"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

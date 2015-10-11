@@ -16,12 +16,12 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * @Hateoas\Relation("self", href = "expr('/api/bookings/' ~ object.getId())")
  * @Hateoas\Relation(
  *     "service",
- *     href = "expr('/api/businesses/' ~ object.getService().getBusiness().getSlug() ~ '/services/' ~ object.getService().getId())",
+ *     href = "expr('/api/businesses/' ~ object.getService().getBusiness().getId() ~ '/services/' ~ object.getService().getId())",
  *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getService() === null)")
  * )
  * @Hateoas\Relation(
  *     "employee",
- *     href = "expr('/api/employees/' ~ object.getEmployee().getSlug())",
+ *     href = "expr('/api/employees/' ~ object.getEmployee().getId())",
  *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getEmployee() === null)")
  * )
  * @Hateoas\Relation(

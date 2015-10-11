@@ -41,6 +41,8 @@ class CurrentEmployeeController extends ApiController
     public function putCurrentEmployeeAction(Request $request)
     {
         $employee = $this->getUser();
-        return $this->putUser($request, $employee);
+        $userManager = $this->container->get('app.user.user_manager.employee');
+
+        return $this->putUser($request, $employee, $userManager);
     }
 }

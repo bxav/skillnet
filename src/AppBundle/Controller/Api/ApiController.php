@@ -4,8 +4,6 @@ namespace AppBundle\Controller\Api;
 
 
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\FOSUserEvents;
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
@@ -111,32 +109,14 @@ Abstract class ApiController extends FOSRestController
         return $this->createView($object, 201);
     }
 
-    protected function postUser(Request $request) {
-        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
-        $discriminator->setClass($this->getClass());
-
-        $userManager = $this->container->get('pugx_user_manager');
-
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $dispatcher = $this->container->get('event_dispatcher');
-
+    protected function postUser(Request $request, $userManager) {
         $user = $userManager->createUser();
-        $user->setEnabled(true);
-
-        $event = new GetResponseUserEvent($user, $request);
-        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
-
-        if (null !== $event->getResponse()) {
-            return $event->getResponse();
-        }
 
         $userFromRequest = $this->hydrateWithRequest($request, $this->getClass());
         $this->resolvePartialNestedEntity($userFromRequest);
 
         $user = $this->patchWithSameTypeObject($user, $userFromRequest);
 
-
-        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
         $userManager->updateUser($user);
 
@@ -156,12 +136,7 @@ Abstract class ApiController extends FOSRestController
         return $this->createView($updatedObject, 200);
     }
 
-    protected function putUser(Request $request, $user) {
-        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
-        $discriminator->setClass($this->getClass());
-
-        $userManager = $this->container->get('pugx_user_manager');
-
+    protected function putUser(Request $request, $user, $userManager) {
         $userFromRequest = $this->hydrateWithRequest($request, $this->getClass());
         $this->resolvePartialNestedEntity($userFromRequest);
 

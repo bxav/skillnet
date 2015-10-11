@@ -4,8 +4,8 @@ Feature: Access to the api
       | name |
       | Haircut Master |
     Given the following employee:
-      | username | plainPassword | roles | enabled | firstname | lastname | business |
-      | user | user | ROLE_API | true | marie | dupond | Haircut Master |
+      | username | plainPassword | roles | firstname | lastname | business |
+      | user | user | ROLE_API | marie | dupond | Haircut Master |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |
@@ -13,6 +13,8 @@ Feature: Access to the api
       | business | duration | type | id |
       | Haircut Master | 20 | haircut | id |
 
+
+  @reset-schema
   Scenario: List employee's bookings
     Given there is 1 customer like:
       | username | firstname | lastname |
@@ -21,7 +23,7 @@ Feature: Access to the api
       | employee | service | customer |
       | marie | haircut | customer |
     Given I specified the following request queries:
-      | employee | marie-dupond |
+      | employee | 1 |
     Given I prepare a GET request on "/api/bookings"
     When I send the request
     Then print the last response
@@ -45,7 +47,7 @@ Feature: Access to the api
         "start_datetime":"2015-09-26T11:55:20.000000+0200",
         "end_datetime":"2015-09-26T11:75:20.000000+0200",
         "employee":{"id":1},
-        "customer":{"id":2},
+        "customer":{"id":1},
         "service":{"id":1}
     }
     """
@@ -68,7 +70,7 @@ Feature: Access to the api
     {
         "end_datetime":"2015-09-26T11:75:20.000000+0200",
         "employee":{"id":1},
-        "customer":{"id":3},
+        "customer":{"id":2},
         "service":{"id":1}
     }
     """

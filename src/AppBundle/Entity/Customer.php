@@ -2,10 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Model\UserTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Customer
@@ -15,8 +19,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Serializer\ExclusionPolicy("all")
  * @Hateoas\Relation("self", href = "expr('/api/customers/' ~ object.getId())")
  */
-class Customer extends User
+class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
 {
+    use UserTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -46,6 +52,12 @@ class Customer extends User
      * @Serializer\Groups({"read", "write"})
      */
     protected $lastname;
+
+    public function __construct()
+    {
+        $this->initUser();
+        $this->services = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -96,7 +108,7 @@ class Customer extends User
     }
 
     public function __toString() {
-        return $this->getUsername();
+        return (string) $this->getUsername();
     }
 
 }

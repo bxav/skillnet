@@ -7,9 +7,6 @@ app_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /doc/api
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
@@ -24,6 +21,10 @@ _liip_imagine:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+app_web_security:
+    resource: "@AppBundle/Controller/Web/SecurityController.php"
+    type:     annotation
 
 app_web_default:
     resource: "@AppBundle/Controller/Web/DefaultController.php"

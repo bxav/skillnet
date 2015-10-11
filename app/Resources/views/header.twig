@@ -58,7 +58,7 @@
                                             <a href="#" class="btn btn-gray btn-sm">+ {{ 'customer.my_profile' | trans }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ url('fos_user_security_logout') }}" class="btn btn-gray btn-sm">{{ 'log_out' | trans }}</a>
+                                            <a href="/" class="btn btn-gray btn-sm">{{ 'log_out' | trans }}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -69,7 +69,7 @@
                                     <a href="page-signup.html" class="btn btn-default btn-sm"><i class="fa fa-user pr-10"></i> {{ 'sign_up' | trans }}</a>
                                 </div>
                                 <div class="btn-group">
-                                    <a href="{{ url('fos_user_security_login') }}" class="btn btn-default btn-sm"><i class="fa fa-lock pr-10"></i> {{ 'login' | trans }}</a>
+                                    <a href="{{ url('login_route') }}" class="btn btn-default btn-sm"><i class="fa fa-lock pr-10"></i> {{ 'login' | trans }}</a>
                                 </div>
                             </div>
                         {% endif %}

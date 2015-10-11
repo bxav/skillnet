@@ -9,15 +9,15 @@ Fonctionnalité: Reserver un rendez-vous
       | name | disponibilityTimeSlot |
       | Béa coiffure | 15 |
     Et the following employee:
-      | username | plainPassword | roles | enabled | firstname | lastname | business |
-      | user | user | ROLE_API | true | marie | dupond | Béa coiffure |
+      | username | plainPassword | roles | firstname | lastname | business |
+      | user | user | ROLE_API | marie | dupond | Béa coiffure |
     Et the following services:
       | business | duration | type |
       | Béa coiffure | 30 | Coiffure |
       | Béa coiffure | 130 | Brushing |
     Et there is 1 customer like:
-      | username | plainPassword | enabled | firstname | lastname |
-      | john | john  | true | John | Duff |
+      | username | plainPassword | firstname | lastname |
+      | john | john | John | Duff |
     Et the following bookings:
       | employee | service | customer | startDateTime | endDateTime |
       | user | Coiffure | john | 2042-01-01 13:35:00.0 | 2042-01-01 17:30:00.0 |
