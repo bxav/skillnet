@@ -6,7 +6,6 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class AvailabilityController extends ApiController implements ClassResourceInterface
@@ -28,6 +27,7 @@ class AvailabilityController extends ApiController implements ClassResourceInter
         $date = new \DateTimeImmutable($paramFetcher->get("date"));
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($paramFetcher->get('service-id'));
         $availabilities = $this->get("app.availability.finder")->findByDateAndService($date, $service);
-        return new JsonResponse($availabilities, 200);
+
+        return $this->createView($availabilities, 200);
     }
 }

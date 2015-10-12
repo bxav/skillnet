@@ -1,0 +1,12 @@
+AppBundle\Model\Availability:
+    exclusion_policy: ALL
+    properties:
+        date:
+            expose: true
+            type: DateTime
+        service:
+            expose: true
+            type: AppBundle\Entity\Service
+        employees:
+            expose: true
+            type: array<AppBundle\Entity\Employee>

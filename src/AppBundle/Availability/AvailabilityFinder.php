@@ -4,6 +4,7 @@ namespace AppBundle\Availability;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Service;
+use AppBundle\Model\Availability;
 use League\Period\Period;
 
 class AvailabilityFinder
@@ -103,12 +104,15 @@ class AvailabilityFinder
 
     protected function updateTimeSlotsInfos($calculatedTimeSlots, Employee $employee) {
         foreach ($calculatedTimeSlots as $calculatedTimeSlot) {
-            if (!isset($this->timeSlots[$calculatedTimeSlot]['date']) || !isset($this->timeSlots[$calculatedTimeSlot]['service'])) {
+            if (!isset($this->timeSlots[$calculatedTimeSlot])) {
+                $this->timeSlots[$calculatedTimeSlot] = new Availability();
                 $arrayHourAndMinute = explode(":", $calculatedTimeSlot);
-                $this->timeSlots[$calculatedTimeSlot]['date'] = $this->date->setTime($arrayHourAndMinute[0], $arrayHourAndMinute[1]);
-                $this->timeSlots[$calculatedTimeSlot]['service'] = $this->service->getId();
+                // JMS serializer take only DateTime not DateTmeImmutable
+                $date = new \DateTime();
+                $this->timeSlots[$calculatedTimeSlot]->setDate($date->setTimestamp($this->date->setTime($arrayHourAndMinute[0], $arrayHourAndMinute[1])->getTimestamp()));
+                $this->timeSlots[$calculatedTimeSlot]->setService($this->service);
             }
-            $this->timeSlots[$calculatedTimeSlot]['employees'][] = $employee->getId();
+            $this->timeSlots[$calculatedTimeSlot]->addEmployee($employee);
         }
     }
 
