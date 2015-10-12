@@ -61,7 +61,7 @@ class FeatureContext implements KernelAwareContext, SnippetAcceptingContext
     }
 
     /**
-     * @Given le business :arg1 travaile le :arg2 de :arg3 à :arg4
+     * @Given the business :arg1 works from :arg2 to :arg3 at :arg4
      */
     public function lBusinessTravaileLeDeA($arg1, $arg2, $arg3, $arg4)
     {

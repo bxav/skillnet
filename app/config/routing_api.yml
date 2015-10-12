@@ -22,6 +22,10 @@ booking:
     type:     rest
     resource: AppBundle\Controller\Api\BookingController
 
+availability:
+    type:     rest
+    resource: AppBundle\Controller\Api\AvailabilityController
+
 customer:
     type:     rest
     resource: AppBundle\Controller\Api\CustomerController
