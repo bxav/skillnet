@@ -8,5 +8,5 @@ Feature:
     Given I have a bellapi account
 
   Scenario: print businesses
-    When I search for business
-    Then It should print businesses
+    When I search for "employees"
+    Then It should print resources

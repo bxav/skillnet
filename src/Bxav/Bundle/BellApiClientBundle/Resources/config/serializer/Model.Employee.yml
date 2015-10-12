@@ -1,0 +1,42 @@
+Bxav\Bundle\BellApiClientBundle\Model\Employee:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+            groups: [read, write]
+        firstname:
+            expose: true
+            type: string
+            groups: [read, write]
+        lastname:
+            expose: true
+            type: string
+            groups: [read, write]
+        speciality:
+            expose: true
+            type: string
+            groups: [read, write]
+        shortDescription:
+            expose: true
+            type: string
+            groups: [read, write]
+        image:
+            expose: true
+            type: Bxav\Bundle\BellApiClientBundle\Model\Image
+            groups: [read]
+        username:
+            expose: true
+            type: string
+            groups: [read, write]
+        plainPassword:
+            expose: true
+            type: string
+            groups: [read, write]
+        business:
+            expose: true
+            type: Bxav\Bundle\BellApiClientBundle\Model\Business
+            groups: [read, write]
+        workingDays:
+            expose: true
+            type: array

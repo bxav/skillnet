@@ -1,0 +1,7 @@
+Bxav\Bundle\BellApiClientBundle\Model\Image:
+    exclusion_policy: ALL
+    properties:
+        realPath:
+            expose: true
+            type: string
+            groups: [read, write]

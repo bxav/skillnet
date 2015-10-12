@@ -1,0 +1,23 @@
+Bxav\Bundle\BellApiClientBundle\Model\Customer:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+            groups: [read, write]
+        firstname:
+            expose: true
+            type: string
+            groups: [read, write]
+        lastname:
+            expose: true
+            type: string
+            groups: [read, write]
+        username:
+            expose: true
+            type: string
+            groups: [read, write]
+        plainPassword:
+            expose: true
+            type: string
+            groups: [read, write]

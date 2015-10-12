@@ -1,0 +1,18 @@
+Bxav\Bundle\BellApiClientBundle\Model\Service:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+        duration:
+            expose: true
+            type: integer
+        type:
+            expose: true
+            type: string
+        price:
+            expose: true
+            type: float
+        description:
+            expose: true
+            type: string

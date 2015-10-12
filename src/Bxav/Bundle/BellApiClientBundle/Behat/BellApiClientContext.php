@@ -32,19 +32,19 @@ class BellApiClientContext extends RawMinkContext implements KernelAwareContext,
     }
 
     /**
-     * @When I search for business
+     * @When I search for :resource
      */
-    public function iSearchForBusiness()
+    public function iSearchFor($resource)
     {
-        $this->response = $this->getService('bxav_bellapi_client.client')->get('businesses');
+        $this->response = $this->getService('bxav_bellapi_client.client')->get($resource);
     }
 
     /**
-     * @Then It should print businesses
+     * @Then It should print resources
      */
-    public function iShouldAListOfBusiness()
+    public function iShouldAListOfResource()
     {
-        echo $this->response;
+        dump($this->response);
     }
 
 

@@ -4,10 +4,20 @@ parameters:
     bxav_bell_api_client.api_key.param: api_key
 
 services:
+    bxav_bellapi_client.resources_mapper:
+        class: Bxav\Bundle\BellApiClientBundle\Model\ClassToResourceMapper
+        calls:
+          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Business", "businesses"]]
+          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Booking", "bookings"]]
+          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Customer", "customers"]]
+          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Employee", "employees"]]
+
     bxav_bellapi_client.client:
         class: Bxav\Bundle\BellApiClientBundle\Model\BellApiClient
         arguments: 
           - @bxav_bell_api_client.guzzle_client
+          - @serializer
+          - @bxav_bellapi_client.resources_mapper
           - %bxav_bell_api_client.api_url.param%
           - %bxav_bell_api_client.user_id.param%
           - %bxav_bell_api_client.api_key.param%
