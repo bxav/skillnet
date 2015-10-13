@@ -11,6 +11,8 @@ services:
           - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Booking", "bookings"]]
           - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Customer", "customers"]]
           - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Employee", "employees"]]
+          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Service", "services"]]
+          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Availability", "availabilities", 'string']]
 
     bxav_bellapi_client.client:
         class: Bxav\Bundle\BellApiClientBundle\Model\BellApiClient

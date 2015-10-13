@@ -4,20 +4,23 @@ namespace Bxav\Bundle\BellApiClientBundle\Model;
 class ClassToResourceMapper
 {
 
-    protected $mapperClassToResource = [];
 
     protected $mapperResourceToClass = [];
 
-    public function addClassToResoureMapping($class, $resource) {
-        $this->mapperClassToResource[$class] = $resource;
-        $this->mapperResourceToClass[$resource] = $class;
+    public function addClassToResoureMapping($class, $resource, $key = '') {
+        $this->mapperResourceToClass[$resource]['name'] = $class;
+        $this->mapperResourceToClass[$resource]['key'] = $key;
     }
 
-    function getResource($class) {
-        return $this->mapperClassToResource[$class];
-    }
+    function getClass($resource, $collection = true) {
+        $resource = $this->mapperResourceToClass[$resource];
+        if ($collection) {
+            $key = $resource['key'] !== '' ? $resource['key'] . ',' : '';
+            $type = 'array<'.$key.''.$resource['name'].'>';
+        } else {
+            $type = $resource['name'];
+        }
 
-    function getClass($resource) {
-        return $this->mapperResourceToClass[$resource];
+        return $type;
     }
 }

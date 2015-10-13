@@ -29,20 +29,37 @@ class BellApiClient
         $this->apiKey = $apiKey;
     }
 
-    public function get($resource, array $params = [])
+    public function get($resource, array $arg = [], array $params = [], $simple = true)
     {
-        return $this->request('GET', $resource, $params);
+        return $this->request('GET', $resource, $arg, $params, $simple);
     }
 
-    protected function request($word, $resource, $params)
+    protected function request($word, $resource, $arg , $params, $simple)
     {
 
         $query = http_build_query($params);
 
-        $body = (string) $this->client->request($word, $this->apiUrl . '/' . $resource . '?'. $query, [
+        if ($arg !== []) {
+            $resourceTemp = $resource . '/' . $arg[0];
+        } else {
+            $resourceTemp = $resource;
+        }
+
+
+        $body = (string) $this->client->request($word, $this->apiUrl . '/' . $resourceTemp . '?'. $query, [
             'auth' => [$this->userId, $this->apiKey]
         ])->getBody();
 
-        return $this->serializer->deserialize($body, 'array<'.$this->classToResourceMapper->getClass($resource).'>', 'json');
+
+        if (!$simple) {
+            preg_match('/([a-zA-Z-]*)$/', $resource, $matches);
+            $resource = $matches[0];
+        }
+
+        if ($arg == []) {
+            return $this->serializer->deserialize($body, $this->classToResourceMapper->getClass($resource), 'json');
+        } else {
+            return $this->serializer->deserialize($body, $this->classToResourceMapper->getClass($resource, false), 'json');
+        }
     }
 }
