@@ -29,37 +29,34 @@ class BellApiClient
         $this->apiKey = $apiKey;
     }
 
-    public function get($resource, array $arg = [], array $params = [], $simple = true)
+    public function get($resource, array $arg = [], array $params = [], $auth = null, $collection = false)
     {
-        return $this->request('GET', $resource, $arg, $params, $simple);
+        return $this->request('GET', $resource, $arg, $params, $auth, $collection);
     }
 
-    protected function request($word, $resource, $arg , $params, $simple)
+    public function getList($resource, array $arg = [], array $params = [], $auth = null, $collection = true)
+    {
+        return $this->request('GET', $resource, $arg, $params, $auth, $collection);
+    }
+
+    protected function request($word, $resource, $arg , $params, $auth, $collection)
     {
 
         $query = http_build_query($params);
 
-        if ($arg !== []) {
-            $resourceTemp = $resource . '/' . $arg[0];
-        } else {
-            $resourceTemp = $resource;
-        }
+        $endPoint = $this->classToResourceMapper->getPath($resource, $arg);
 
+        $auth = $auth ? $auth : [$this->userId, $this->apiKey];
 
-        $body = (string) $this->client->request($word, $this->apiUrl . '/' . $resourceTemp . '?'. $query, [
-            'auth' => [$this->userId, $this->apiKey]
+        dump($endPoint, $query);
+        $body = (string) $this->client->request($word, $this->apiUrl . $endPoint . '?'. $query, [
+            'auth' => $auth
         ])->getBody();
 
-
-        if (!$simple) {
-            preg_match('/([a-zA-Z-]*)$/', $resource, $matches);
-            $resource = $matches[0];
-        }
-
-        if ($arg == []) {
-            return $this->serializer->deserialize($body, $this->classToResourceMapper->getClass($resource), 'json');
+        if ($collection) {
+            return $this->serializer->deserialize($body, $this->classToResourceMapper->getDeserializationType($resource, true), 'json');
         } else {
-            return $this->serializer->deserialize($body, $this->classToResourceMapper->getClass($resource, false), 'json');
+            return $this->serializer->deserialize($body, $this->classToResourceMapper->getDeserializationType($resource, false), 'json');
         }
     }
 }

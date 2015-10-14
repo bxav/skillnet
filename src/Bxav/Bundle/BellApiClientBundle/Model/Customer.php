@@ -60,6 +60,22 @@ class Customer
         $this->lastname = $lastname;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
     public function __toString() {
         return (string) $this->getUsername();
     }

@@ -7,12 +7,13 @@ services:
     bxav_bellapi_client.resources_mapper:
         class: Bxav\Bundle\BellApiClientBundle\Model\ClassToResourceMapper
         calls:
-          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Business", "businesses"]]
-          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Booking", "bookings"]]
-          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Customer", "customers"]]
-          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Employee", "employees"]]
-          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Service", "services"]]
-          - [addClassToResoureMapping, ["Bxav\Bundle\BellApiClientBundle\Model\Availability", "availabilities", 'string']]
+          - [addClassToResoureMapping, ["business", "Bxav\Bundle\BellApiClientBundle\Model\Business", ["businesses", "{business}"]]]
+          - [addClassToResoureMapping, ["booking", "Bxav\Bundle\BellApiClientBundle\Model\Booking", ["bookings", "{booking}"]]]
+          - [addClassToResoureMapping, ["customer", "Bxav\Bundle\BellApiClientBundle\Model\Customer", ["customers", "{customer}"]]]
+          - [addClassToResoureMapping, ["current/customer", "Bxav\Bundle\BellApiClientBundle\Model\Customer", ["current/customer"]]]
+          - [addClassToResoureMapping, ["employee", "Bxav\Bundle\BellApiClientBundle\Model\Employee", ["employees", "{employee}"]]]
+          - [addClassToResoureMapping, ["service", "Bxav\Bundle\BellApiClientBundle\Model\Service", ["businesses", "{business}", "services", , "{service}"]]]
+          - [addClassToResoureMapping, ["availability", "Bxav\Bundle\BellApiClientBundle\Model\Availability", ["availabilities", "{availability}"], "string"]]
 
     bxav_bellapi_client.client:
         class: Bxav\Bundle\BellApiClientBundle\Model\BellApiClient
