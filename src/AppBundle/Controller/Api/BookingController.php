@@ -23,15 +23,24 @@ class BookingController extends ApiController implements ClassResourceInterface
      *  },
      *  description="Return a collection of Booking",
      * )
+     * @QueryParam(name="customer-id", requirements="\d+", description="Customer's id.")
      * @QueryParam(name="employee", requirements="\d+", description="Employee's id.")
      *
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        $employee = $this->getDoctrine()->getRepository("AppBundle:Employee")->find($paramFetcher->get('employee'));
-        if ($employee) {
-            $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findByEmployee($employee);
+
+        $criteria = [];
+        if ($paramFetcher->get('employee')) {
+            $criteria['employee'] = $this->getDoctrine()->getRepository("AppBundle:Employee")->find($paramFetcher->get('employee'));
         }
+        if ($paramFetcher->get('customer-id')) {
+            $criteria['customer'] = $this->getDoctrine()->getRepository("AppBundle:Customer")->find($paramFetcher->get('customer-id'));
+        }
+
+        $booking = $this->getDoctrine()->getRepository("AppBundle:Booking")->findBy($criteria);
+
+
 
         return $this->createView($booking, 200);
     }

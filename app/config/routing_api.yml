@@ -30,6 +30,11 @@ customer:
     type:     rest
     resource: AppBundle\Controller\Api\CustomerController
 
+
+current_customer:
+    type:     rest
+    resource: AppBundle\Controller\Api\CurrentCustomerController
+
 customer_personalized_service:
     type:     rest
     resource: AppBundle\Controller\Api\CustomerPersonalizedServiceController
