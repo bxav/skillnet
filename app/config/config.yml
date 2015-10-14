@@ -128,9 +128,6 @@ bazinga_hateoas:
         file_cache:
             dir:              %kernel.cache_dir%/hateoas
 
-fos_js_routing:
-    routes_to_expose: [ 'availability' ]
-
 liip_imagine:
     resolvers:
        default:

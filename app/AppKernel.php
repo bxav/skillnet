@@ -36,8 +36,6 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
 
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-
             new AppBundle\AppBundle(),
 
         );

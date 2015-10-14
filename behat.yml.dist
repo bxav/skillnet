@@ -8,16 +8,6 @@ default:
             - FeatureContext
             - ApiFeatureContext
             - Knp\FriendlyContexts\Context\EntityContext
-      web:
-          paths:    [ %paths.base%/features/web ]
-          contexts:
-            - Knp\FriendlyContexts\Context\MinkContext
-            - FeatureContext
-            - WebFeatureContext
-            - Knp\FriendlyContexts\Context\EntityContext
-      webapp:
-          paths:    [ %paths.base%/features/webapp ]
-          contexts: [ Behat\MinkExtension\Context\MinkContext ]
 
       bellapi_client:
           contexts:

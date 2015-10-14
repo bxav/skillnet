@@ -19,21 +19,7 @@ _sonata_admin:
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
 
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 app_web_security:
     resource: "@AppBundle/Controller/Web/SecurityController.php"
-    type:     annotation
-
-app_web_default:
-    resource: "@AppBundle/Controller/Web/DefaultController.php"
-    type:     annotation
-
-app_web_customer:
-    resource: "@AppBundle/Controller/Web/CustomerController.php"
-    type:     annotation
-
-app_web_business:
-    resource: "@AppBundle/Controller/Web/BusinessController.php"
     type:     annotation
