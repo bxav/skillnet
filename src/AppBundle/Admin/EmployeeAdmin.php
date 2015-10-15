@@ -30,7 +30,6 @@ class EmployeeAdmin extends Admin
 
         $formMapper
             ->add('username')
-            ->add('email')
             ->add('roles' ,'choice' ,array('choices' => $this->getRolesNames(),
                 'required'  => true,
                 'expanded' => true,
@@ -38,7 +37,6 @@ class EmployeeAdmin extends Admin
                 'multiple' => true
             ))
             ->add('plainPassword', 'text', ['required' => false])
-            ->add('enabled', null, ['required' => false])
             ->add('firstname')
             ->add('lastname')
             ->add('shortDescription')
@@ -88,8 +86,6 @@ class EmployeeAdmin extends Admin
             ->add('firstname')
             ->add('lastname')
             ->add('username')
-            ->add('enabled')
-            ->add('email')
             ->add('shortDescription')
             ->add('speciality');
     }
@@ -102,8 +98,6 @@ class EmployeeAdmin extends Admin
             ->add('email')
             ->add('firstname')
             ->add('lastname')
-            ->add('enabled', null, array('editable' => true))
-            ->add('createdAt')
             ->add('shortDescription')
             ->add('speciality');
     }
