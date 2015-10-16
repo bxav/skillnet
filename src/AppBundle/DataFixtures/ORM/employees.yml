@@ -14,7 +14,7 @@ AppBundle\Entity\Employee:
         Lastname: <lastname()>
         Roles: [ROLE_EMPLOYEE]
         shortDescription: Il est coiffeur depuis plus de 20ans et sa spécialité c’est les coupes et les chignons. Ce qu’il aime, c’est que chacun de ses clients repartent avec le sourire. Il est à la tête de son salon depuis déjà 10 ans et sa clef du succès c’est un coup de ciseau précis que beaucoup lui envient.
-        Image (unique): @employeePicture*
+        Image: <employeeImage()>
         business: @bea_coiffure
         services: [@brushing, @shampoing, @chignon, @shampoing_cheveux_femme, @shampoing_cheveux_longs, @shampoing_cheveux_courts]
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
@@ -25,7 +25,7 @@ AppBundle\Entity\Employee:
         Lastname: <lastname()>
         Roles: [ROLE_EMPLOYEE]
         shortDescription: Sylvia c’est le rayon de soleil du salon et elle n’a pas son pareil pour vous proposer de nouvelles couleurs pour vous relooker. Coloriste depuis 10ans elle a travaillé à Milan pour préparer les tops à monter sur les podiums et depuis elle ne suit plus les tendances mais elle les lance !
-        Image (unique): @employeePicture*
+        Image: <employeeImage()>
         business: @bea_coiffure
         services: [@brushing, @shampoing, @chignon, @shampoing_cheveux_femme, @shampoing_cheveux_longs, @shampoing_cheveux_courts]
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
@@ -36,7 +36,7 @@ AppBundle\Entity\Employee:
         Lastname: <lastname()>
         Roles: [ROLE_EMPLOYEE]
         shortDescription: Spécialité : Masseur
-        Image (unique): @employeePicture*
+        Image: <employeeImage()>
         business: @beautyinstitut
         services: [@epilation_aisselles, @epilation_demi_jambe, @seance_uv, @massage_dos, @maquillage_soiree, @maquillage_jour]
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
@@ -47,7 +47,7 @@ AppBundle\Entity\Employee:
         Lastname: <lastname()>
         Roles: [ROLE_EMPLOYEE]
         shortDescription: Spécialité : Maquillage
-        Image (unique): @employeePicture*
+        Image: <employeeImage()>
         business: @beautyinstitut
         services: [@epilation_aisselles, @epilation_demi_jambe, @seance_uv, @massage_dos, @maquillage_soiree, @maquillage_jour]
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]

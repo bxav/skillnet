@@ -23,7 +23,8 @@ class SetRealPathFile
         $entityManager = $args->getEntityManager();
 
         if ($entity instanceof Image) {
-            $entity->setHost($this->host);
+            //todo extract hosting path
+            $entity->setHost($this->host . '/media/image');
         }
     }
 }

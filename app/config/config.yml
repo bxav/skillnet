@@ -140,6 +140,15 @@ liip_imagine:
             filters:
                 thumbnail: { size: [260, 260], mode: outbound }
 
+knp_gaufrette:
+    adapters:
+        app_image:
+            local:
+                directory:  %kernel.root_dir%/../web/media/image
+                create:     true
+    filesystems:
+        app_image:
+            adapter: app_image
 
 
 hautelook_alice:

@@ -46,7 +46,6 @@ Feature: Access to the api
         "website":"coif.com",
         "phone":"0669696969",
         "email":"marie-dupond@example.com",
-        "address":"10 rue les moulins",
         "description":"lorem",
         "disponibility_time_slot":20
     }

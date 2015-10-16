@@ -59,3 +59,15 @@ services:
             - @service_container
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+
+    app.image_uploader:
+        class: AppBundle\Uploader\ImageUploader
+        arguments:
+            - @app.uploader.filesystem
+
+    app.uploader.filesystem:
+        class: Gaufrette\Filesystem
+        factory: [@knp_gaufrette.filesystem_map, get]
+        arguments:
+            - app_image

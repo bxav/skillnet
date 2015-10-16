@@ -25,6 +25,9 @@ AppBundle\Entity\Business:
         paymentMethods:
             expose: true
             type: string
+        image:
+            expose: true
+            type: AppBundle\Entity\Image
         description:
             expose: true
             type: string

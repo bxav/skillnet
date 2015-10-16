@@ -2,18 +2,22 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Image;
 use Faker\Factory;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 use Nelmio\Alice\Fixtures;
 use Nelmio\Alice\Loader\FakerProvider;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Finder\Finder;
 
 class AppFixtures extends DataFixtureLoader
 {
     private $startDateTime;
 
     private $faker;
+
+    protected $path = '/../../../../resources/';
 
     public function __construct()
     {
@@ -23,7 +27,7 @@ class AppFixtures extends DataFixtureLoader
     protected function getProcessors()
     {
         return [
-
+          //  new ImageProcessor()
         ];
     }
 
@@ -33,7 +37,6 @@ class AppFixtures extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
-            __DIR__ . '/images.yml',
             __DIR__ . '/businesses.yml',
             __DIR__ . '/services.yml',
             __DIR__ . '/employees.yml',
@@ -57,47 +60,39 @@ class AppFixtures extends DataFixtureLoader
     public function employeeImage()
     {
         $filenames = array(
-            'charles.jpg',
-            'sylvia.jpg'
+            'charles',
+            'sylvia'
         );
 
-        return $this->createFakeUploadedImage($filenames);
-
+        return $this->getAndUploadRandomImage($filenames);
     }
 
     public function businessImage()
     {
         $filenames = array(
-            'shop.jpg'
+            'shop'
         );
 
-        return $this->createFakeUploadedImage($filenames);
+        return $this->getAndUploadRandomImage($filenames);
     }
 
-    protected function createFakeUploadedImage($filenames) {
-
-        $projectRoot = __DIR__.'/../../../..';
-
-        return new UploadedFileForFixture($projectRoot. '/resources/'. $filenames[array_rand($filenames)], $filenames[array_rand($filenames)], null, null, true);
-
-    }
-}
-
-class UploadedFileForFixture extends UploadedFile
-{
-    public function move($directory, $name = null)
+    protected function getAndUploadRandomImage($filenames)
     {
-        $target = $this->getTargetFile($directory, $name);
-        $fs = new Filesystem();
-        $fs->copy(
-            $this->getPathname(),
-            $target,
-            true
-        );
+        $finder = new Finder();
+        $uploader = $this->container->get('app.image_uploader');
 
-        @chmod($target, 0666 & ~umask());
+        $images = [];
 
-        return $target;
+        foreach ($finder->files()->in(__DIR__.$this->path) as $img) {
+            $images[$img->getBasename('.jpg')] = $img;
+        }
 
+        $img = $images[$filenames[array_rand($filenames)]];
+        $image = new Image();
+        $image->setFile(new UploadedFile($img->getRealPath(), $img->getFilename()));
+        $uploader->upload($image);
+
+        return $image;
     }
+
 }

@@ -46,11 +46,6 @@ class Business
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
      */
-    protected $address;
-
-    /**
-     * @ORM\Column(type="string", length=255,nullable=true)
-     */
     protected $mainService;
 
     /**
@@ -99,7 +94,7 @@ class Business
      * @var \Doctrine\Common\Collections\ArrayCollection $addresses
      * @ORM\OneToMany(targetEntity="Address", mappedBy="business", cascade="all")
      */
-    protected $addresses;
+    protected $addresses = [];
 
 
     /**
@@ -192,22 +187,6 @@ class Business
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param mixed $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
     }
 
     /**
