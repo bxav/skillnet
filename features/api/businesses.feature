@@ -74,3 +74,18 @@ Feature: Access to the api
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
+
+  @reset-schema
+  Scenario: get business
+    Given there is 1 address like:
+      | business | current | name |
+      | Haircut Master | true | jean jean |
+    Given I prepare a GET request on "/api/businesses/1"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+    Then scope into the "main_address" property
+    And the properties exist:
+    """
+    address1
+    """

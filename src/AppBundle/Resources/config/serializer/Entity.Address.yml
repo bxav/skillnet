@@ -1,0 +1,27 @@
+AppBundle\Entity\Address:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+        current:
+            expose: true
+            type: string
+        address1:
+            expose: true
+            type: string
+        address2:
+            expose: true
+            type: string
+        address3:
+            expose: true
+            type: string
+        postcode:
+            expose: true
+            type: string
+        city:
+            expose: true
+            type: string
+        countryCode:
+            expose: true
+            type: string

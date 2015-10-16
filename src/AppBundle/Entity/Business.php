@@ -95,6 +95,12 @@ class Business
      */
     protected $services;
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection $addresses
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="business", cascade="all")
+     */
+    protected $addresses;
+
 
     /**
      * @ORM\Column(type="array")
@@ -113,6 +119,7 @@ class Business
     {
         $this->employees = new ArrayCollection();
         $this->services = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
     /**
@@ -420,4 +427,13 @@ class Business
     }
 
 
+    public function getMainAddress()
+    {
+        foreach ($this->addresses as $address) {
+            if ($address->isCurrent()) {
+                return $address;
+            }
+        }
+        return null;
+    }
 }

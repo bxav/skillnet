@@ -16,9 +16,6 @@ AppBundle\Entity\Business:
         email:
             expose: true
             type: string
-        address:
-            expose: true
-            type: string
         mainService:
             expose: true
             type: string
@@ -40,3 +37,7 @@ AppBundle\Entity\Business:
         workingDays:
             expose: true
             type: array
+    virtual_properties:
+        getMainAddress:
+            serialized_name: main_address
+            type: AppBundle\Entity\Address

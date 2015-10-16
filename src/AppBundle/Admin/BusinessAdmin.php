@@ -2,10 +2,13 @@
 namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+
+use Knp\Menu\ItemInterface as MenuItemInterface;
 
 class BusinessAdmin extends Admin
 {
@@ -76,5 +79,25 @@ class BusinessAdmin extends Admin
             ->add('website')
             ->add('phone');
 
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
+        }
+        $admin = $this->isChild() ? $this->getParent() : $this;
+        $id = $admin->getRequest()->get('id');
+        $menu->addChild(
+            'Edit business',
+            $admin->generateMenuUrl('edit', array('id' => $id))
+        );
+        $menu->addChild(
+            'Address list',
+            $admin->generateMenuUrl('sonata.admin.address.list', array('id' => $id))
+        );
     }
 }
