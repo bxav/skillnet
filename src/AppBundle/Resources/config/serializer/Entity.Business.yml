@@ -4,42 +4,55 @@ AppBundle\Entity\Business:
         id:
             expose: true
             type: integer
+            groups: [read, write]
         name:
             expose: true
             type: string
+            groups: [read, write]
         website:
             expose: true
             type: string
+            groups: [read, write]
         phone:
             expose: true
             type: string
+            groups: [read, write]
         email:
             expose: true
             type: string
+            groups: [read, write]
         mainService:
             expose: true
             type: string
+            groups: [read, write]
         availableBrands:
             expose: true
             type: string
+            groups: [read, write]
         paymentMethods:
             expose: true
             type: string
+            groups: [read, write]
         image:
             expose: true
             type: AppBundle\Entity\Image
+            groups: [read]
         description:
             expose: true
             type: string
+            groups: [read, write]
         disponibilityTimeSlot:
             expose: true
             type: integer
+            groups: [read, write]
         slug:
             expose: true
             type: string
+            groups: [read, write]
         workingDays:
             expose: true
             type: array
+            groups: [read, write]
     virtual_properties:
         getMainAddress:
             serialized_name: main_address

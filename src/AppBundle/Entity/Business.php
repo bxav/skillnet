@@ -280,7 +280,7 @@ class Business
     /**
      * @param mixed $image
      */
-    public function setImage($image)
+    public function setImage(Image $image)
     {
         $this->image = $image;
     }

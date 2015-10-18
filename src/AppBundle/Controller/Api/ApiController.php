@@ -47,13 +47,16 @@ Abstract class ApiController extends FOSRestController
                 $getterMethod = $setterMethod;
                 $getterMethod[0] = 'g';
                 if (method_exists($object, $getterMethod) && method_exists($object->{$getterMethod}(), 'getId')) {
-                    try {
+                    if (!is_null($method->getParameters()[0]->getClass())) {
                         $repository = $method->getParameters()[0]->getClass()->getName();
-                    } catch (\Exception $e) {
-                        //todo find out why it doen't catch the FatalErrorException
+                    } else {
                         throw new \Exception("Method $setterMethod not typed");
                     }
-                    $object->{$setterMethod}($this->getDoctrine()->getRepository($repository)->find($object->{$getterMethod}()->getId()));
+                    if (method_exists($object->{$getterMethod}(), 'getId') && !is_null($object->{$getterMethod}()->getId())) {
+                        $object->{$setterMethod}($this->getDoctrine()->getRepository($repository)->find($object->{$getterMethod}()->getId()));
+                    } else {
+                        throw new \Exception("Method getId not declared or return null");
+                    }
                 }
             }
         }
