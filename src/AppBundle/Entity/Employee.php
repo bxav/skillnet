@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use AppBundle\Model\UserTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Hateoas\Configuration\Annotation as Hateoas;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 
@@ -14,12 +13,6 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  *
  * @ORM\Table(name="employee")
  * @ORM\Entity
- * @Hateoas\Relation("self", href = "expr('/api/employees/' ~ object.getId())")
- * @Hateoas\Relation(
- *     "business",
- *     href = "expr('/api/businesses/' ~ object.getBusiness().getId())",
- *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBusiness() === null)")
- * )
  */
 class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
 {

@@ -24,6 +24,7 @@ class SetRealPathFile
 
         if ($entity instanceof Image) {
             //todo extract hosting path
+
             $entity->setHost($this->host . '/media/image');
         }
     }

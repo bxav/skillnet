@@ -40,3 +40,7 @@ AppBundle\Entity\Employee:
         workingDays:
             expose: true
             type: array
+    relations:
+        -
+            rel: self
+            href: expr('/api/employees/' ~ object.getId())
