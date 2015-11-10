@@ -1,13 +1,9 @@
 AppBundle\Entity\Customer:
     john:
-        Username: john
-        PlainPassword: john
+        Lastname: <lastname()>
         Firstname: john
-        Lastname: doe
-        Roles: [ROLE_CUSTOMER]
+        User(unique): @user*
     cus{1..5}:
-        Username: <firstname()>
-        PlainPassword: customer
         Firstname: <firstname()>
         Lastname: <lastname()>
-        Roles: [ROLE_CUSTOMER]
+        User(unique): @user*
