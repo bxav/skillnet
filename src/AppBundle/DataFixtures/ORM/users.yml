@@ -3,6 +3,10 @@ AppBundle\Entity\User:
         Username: super
         PlainPassword: super
         Roles: [ROLE_SUPER_ADMIN]
+    charles:
+        Username: charles
+        PlainPassword: charles
+        Roles: [ROLE_API]
     user{1..25}:
         Username(unique): <firstname()>
         PlainPassword: user

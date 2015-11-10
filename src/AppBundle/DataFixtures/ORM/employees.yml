@@ -5,8 +5,8 @@ AppBundle\Entity\Employee:
         Lastname: <lastname()>
         business: @biz*
         services: 5x @service*
-    charles:
-        User(unique): @user*
+    employee:
+        User(unique): @charles
         Firstname: Charles
         Lastname: <lastname()>
         shortDescription: Il est coiffeur depuis plus de 20ans et sa spécialité c’est les coupes et les chignons. Ce qu’il aime, c’est que chacun de ses clients repartent avec le sourire. Il est à la tête de son salon depuis déjà 10 ans et sa clef du succès c’est un coup de ciseau précis que beaucoup lui envient.
