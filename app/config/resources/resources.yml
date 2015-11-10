@@ -1,0 +1,54 @@
+sylius_resource:
+    resources:
+        app.business:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\Business
+        app.booking:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\Booking
+                repository: AppBundle\Entity\BookingRepository
+        app.user:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\User
+        app.employee:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\Employee
+                controller: AppBundle\Controller\Api\EmployeeController
+        app.customer:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\Customer
+        app.service:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\Service
+                repository: AppBundle\Entity\ServiceRepository
+        app.personalized_service:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Entity\PersonalizedService
+        app.availability:
+            driver: doctrine/orm
+            object_manager: default
+            templates: App:User
+            classes:
+                model: AppBundle\Model\Availability
+                controller: AppBundle\Controller\Api\AvailabilityController

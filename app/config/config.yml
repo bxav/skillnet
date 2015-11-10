@@ -2,7 +2,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: forms.yml }
     - { resource: admin.yml }
+    - { resource: resources/resources.yml }
 
 framework:
     #esi:             ~
@@ -93,7 +95,7 @@ sonata_admin:
 jms_serializer:
     handlers:
         datetime:
-            default_format: "Y-m-d\TH:i:s.uO" # ISO8601
+            default_format: "Y-m-d\TH:i:sO" # ISO8601
             default_timezone: "UTC"
 
 fos_rest:

@@ -14,10 +14,8 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  * @ORM\Table(name="employee")
  * @ORM\Entity
  */
-class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
+class Employee
 {
-
-    use UserTrait;
 
     /**
      * @ORM\Id
@@ -63,13 +61,16 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
     protected $business;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Service")
-     * @ORM\JoinTable(name="employees_services",
-     *      joinColumns={@ORM\JoinColumn(name="employee_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="service_id", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToMany(targetEntity="Service", inversedBy="employees")
+     * @ORM\JoinTable(name="employees_services")
      **/
     protected $services;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="employee")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    protected $user;
 
     /**
      * @ORM\Column(type="array")
@@ -86,7 +87,6 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
 
     public function __construct()
     {
-        $this->initUser();
         $this->services = new ArrayCollection();
     }
 
@@ -232,6 +232,24 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
         return $this->services;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
+
     public function setWorkingHoursByDay($dayName, $workingHours)
     {
         $startWorkingHour = explode(":", $workingHours[0]);
@@ -279,10 +297,9 @@ class Employee implements \AppBundle\Model\UserInterface, EquatableInterface
         $this->workingDays = $workingDays;
     }
 
-
     public function __toString()
     {
-        return (string) $this->getUsername();
+        return (string) $this->getUser()->getUsername();
     }
 
 }

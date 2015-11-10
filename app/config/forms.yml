@@ -1,0 +1,47 @@
+services:
+    app.form.type.image:
+        class: AppBundle\Form\Type\ImageType
+        tags:
+            - { name: form.type, alias: image }
+
+    app.form.type.api.business:
+        class: AppBundle\Form\Type\Api\BusinessType
+        arguments: ['AppBundle\Entity\Business']
+        tags:
+            - { name: form.type, alias: app_api_business }
+
+    app.form.type.api.servicce:
+        class: AppBundle\Form\Type\Api\ServiceType
+        arguments: ['AppBundle\Entity\Service']
+        tags:
+            - { name: form.type, alias: app_api_service }
+
+    app.form.type.api.personalized_servicce:
+        class: AppBundle\Form\Type\Api\PersonalizedServiceType
+        arguments: ['AppBundle\Entity\PersonalizedServicce']
+        tags:
+            - { name: form.type, alias: app_api_personalized_servicce }
+
+    app.form.type.api.booking:
+        class: AppBundle\Form\Type\Api\BookingType
+        arguments: ['AppBundle\Entity\Booking']
+        tags:
+            - { name: form.type, alias: app_api_booking }
+
+    app.form.type.api.user:
+        class: AppBundle\Form\Type\Api\UserType
+        arguments: ['AppBundle\Entity\User']
+        tags:
+            - { name: form.type, alias: app_api_user }
+
+    app.form.type.api.employee:
+        class: AppBundle\Form\Type\Api\EmployeeType
+        arguments: ['AppBundle\Entity\Employee']
+        tags:
+            - { name: form.type, alias: app_api_employee }
+
+    app.form.type.api.customer:
+        class: AppBundle\Form\Type\Api\CustomerType
+        arguments: ['AppBundle\Entity\customer']
+        tags:
+            - { name: form.type, alias: app_api_customer }

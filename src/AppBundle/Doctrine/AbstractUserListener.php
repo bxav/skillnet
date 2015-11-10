@@ -4,6 +4,7 @@ namespace AppBundle\Doctrine;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Employee;
+use AppBundle\Entity\User;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -71,6 +72,8 @@ abstract class AbstractUserListener implements EventSubscriber
                 $this->userManager = $this->container->get('app.user.user_manager.employee');
             } elseif ($user instanceof Customer) {
                 $this->userManager = $this->container->get('app.user.user_manager.customer');
+            } elseif ($user instanceof User) {
+                $this->userManager = $this->container->get('app.user.user_manager.user');
             }
         }
 

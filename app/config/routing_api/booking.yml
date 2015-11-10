@@ -1,0 +1,39 @@
+app_api_booking_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.booking:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            sortable: true
+            repository:
+                method:    createFilterPaginator
+                arguments: [$criteria, $sorting]
+
+app_api_booking_show:
+    path: /{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.booking:showAction
+        _format: json
+
+app_api_booking_create:
+    path: /
+    methods: [POST]
+    defaults:
+        _controller: app.controller.booking:createAction
+        _format: json
+        _sylius:
+            form: app_api_booking
+
+app_api_booking_update:
+    path: /{id}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: app.controller.booking:updateAction
+        _format: json
+        _sylius:
+            form: app_api_booking
+
+

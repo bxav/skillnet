@@ -4,9 +4,9 @@ Feature: Access to the api
     Given there is 1 business like:
       | name |
       | Haircut Master |
-    Given the following employee:
-      | username | plainPassword | roles | firstname | lastname | business |
-      | user | user | ROLE_API | marie | dupond | Haircut Master |
+    Given the following users:
+      | username | plainPassword | roles |
+      | user | user | ROLE_API |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |
@@ -17,26 +17,21 @@ Feature: Access to the api
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
-    And scope into the first element
-    And the properties exist:
-    """
-    name
-    """
 
   @reset-schema
   Scenario: List employees
-    Given there is 10 employees like:
-      | business |
-      | Haircut Master |
+    Given the following users:
+      | username | plainPassword | roles |
+      | john | john | ROLE_API |
+      | bea | bea | ROLE_API |
+    Given the following employees:
+      | business | user |
+      | Haircut Master | john |
+      | Haircut Master | bea |
     Given I prepare a GET request on "/api/businesses/1/employees"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
-    And scope into the first element
-    And the properties exist:
-    """
-    firstname
-    """
 
   Scenario: post business
     Given I specified the following request body:
@@ -47,10 +42,10 @@ Feature: Access to the api
         "phone":"0669696969",
         "email":"marie-dupond@example.com",
         "description":"lorem",
-        "disponibility_time_slot":20
+        "disponibilityTimeSlot":20
     }
     """
-    Given I prepare a POST request on "/api/businesses"
+    Given I prepare a POST request on "/api/businesses/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -64,15 +59,14 @@ Feature: Access to the api
         "website":"coif.com",
         "phone":"0669696969",
         "email":"marie-dupond@example.com",
-        "address":"10 rue les moulins",
         "description":"lorem",
-        "disponibility_time_slot":20
+        "disponibilityTimeSlot":20
     }
     """
     Given I prepare a PUT request on "/api/businesses/1"
     When I send the request
     Then print the last response
-    Then I should receive a 200 json response
+    Then I should receive a 204 response
 
   @reset-schema
   Scenario: get business
@@ -83,8 +77,14 @@ Feature: Access to the api
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
-    Then scope into the "main_address" property
-    And the properties exist:
-    """
-    address1
-    """
+
+
+  @reset-schema
+  Scenario: List services
+    Given there is 5 services like:
+      | business |
+      | Haircut Master |
+    Given I prepare a GET request on "/api/businesses/1/services"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response

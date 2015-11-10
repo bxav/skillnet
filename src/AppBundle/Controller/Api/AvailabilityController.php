@@ -2,32 +2,34 @@
 
 namespace AppBundle\Controller\Api;
 
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Routing\ClassResourceInterface;
+use Symfony\Component\HttpFoundation\Request;
 
-
-class AvailabilityController extends ApiController implements ClassResourceInterface
+class AvailabilityController extends ApiController
 {
 
     /**
-     * @ApiDoc(
-     *  resource=true,
-     *  statusCodes={
-     *      200="Returned if everything is fine"
-     *  },
-     * )
-     * @QueryParam(name="date", description="date")
-     * @QueryParam(name="service-id", requirements="\d+", description="Service's id.")
+     * @param Request $request
      *
+     * @return Response
      */
-    public function cgetAction(ParamFetcher $paramFetcher)
+    public function indexAction(Request $request)
     {
-        $date = new \DateTimeImmutable($paramFetcher->get("date"));
-        $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($paramFetcher->get('service-id'));
-        $availabilities = $this->get("app.availability.finder")->findByDateAndService($date, $service);
+        $this->isGrantedOr403('index');
 
-        return $this->createView($availabilities, 200);
+        $criteria = $this->config->getCriteria();
+
+        $date = new \DateTimeImmutable($criteria['date']);
+        $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($criteria['service']);
+
+        $resources = $this->get("app.availability.finder")->findByDateAndService($date, $service);
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setTemplateVar($this->config->getPluralResourceName())
+            ->setData($resources)
+        ;
+
+        return $this->handleView($view);
     }
 }

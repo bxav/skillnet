@@ -1,0 +1,46 @@
+app_api_business:
+    prefix:   /businesses
+    resource: business.yml
+
+app_api_booking:
+    prefix:   /bookings
+    resource: booking.yml
+
+app_api_service:
+    prefix:   /services
+    resource: service.yml
+
+app_api_availabilities:
+    prefix:   /availabilities
+    resource: availability.yml
+
+app_api_user:
+    prefix:   /users
+    resource: user.yml
+
+app_api_employee:
+    prefix:   /employees
+    resource: employee.yml
+
+app_api_current_employee_show:
+    path: /employee
+    methods: [GET]
+    defaults:
+        _controller: app.controller.employee:showAction
+        _format: json
+        _sylius:
+            criteria: {user: 'expr:service("security.context").getToken().getUser().getId()'}
+
+app_api_customer:
+    prefix:   /customers
+    resource: customer.yml
+
+app_api_current_customer_show:
+    path: /customer
+    methods: [GET]
+    defaults:
+        _controller: app.controller.customer:showAction
+        _format: json
+        _sylius:
+            criteria: {id: 'expr:service("security.context").getToken().getUser().getId()'}
+

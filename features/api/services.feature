@@ -4,30 +4,12 @@ Feature: Access to the api
     Given there is 1 business like:
       | name |
       | Haircut Master |
-    Given the following employee:
-      | username | plainPassword | roles | firstname | lastname | business |
-      | user | user | ROLE_API | marie | dupond | Haircut Master |
+    Given the following users:
+      | username | plainPassword | roles |
+      | user | user | ROLE_API |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |
-
-  @reset-schema
-  Scenario: List services
-    Given there is 5 services like:
-      | business |
-      | Haircut Master |
-    Given I prepare a GET request on "/api/businesses/1/services"
-    When I send the request
-    Then print the last response
-    Then I should receive a 200 json response
-    And scope into the first element
-    And the properties exist:
-    """
-    type
-    duration
-    description
-    price
-    """
 
   @reset-schema
   Scenario: post service
@@ -37,16 +19,17 @@ Feature: Access to the api
         "type":"Brushing",
         "duration":45,
         "description":"lorem",
-        "price":20.00
+        "price":20.00,
+        "business": 1
     }
     """
-    Given I prepare a POST request on "/api/businesses/1/services"
+    Given I prepare a POST request on "/api/services/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
 
   @reset-schema
-  Scenario: put business
+  Scenario: patch business
     Given there is 1 services like:
       | business | type | duration |
       | Haircut Master | hair | 45 |
@@ -58,7 +41,7 @@ Feature: Access to the api
         "price":20.00
     }
     """
-    Given I prepare a PUT request on "/api/businesses/1/services/1"
+    Given I prepare a PATCH request on "/api/services/1"
     When I send the request
     Then print the last response
-    Then I should receive a 200 json response
+    Then I should receive a 204 response

@@ -1,0 +1,57 @@
+app_api_business_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.business:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            sortable: true
+
+app_api_business_show:
+    path: /{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.business:showAction
+        _format: json
+
+app_api_business_create:
+    path: /
+    methods: [POST]
+    defaults:
+        _controller: app.controller.business:createAction
+        _format: json
+        _sylius:
+            form: app_api_business
+
+app_api_business_update:
+    path: /{id}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: app.controller.business:updateAction
+        _format: json
+        _sylius:
+            form: app_api_business
+
+app_api_business_employee_index:
+    path: /{id}/employees
+    methods: [GET]
+    defaults:
+        _controller: app.controller.employee:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            criteria: { business: $id }
+            sortable: true
+
+app_api_business_service_index:
+    path: /{id}/services
+    methods: [GET]
+    defaults:
+        _controller: app.controller.service:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            criteria: { business: $id }
+            sortable: true
+

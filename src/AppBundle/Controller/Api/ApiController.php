@@ -2,14 +2,13 @@
 
 namespace AppBundle\Controller\Api;
 
-
-use FOS\RestBundle\Controller\FOSRestController;
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializationContext;
+use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
 
-Abstract class ApiController extends FOSRestController
+Abstract class ApiController extends ResourceController
 {
     /**
      * The class name managed by the controller class.
@@ -18,6 +17,9 @@ Abstract class ApiController extends FOSRestController
      */
     protected $class = '';
 
+    /**
+     * @deprecated
+     */
     protected function createView($object, $code)
     {
         $view = $this->view($object, $code);
@@ -25,6 +27,9 @@ Abstract class ApiController extends FOSRestController
         return $this->handleView($view);
     }
 
+    /**
+     * @deprecated
+     */
     protected function hydrateWithRequest(Request $request, $type)
     {
         $data = $request->getContent();
@@ -35,7 +40,7 @@ Abstract class ApiController extends FOSRestController
     }
 
     /**
-     * Todo find a better way or wait for an improvement on serializer and doctrine
+     * @deprecated
      */
     protected function resolvePartialNestedEntity($object)
     {
@@ -62,6 +67,9 @@ Abstract class ApiController extends FOSRestController
         }
     }
 
+    /**
+     * @deprecated
+     */
     protected function patchWithSameTypeObject($objectToPatch, $object)
     {
         $class = new \ReflectionClass(get_class($objectToPatch));
@@ -80,11 +88,17 @@ Abstract class ApiController extends FOSRestController
 
     }
 
+    /**
+     * @deprecated
+     */
     protected function deserializeRequest(Request $request)
     {
         return json_decode($request->getContent(), true);
     }
 
+    /**
+     * @deprecated
+     */
     protected function persistAndFlush($object)
     {
         $em = $this->getDoctrine()->getManager();
@@ -92,6 +106,9 @@ Abstract class ApiController extends FOSRestController
         $em->flush();
     }
 
+    /**
+     * @deprecated
+     */
     protected function post(Request $request, $inject = null) {
         $object = $this->hydrateWithRequest($request, $this->getClass());
 
@@ -112,6 +129,9 @@ Abstract class ApiController extends FOSRestController
         return $this->createView($object, 201);
     }
 
+    /**
+     * @deprecated
+     */
     protected function postUser(Request $request, $userManager) {
         $user = $userManager->createUser();
 
@@ -127,6 +147,9 @@ Abstract class ApiController extends FOSRestController
         return $this->createView($user, 201);
     }
 
+    /**
+     * @deprecated
+     */
     protected function put(Request $request, $object) {
         $objectFromRequest = $this->hydrateWithRequest($request, $this->getClass());
 
@@ -139,6 +162,9 @@ Abstract class ApiController extends FOSRestController
         return $this->createView($updatedObject, 200);
     }
 
+    /**
+     * @deprecated
+     */
     protected function putUser(Request $request, $user, $userManager) {
         $userFromRequest = $this->hydrateWithRequest($request, $this->getClass());
         $this->resolvePartialNestedEntity($userFromRequest);
@@ -158,6 +184,9 @@ Abstract class ApiController extends FOSRestController
         $this->class = $class;
     }
 
+    /**
+     * @deprecated
+     */
     protected function getClass() {
         if (is_null($this->class)) {
             throw new \Exception("Class not set");

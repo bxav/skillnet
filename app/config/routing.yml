@@ -1,6 +1,6 @@
 _api:
     prefix:   /api
-    resource: routing_api.yml
+    resource: routing_api/main.yml
 
 
 app_api_doc:

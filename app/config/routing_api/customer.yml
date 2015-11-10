@@ -1,0 +1,70 @@
+app_api_customer_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.customer:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            sortable: true
+
+app_api_customer_show:
+    path: /{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.customer:showAction
+        _format: json
+
+app_api_customer_create:
+    path: /
+    methods: [POST]
+    defaults:
+        _controller: app.controller.customer:createAction
+        _format: json
+        _sylius:
+            form: app_api_customer
+
+app_api_customer_update:
+    path: /{id}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: app.controller.customer:updateAction
+        _format: json
+        _sylius:
+            form: app_api_customer
+
+app_api_customer_personalized_service_index:
+    path: /{id}/personalized-services
+    methods: [GET]
+    defaults:
+        _controller: app.controller.personalized_service:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            sortable: true
+            criteria: {customer: $id, service: $service }
+
+app_api_customer_personalized_service_show:
+    path: /{customer}/personalized-services/{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.personalized_service:showAction
+        _format: json
+
+app_api_customer_personalized_service_create:
+    path: /{customer}/personalized-services
+    methods: [POST]
+    defaults:
+        _controller: app.controller.personalized_service:createAction
+        _format: json
+        _sylius:
+            form: app_api_personalized_service
+
+app_api_customer_personalized_service_update:
+    path: /{customer}/personalized-services/{service}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: app.controller.personalized_service:updateAction
+        _format: json
+        _sylius:
+            form: app_api_personalized_service

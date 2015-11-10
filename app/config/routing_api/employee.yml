@@ -1,0 +1,54 @@
+app_api_employee_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.employee:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            sortable: true
+
+app_api_employee_show:
+    path: /{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.employee:showAction
+        _format: json
+
+app_api_employee_create:
+    path: /
+    methods: [POST]
+    defaults:
+        _controller: app.controller.employee:createAction
+        _format: json
+        _sylius:
+            form: app_api_employee
+
+app_api_employee_image_create:
+    path: /
+    methods: [POST]
+    defaults:
+        _controller: app.controller.employee:postImagesAction
+        _format: json
+
+app_api_employee_update:
+    path: /{id}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: app.controller.employee:updateAction
+        _format: json
+        _sylius:
+            form: app_api_employee
+
+app_api_employee_service_index:
+    path: /{employee}/services
+    methods: [GET]
+    defaults:
+        _controller: app.controller.service:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            sortable: true
+            repository:
+                method:    createByEmployeePaginator
+                arguments: [$employee, $sorting]

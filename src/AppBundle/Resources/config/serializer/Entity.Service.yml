@@ -16,3 +16,6 @@ AppBundle\Entity\Service:
         description:
             expose: true
             type: string
+        business:
+            expose: true
+            type: AppBundle\Entity\Business

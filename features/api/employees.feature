@@ -4,12 +4,16 @@ Feature: Access to the api
     Given there is 1 business like:
       | name |
       | Haircut Master |
+    Given the following users:
+      | username | plainPassword | roles |
+      | user | user | ROLE_API |
+      | marie | marie | ROLE_API |
     Given the following employee:
-      | username | plainPassword | roles | firstname | lastname | business |
-      | user | user | ROLE_API | marie | dupond | Haircut Master |
+      | user | firstname | lastname | business |
+      | marie | marie | dupond | Haircut Master |
     Given I specified the following request http basic credentials:
-      | username | user |
-      | password | user |
+      | username | marie |
+      | password | marie |
 
   @reset-schema
   Scenario: Get employee
@@ -38,47 +42,49 @@ Feature: Access to the api
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
-    And scope into the first element
-    And the properties exist:
-    """
-    type
-    duration
-    description
-    price
-    """
 
   @reset-schema
   Scenario: Post employee
     Given I specified the following request body:
     """
     {
-        "username":"bob",
-        "plain_password":"toto",
         "firstname":"bob",
         "lastname":"duff",
-        "business":{"id":1}
+        "business": 1,
+        "user": 1
     }
     """
-    Given I prepare a POST request on "/api/employees"
+    Given I prepare a POST request on "/api/employees/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
 
   @reset-schema
-  Scenario: put employee
+  Scenario: patch employee
     Given there is 1 employee like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | user | firstname | lastname |
+      | user | John | Duff |
     Given I specified the following request body:
     """
     {
-        "username":"bob",
         "firstname":"bob",
-        "lastname":"duff",
-        "email":"janne@example.com"
+        "lastname":"duff"
     }
     """
-    Given I prepare a PUT request on "/api/employees/1"
+    Given I prepare a PATCH request on "/api/employees/1"
+    When I send the request
+    Then print the last response
+    Then I should receive a 204 response
+
+
+  Scenario: Get current employee
+    Given I prepare a GET request on "/api/employee"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
+    And the properties exist:
+    """
+    id
+    firstname
+    lastname
+    """

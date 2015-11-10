@@ -4,9 +4,10 @@ Feature: Access to the api
     Given there is 1 business like:
       | name |
       | Haircut Master |
-    Given the following employee:
-      | username | plainPassword | roles | firstname | lastname | business |
-      | user | user | ROLE_API | marie | dupond | Haircut Master |
+    Given the following users:
+      | username | plainPassword | roles |
+      | user | user | ROLE_API |
+      | marie | marie | ROLE_API |
     Given I specified the following request http basic credentials:
       | username | user |
       | password | user |
@@ -14,8 +15,8 @@ Feature: Access to the api
   @reset-schema
   Scenario: Get customer
     Given there is 1 customer like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | user | firstname | lastname |
+      | user | John | Duff |
     Given I prepare a GET request on "/api/customers/1"
     When I send the request
     Then print the last response
@@ -24,23 +25,19 @@ Feature: Access to the api
     """
     firstname
     lastname
-    username
     """
 
-
+  @reset-schema
   Scenario: Post customer
     Given I specified the following request body:
     """
     {
-        "username":"bob",
-        "plain_password":"toto",
-        "enabled":true,
         "firstname":"bob",
         "lastname":"duff",
-        "email":"janne@example.com"
+        "user": 1
     }
     """
-    Given I prepare a POST request on "/api/customers"
+    Given I prepare a POST request on "/api/customers/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -48,50 +45,57 @@ Feature: Access to the api
   @reset-schema
   Scenario: put customer
     Given there is 1 customer like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | user | firstname | lastname |
+      | user | John | Duff |
     Given I specified the following request body:
     """
     {
-        "username":"bob",
         "firstname":"bob",
-        "lastname":"duff",
-        "email":"janne@example.com"
+        "lastname":"duff"
     }
     """
     Given I prepare a PUT request on "/api/customers/1"
     When I send the request
     Then print the last response
-    Then I should receive a 200 json response
-
-
+    Then I should receive a 204 response
 
   @reset-schema
   Scenario: Get personalized services by service
     Given there is 1 customer like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | user | firstname | lastname |
+      | user | John | Duff |
     And the following services:
       | business | duration | type |
       | Haircut Master | 30 | Coiffure |
     And the following personalizedServices:
       | duration | customer | service |
-      | 30 | customer | Coiffure |
-    Given I prepare a GET request on "/api/customers/1/personalized-services?service-id=1"
+      | 30 | John | Coiffure |
+    Given I specified the following request queries:
+      | service | 1 |
+    Given I prepare a GET request on "/api/customers/1/personalized-services"
     When I send the request
     Then print the last response
-    Then I should receive a 200 json response
-    And the properties exist:
-    """
-    duration
-    price
-    """
+
+  @reset-schema
+  Scenario: Get personalized services by id
+    Given there is 1 customer like:
+      | user | firstname | lastname |
+      | user | John | Duff |
+    And the following services:
+      | business | duration | type |
+      | Haircut Master | 30 | Coiffure |
+    And the following personalizedServices:
+      | duration | customer | service |
+      | 30 | John | Coiffure |
+    Given I prepare a GET request on "/api/customers/1/personalized-services/1"
+    When I send the request
+    Then print the last response
 
   @reset-schema
   Scenario: Post personalized service
     Given there is 1 customer like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | user | firstname | lastname |
+      | user | John | Duff |
     And the following services:
     | business | duration | type |
     | Haircut Master | 30 | Coiffure |
@@ -100,7 +104,8 @@ Feature: Access to the api
     {
         "duration": 25,
         "price": 10.00,
-        "service":{"id":1}
+        "service": 1,
+        "customer": 1
     }
     """
     Given I prepare a POST request on "/api/customers/1/personalized-services"
@@ -109,16 +114,16 @@ Feature: Access to the api
     Then I should receive a 201 json response
 
   @reset-schema
-  Scenario: Put personalized service
+  Scenario: Patch personalized service
     Given there is 1 customer like:
-      | username | firstname | lastname |
-      | customer | John | Duff |
+      | user | firstname | lastname |
+      | user | John | Duff |
     And the following services:
       | business | duration | type |
       | Haircut Master | 30 | Coiffure |
     And there is 1 PersonalizedService like:
       | customer | service | price | duration |
-      | customer | Coiffure | 10 | 10 |
+      | John | Coiffure | 10 | 10 |
     And I specified the following request body:
     """
     {
@@ -126,7 +131,7 @@ Feature: Access to the api
         "price": 30.00
     }
     """
-    Given I prepare a Put request on "/api/customers/1/personalized-services/1"
+    Given I prepare a Patch request on "/api/customers/1/personalized-services/1"
     When I send the request
     Then print the last response
-    Then I should receive a 200 json response
+    Then I should receive a 204 response

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ServiceRepository")
  */
 class Service
 {
@@ -46,6 +47,11 @@ class Service
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      */
     protected $business;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="services")
+     **/
+    protected $employees;
 
     /**
      * @return mixed

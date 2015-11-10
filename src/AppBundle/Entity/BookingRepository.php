@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
-
+use Pagerfanta\PagerfantaInterface;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class BookingRepository extends EntityRepository
 {
@@ -33,5 +33,39 @@ class BookingRepository extends EntityRepository
             ->getQuery();
 
         return $query->getResult();
+    }
+
+    /**
+     * Create filter paginator.
+     *
+     * @param array $criteria
+     * @param array $sorting
+     *
+     * @return PagerfantaInterface
+     */
+    public function createFilterPaginator($criteria = array(), $sorting = array())
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+
+        if (!empty($criteria['employee'])) {
+            $queryBuilder
+                ->andWhere($queryBuilder->expr()->eq('b.employee', ':employee'))
+                ->setParameter('employee', $criteria['employee'])
+            ;
+        }
+
+        if (!empty($criteria['customer'])) {
+            $queryBuilder
+                ->andWhere($queryBuilder->expr()->eq('b.customer', ':customer'))
+                ->setParameter('customer', $criteria['customer'])
+            ;
+        }
+
+        return $this->getPaginator($queryBuilder);
+    }
+
+    protected function getAlias()
+    {
+        return 'b';
     }
 }

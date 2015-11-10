@@ -13,11 +13,7 @@ AppBundle\Entity\Customer:
             expose: true
             type: string
             groups: [read, write]
-        username:
+        user:
             expose: true
-            type: string
-            groups: [read, write]
-        plainPassword:
-            expose: true
-            type: string
+            type: AppBundle\Entity\User
             groups: [read, write]

@@ -4,11 +4,6 @@ parameters:
     app.user.success_handler.class: AppBundle\Authentication\SuccessHandler
 
 services:
-    app.form.type.image:
-        class: AppBundle\Form\Type\ImageType
-        tags:
-            - { name: form.type, alias: image }
-
     app.listener.image.post_load:
         class: AppBundle\EventListener\SetRealPathFile
         arguments: [@request_stack]
@@ -37,6 +32,18 @@ services:
         class: AppBundle\Security\UserProvider
         arguments:
             - @app.user.user_manager.customer
+
+    app.user.user_provider:
+        class: AppBundle\Security\UserProvider
+        arguments:
+            - @app.user.user_manager.user
+
+    app.user.user_manager.user:
+        class: AppBundle\Doctrine\UserManager
+        arguments:
+            - @security.encoder_factory
+            - @doctrine.orm.default_entity_manager
+            - AppBundle\Entity\User
 
     app.user.user_manager.customer:
         class: AppBundle\Doctrine\UserManager

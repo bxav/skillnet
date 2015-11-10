@@ -25,13 +25,9 @@ AppBundle\Entity\Employee:
             expose: true
             type: AppBundle\Entity\Image
             groups: [read]
-        username:
+        user:
             expose: true
-            type: string
-            groups: [read, write]
-        plainPassword:
-            expose: true
-            type: string
+            type: AppBundle\Entity\User
             groups: [read, write]
         business:
             expose: true

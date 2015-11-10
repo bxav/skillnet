@@ -18,10 +18,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @Hateoas\Relation("self", href = "expr('/api/customers/' ~ object.getId())")
  */
-class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
+class Customer
 {
-    use UserTrait;
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -43,11 +41,11 @@ class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
      */
     protected $lastname;
 
-    public function __construct()
-    {
-        $this->initUser();
-        $this->services = new ArrayCollection();
-    }
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="employee")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    protected $user;
 
     /**
      * @return mixed
@@ -97,8 +95,25 @@ class Customer implements \AppBundle\Model\UserInterface, EquatableInterface
         $this->lastname = $lastname;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
     public function __toString() {
-        return (string) $this->getUsername();
+        return (string) $this->getUser()->getUsername();
     }
 
 }
