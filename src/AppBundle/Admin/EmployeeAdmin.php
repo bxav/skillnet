@@ -29,32 +29,11 @@ class EmployeeAdmin extends Admin
         }
 
         $formMapper
-            ->add('username')
-            ->add('roles' ,'choice' ,array('choices' => $this->getRolesNames(),
-                'required'  => true,
-                'expanded' => true,
-                'mapped' => true,
-                'multiple' => true
-            ))
-            ->add('plainPassword', 'text', ['required' => false])
             ->add('firstname')
             ->add('lastname')
             ->add('shortDescription')
             ->add('speciality')
             ->end();
-        if (!$this->hasParentFieldDescription()) {
-            $formMapper->with('Image', ['class' => 'col-md-12'])
-                ->add('image', 'image', [
-                    'by_reference' => false,
-                    'cascade_validation' => true
-                ],
-                    [
-                        'edit' => 'inline',
-                        'inline' => 'table'
-                    ]
-                )
-                ->end();
-        }
 
         if (!$this->hasParentFieldDescription()) {
             $em = $this->modelManager->getEntityManager('AppBundle\Entity\Service');
@@ -85,7 +64,6 @@ class EmployeeAdmin extends Admin
         $datagridMapper
             ->add('firstname')
             ->add('lastname')
-            ->add('username')
             ->add('shortDescription')
             ->add('speciality');
     }
@@ -94,8 +72,7 @@ class EmployeeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('username', null)
-            ->add('email')
+            ->addIdentifier('id', null)
             ->add('firstname')
             ->add('lastname')
             ->add('shortDescription')

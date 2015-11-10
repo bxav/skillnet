@@ -57,3 +57,12 @@ services:
             - ~
             - AppBundle\Entity\Customer
             - ~
+
+    sonata.admin.user:
+        class: AppBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Business", label: "User" }
+        arguments:
+            - ~
+            - AppBundle\Entity\User
+            - ~

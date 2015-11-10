@@ -8,36 +8,49 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CustomerAdmin extends Admin
+class UserAdmin extends Admin
 {
 
-    protected $baseRoutePattern = 'customer';
+    protected $baseRoutePattern = 'user';
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
 
         $formMapper
-            ->with('General')
-            ->add('firstname')
-            ->add('lastname')
+            ->with('General');
+
+        $formMapper
+            ->add('username')
+            ->add('roles' ,'choice' ,array('choices' => $this->getRolesNames(),
+                'required'  => true,
+                'expanded' => true,
+                'mapped' => true,
+                'multiple' => true
+            ))
+            ->add('plainPassword', 'text', ['required' => false])
             ->end();
+
     }
 
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstname')
-            ->add('lastname');
+            ->add('username');
     }
 
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id', null)
-            ->add('firstname')
-            ->add('lastname');
+            ->addIdentifier('username', null);
+    }
+
+    public function getRolesNames(){
+        return [
+            "ROLE_EMPLOYEE" => "Employee",
+            "ROLE_MANAGER" => "Manager",
+        ];
     }
 }
