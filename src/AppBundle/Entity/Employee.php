@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  * @ORM\Table(name="employee")
  * @ORM\Entity
  */
-class Employee
+class Employee extends \AppBundle\User\Model\Employee
 {
 
     /**
@@ -29,14 +29,14 @@ class Employee
      *
      * @ORM\Column(type="string", length=255)
      */
-    protected $firstname;
+    protected $firstName;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255)
      */
-    protected $lastname;
+    protected $lastName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -87,55 +87,8 @@ class Employee
 
     public function __construct()
     {
+        parent::__construct();
         $this->services = new ArrayCollection();
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param string $firstname
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param string $lastname
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
     }
 
     /**
@@ -231,24 +184,6 @@ class Employee
     {
         return $this->services;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
-
-
 
     public function setWorkingHoursByDay($dayName, $workingHours)
     {

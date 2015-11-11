@@ -21,7 +21,7 @@ class FeatureContext implements KernelAwareContext, SnippetAcceptingContext
          * @var Doctrine\ORM\EntityManager $em
          */
         $em = $this->getService('doctrine.orm.entity_manager');
-        $employee = $em->getRepository("AppBundle:Employee")->findOneByFirstname($firstname);
+        $employee = $em->getRepository("AppBundle:Employee")->findOneByFirstName($firstname);
         foreach($table->getRow(0) as $row) {
             var_dump($row);
             $service = $em->getRepository("AppBundle:Service")->findOneByType($row);

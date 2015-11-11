@@ -14,7 +14,7 @@ namespace AppBundle\Doctrine\Orm;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
-use AppBundle\Model\UserInterface;
+use AppBundle\User\Model\UserInterface;
 use AppBundle\Doctrine\AbstractUserListener;
 
 /**

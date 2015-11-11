@@ -3,9 +3,9 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Model\UserTrait;
+use AppBundle\User\Model\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
@@ -14,10 +14,8 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User implements \AppBundle\Model\UserInterface, EquatableInterface
+class User extends \AppBundle\User\Model\User implements EquatableInterface
 {
-
-    use UserTrait;
 
     /**
      * @ORM\Id
@@ -26,6 +24,26 @@ class User implements \AppBundle\Model\UserInterface, EquatableInterface
      */
     protected $id;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $username;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $password;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $salt;
+
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $roles  = array('ROLE_API');
 
     /**
      * @ORM\OneToOne(targetEntity="Employee", mappedBy="user")
@@ -39,60 +57,107 @@ class User implements \AppBundle\Model\UserInterface, EquatableInterface
 
     public function __construct()
     {
-        $this->initUser();
+        parent::__construct();
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
     }
 
     /**
-     * @param mixed $id
+     * Removes sensitive data from the user.
      */
-    public function setId($id)
+    public function eraseCredentials()
     {
-        $this->id = $id;
+        $this->plainPassword = null;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**
-     * @return mixed
+     * @param mixed $username
      */
-    public function getId()
+    public function setUsername($username)
     {
-        return $this->id;
+        $this->username = $username;
     }
 
     /**
-     * @return mixed
+     * @param mixed $password
      */
-    public function getEmployee()
+    public function setPassword($password)
     {
-        return $this->employee;
+        $this->password = $password;
     }
 
     /**
-     * @param mixed $employee
+     * @param mixed $salt
      */
-    public function setEmployee(Employee $employee)
+    public function setSalt($salt)
     {
-        $this->employee = $employee;
+        $this->salt = $salt;
     }
 
     /**
-     * @return mixed
+     * @param mixed $roles
      */
-    public function getCustomer()
+    public function setRoles(array $roles)
     {
-        return $this->customer;
+        $this->roles = $roles;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
     }
 
     /**
-     * @param mixed $customer
+     * @param string $plainPassword
      */
-    public function setCustomer(Customer $customer)
+    public function setPlainPassword($plainPassword)
     {
-        $this->customer = $customer;
+        $this->plainPassword = $plainPassword;
     }
 
-    public function __toString()
+
+    public function isEqualTo(\Symfony\Component\Security\Core\User\UserInterface $user)
     {
-        return (string) $this->getUsername();
+        if (!$user instanceof \Symfony\Component\Security\Core\User\UserInterface) {
+            return false;
+        }
+
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->salt !== $user->getSalt()) {
+            return false;
+        }
+
+        if ($this->username !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -9,7 +9,7 @@ Feature: Access to the api
       | user | user | ROLE_API |
       | marie | marie | ROLE_API |
     Given the following employee:
-      | user | firstname | lastname | business |
+      | user | firstName | lastName | business |
       | marie | marie | dupond | Haircut Master |
     Given I specified the following request http basic credentials:
       | username | marie |
@@ -24,8 +24,8 @@ Feature: Access to the api
     And the properties exist:
     """
     id
-    firstname
-    lastname
+    first_name
+    last_name
     """
 
   @reset-schema
@@ -48,8 +48,8 @@ Feature: Access to the api
     Given I specified the following request body:
     """
     {
-        "firstname":"bob",
-        "lastname":"duff",
+        "firstName":"bob",
+        "lastName":"duff",
         "business": 1,
         "user": 1
     }
@@ -67,8 +67,8 @@ Feature: Access to the api
     Given I specified the following request body:
     """
     {
-        "firstname":"bob",
-        "lastname":"duff"
+        "firstName":"bob",
+        "lastName":"duff"
     }
     """
     Given I prepare a PATCH request on "/api/employees/1"
@@ -85,6 +85,6 @@ Feature: Access to the api
     And the properties exist:
     """
     id
-    firstname
-    lastname
+    first_name
+    last_name
     """

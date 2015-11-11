@@ -1,14 +1,14 @@
 AppBundle\Entity\Employee:
     super:
         User(unique): @user*
-        Firstname: <firstname()>
-        Lastname: <lastname()>
+        FirstName: <firstname()>
+        LastName: <lastname()>
         business: @biz*
         services: 5x @service*
     employee:
         User(unique): @charles
-        Firstname: Charles
-        Lastname: <lastname()>
+        FirstName: Charles
+        LastName: <lastname()>
         shortDescription: Il est coiffeur depuis plus de 20ans et sa spécialité c’est les coupes et les chignons. Ce qu’il aime, c’est que chacun de ses clients repartent avec le sourire. Il est à la tête de son salon depuis déjà 10 ans et sa clef du succès c’est un coup de ciseau précis que beaucoup lui envient.
         Image: <employeeImage()>
         business: @bea_coiffure
@@ -16,8 +16,8 @@ AppBundle\Entity\Employee:
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     sylvia:
         User(unique): @user*
-        Firstname: Sylvia
-        Lastname: <lastname()>
+        FirstName: Sylvia
+        LastName: <lastname()>
         shortDescription: Sylvia c’est le rayon de soleil du salon et elle n’a pas son pareil pour vous proposer de nouvelles couleurs pour vous relooker. Coloriste depuis 10ans elle a travaillé à Milan pour préparer les tops à monter sur les podiums et depuis elle ne suit plus les tendances mais elle les lance !
         Image: <employeeImage()>
         business: @bea_coiffure
@@ -25,8 +25,8 @@ AppBundle\Entity\Employee:
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     benoit:
         User(unique): @user*
-        Firstname: Benoit
-        Lastname: <lastname()>
+        FirstName: Benoit
+        LastName: <lastname()>
         shortDescription: Spécialité : Masseur
         Image: <employeeImage()>
         business: @beautyinstitut
@@ -34,8 +34,8 @@ AppBundle\Entity\Employee:
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     clea:
         User(unique): @user*
-        Firstname: Clea
-        Lastname: <lastname()>
+        FirstName: Clea
+        LastName: <lastname()>
         shortDescription: Spécialité : Maquillage
         Image: <employeeImage()>
         business: @beautyinstitut
@@ -43,14 +43,14 @@ AppBundle\Entity\Employee:
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
     user:
         User(unique): @user*
-        Firstname: <firstname()>
-        Lastname: <lastname()>
+        FirstName: <firstname()>
+        LastName: <lastname()>
         business: @biz1
         services: 5x @service*
     emp{1..5}:
         User(unique): @user*
-        Firstname: <firstname()>
-        Lastname: <lastname()>
+        FirstName: <firstname()>
+        LastName: <lastname()>
         business: @biz1
         services: 5x @service*
 

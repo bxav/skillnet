@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f9375d6d71a82a7bc216ac9436c95eb9",
-    "content-hash": "4fd9e0cda64020b2d94952450b78e3e8",
+    "hash": "c2e1e450d70017841e166dbf35f3b9f6",
+    "content-hash": "a5555aaedb5b4420c9a9be7d78437d31",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3954,6 +3954,76 @@
             "time": "2015-06-23 08:19:45"
         },
         {
+            "name": "sylius/user",
+            "version": "v0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/User.git",
+                "reference": "b898b0408357e963cce910b995ade4e89bdda6dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/User/zipball/b898b0408357e963cce910b995ade4e89bdda6dd",
+                "reference": "b898b0408357e963cce910b995ade4e89bdda6dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "sylius/resource": "0.15.*@dev",
+                "sylius/storage": "0.15.*@dev",
+                "symfony/security": "~2.3"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\Component\\User\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylius project",
+                    "homepage": "http://sylius.org"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "http://github.com/Sylius/Sylius/contributors"
+                },
+                {
+                    "name": "Paweł Jędrzejewski",
+                    "homepage": "http://pjedrzejewski.com"
+                },
+                {
+                    "name": "Łukasz Chruściel",
+                    "email": "lukasz.chrusciel@lakion.com"
+                },
+                {
+                    "name": "Michał Marcinkowski",
+                    "email": "michal.marcinkowski@lakion.com"
+                }
+            ],
+            "description": "User handling for PHP applications.",
+            "homepage": "http://sylius.org",
+            "keywords": [
+                "groups",
+                "login",
+                "registration",
+                "user"
+            ],
+            "time": "2015-09-07 09:58:33"
+        },
+        {
             "name": "symfony/assetic-bundle",
             "version": "v2.7.0",
             "source": {
@@ -5214,7 +5284,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/FriendlyContexts/zipball/a7b907b174ddd061db23eecd4ef16cef44663ca9",
+                "url": "https://api.github.com/repos/KnpLabs/FriendlyContexts/zipball/ef37330eb4ba791d1b4c9328ace998434a90bc11",
                 "reference": "a7b907b174ddd061db23eecd4ef16cef44663ca9",
                 "shasum": ""
             },

@@ -23,8 +23,8 @@ Feature: Access to the api
     Then I should receive a 200 json response
     And the properties exist:
     """
-    firstname
-    lastname
+    first_name
+    last_name
     """
 
   @reset-schema
@@ -32,8 +32,8 @@ Feature: Access to the api
     Given I specified the following request body:
     """
     {
-        "firstname":"bob",
-        "lastname":"duff",
+        "firstName":"bob",
+        "lastName":"duff",
         "user": 1
     }
     """
@@ -50,8 +50,8 @@ Feature: Access to the api
     Given I specified the following request body:
     """
     {
-        "firstname":"bob",
-        "lastname":"duff"
+        "firstName":"bob",
+        "lastName":"duff"
     }
     """
     Given I prepare a PUT request on "/api/customers/1"

@@ -11,8 +11,8 @@ class CustomerType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
+            ->add('firstName')
+            ->add('lastName')
             ->add('user', 'entity', [
                 'class' => 'AppBundle:User'
             ])

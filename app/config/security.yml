@@ -1,31 +1,24 @@
 security:
     providers:
-        chain_provider:
-            chain:
-                providers: [user_provider]
-        employee_provider:
-            id: app.user.employee_provider
-        customer_provider:
-            id: app.user.customer_provider
         user_provider:
             id: app.user.user_provider
 
     encoders:
-        AppBundle\Model\UserInterface: sha512
+        AppBundle\User\Model\UserInterface: sha512
 
     firewalls:
         rest_webservice:
             pattern: ^/api/.*
             stateless: true
             http_basic:
-                provider: chain_provider
+                provider: user_provider
 
         main:
             pattern: ^/
             form_login:
                 login_path: /login
                 check_path: /login_check
-                provider: chain_provider
+                provider: user_provider
                 success_handler: app.user.success_handler
             logout:       true
             anonymous:    true

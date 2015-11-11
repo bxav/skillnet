@@ -8,7 +8,7 @@ use AppBundle\Entity\User;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use AppBundle\Model\UserInterface;
+use AppBundle\User\Model\UserInterface;
 
 abstract class AbstractUserListener implements EventSubscriber
 {

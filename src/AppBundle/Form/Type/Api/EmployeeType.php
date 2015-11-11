@@ -11,8 +11,8 @@ class EmployeeType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
+            ->add('firstName')
+            ->add('lastName')
             ->add('speciality')
             ->add('shortDescription')
             ->add('business', 'entity', [
