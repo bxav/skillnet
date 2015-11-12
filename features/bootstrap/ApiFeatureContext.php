@@ -11,6 +11,28 @@ class ApiFeatureContext extends ApiContext
     protected $responsePayload;
 
     /**
+     * @Given /^I specified the following request oauth2 credentials:?$/
+     */
+    public function iSpecifiedTheFollowingOauth2Credentials(\Behat\Gherkin\Node\TableNode $credentialsTable)
+    {
+        $clientCredential = $this->get('app.oauth2.client_creator')->create();
+        //$clientCredential = json_decode($clientCredential);
+
+        $config = array(
+            'token_url' => 'http://localhost:8000/oauth/v2/token',
+            'username' => $credentialsTable->getRowsHash()['username'],
+            'password' => $credentialsTable->getRowsHash()['password'],
+            'client_id' => $clientCredential['publicId'],
+            'client_secret' => $clientCredential['secret']
+        );
+        $this
+            ->getRequestBuilder()
+            ->setCredentials($config)
+            ->addSecurityExtension(new Oauth2Extension)
+        ;
+    }
+
+    /**
      * @Then /^print the last response$/
      */
     public function printTheLastResponse()

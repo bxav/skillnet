@@ -4,7 +4,7 @@ Feature: Access to the api
     Given the following user:
       | username | plainPassword | roles |
       | user | user | ROLE_API |
-    Given I specified the following request http basic credentials:
+    Given I specified the following request oauth2 credentials:
       | username | user |
       | password | user |
 

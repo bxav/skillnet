@@ -25,6 +25,8 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
 
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),

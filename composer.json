@@ -29,6 +29,7 @@
         "hautelook/alice-bundle": "^0.2.0",
         "jms/serializer-bundle": "~0.13",
         "nelmio/api-doc-bundle": "^2.9",
+        "friendsofsymfony/oauth-server-bundle": "^1.4",
         "friendsofsymfony/rest-bundle": "^1.7",
         "sonata-project/admin-bundle": "^2.3",
         "sonata-project/doctrine-orm-admin-bundle": "^2.3",
@@ -52,6 +53,7 @@
         "behat/mink": "^1.6",
         "behat/mink-extension": "^2.0",
         "behat/mink-browserkit-driver": "^1.2",
+        "commerceguys/guzzle-oauth2-plugin": "~1.0",
         "knplabs/friendly-contexts": "dev-master",
         "cocur/slugify": "*",
         "phpspec/phpspec": "^2.3"

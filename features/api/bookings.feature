@@ -11,7 +11,7 @@ Feature: Access to the api
     Given the following employee:
       | user | firstname | lastname | business |
       | marie | marie | dupond | Haircut Master |
-    Given I specified the following request http basic credentials:
+    Given I specified the following request oauth2 credentials:
       | username | user |
       | password | user |
     Given there is 1 service like:

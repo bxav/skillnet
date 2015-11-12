@@ -33,6 +33,11 @@ services:
         arguments:
             - @app.user.user_manager.customer
 
+    app.oauth2.client_creator:
+        class: AppBundle\Api\ClientCreator
+        arguments:
+            - @fos_oauth_server.client_manager.default
+
     app.user.user_provider:
         class: AppBundle\Security\UserProvider
         arguments:
