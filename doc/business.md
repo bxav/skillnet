@@ -12,11 +12,10 @@ To browse all businesses available in the platform you can call the following GE
 
 ###Parameters
 
-
-page
-    Number of the page, by default = 1
-limit
-    Number of items to display per page
+| Parameter   |      Description      |
+|----------|:-------------:|
+| page | Number of the page, by default = 1 |
+| limit |  Number of items to display per page  |
 
 ###Response
 
@@ -26,66 +25,66 @@ Response will contain a paginated list of channels.
     STATUS: 200 OK
 
 
+```json
+{
+   "page":1,
+   "limit":10,
+   "pages":2,
+   "total":11,
+   "_links":{
+      "self":{
+         "href":"\/api\/businesses\/?page=1&limit=10"
+      },
+      "first":{
+         "href":"\/api\/businesses\/?page=1&limit=10"
+      },
+      "last":{
+         "href":"\/api\/businesses\/?page=2&limit=10"
+      },
+      "next":{
+         "href":"\/api\/businesses\/?page=2&limit=10"
+      }
+   },
+   "_embedded":{
+      "items":[
+         {
+            "id":6,
+            "name":"Haircut Master",
+            "disponibility_time_slot":15,
+            "slug":"haircut-master",
+            "working_days":{
+               "monday":[
 
-    {
-       "page":1,
-       "limit":10,
-       "pages":2,
-       "total":11,
-       "_links":{
-          "self":{
-             "href":"\/api\/businesses\/?page=1&limit=10"
-          },
-          "first":{
-             "href":"\/api\/businesses\/?page=1&limit=10"
-          },
-          "last":{
-             "href":"\/api\/businesses\/?page=2&limit=10"
-          },
-          "next":{
-             "href":"\/api\/businesses\/?page=2&limit=10"
-          }
-       },
-       "_embedded":{
-          "items":[
-             {
-                "id":6,
-                "name":"Haircut Master",
-                "disponibility_time_slot":15,
-                "slug":"haircut-master",
-                "working_days":{
-                   "monday":[
+               ],
+               "tuesday":[
 
-                   ],
-                   "tuesday":[
+               ],
+               "wednesday":[
 
-                   ],
-                   "wednesday":[
+               ],
+               "thursday":[
 
-                   ],
-                   "thursday":[
+               ],
+               "friday":[
 
-                   ],
-                   "friday":[
+               ],
+               "saturday":[
 
-                   ],
-                   "saturday":[
+               ],
+               "sunday":[
 
-                   ],
-                   "sunday":[
-
-                   ]
-                }
-             }
-          ]
-       }
-    }
-    
+               ]
+            }
+         }
+      ]
+   }
+}
+```
 
 Getting a single business
 ------------------------
 
-You can view a single channel by executing the following request:
+You can view a single business by executing the following request:
 
     GET /api/businesses/3
 
@@ -95,40 +94,41 @@ You can view a single channel by executing the following request:
 
     STATUS: 200 OK
 
+```json
+{
+   "id":3,
+   "name":"Jean CoifCoif",
+   "website":"coif.com",
+   "phone":"0669696969",
+   "email":"marie-dupond@example.com",
+   "description":"lorem",
+   "disponibility_time_slot":20,
+   "slug":"jean-coifcoif",
+   "working_days":{
+      "monday":[
 
-    {
-       "id":3,
-       "name":"Jean CoifCoif",
-       "website":"coif.com",
-       "phone":"0669696969",
-       "email":"marie-dupond@example.com",
-       "description":"lorem",
-       "disponibility_time_slot":20,
-       "slug":"jean-coifcoif",
-       "working_days":{
-          "monday":[
+      ],
+      "tuesday":[
 
-          ],
-          "tuesday":[
+      ],
+      "wednesday":[
 
-          ],
-          "wednesday":[
+      ],
+      "thursday":[
 
-          ],
-          "thursday":[
+      ],
+      "friday":[
 
-          ],
-          "friday":[
+      ],
+      "saturday":[
 
-          ],
-          "saturday":[
+      ],
+      "sunday":[
 
-          ],
-          "sunday":[
-
-          ]
-       }
-    }
+      ]
+   }
+}
+```
 
 Create an business
 ---------------
@@ -139,59 +139,54 @@ To create a new business, you can execute the following request:
 
 ###Parameters
 
-code
-    Unique code
-color
-    Color used in the backend
-enabled *(optional)*
-    Is enabled? (boolean)
-locales *(optional)*
-    Array of Locale id
-currencies *(optional)*
-    Array of Currency id
-paymentMethods *(optional)*
-    Array of PaymentMethod id
-shippingMethods *(optional)*
-    Array of ShippingMethod id
+| Parameter   |      Description      |
+|----------|:-------------:|
+| name | desc |
+| website |  desc  |
+| phone |  desc  |
+| email |  desc  |
+| description |  desc  |
+| disponibilityTimeSlot |  desc  |
 
 ###Response
 
     STATUS: 201 CREATED
 
+```json
+{
+   "id":3,
+   "name":"Jean CoifCoif",
+   "website":"coif.com",
+   "phone":"0669696969",
+   "email":"marie-dupond@example.com",
+   "description":"lorem",
+   "disponibility_time_slot":20,
+   "slug":"jean-coifcoif",
+   "working_days":{
+      "monday":[
 
-    {
-       "id":3,
-       "name":"Jean CoifCoif",
-       "website":"coif.com",
-       "phone":"0669696969",
-       "email":"marie-dupond@example.com",
-       "description":"lorem",
-       "disponibility_time_slot":20,
-       "slug":"jean-coifcoif",
-       "working_days":{
-          "monday":[
+      ],
+      "tuesday":[
 
-          ],
-          "tuesday":[
+      ],
+      "wednesday":[
 
-          ],
-          "wednesday":[
+      ],
+      "thursday":[
 
-          ],
-          "thursday":[
+      ],
+      "friday":[
 
-          ],
-          "friday":[
+      ],
+      "saturday":[
 
-          ],
-          "saturday":[
+      ],
+      "sunday":[
 
-          ],
-          "sunday":[
-
-          ]
-       }
-    }
+      ]
+   }
+}
+```
 
 Updating a business
 ------------------
@@ -206,20 +201,14 @@ You can update an existing business using PUT or PATCH method:
 
 ###Parameters
 
-code
-    Unique code
-color
-    Color used in the backend
-enabled *(optional)*
-    Is enabled? (boolean)
-locales *(optional)*
-    Array of Locale id
-currencies *(optional)*
-    Array of Currency id
-paymentMethods *(optional)*
-    Array of PaymentMethod id
-shippingMethods *(optional)*
-    Array of ShippingMethod id
+| Parameter   |      Description      |
+|----------|:-------------:|
+| name | desc |
+| website |  desc  |
+| phone |  desc  |
+| email |  desc  |
+| description |  desc  |
+| disponibilityTimeSlot |  desc  |
 
 ###Response
 
