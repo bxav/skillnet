@@ -15,6 +15,12 @@ Feature: Access to the api
       | username | marie |
       | password | marie |
 
+  Scenario: Get employees
+    Given I prepare a GET request on "/api/employees/"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+
   @reset-schema
   Scenario: Get employee
     Given I prepare a GET request on "/api/employees/1"
