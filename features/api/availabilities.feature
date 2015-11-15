@@ -36,8 +36,3 @@ Feature: Access to the api
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
-    And the properties exist:
-    """
-    09:30
-    10:15
-    """
