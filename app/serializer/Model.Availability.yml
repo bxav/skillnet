@@ -1,4 +1,4 @@
-AppBundle\Model\Availability:
+App\Availability\Model\Availability:
     exclusion_policy: ALL
     properties:
         date:

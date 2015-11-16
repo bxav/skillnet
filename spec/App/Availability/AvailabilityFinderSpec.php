@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\AppBundle\Availability;
+namespace spec\App\Availability;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\BookingRepository;
@@ -16,7 +16,7 @@ class AvailabilityFinderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('AppBundle\Availability\AvailabilityFinder');
+        $this->shouldHaveType('App\Availability\AvailabilityFinder');
     }
 
     function let(

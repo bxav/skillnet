@@ -18,20 +18,10 @@ services:
           - [setAppProUserRoles, [['ROLE_EMPLOYEE']]]
 
     app.availability.finder:
-        class: AppBundle\Availability\AvailabilityFinder
+        class: App\Availability\AvailabilityFinder
         arguments:
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Booking')
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Employee')
-
-    app.user.employee_provider:
-        class: AppBundle\Security\UserProvider
-        arguments:
-            - @app.user.user_manager.employee
-
-    app.user.customer_provider:
-        class: AppBundle\Security\UserProvider
-        arguments:
-            - @app.user.user_manager.customer
 
     app.oauth2.client_creator:
         class: AppBundle\Api\ClientCreator
@@ -39,33 +29,19 @@ services:
             - @fos_oauth_server.client_manager.default
 
     app.user.user_provider:
-        class: AppBundle\Security\UserProvider
+        class: App\User\UserProvider
         arguments:
             - @app.user.user_manager.user
 
     app.user.user_manager.user:
-        class: AppBundle\Doctrine\UserManager
+        class: App\User\Doctrine\UserManager
         arguments:
             - @security.encoder_factory
             - @doctrine.orm.default_entity_manager
             - AppBundle\Entity\User
 
-    app.user.user_manager.customer:
-        class: AppBundle\Doctrine\UserManager
-        arguments:
-            - @security.encoder_factory
-            - @doctrine.orm.default_entity_manager
-            - AppBundle\Entity\Customer
-
-    app.user.user_manager.employee:
-        class: AppBundle\Doctrine\UserManager
-        arguments:
-            - @security.encoder_factory
-            - @doctrine.orm.default_entity_manager
-            - AppBundle\Entity\Employee
-
     app.user.user_listener:
-        class: AppBundle\Doctrine\Orm\UserListener
+        class: App\User\Doctrine\Orm\UserListener
         public: false
         arguments:
             - @service_container

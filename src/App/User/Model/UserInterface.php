@@ -11,7 +11,7 @@
  * This model was inspired by FOS User-Bundle
  */
 
-namespace AppBundle\User\Model;
+namespace App\User\Model;
 
 
 interface UserInterface extends \Sylius\Component\User\Model\UserInterface

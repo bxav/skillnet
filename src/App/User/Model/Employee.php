@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\User\Model;
+namespace App\User\Model;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;

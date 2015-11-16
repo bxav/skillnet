@@ -2,9 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Model\UserTrait;
-use AppBundle\User\Model\UserInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 
@@ -14,7 +11,7 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User extends \AppBundle\User\Model\User implements EquatableInterface
+class User extends \App\User\Model\User implements EquatableInterface
 {
 
     /**

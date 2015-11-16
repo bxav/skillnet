@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Doctrine;
+namespace App\User\Doctrine;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Employee;
@@ -8,7 +8,7 @@ use AppBundle\Entity\User;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use AppBundle\User\Model\UserInterface;
+use App\User\Model\UserInterface;
 
 abstract class AbstractUserListener implements EventSubscriber
 {

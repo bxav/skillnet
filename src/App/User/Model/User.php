@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\User\Model;
+namespace App\User\Model;
 
 use Sylius\Component\User\Model\User as BaseUser;
 

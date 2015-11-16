@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Availability;
+namespace App\Availability;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Service;
-use AppBundle\Model\Availability;
+use App\Availability\Model\Availability;
 use League\Period\Period;
 
 class AvailabilityFinder

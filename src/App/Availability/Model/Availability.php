@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Model;
+namespace App\Availability\Model;
 
 class Availability
 {

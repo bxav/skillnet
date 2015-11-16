@@ -63,7 +63,7 @@
             "SymfonyStandard\\Composer::hookRootPackageInstall"
         ],
         "pre-install-cmd": [
-            "AppBundle\\Composer\\HerokuEnvironment::populateEnvironment"
+            "Composer\\HerokuEnvironment::populateEnvironment"
         ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",

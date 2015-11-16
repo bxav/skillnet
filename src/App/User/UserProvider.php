@@ -9,7 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Security;
+namespace App\User;
+
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;

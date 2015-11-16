@@ -24,7 +24,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * )
  * @Hateoas\Relation(
  *     "customer",
- *     href = "expr('/api/customers/' ~ object.getCustomer().getUsername())",
+ *     href = "expr('/api/customers/' ~ object.getCustomer().getId())",
  *     exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getCustomer() === null)")
  * )
  */
