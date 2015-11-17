@@ -44,7 +44,8 @@
         "knplabs/gaufrette": "^0.2.0",
         "knplabs/knp-gaufrette-bundle": "^0.2.0",
         "sylius/resource-bundle": "^0.15.0",
-        "sylius/user": "^0.15.0"
+        "sylius/user": "^0.15.0",
+        "sylius/rbac-bundle": "0.15.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

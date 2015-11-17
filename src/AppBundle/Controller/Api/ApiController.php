@@ -22,6 +22,7 @@ Abstract class ApiController extends ResourceController
      */
     protected function createView($object, $code)
     {
+        $this->denyAccessUnlessGranted();
         $view = $this->view($object, $code);
         $view->setSerializationContext(SerializationContext::create()->setGroups(['Default', 'read']));
         return $this->handleView($view);

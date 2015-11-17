@@ -3,6 +3,7 @@
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
+use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -118,6 +119,19 @@ class FeatureContext implements KernelAwareContext, SnippetAcceptingContext
         $entityManager = $this->getService('doctrine.orm.entity_manager');
         $purger = new ORMPurger($entityManager);
         $purger->purge();
+
+        $entityManager = $this->getService('doctrine.orm.entity_manager');
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $isMySqlDriver = $entityManager->getConnection()->getDriver() instanceof PDOMySqlDriver;
+        if ($isMySqlDriver) {
+            $entityManager->getConnection()->executeUpdate("SET foreign_key_checks = 0;");
+        }
+        $purger = new ORMPurger($entityManager);
+        $purger->purge();
+        if ($isMySqlDriver) {
+            $entityManager->getConnection()->executeUpdate("SET foreign_key_checks = 1;");
+        }
+        $entityManager->clear();
     }
 
 

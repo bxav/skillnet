@@ -4,6 +4,8 @@ Feature: Access to the api
     Given the following user:
       | username | plainPassword | roles |
       | user | user | ROLE_API |
+    Given assign to "user" authorization roles:
+      | User Manager |
     Given I specified the following request oauth2 credentials:
       | username | user |
       | password | user |

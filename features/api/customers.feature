@@ -8,6 +8,9 @@ Feature: Access to the api
       | username | plainPassword | roles |
       | user | user | ROLE_API |
       | marie | marie | ROLE_API |
+    Given assign to "user" authorization roles:
+      | Customer Manager |
+      | Personalized Service Manager |
     Given I specified the following request oauth2 credentials:
       | username | user |
       | password | user |

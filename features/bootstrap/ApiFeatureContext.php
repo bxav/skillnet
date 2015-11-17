@@ -11,6 +11,17 @@ class ApiFeatureContext extends ApiContext
     protected $responsePayload;
 
     /**
+     * @Given /^assign to "([^"]*)" authorization roles:?$/
+     */
+    public function assignToAuthorizationRoles($username, \Behat\Gherkin\Node\TableNode $roles)
+    {
+
+        shell_exec("app/console sylius:rbac:initialize");
+        $user = $this->get('app.repository.user')->findOneByUsername($username);
+        $this->assignAuthorizationRoles($user, $roles->getColumn(0));
+    }
+
+    /**
      * @Given /^I specified the following request oauth2 credentials:?$/
      */
     public function iSpecifiedTheFollowingOauth2Credentials(\Behat\Gherkin\Node\TableNode $credentialsTable)
@@ -195,6 +206,40 @@ class ApiFeatureContext extends ApiContext
             }
         }
         return $array;
+    }
+
+
+
+    /**
+     * @param array         $authorizationRoles
+     * @param UserInterface $user
+     */
+    protected function assignAuthorizationRoles(\AppBundle\Entity\User $user, array $authorizationRoles = array())
+    {
+        foreach ($authorizationRoles as $role) {
+            try {
+                $authorizationRole = $this->get('sylius.repository.role')->findOneByName($role);
+            } catch (\InvalidArgumentException $exception) {
+                $authorizationRole = $this->createAuthorizationRole($role);
+                $this->get('doctrine.orm.entity_manager')->persist($authorizationRole);
+            }
+            $user->addAuthorizationRole($authorizationRole);
+        }
+    }
+
+
+    /**
+     * @param string $role
+     *
+     * @return RoleInterface
+     */
+    protected function createAuthorizationRole($role)
+    {
+        $authorizationRole = $this->get('sylius.repository.role')->createNew();
+        $authorizationRole->setCode($role);
+        $authorizationRole->setName(ucfirst($role));
+        $authorizationRole->setSecurityRoles(array('ROLE_ADMINISTRATION_ACCESS'));
+        return $authorizationRole;
     }
 
 }

@@ -1,0 +1,108 @@
+sylius_rbac:
+    driver: doctrine/orm
+    permissions:
+        app.manage.business: Manage businesses
+        app.business.show: Show businesses
+        app.business.index: List businesses
+        app.business.create: Create businesses
+        app.business.update: Edit businesses
+        app.business.delete: Delete businesses
+
+        app.manage.user: Manage users
+        app.user.show: Show users
+        app.user.index: List users
+        app.user.create: Create users
+        app.user.update: Edit users
+        app.user.delete: Delete users
+
+        app.manage.employee: Manage employees
+        app.employee.show: Show employees
+        app.employee.index: List employees
+        app.employee.create: Create employees
+        app.employee.update: Edit employees
+        app.employee.delete: Delete employees
+
+        app.manage.customer: Manage customers
+        app.customer.show: Show customers
+        app.customer.index: List customers
+        app.customer.create: Create customers
+        app.customer.update: Edit customers
+        app.customer.delete: Delete customers
+
+        app.manage.service: Manage services
+        app.service.show: Show services
+        app.service.index: List services
+        app.service.create: Create services
+        app.service.update: Edit services
+        app.service.delete: Delete services
+
+        app.manage.personalized_service: Manage personalized services
+        app.personalized_service.show: Show personalized services
+        app.personalized_service.index: List personalized services
+        app.personalized_service.create: Create personalized services
+        app.personalized_service.update: Edit personalized services
+        app.personalized_service.delete: Delete personalized services
+
+        app.manage.booking: Manage bookings
+        app.booking.show: Show bookings
+        app.booking.index: List bookings
+        app.booking.create: Create bookings
+        app.booking.update: Edit bookings
+        app.booking.delete: Delete bookings
+
+        app.manage.availability: Manage availabilities
+        app.availability.show: Show availabilities
+        app.availability.index: List availabilities
+        app.availability.create: Create availabilities
+        app.availability.update: Edit availabilities
+        app.availability.delete: Delete availabilities
+
+
+    permissions_hierarchy:
+        app.manage.business: [app.business.show, app.business.index, app.business.create, app.business.update, app.business.delete]
+        app.manage.user: [app.user.show, app.user.index, app.user.create, app.user.update, app.user.delete]
+        app.manage.employee: [app.employee.show, app.employee.index, app.employee.create, app.employee.update, app.employee.delete]
+        app.manage.customer: [app.customer.show, app.customer.index, app.customer.create, app.customer.update, app.customer.delete]
+        app.manage.service: [app.service.show, app.service.index, app.service.create, app.service.update, app.service.delete]
+        app.manage.personalized_service: [app.personalized_service.show, app.personalized_service.index, app.personalized_service.create, app.personalized_service.update, app.personalized_service.delete]
+        app.manage.booking: [app.manage.availability, app.booking.show, app.booking.index, app.booking.create, app.booking.update, app.booking.delete]
+        app.manage.availability: [app.availability.show, app.availability.index, app.availability.create, app.availability.update, app.availability.delete]
+    security_roles:
+        ROLE_ADMINISTRATION_ACCESS: Can access administration
+        ROLE_API_ACCESS: Can access REST API
+    roles:
+        app.business_manager:
+            name: Business Manager
+            description: Business user
+            permissions: [app.manage.business]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]
+        app.user_manager:
+            name: User Manager
+            description: user user
+            permissions: [app.manage.user]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]
+        app.employee_manager:
+            name: Employee Manager
+            description: employee user
+            permissions: [app.manage.employee]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]
+        app.customer_manager:
+            name: Customer Manager
+            description: customer user
+            permissions: [app.manage.customer]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]
+        app.service_manager:
+            name: Service Manager
+            description: service user
+            permissions: [app.manage.service]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]
+        app.personalized_service_manager:
+            name: Personalized Service Manager
+            description: personalized_service user
+            permissions: [app.manage.personalized_service]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]
+        app.booking_manager:
+            name: Booking Manager
+            description: booking user
+            permissions: [app.manage.booking]
+            security_roles: [ROLE_ADMINISTRATION_ACCESS]

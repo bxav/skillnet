@@ -23,6 +23,8 @@ Feature: Access to the api
       | marie | Brushing | john | 2042-01-01 07:30:00.0 | 2042-01-01 09:15:00.0 |
       | marie | Brushing | john | 2042-01-01 14:30:00.0 | 2042-01-01 16:20:00.0 |
     And the business "bea-coiffure" works from "wednesday" to "09:00" at "18:00"
+    Given assign to "user" authorization roles:
+      | Booking Manager |
     And I specified the following request oauth2 credentials:
       | username | user |
       | password | user |

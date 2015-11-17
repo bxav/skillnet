@@ -5,6 +5,7 @@ imports:
     - { resource: forms.yml }
     - { resource: admin.yml }
     - { resource: resources/resources.yml }
+    - { resource: resources/rbac.yml }
 
 framework:
     #esi:             ~
@@ -119,10 +120,14 @@ nelmio_api_doc:
             method: accept_header
             default_format: json
 
+doctrine_cache: ~
+
 stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+            timestampable: true
+            tree: true
 
 
 fos_oauth_server:
@@ -162,7 +167,6 @@ knp_gaufrette:
     filesystems:
         app_image:
             adapter: app_image
-
 
 hautelook_alice:
     locale: fr_FR   # default

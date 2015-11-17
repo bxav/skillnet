@@ -44,3 +44,11 @@ Translation
 ```
 php app/console translation:extract fr --dir=./app/Resources/views --output-dir=./app/Resources/translations
 ```
+
+
+Security
+--------
+
+```
+php app/console sylius:rbac:initialize
+```
