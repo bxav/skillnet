@@ -14,6 +14,7 @@ Feature: Access to the api
     Given assign to "marie" authorization roles:
       | Employee Manager |
       | Service Manager |
+      | Booking Manager |
     Given I specified the following request oauth2 credentials:
       | username | marie |
       | password | marie |
@@ -23,6 +24,31 @@ Feature: Access to the api
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
+
+
+
+  @reset-schema
+  Scenario: post booking
+    Given there is 1 service like:
+      | business | duration | type | id |
+      | Haircut Master | 20 | haircut | id |
+    Given there is 1 customer like:
+      | user | firstname | lastname |
+      | john | john | duff |
+    Given there is 10 bookings
+    Given I specified the following request body:
+    """
+    {
+        "startDatetime":"2015-11-06T09:51:36+0100",
+        "endDatetime":"2015-11-06T10:51:36+0100",
+        "customer": 1,
+        "service": 1
+    }
+    """
+    Given I prepare a POST request on "/api/employees/1/bookings"
+    When I send the request
+    Then print the last response
+    Then I should receive a 201 json response
 
   @reset-schema
   Scenario: Get employee

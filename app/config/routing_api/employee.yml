@@ -40,6 +40,16 @@ app_api_employee_update:
         _sylius:
             form: app_api_employee
 
+app_api_employee_booking_create:
+    path: /{id}/bookings
+    methods: [POST]
+    defaults:
+        _controller: app.controller.booking:createFromEmployeeAction
+        _format: json
+        _sylius:
+            form: app_api_booking
+            criteria: {employee: $id}
+
 app_api_employee_service_index:
     path: /{employee}/services
     methods: [GET]
