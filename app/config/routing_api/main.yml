@@ -44,3 +44,13 @@ app_api_current_customer_show:
         _sylius:
             criteria: {id: 'expr:service("security.context").getToken().getUser().getId()'}
 
+
+app_api_current_customer_booking_create:
+    path: /customer/bookings
+    methods: [POST]
+    defaults:
+        _controller: app.controller.booking:createFromCustomerAction
+        _format: json
+        _sylius:
+            form: app_api_booking
+            criteria: {user: 'expr:service("security.context").getToken().getUser()'}
