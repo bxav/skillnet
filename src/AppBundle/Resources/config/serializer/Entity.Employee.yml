@@ -5,11 +5,11 @@ AppBundle\Entity\Employee:
             expose: true
             type: integer
             groups: [read, write]
-        firstname:
+        firstName:
             expose: true
             type: string
             groups: [read, write]
-        lastname:
+        lastName:
             expose: true
             type: string
             groups: [read, write]
