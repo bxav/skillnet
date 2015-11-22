@@ -11,8 +11,6 @@ Feature: Access to the api
     Given the following employee:
       | user | firstname | lastname | business |
       | marie | marie | dupond | Haircut Master |
-    Given assign to "user" authorization roles:
-      | Booking Manager |
     Given I specified the following request oauth2 credentials:
       | username | user |
       | password | user |

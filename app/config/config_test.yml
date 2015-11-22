@@ -14,3 +14,12 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+
+
+sylius_rbac:
+      authorization_checker: app.authorization_checker.test
+
+services:
+    app.authorization_checker.test:
+        class: AppBundle\Test\AuthorizationChecker

@@ -20,8 +20,11 @@ Api
 ---
 /api
 
-Basic http authentication
+To get secret and publid:
 
+```
+app:oauth-server:create-client --grant-type=password
+```
 
 Doc
 ---

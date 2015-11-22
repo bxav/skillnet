@@ -17,6 +17,7 @@ class ApiFeatureContext extends ApiContext
     {
 
         shell_exec("app/console sylius:rbac:initialize");
+        $this->container->set('sylius.authorization_checker.default', null);
         $user = $this->get('app.repository.user')->findOneByUsername($username);
         $this->assignAuthorizationRoles($user, $roles->getColumn(0));
     }
