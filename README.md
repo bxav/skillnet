@@ -3,7 +3,8 @@ BxMarket
 
 What's that?
 ------------
-BxMarket is an early-stage project which aims to provide a simple Marketplace system for services.
+BxMarket is an early-stage project which aims to provide a simple Marketplace system for services and in particular recurrent services.
+This project is based on the Sylius project.
 
 Contribution
 ------------
