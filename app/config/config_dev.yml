@@ -58,3 +58,12 @@ bxav_bell_api_client:
         key: "charles"
 #swiftmailer:
 #    delivery_address: me@example.com
+
+
+
+sylius_rbac:
+      authorization_checker: app.authorization_checker.test
+
+services:
+    app.authorization_checker.test:
+        class: AppBundle\Test\AuthorizationChecker
