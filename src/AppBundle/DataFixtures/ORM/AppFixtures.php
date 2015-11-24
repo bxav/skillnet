@@ -14,9 +14,6 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Image;
 use Faker\Factory;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
-use Nelmio\Alice\Fixtures;
-use Nelmio\Alice\Loader\FakerProvider;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Finder\Finder;
 
@@ -41,17 +38,17 @@ class AppFixtures extends DataFixtureLoader
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function getFixtures()
     {
         return  array(
-            __DIR__ . '/businesses.yml',
-            __DIR__ . '/services.yml',
-            __DIR__ . '/users.yml',
-            __DIR__ . '/employees.yml',
-            __DIR__ . '/customers.yml',
-            __DIR__ . '/bookings.yml',
+            __DIR__.'/businesses.yml',
+            __DIR__.'/services.yml',
+            __DIR__.'/users.yml',
+            __DIR__.'/employees.yml',
+            __DIR__.'/customers.yml',
+            __DIR__.'/bookings.yml',
         );
     }
 
@@ -64,6 +61,7 @@ class AppFixtures extends DataFixtureLoader
     {
         $endDateTime = clone $this->startDateTime;
         $endDateTime = $endDateTime->modify('+30 minutes');
+
         return $endDateTime;
     }
 
@@ -71,7 +69,7 @@ class AppFixtures extends DataFixtureLoader
     {
         $filenames = array(
             'charles',
-            'sylvia'
+            'sylvia',
         );
 
         return $this->getAndUploadRandomImage($filenames);
@@ -80,7 +78,7 @@ class AppFixtures extends DataFixtureLoader
     public function businessImage()
     {
         $filenames = array(
-            'shop'
+            'shop',
         );
 
         return $this->getAndUploadRandomImage($filenames);
@@ -104,5 +102,4 @@ class AppFixtures extends DataFixtureLoader
 
         return $image;
     }
-
 }

@@ -18,7 +18,6 @@ use Pagerfanta\Pagerfanta;
 
 class AvailabilityController extends ApiController
 {
-
     /**
      * @param Request $request
      *
@@ -33,7 +32,7 @@ class AvailabilityController extends ApiController
         $date = new \DateTimeImmutable($criteria['date']);
         $service = $this->getDoctrine()->getRepository('AppBundle:Service')->find($criteria['service']);
 
-        $resources = array_values($this->get("app.availability.finder")->findByDateAndService($date, $service));
+        $resources = array_values($this->get('app.availability.finder')->findByDateAndService($date, $service));
 
         $adapter = new ArrayAdapter($resources);
         $resources = new Pagerfanta($adapter);
@@ -47,7 +46,6 @@ class AvailabilityController extends ApiController
                 array_merge($request->attributes->get('_route_params'), $request->query->all())
             )
         );
-
 
         $view = $this
             ->view()

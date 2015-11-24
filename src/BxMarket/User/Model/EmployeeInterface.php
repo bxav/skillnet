@@ -17,14 +17,13 @@ use Sylius\Component\User\Model\UserAwareInterface;
 
 interface EmployeeInterface extends UserAwareInterface, TimestampableInterface, SoftDeletableInterface
 {
-
     /**
      * @return int
      */
     public function getId();
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasUser();
 
@@ -41,7 +40,7 @@ interface EmployeeInterface extends UserAwareInterface, TimestampableInterface, 
     public function getFirstName();
 
     /**
-     * @param  string $firstName
+     * @param string $firstName
      */
     public function setFirstName($firstName);
 
@@ -51,7 +50,7 @@ interface EmployeeInterface extends UserAwareInterface, TimestampableInterface, 
     public function getLastName();
 
     /**
-     * @param  string $lastName
+     * @param string $lastName
      */
     public function setLastName($lastName);
 }

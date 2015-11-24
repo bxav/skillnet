@@ -11,11 +11,7 @@
 
 namespace BxMarket\User;
 
-use FOS\UserBundle\Util\CanonicalizerInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
 /**
  * Abstract User Manager implementation which can be used as base class for your
@@ -26,7 +22,7 @@ use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 abstract class UserManager
 {
     /**
-     * @var EncoderFactoryInterface 
+     * @var EncoderFactoryInterface
      */
     protected $encoderFactory;
 
@@ -41,20 +37,20 @@ abstract class UserManager
     }
 
     /**
-     * Returns an empty user instance
+     * Returns an empty user instance.
      *
      * @return UserInterface
      */
     public function createUser()
     {
         $class = $this->getClass();
-        $user = new $class;
+        $user = new $class();
 
         return $user;
     }
 
     /**
-     * Finds a user by email
+     * Finds a user by email.
      *
      * @param string $email
      *
@@ -66,7 +62,7 @@ abstract class UserManager
     }
 
     /**
-     * Finds a user by username
+     * Finds a user by username.
      *
      * @param string $username
      *
@@ -78,7 +74,7 @@ abstract class UserManager
     }
 
     /**
-     * Finds a user either by email, or username
+     * Finds a user either by email, or username.
      *
      * @param string $usernameOrEmail
      *
@@ -94,9 +90,9 @@ abstract class UserManager
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function updatePassword( $user)
+    public function updatePassword($user)
     {
         if (0 !== strlen($password = $user->getPlainPassword())) {
             $encoder = $this->getEncoder($user);
@@ -105,11 +101,8 @@ abstract class UserManager
         }
     }
 
-
-
-    protected function getEncoder( $user)
+    protected function getEncoder($user)
     {
         return $this->encoderFactory->getEncoder($user);
     }
-
 }

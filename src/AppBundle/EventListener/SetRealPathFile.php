@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class SetRealPathFile
 {
-
     protected $host;
 
     public function __construct(RequestStack $request_stack)
@@ -34,7 +33,7 @@ class SetRealPathFile
         if ($entity instanceof Image) {
             //todo extract hosting path
 
-            $entity->setHost($this->host . '/media/image');
+            $entity->setHost($this->host.'/media/image');
         }
     }
 }

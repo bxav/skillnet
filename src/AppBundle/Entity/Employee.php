@@ -15,14 +15,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Employee
+ * Employee.
  *
  * @ORM\Table(name="employee")
  * @ORM\Entity
  */
 class Employee extends \BxMarket\User\Model\Employee
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -88,7 +87,7 @@ class Employee extends \BxMarket\User\Model\Employee
         'thursday' => [],
         'friday' => [],
         'saturday' => [],
-        'sunday' => []
+        'sunday' => [],
     ];
 
     public function __construct()
@@ -183,6 +182,7 @@ class Employee extends \BxMarket\User\Model\Employee
         foreach ($services as $service) {
             $this->addService($service);
         }
+
         return $this;
     }
 
@@ -193,26 +193,26 @@ class Employee extends \BxMarket\User\Model\Employee
 
     public function setWorkingHoursByDay($dayName, $workingHours)
     {
-        $startWorkingHour = explode(":", $workingHours[0]);
-        $endWorkingHour = explode(":", $workingHours[1]);
+        $startWorkingHour = explode(':', $workingHours[0]);
+        $endWorkingHour = explode(':', $workingHours[1]);
         $this->workingDays[$dayName] = [($startWorkingHour[0] * 60) + $startWorkingHour[1], ($endWorkingHour[0] * 60) + $endWorkingHour[1]];
     }
 
     public function setWorkingDaysHours($workingDaysHours)
     {
-        foreach($workingDaysHours as $workingHours) {
+        foreach ($workingDaysHours as $workingHours) {
             $this->setWorkingHoursByDay($workingHours[0], $workingHours[1]);
         }
     }
 
     public function getWorkingHours(\DateTimeInterface $date)
     {
-        $dayName = lcfirst($date->format("l"));
+        $dayName = lcfirst($date->format('l'));
         $startWorking = clone $date;
         $endWorking = clone $date;
 
         if (!isset($this->workingDays[$dayName][0]) or !isset($this->workingDays[$dayName][1])) {
-            return null;
+            return;
         }
         $startWorking = $startWorking->setTime(intval($this->workingDays[$dayName][0] / 60), $this->workingDays[$dayName][0] % 60);
 
@@ -220,7 +220,6 @@ class Employee extends \BxMarket\User\Model\Employee
 
         return [$startWorking, $endWorking];
     }
-
 
     /**
      * @return mixed
@@ -242,5 +241,4 @@ class Employee extends \BxMarket\User\Model\Employee
     {
         return (string) $this->getUser()->getUsername();
     }
-
 }

@@ -18,7 +18,6 @@ use AppBundle\Entity\Address;
 
 class AddressAdmin extends Admin
 {
-
     /**
      * {@inheritdoc}
      */
@@ -73,7 +72,7 @@ class AddressAdmin extends Admin
     {
         $list
             ->addIdentifier('name')
-            ->add('fulladdress', 'string', array('code' => 'getFullAddressHtml', 'template' => "SonataCustomerBundle:Admin:list_address.html.twig"))
+            ->add('fulladdress', 'string', array('code' => 'getFullAddressHtml', 'template' => 'SonataCustomerBundle:Admin:list_address.html.twig'))
             ->add('current')
             ->add('typeCode', 'trans', array('catalogue' => $this->translationDomain))
         ;

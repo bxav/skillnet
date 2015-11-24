@@ -15,13 +15,11 @@ use AppBundle\Model\AddressInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *
  * @ORM\Table()
  * @ORM\Entity
  */
 class Address implements AddressInterface
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -30,73 +28,73 @@ class Address implements AddressInterface
     protected $id;
 
     /**
-     * @var boolean $current
+     * @var bool
      * @ORM\Column(type="boolean", name="is_current")
      */
     protected $current;
 
     /**
-     * @var string $name
+     * @var string
      * @ORM\Column(type="string")
      */
     protected $name;
 
     /**
-     * @var integer $type
+     * @var int
      * @ORM\Column(type="integer")
      */
     protected $type;
 
     /**
-     * @var string $firstname
+     * @var string
      * @ORM\Column(type="string")
      */
     protected $firstname;
 
     /**
-     * @var string $lastname
+     * @var string
      * @ORM\Column(type="string")
      */
     protected $lastname;
 
     /**
-     * @var string $address1
+     * @var string
      * @ORM\Column(type="string")
      */
     protected $address1;
 
     /**
-     * @var string $address2
+     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
     protected $address2;
 
     /**
-     * @var string $address3
+     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
     protected $address3;
 
     /**
-     * @var string $postcode
+     * @var string
      * @ORM\Column(type="string", length=12)
      */
     protected $postcode;
 
     /**
-     * @var string $city
+     * @var string
      * @ORM\Column(type="string")
      */
     protected $city;
 
     /**
-     * @var string $country
+     * @var string
      * @ORM\Column(type="string", length=3)
      */
     protected $countryCode;
 
     /**
-     * @var string $phone
+     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
     protected $phone;
@@ -108,47 +106,46 @@ class Address implements AddressInterface
     protected $business;
 
     /**
-     * @var datetime $updatedAt
+     * @var datetime
      */
     protected $updatedAt;
 
     /**
-     * @var datetime $createdAt
+     * @var datetime
      */
     protected $createdAt;
 
-
     /**
-     * Formats an address in an array form
+     * Formats an address in an array form.
      *
      * @param array  $address The address array (required keys: firstname, lastname, address1, postcode, city, country_code)
      * @param string $sep     The address separator
      *
      * @return string
      */
-    public static function formatAddress(array $address, $sep = ", ")
+    public static function formatAddress(array $address, $sep = ', ')
     {
         $address = array_merge(
             array(
-                'firstname'    => "",
-                'lastname'     => "",
-                'address1'     => "",
-                'address2'     => "",
-                'address3'     => "",
-                'postcode'     => "",
-                'city'         => "",
-                'country_code' => "",
+                'firstname' => '',
+                'lastname' => '',
+                'address1' => '',
+                'address2' => '',
+                'address3' => '',
+                'postcode' => '',
+                'city' => '',
+                'country_code' => '',
             ),
             $address
         );
 
         $values = array_map('trim', array(
-            sprintf("%s %s", $address['firstname'], $address['lastname']),
+            sprintf('%s %s', $address['firstname'], $address['lastname']),
             $address['address1'],
             $address['address2'],
             $address['address3'],
             $address['postcode'],
-            $address['city']
+            $address['city'],
         ));
 
         foreach ($values as $key => $val) {
@@ -161,10 +158,10 @@ class Address implements AddressInterface
 
         if ($countryCode = trim($address['country_code'])) {
             if ($fullAddress) {
-                $fullAddress .= " ";
+                $fullAddress .= ' ';
             }
 
-            $fullAddress .= sprintf("(%s)", $countryCode);
+            $fullAddress .= sprintf('(%s)', $countryCode);
         }
 
         return $fullAddress;
@@ -177,21 +174,21 @@ class Address implements AddressInterface
 
     public function prePersist()
     {
-        $this->setCreatedAt(new \DateTime);
-        $this->setUpdatedAt(new \DateTime);
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     public function preUpdate()
     {
-        $this->setUpdatedAt(new \DateTime);
+        $this->setUpdatedAt(new \DateTime());
     }
 
     public static function getTypesList()
     {
         return array(
-            self::TYPE_BILLING  => 'type_billing',
+            self::TYPE_BILLING => 'type_billing',
             self::TYPE_DELIVERY => 'type_delivery',
-            self::TYPE_CONTACT  => 'type_contact',
+            self::TYPE_CONTACT => 'type_contact',
         );
     }
 
@@ -204,9 +201,9 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set current
+     * Set current.
      *
-     * @param boolean $current
+     * @param bool $current
      */
     public function setCurrent($current)
     {
@@ -214,9 +211,9 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get current
+     * Get current.
      *
-     * @return boolean
+     * @return bool
      */
     public function isCurrent()
     {
@@ -224,9 +221,9 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
      */
     public function setType($type)
     {
@@ -240,9 +237,9 @@ class Address implements AddressInterface
         return isset($types[$this->getType()]) ? $types[$this->getType()] : null;
     }
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer $type
+     * @return int $type
      */
     public function getType()
     {
@@ -250,7 +247,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set firstname
+     * Set firstname.
      *
      * @param string $firstname
      */
@@ -260,7 +257,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get firstname
+     * Get firstname.
      *
      * @return string
      */
@@ -270,7 +267,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set lastname
+     * Set lastname.
      *
      * @param string $lastname
      */
@@ -280,7 +277,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get lastname
+     * Get lastname.
      *
      * @return string
      */
@@ -290,7 +287,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set address1
+     * Set address1.
      *
      * @param string $address1
      */
@@ -300,7 +297,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get address1
+     * Get address1.
      *
      * @return string
      */
@@ -310,7 +307,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set address2
+     * Set address2.
      *
      * @param string $address2
      */
@@ -320,7 +317,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get address2
+     * Get address2.
      *
      * @return string
      */
@@ -330,7 +327,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set address3
+     * Set address3.
      *
      * @param string $address3
      */
@@ -340,7 +337,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get address3
+     * Get address3.
      *
      * @return string
      */
@@ -350,7 +347,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set postcode
+     * Set postcode.
      *
      * @param string $postcode
      */
@@ -360,7 +357,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get postcode
+     * Get postcode.
      *
      * @return string
      */
@@ -370,7 +367,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
      */
@@ -380,7 +377,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string
      */
@@ -390,7 +387,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set countryCode
+     * Set countryCode.
      *
      * @param string $countryCode
      */
@@ -400,7 +397,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get countryCode
+     * Get countryCode.
      *
      * @return string
      */
@@ -410,7 +407,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
      */
@@ -420,7 +417,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string
      */
@@ -430,7 +427,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \Datetime $updatedAt
      */
@@ -440,7 +437,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \Datetime
      */
@@ -450,7 +447,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \Datetime $createdAt
      */
@@ -460,7 +457,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \Datetime
      */
@@ -500,7 +497,7 @@ class Address implements AddressInterface
      *
      * @return string
      */
-    public function getFullAddress($sep = ", ")
+    public function getFullAddress($sep = ', ')
     {
         return self::formatAddress($this->getAddressArrayForRender(), $sep);
     }
@@ -511,16 +508,16 @@ class Address implements AddressInterface
     public function getAddressArrayForRender()
     {
         return array(
-            'id'           => $this->getId(),
-            'name'         => $this->getName(),
-            'firstname'    => $this->getFirstName(),
-            'lastname'     => $this->getLastname(),
-            'address1'     => $this->getAddress1(),
-            'address2'     => $this->getAddress2(),
-            'address3'     => $this->getAddress3(),
-            'postcode'     => $this->getPostcode(),
-            'city'         => $this->getCity(),
-            'country_code' => $this->getCountryCode()
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'firstname' => $this->getFirstName(),
+            'lastname' => $this->getLastname(),
+            'address1' => $this->getAddress1(),
+            'address2' => $this->getAddress2(),
+            'address3' => $this->getAddress3(),
+            'postcode' => $this->getPostcode(),
+            'city' => $this->getCity(),
+            'country_code' => $this->getCountryCode(),
         );
     }
 
@@ -529,7 +526,7 @@ class Address implements AddressInterface
      */
     public function getFullAddressHtml()
     {
-        return $this->getFullAddress("<br/>");
+        return $this->getFullAddress('<br/>');
     }
 
     public function __toString()

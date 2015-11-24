@@ -15,26 +15,23 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class EmployeeAdmin extends Admin
 {
-
     protected $baseRoutePattern = 'employee';
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
             ->with('General');
 
         if (!$this->hasParentFieldDescription()) {
             $formMapper->add('business', 'sonata_type_model_autocomplete', [
                 'constraints' => new Assert\NotNull(),
-                'property'=>'name',
-                'placeholder' => 'Enter the business name'
+                'property' => 'name',
+                'placeholder' => 'Enter the business name',
             ]);
         }
 
@@ -57,12 +54,12 @@ class EmployeeAdmin extends Admin
             $formMapper
                 ->with('Services', ['class' => 'col-md-12'])
                 ->add('services', 'sonata_type_model', [
-                    'property'=> 'type',
+                    'property' => 'type',
                     'multiple' => true,
                     'by_reference' => false,
                     'btn_add' => false,
                     'query' => $query,
-                    'required' => false
+                    'required' => false,
                 ])
                 ->end();
         }
@@ -89,10 +86,11 @@ class EmployeeAdmin extends Admin
             ->add('speciality');
     }
 
-    public function getRolesNames(){
+    public function getRolesNames()
+    {
         return [
-            "ROLE_EMPLOYEE" => "Employee",
-            "ROLE_MANAGER" => "Manager",
+            'ROLE_EMPLOYEE' => 'Employee',
+            'ROLE_MANAGER' => 'Manager',
         ];
     }
 }

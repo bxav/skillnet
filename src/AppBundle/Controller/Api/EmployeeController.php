@@ -13,18 +13,12 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Image;
-use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Routing\ClassResourceInterface;
-
 
 class EmployeeController extends ApiController
 {
-
     protected $class = 'AppBundle\Entity\Employee';
 
     /**
@@ -38,7 +32,6 @@ class EmployeeController extends ApiController
     public function postImagesAction(Request $request, Employee $employee)
     {
         $uploader = $this->container->get('app.image_uploader');
-
 
         $img = $request->files->get('file');
 

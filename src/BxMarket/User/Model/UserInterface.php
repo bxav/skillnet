@@ -11,10 +11,8 @@
 
 namespace BxMarket\User\Model;
 
-
 interface UserInterface extends \Sylius\Component\User\Model\UserInterface
 {
-
     /**
      * @return EmployeeInterface
      */

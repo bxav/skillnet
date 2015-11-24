@@ -16,13 +16,10 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
-
 use Knp\Menu\ItemInterface as MenuItemInterface;
 
 class BusinessAdmin extends Admin
 {
-
     protected $baseRoutePattern = 'business';
 
     // Fields to be shown on create/edit forms
@@ -39,22 +36,22 @@ class BusinessAdmin extends Admin
             ->with('Employees', ['class' => 'col-md-12'])
             ->add('employees', 'sonata_type_collection', [
                 'by_reference' => false,
-                'cascade_validation' => true
+                'cascade_validation' => true,
             ],
                 [
                     'edit' => 'inline',
-                    'inline' => 'table'
+                    'inline' => 'table',
                 ]
             )
             ->end()
             ->with('Services', ['class' => 'col-md-12'])
             ->add('services', 'sonata_type_collection', [
                 'by_reference' => false,
-                'cascade_validation' => true
+                'cascade_validation' => true,
             ],
                 [
                     'edit' => 'inline',
-                    'inline' => 'table'
+                    'inline' => 'table',
                 ]
             )
             ->end();
@@ -76,7 +73,6 @@ class BusinessAdmin extends Admin
             ->addIdentifier('name', null)
             ->add('website')
             ->add('phone');
-
     }
 
     /**

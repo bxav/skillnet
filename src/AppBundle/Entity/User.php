@@ -18,14 +18,13 @@ use Sylius\Component\Rbac\Model\IdentityInterface;
 use Sylius\Component\Rbac\Model\RoleInterface;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
 class User extends \BxMarket\User\Model\User implements EquatableInterface, IdentityInterface
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -48,11 +47,10 @@ class User extends \BxMarket\User\Model\User implements EquatableInterface, Iden
      */
     protected $salt;
 
-
     /**
      * @ORM\Column(type="array")
      */
-    protected $roles  = array('ROLE_API');
+    protected $roles = array('ROLE_API');
 
     /**
      * @ORM\OneToOne(targetEntity="Employee", mappedBy="user")
@@ -135,7 +133,6 @@ class User extends \BxMarket\User\Model\User implements EquatableInterface, Iden
         $this->roles = $roles;
     }
 
-
     /**
      * @return string
      */
@@ -151,7 +148,6 @@ class User extends \BxMarket\User\Model\User implements EquatableInterface, Iden
     {
         $this->plainPassword = $plainPassword;
     }
-
 
     public function isEqualTo(\Symfony\Component\Security\Core\User\UserInterface $user)
     {
@@ -219,6 +215,7 @@ class User extends \BxMarket\User\Model\User implements EquatableInterface, Iden
         foreach ($this->getAuthorizationRoles() as $role) {
             $roles = array_merge($roles, $role->getSecurityRoles());
         }
+
         return $roles;
     }
 }

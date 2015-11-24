@@ -15,32 +15,27 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class UserAdmin extends Admin
 {
-
     protected $baseRoutePattern = 'user';
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
             ->with('General');
 
         $formMapper
             ->add('username')
-            ->add('roles' ,'choice' ,array('choices' => $this->getRolesNames(),
-                'required'  => true,
+            ->add('roles', 'choice', array('choices' => $this->getRolesNames(),
+                'required' => true,
                 'expanded' => true,
                 'mapped' => true,
-                'multiple' => true
+                'multiple' => true,
             ))
             ->add('plainPassword', 'text', ['required' => false])
             ->end();
-
     }
 
     // Fields to be shown on filter forms
@@ -57,10 +52,11 @@ class UserAdmin extends Admin
             ->addIdentifier('username', null);
     }
 
-    public function getRolesNames(){
+    public function getRolesNames()
+    {
         return [
-            "ROLE_EMPLOYEE" => "Employee",
-            "ROLE_MANAGER" => "Manager",
+            'ROLE_EMPLOYEE' => 'Employee',
+            'ROLE_MANAGER' => 'Manager',
         ];
     }
 }

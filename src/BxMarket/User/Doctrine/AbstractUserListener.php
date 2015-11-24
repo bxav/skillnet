@@ -21,7 +21,6 @@ use BxMarket\User\Model\UserInterface;
 
 abstract class AbstractUserListener implements EventSubscriber
 {
-
     private $userManager;
 
     /**
@@ -30,7 +29,7 @@ abstract class AbstractUserListener implements EventSubscriber
     private $container;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param ContainerInterface $container
      */

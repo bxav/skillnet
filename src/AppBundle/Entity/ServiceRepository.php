@@ -16,12 +16,11 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class ServiceRepository extends EntityRepository
 {
-
     /**
      * Create employee services paginator.
      *
      * @param Employee $employee
-     * @param array         $sorting
+     * @param array    $sorting
      *
      * @return PagerfantaInterface
      */
@@ -29,6 +28,7 @@ class ServiceRepository extends EntityRepository
     {
         $sorting = $sorting ? $sorting : [];
         $queryBuilder = $this->getCollectionQueryBuilderByEmployee($employee, $sorting);
+
         return $this->getPaginator($queryBuilder);
     }
 
@@ -42,6 +42,7 @@ class ServiceRepository extends EntityRepository
             ->setParameter('employee', $employee)
         ;
         $this->applySorting($queryBuilder, $sorting);
+
         return $queryBuilder;
     }
 

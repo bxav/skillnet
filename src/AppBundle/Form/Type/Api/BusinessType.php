@@ -16,7 +16,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class BusinessType extends AbstractResourceType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

@@ -14,7 +14,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Service
+ * Service.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -30,7 +30,7 @@ class Service
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */
@@ -160,6 +160,6 @@ class Service
 
     public function __toString()
     {
-        return " " . $this->getId();
+        return ' '.$this->getId();
     }
 }

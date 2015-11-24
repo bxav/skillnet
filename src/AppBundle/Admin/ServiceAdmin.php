@@ -15,24 +15,20 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ServiceAdmin extends Admin
 {
-
     protected $baseRoutePattern = 'service';
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
             ->with('General');
 
         if (!$this->hasParentFieldDescription()) {
-
-            $formMapper->add('business', 'sonata_type_model_autocomplete', ['constraints' => new Assert\NotNull(), 'property'=>'firstname', 'placeholder' => 'Enter the business name']);
+            $formMapper->add('business', 'sonata_type_model_autocomplete', ['constraints' => new Assert\NotNull(), 'property' => 'firstname', 'placeholder' => 'Enter the business name']);
         }
 
         $formMapper

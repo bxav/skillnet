@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
- * Booking
+ * Booking.
  *
  * @TODO embedded relation too deep
  * @ORM\Table()
@@ -171,7 +171,7 @@ class Booking
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPersonalized()
     {
@@ -179,7 +179,7 @@ class Booking
     }
 
     /**
-     * @param boolean $personalized
+     * @param bool $personalized
      */
     public function setPersonalized($personalized)
     {
@@ -265,7 +265,4 @@ class Booking
     {
         $this->employee = $employee;
     }
-
-
-
 }

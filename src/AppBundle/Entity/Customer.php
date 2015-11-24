@@ -12,12 +12,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use Hateoas\Configuration\Annotation as Hateoas;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Customer
+ * Customer.
  *
  * @ORM\Table(name="customer")
  * @ORM\Entity
@@ -52,8 +50,8 @@ class Customer extends \Sylius\Component\User\Model\Customer
      **/
     protected $user;
 
-    public function __toString() {
+    public function __toString()
+    {
         return (string) $this->getUser()->getUsername();
     }
-
 }

@@ -16,7 +16,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EmployeeType extends AbstractResourceType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -25,10 +24,10 @@ class EmployeeType extends AbstractResourceType
             ->add('speciality')
             ->add('shortDescription')
             ->add('business', 'entity', [
-                'class' => 'AppBundle:Business'
+                'class' => 'AppBundle:Business',
             ])
             ->add('user', 'entity', [
-                'class' => 'AppBundle:User'
+                'class' => 'AppBundle:User',
             ])
         ;
     }

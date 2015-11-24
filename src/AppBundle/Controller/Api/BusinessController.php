@@ -13,18 +13,12 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Business;
 use AppBundle\Entity\Image;
-use AppBundle\Form\Type\BusinessType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Routing\ClassResourceInterface;
-
 
 class BusinessController extends ApiController
 {
-
     protected $class = 'AppBundle\Entity\Business';
 
     /**
@@ -39,7 +33,6 @@ class BusinessController extends ApiController
     public function postImagesAction(Request $request, Business $business)
     {
         $uploader = $this->container->get('app.image_uploader');
-
 
         $img = $request->files->get('file');
 

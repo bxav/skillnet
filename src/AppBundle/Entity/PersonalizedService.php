@@ -14,7 +14,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PersonalizedService
+ * PersonalizedService.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -29,7 +29,7 @@ class PersonalizedService
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */

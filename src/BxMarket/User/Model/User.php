@@ -15,11 +15,10 @@ use Sylius\Component\User\Model\User as BaseUser;
 
 class User extends BaseUser implements UserInterface
 {
-
     protected $employee;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $enabled = true;
 

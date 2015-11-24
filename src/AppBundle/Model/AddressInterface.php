@@ -13,10 +13,9 @@ namespace AppBundle\Model;
 
 interface AddressInterface
 {
-    const TYPE_BILLING  = 1;
+    const TYPE_BILLING = 1;
     const TYPE_DELIVERY = 2;
-    const TYPE_CONTACT  = 3;
-
+    const TYPE_CONTACT = 3;
 
     /**
      * @return string return the address name
@@ -74,9 +73,9 @@ interface AddressInterface
     public function isCurrent();
 
     /**
-     * Sets if this address is the current
+     * Sets if this address is the current.
      *
-     * @param boolean $current
+     * @param bool $current
      */
     public function setCurrent($current);
 
@@ -92,7 +91,7 @@ interface AddressInterface
     public function getType();
 
     /**
-     * Returns the HTML string representation of the address
+     * Returns the HTML string representation of the address.
      *
      * @return string
      */

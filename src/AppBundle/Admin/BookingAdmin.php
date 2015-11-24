@@ -15,12 +15,10 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class BookingAdmin extends Admin
 {
-
     protected $baseRoutePattern = 'booking';
 
     // Fields to be shown on create/edit forms
@@ -29,11 +27,11 @@ class BookingAdmin extends Admin
         $formMapper
             ->with('General')
             ->add('startDatetime', 'sonata_type_datetime_picker')
-            ->add('endDatetime','sonata_type_datetime_picker')
+            ->add('endDatetime', 'sonata_type_datetime_picker')
             ->add('customer', 'sonata_type_model_autocomplete', [
                 'constraints' => new Assert\NotNull(),
-                'property'=>'username',
-                'placeholder' => 'Enter the customer username'
+                'property' => 'username',
+                'placeholder' => 'Enter the customer username',
             ])
             ->add('employee')
             ->add('service')
@@ -61,6 +59,5 @@ class BookingAdmin extends Admin
             ->add('customer.username')
             ->add('employee')
             ->add('service');
-
     }
 }

@@ -11,13 +11,10 @@
 
 namespace AppBundle\Controller\Api;
 
-use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializationContext;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
-use Symfony\Component\HttpFoundation\Request;
 
-
-Abstract class ApiController extends ResourceController
+abstract class ApiController extends ResourceController
 {
     /**
      * The class name managed by the controller class.
@@ -33,6 +30,7 @@ Abstract class ApiController extends ResourceController
     {
         $view = $this->view($object, $code);
         $view->setSerializationContext(SerializationContext::create()->setGroups(['Default', 'read']));
+
         return $this->handleView($view);
     }
 
@@ -57,9 +55,10 @@ Abstract class ApiController extends ResourceController
     /**
      * @deprecated
      */
-    protected function getClass() {
+    protected function getClass()
+    {
         if (is_null($this->class)) {
-            throw new \Exception("Class not set");
+            throw new \Exception('Class not set');
         } else {
             return $this->class;
         }

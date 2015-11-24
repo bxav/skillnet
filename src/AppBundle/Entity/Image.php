@@ -15,7 +15,8 @@ use AppBundle\Model\ImageInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Image
+ * Image.
+ *
  * @ORM\Table()
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
@@ -23,7 +24,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Image implements ImageInterface
 {
     /**
-     * Id
+     * Id.
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -31,15 +33,17 @@ class Image implements ImageInterface
     protected $id;
 
     /**
-     * File
+     * File.
      *
      * @var \SplFileInfo
      */
     protected $file;
 
     /**
-     * Path to file
+     * Path to file.
+     *
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     protected $path;
@@ -47,9 +51,9 @@ class Image implements ImageInterface
     protected $host;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -112,7 +116,7 @@ class Image implements ImageInterface
      */
     public function getRealPath()
     {
-        return $this->host .'/'. $this->getPath();
+        return $this->host.'/'.$this->getPath();
     }
 
     /**

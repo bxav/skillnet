@@ -53,8 +53,8 @@ class UserListener extends AbstractUserListener
             $this->updateUserFields($object);
             // We are doing a update, so we must force Doctrine to update the
             // changeset in case we changed something above
-            $em   = $args->getEntityManager();
-            $uow  = $em->getUnitOfWork();
+            $em = $args->getEntityManager();
+            $uow = $em->getUnitOfWork();
             $meta = $em->getClassMetadata(get_class($object));
             $uow->recomputeSingleEntityChangeSet($meta, $object);
         }

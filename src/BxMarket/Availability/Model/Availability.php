@@ -13,7 +13,6 @@ namespace BxMarket\Availability\Model;
 
 class Availability
 {
-
     protected $date;
 
     protected $service;
@@ -72,6 +71,4 @@ class Availability
     {
         $this->service = $service;
     }
-
-
 }

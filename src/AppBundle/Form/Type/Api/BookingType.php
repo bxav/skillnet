@@ -16,24 +16,23 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class BookingType extends AbstractResourceType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('startDatetime', 'datetime', [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
             ])
             ->add('endDatetime', 'datetime', [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
             ])
             ->add('service', 'entity', [
-                'class' => 'AppBundle:Service'
+                'class' => 'AppBundle:Service',
             ])
             ->add('customer', 'entity', [
-                'class' => 'AppBundle:Customer'
+                'class' => 'AppBundle:Customer',
             ])
             ->add('employee', 'entity', [
-                'class' => 'AppBundle:Employee'
+                'class' => 'AppBundle:Employee',
             ])
         ;
     }

@@ -16,17 +16,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class PersonalizedServiceType extends AbstractResourceType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('duration')
             ->add('price')
             ->add('cusomer', 'entity', [
-                'class' => 'AppBundle:Customer'
+                'class' => 'AppBundle:Customer',
             ])
             ->add('service', 'entity', [
-                'class' => 'AppBundle:Service'
+                'class' => 'AppBundle:Service',
             ])
         ;
     }

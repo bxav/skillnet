@@ -16,7 +16,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ServiceType extends AbstractResourceType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -25,7 +24,7 @@ class ServiceType extends AbstractResourceType
             ->add('price')
             ->add('description')
             ->add('business', 'entity', [
-                'class' => 'AppBundle:Business'
+                'class' => 'AppBundle:Business',
             ])
         ;
     }

@@ -16,14 +16,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class CustomerType extends AbstractResourceType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('firstName')
             ->add('lastName')
             ->add('user', 'entity', [
-                'class' => 'AppBundle:User'
+                'class' => 'AppBundle:User',
             ])
         ;
     }

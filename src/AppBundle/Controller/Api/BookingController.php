@@ -19,7 +19,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BookingController extends ApiController
 {
-
     /**
      * @param Request $request
      *
@@ -35,14 +34,11 @@ class BookingController extends ApiController
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource = $this->domainManager->create($form->getData());
 
-
             // set employee
             // todo add authorization control
             $criteria = $this->config->getCriteria();
             $employee = $this->get('app.repository.employee')->find($criteria['employee']);
             $resource->setEmployee($employee);
-
-
 
             if ($this->config->isApiRequest()) {
                 if ($resource instanceof ResourceEvent) {
@@ -68,7 +64,7 @@ class BookingController extends ApiController
             ->setTemplate($this->config->getTemplate('create.html'))
             ->setData(array(
                 $this->config->getResourceName() => $resource,
-                'form'                           => $form->createView(),
+                'form' => $form->createView(),
             ))
         ;
 
@@ -90,7 +86,6 @@ class BookingController extends ApiController
         if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
             $resource = $this->domainManager->create($form->getData());
 
-
             // set employee
             // todo add authorization control
             // todo add availability check
@@ -98,7 +93,6 @@ class BookingController extends ApiController
             $criteria = $this->config->getCriteria();
             $customer = $this->get('app.repository.customer')->findOneByUser($criteria['user']);
             $resource->setCustomer($customer);
-
 
             if ($this->config->isApiRequest()) {
                 if ($resource instanceof ResourceEvent) {
@@ -124,7 +118,7 @@ class BookingController extends ApiController
             ->setTemplate($this->config->getTemplate('create.html'))
             ->setData(array(
                 $this->config->getResourceName() => $resource,
-                'form'                           => $form->createView(),
+                'form' => $form->createView(),
             ))
         ;
 

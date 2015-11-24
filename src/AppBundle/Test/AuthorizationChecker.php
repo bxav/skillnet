@@ -15,7 +15,6 @@ use Sylius\Component\Rbac\Authorization\AuthorizationCheckerInterface;
 
 class AuthorizationChecker implements AuthorizationCheckerInterface
 {
-
     /**
      * {@inheritdoc}
      */

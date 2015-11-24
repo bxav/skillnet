@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Business
+ * Business.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -100,11 +100,10 @@ class Business
     protected $services;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection $addresses
+     * @var \Doctrine\Common\Collections\ArrayCollection
      * @ORM\OneToMany(targetEntity="Address", mappedBy="business", cascade="all")
      */
     protected $addresses = [];
-
 
     /**
      * @ORM\Column(type="array")
@@ -116,7 +115,7 @@ class Business
         'thursday' => [],
         'friday' => [],
         'saturday' => [],
-        'sunday' => []
+        'sunday' => [],
     ];
 
     public function __construct()
@@ -263,7 +262,7 @@ class Business
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getDisponibilityTimeSlot()
     {
@@ -271,7 +270,7 @@ class Business
     }
 
     /**
-     * @param integer $disponibilityTimeSlot
+     * @param int $disponibilityTimeSlot
      */
     public function setDisponibilityTimeSlot($disponibilityTimeSlot)
     {
@@ -324,6 +323,7 @@ class Business
         foreach ($employees as $employee) {
             $this->addEmployee($employee);
         }
+
         return $this;
     }
 
@@ -355,6 +355,7 @@ class Business
         foreach ($services as $service) {
             $this->addService($service);
         }
+
         return $this;
     }
 
@@ -363,33 +364,33 @@ class Business
         return $this->services;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getName();
     }
 
-
     public function setWorkingHoursByDay($dayName, $workingHours)
     {
-        $startWorkingHour = explode(":", $workingHours[0]);
-        $endWorkingHour = explode(":", $workingHours[1]);
+        $startWorkingHour = explode(':', $workingHours[0]);
+        $endWorkingHour = explode(':', $workingHours[1]);
         $this->workingDays[$dayName] = [($startWorkingHour[0] * 60) + $startWorkingHour[1], ($endWorkingHour[0] * 60) + $endWorkingHour[1]];
     }
 
     public function setWorkingDaysHours($workingDaysHours)
     {
-        foreach($workingDaysHours as $workingHours) {
+        foreach ($workingDaysHours as $workingHours) {
             $this->setWorkingHoursByDay($workingHours[0], $workingHours[1]);
         }
     }
 
     public function getWorkingHours(\DateTimeInterface $date)
     {
-        $dayName = lcfirst($date->format("l"));
+        $dayName = lcfirst($date->format('l'));
         $startWorking = clone $date;
         $endWorking = clone $date;
 
         if (!isset($this->workingDays[$dayName][0]) or !isset($this->workingDays[$dayName][1])) {
-            return null;
+            return;
         }
         $startWorking = $startWorking->setTime(intval($this->workingDays[$dayName][0] / 60), $this->workingDays[$dayName][0] % 60);
 
@@ -414,7 +415,6 @@ class Business
         $this->workingDays = $workingDays;
     }
 
-
     public function getMainAddress()
     {
         foreach ($this->addresses as $address) {
@@ -422,6 +422,7 @@ class Business
                 return $address;
             }
         }
-        return null;
+
+        return;
     }
 }

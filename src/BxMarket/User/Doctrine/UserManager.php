@@ -40,7 +40,7 @@ class UserManager extends BaseUserManager
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function deleteUser($user)
     {
@@ -49,7 +49,7 @@ class UserManager extends BaseUserManager
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getClass()
     {
@@ -57,7 +57,7 @@ class UserManager extends BaseUserManager
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findUserBy(array $criteria)
     {
@@ -65,7 +65,7 @@ class UserManager extends BaseUserManager
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findUsers()
     {
@@ -73,7 +73,7 @@ class UserManager extends BaseUserManager
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function reloadUser($user)
     {
