@@ -1,5 +1,14 @@
-Beauty Booking Engine
-=====================
+BxMarket
+========
+
+What's that?
+------------
+BxMarket is an early-stage project which aims to provide a simple Marketplace system for services.
+
+Contribution
+------------
+As the project is still in conception stage, contributors interested in it should contribute only on few points, like UI, enhancement, etc. Don't hesitate to contact me.
+
 
 Install for dev
 ---------------
@@ -30,24 +39,17 @@ Doc
 ---
 /doc/api
 
+
 Test
 ----
 
 ```
 php app/console server:start
-php bin/behat --suite=api # Possible suites (web, api)
+php bin/behat --suite=api
 
 
 php bin/phpspec run
 ```
-
-Translation
------------
-
-```
-php app/console translation:extract fr --dir=./app/Resources/views --output-dir=./app/Resources/translations
-```
-
 
 Security
 --------
