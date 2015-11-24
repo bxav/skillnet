@@ -51,5 +51,5 @@ sylius_resource:
             object_manager: default
             templates: App:User
             classes:
-                model: App\Availability\Model\Availability
+                model: BxMarket\Availability\Model\Availability
                 controller: AppBundle\Controller\Api\AvailabilityController

@@ -23,7 +23,7 @@ use Sylius\Component\Rbac\Model\RoleInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User extends \App\User\Model\User implements EquatableInterface, IdentityInterface
+class User extends \BxMarket\User\Model\User implements EquatableInterface, IdentityInterface
 {
 
     /**

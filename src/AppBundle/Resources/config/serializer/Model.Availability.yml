@@ -1,4 +1,4 @@
-App\Availability\Model\Availability:
+BxMarket\Availability\Model\Availability:
     exclusion_policy: ALL
     properties:
         date:

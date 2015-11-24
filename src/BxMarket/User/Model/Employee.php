@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User\Model;
+namespace BxMarket\User\Model;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;

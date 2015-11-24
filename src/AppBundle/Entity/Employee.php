@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="employee")
  * @ORM\Entity
  */
-class Employee extends \App\User\Model\Employee
+class Employee extends \BxMarket\User\Model\Employee
 {
 
     /**

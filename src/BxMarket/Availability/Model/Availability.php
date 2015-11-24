@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Availability\Model;
+namespace BxMarket\Availability\Model;
 
 class Availability
 {

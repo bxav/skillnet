@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Availability;
+namespace BxMarket\Availability;
 
 use AppBundle\Entity\Employee;
 use AppBundle\Entity\Service;
-use App\Availability\Model\Availability;
+use BxMarket\Availability\Model\Availability;
 use League\Period\Period;
 
 class AvailabilityFinder

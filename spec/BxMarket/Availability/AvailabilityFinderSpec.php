@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\App\Availability;
+namespace spec\BxMarket\Availability;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\BookingRepository;
@@ -16,7 +16,7 @@ class AvailabilityFinderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('App\Availability\AvailabilityFinder');
+        $this->shouldHaveType('BxMarket\Availability\AvailabilityFinder');
     }
 
     function let(

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User;
+namespace BxMarket\User;
 
 use FOS\UserBundle\Util\CanonicalizerInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;

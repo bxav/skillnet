@@ -4,7 +4,7 @@ security:
             id: app.user.user_provider
 
     encoders:
-        App\User\Model\UserInterface: sha512
+        BxMarket\User\Model\UserInterface: sha512
 
     firewalls:
         rest_webservice:

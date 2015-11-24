@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User\Doctrine\Orm;
+namespace BxMarket\User\Doctrine\Orm;
 
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
-use App\User\Model\UserInterface;
-use App\User\Doctrine\AbstractUserListener;
+use BxMarket\User\Model\UserInterface;
+use BxMarket\User\Doctrine\AbstractUserListener;
 
 /**
  * Doctrine ORM listener updating the canonical fields and the password.

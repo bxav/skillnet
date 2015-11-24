@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User;
+namespace BxMarket\User;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

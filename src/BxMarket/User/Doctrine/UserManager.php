@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User\Doctrine;
+namespace BxMarket\User\Doctrine;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use App\User\UserManager as BaseUserManager;
+use BxMarket\User\UserManager as BaseUserManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserManager extends BaseUserManager

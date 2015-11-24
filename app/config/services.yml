@@ -18,7 +18,7 @@ services:
           - [setAppProUserRoles, [['ROLE_EMPLOYEE']]]
 
     app.availability.finder:
-        class: App\Availability\AvailabilityFinder
+        class: BxMarket\Availability\AvailabilityFinder
         arguments:
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Booking')
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Employee')
@@ -29,19 +29,19 @@ services:
             - @fos_oauth_server.client_manager.default
 
     app.user.user_provider:
-        class: App\User\UserProvider
+        class: BxMarket\User\UserProvider
         arguments:
             - @app.user.user_manager.user
 
     app.user.user_manager.user:
-        class: App\User\Doctrine\UserManager
+        class: BxMarket\User\Doctrine\UserManager
         arguments:
             - @security.encoder_factory
             - @doctrine.orm.default_entity_manager
             - AppBundle\Entity\User
 
     app.user.user_listener:
-        class: App\User\Doctrine\Orm\UserListener
+        class: BxMarket\User\Doctrine\Orm\UserListener
         public: false
         arguments:
             - @service_container

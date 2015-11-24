@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User\Doctrine;
+namespace BxMarket\User\Doctrine;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Employee;
@@ -17,7 +17,7 @@ use AppBundle\Entity\User;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use App\User\Model\UserInterface;
+use BxMarket\User\Model\UserInterface;
 
 abstract class AbstractUserListener implements EventSubscriber
 {

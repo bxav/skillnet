@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User\Model;
+namespace BxMarket\User\Model;
 
 
 interface UserInterface extends \Sylius\Component\User\Model\UserInterface

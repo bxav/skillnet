@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\User\Model;
+namespace BxMarket\User\Model;
 
 use Sylius\Component\Resource\Model\SoftDeletableInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
