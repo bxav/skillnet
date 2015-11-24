@@ -1,7 +1,7 @@
 {
-    "name": "xav/base_symfony",
-    "description": "Booking engine for the beauty industry",
-    "license": "proprietary",
+    "name": "xav/bx-market",
+    "description": "Booking engine API based on Sylius",
+    "license": "MIT",
     "type": "project",
     "autoload": {
         "psr-0": {
