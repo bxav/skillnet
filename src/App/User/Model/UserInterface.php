@@ -1,14 +1,12 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of the BxMarket package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Xavier Buillit
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
- * This model was inspired by FOS User-Bundle
  */
 
 namespace App\User\Model;

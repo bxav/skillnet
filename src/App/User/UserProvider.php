@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the BxMarket package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Xavier Buillit
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
