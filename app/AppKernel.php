@@ -40,6 +40,8 @@ class AppKernel extends Kernel
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
+
 
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
 
