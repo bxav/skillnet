@@ -68,8 +68,8 @@ class AppFixtures extends DataFixtureLoader
     public function employeeImage()
     {
         $filenames = array(
-            'charles',
-            'sylvia',
+            'blonde',
+            'pierce'
         );
 
         return $this->getAndUploadRandomImage($filenames);

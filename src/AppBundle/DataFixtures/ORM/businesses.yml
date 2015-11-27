@@ -1,27 +1,27 @@
 AppBundle\Entity\Business:
-    bea_coiffure:
-        Name: BEA COIFFURE
+    jeanne_coupecoupe:
+        Name: JEANNE COUPE COUPE
         MainService: Salon de coiffure
-        Phone: 0142260229
+        Phone: <phoneNumber()>
         Email: <safeEmail()>
         PaymentMethods: Carte bleue -Chèque -Liquide
-        AvailableBrands: LOREAL -SHWARTZKOPF
-        Website: beacoiffuretest.com
-        Description: Béacoiffure est votre nouveau petit salon parisien. Il a déjà séduit plus de 1000 clients fidèles. N’hésitez pas à venir tester les coupes détonantes de Charles notre patron et les couleurs toujours très tendances de Sylvia qui se fera un plaisir de vous parler chignon pendant des heures.
-        disponibilityTimeSlot: 10
+        AvailableBrands: SHWARTCLKOPF
+        Website: <domainName()>
+        Description: <paragraph()>
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
+        disponibilityTimeSlot: 10
         Image: <businessImage()>
-    beautyinstitut:
-        Name: Beautyinstitut
+    beaubeau:
+        Name: BeauBeau Le lavabo
         MainService: Salon d’esthétique
-        Phone: 0134500228
+        Phone: <phoneNumber()>
         Email: <safeEmail()>
         PaymentMethods: Carte bleue
-        AvailableBrands: Cinq monde
-        Website: beautyinstituttest.com
-        Description: Beautyinstitut vous accueil 7j/7 et vous propose de multiples services pour votre bien être. N’hésitez pas à venir déposer un de vos commentaires sur facebook.
-        disponibilityTimeSlot: 10
+        AvailableBrands: moréale
+        Website: <domainName()>
+        Description: <domainName()>
         WorkingDaysHours: [["monday", ["09:00", "17:00"]], ["tuesday", ["09:00", "17:00"]], ["wednesday", ["09:00", "17:00"]], ["thursday", ["09:00", "17:00"]], ["friday", ["09:00", "17:00"]]]
+        disponibilityTimeSlot: 10
         Image: <businessImage()>
     biz{1..2}:
         Name: <company()>
@@ -29,4 +29,3 @@ AppBundle\Entity\Business:
         Website: <domainName()>
         Description: <paragraph()>
         Image: <businessImage()>
-

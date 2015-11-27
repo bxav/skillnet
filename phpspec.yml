@@ -2,6 +2,3 @@ suites:
     bx-market:
         namespace: BxMarket
         spec_path: .
-    bellapi:
-        namespace: Bxav\Bundle\BellApiClientBundle
-        spec_path: src/Bxav/Bundle/BellApiClientBundle

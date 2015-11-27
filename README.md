@@ -33,11 +33,15 @@ Api
 To get secret and publid:
 
 ```
-app:oauth-server:create-client --grant-type=password
+app:oauth-server:create-client
 ```
 
 Doc
 ---
+
+[doc](doc/)
+
+
 /doc/api
 
 
