@@ -51,16 +51,6 @@ jms_translation:
             output_dir: %kernel.root_dir%/Resources/translations
 
 
-bxav_bell_api_client:
-    api:
-        url: "http://localhost:8000/api"
-        user_id: "charles"
-        key: "charles"
-#swiftmailer:
-#    delivery_address: me@example.com
-
-
-
 sylius_rbac:
       authorization_checker: app.authorization_checker.test
 
