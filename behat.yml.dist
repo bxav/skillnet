@@ -8,15 +8,6 @@ default:
             - FeatureContext
             - ApiFeatureContext
             - Knp\FriendlyContexts\Context\EntityContext
-
-      bellapi_client:
-          contexts:
-            - Bxav\Bundle\BellApiClientBundle\Behat\BellApiClientContext:
-                apiUrl:   'http://localhost:8000/api'
-                userId:   'userId'
-                apiKey:   'apiKey'
-          filters:
-            tags: "@bellapi_client"
   gherkin:
     filters:
       tags: ~@ignore
