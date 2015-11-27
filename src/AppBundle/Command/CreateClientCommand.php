@@ -28,21 +28,9 @@ class CreateClientCommand extends ContainerAwareCommand
         $this
             ->setName('app:oauth-server:create-client')
             ->setDescription('Creates a new client')
-            ->addOption(
-                'redirect-uri',
-                null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'Sets redirect uri for client.'
-            )
-            ->addOption(
-                'grant-type',
-                null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'Sets allowed grant type for client.'
-            )
             ->setHelp(<<<EOT
 The <info>%command.name%</info>command creates a new client.
-<info>php %command.full_name% [--redirect-uri=...] [--grant-type=...] name</info>
+<info>php %command.full_name% name</info>
 EOT
             );
     }
@@ -52,16 +40,12 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $clientManager = $this->getClientManager();
-        /** @var Client $client */
-        $client = $clientManager->createClient();
-        $client->setRedirectUris($input->getOption('redirect-uri'));
-        $client->setAllowedGrantTypes($input->getOption('grant-type'));
-        $clientManager->updateClient($client);
+        $client = $clientManager->create();
         $output->writeln(
             sprintf(
                 "{public_id: '%s', secret: '%s'}",
-                $client->getPublicId(),
-                $client->getSecret()
+                $client['publicId'],
+                $client['secret']
             )
         );
     }
@@ -70,6 +54,6 @@ EOT
      */
     private function getClientManager()
     {
-        return $this->getContainer()->get('fos_oauth_server.client_manager.default');
+        return $this->getContainer()->get('app.oauth2.client_creator');
     }
 }
