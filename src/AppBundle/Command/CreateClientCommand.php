@@ -54,6 +54,6 @@ EOT
      */
     private function getClientManager()
     {
-        return $this->getContainer()->get('app.oauth2.client_creator');
+        return $this->getContainer()->get('app.oauth2.client_manager');
     }
 }

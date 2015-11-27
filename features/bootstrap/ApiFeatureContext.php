@@ -27,7 +27,7 @@ class ApiFeatureContext extends ApiContext
      */
     public function iSpecifiedTheFollowingOauth2Credentials(\Behat\Gherkin\Node\TableNode $credentialsTable)
     {
-        $clientCredential = $this->get('app.oauth2.client_creator')->create();
+        $clientCredential = $this->get('app.oauth2.client_manager')->create();
         //$clientCredential = json_decode($clientCredential);
 
         $config = array(

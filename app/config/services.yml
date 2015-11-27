@@ -23,8 +23,8 @@ services:
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Booking')
           - @=service('doctrine.orm.default_entity_manager').getRepository('AppBundle:Employee')
 
-    app.oauth2.client_creator:
-        class: AppBundle\Api\ClientCreator
+    app.oauth2.client_manager:
+        class: AppBundle\Api\ClientManager
         arguments:
             - @fos_oauth_server.client_manager.default
 

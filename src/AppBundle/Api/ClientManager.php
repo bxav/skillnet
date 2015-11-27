@@ -13,7 +13,7 @@ namespace AppBundle\Api;
 
 use FOS\OAuthServerBundle\Model\ClientManagerInterface;
 
-class ClientCreator
+class ClientManager
 {
     protected $clientManager;
 
