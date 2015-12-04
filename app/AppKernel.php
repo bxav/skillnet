@@ -37,6 +37,9 @@ class AppKernel extends Kernel
 
 
             new Sylius\Bundle\RbacBundle\SyliusRbacBundle(),
+
+            new Sylius\Bundle\TaxonomyBundle\SyliusTaxonomyBundle(),
+            new Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 

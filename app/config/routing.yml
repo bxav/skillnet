@@ -17,6 +17,10 @@ fos_oauth_server_token:
 fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
+sylius_taxonomy:
+    resource: @SyliusTaxonomyBundle/Resources/config/routing.yml
+    prefix: /taxonomy
+
 _sonata_admin:
     resource: .
     type: sonata_admin

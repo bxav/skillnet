@@ -52,6 +52,28 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+sylius_taxonomy:
+    driver: doctrine/orm
+    classes:
+        taxonomy:
+            model: Sylius\Component\Taxonomy\Model\Taxonomy
+            controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+            repository: ~
+            form: ~
+        taxon:
+            model: Sylius\Component\Taxonomy\Model\Taxon
+            controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+            repository: ~
+            form: ~
+    validation_groups:
+        taxonomy: [sylius]
+        taxon: [sylius]
+
+
+sylius_translation:
+    default_locale: %locale%
+
+
 # Doctrine Configuration
 doctrine:
     dbal:

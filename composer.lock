@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "def02b381c385e825cc2c53911cb257c",
-    "content-hash": "93d01352bc1a7e7a58e268a75c295e73",
+    "hash": "1c3e27d2f1c9ef974b98c77023a5c226",
+    "content-hash": "bc7ed09ad1dfc6e2b523555ae251585f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -4257,6 +4257,263 @@
             "time": "2015-06-23 08:19:45"
         },
         {
+            "name": "sylius/taxonomy",
+            "version": "v0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/Taxonomy.git",
+                "reference": "c228c4be0f344199a5ae8fc9d23554aa80e06c7b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/Taxonomy/zipball/c228c4be0f344199a5ae8fc9d23554aa80e06c7b",
+                "reference": "c228c4be0f344199a5ae8fc9d23554aa80e06c7b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "sylius/resource": "0.15.*@dev"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\Component\\Taxonomy\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylius project",
+                    "homepage": "http://sylius.org"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "http://github.com/Sylius/Sylius/contributors"
+                },
+                {
+                    "name": "Paweł Jędrzejewski",
+                    "homepage": "http://pjedrzejewski.com"
+                }
+            ],
+            "description": "Taxonomies - categorization of domain models in PHP projects.",
+            "homepage": "http://sylius.org",
+            "keywords": [
+                "categorization",
+                "classification",
+                "ecommerce",
+                "taxon",
+                "taxonomy"
+            ],
+            "time": "2015-07-17 08:29:12"
+        },
+        {
+            "name": "sylius/taxonomy-bundle",
+            "version": "v0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/SyliusTaxonomyBundle.git",
+                "reference": "ffa67fcba66d41b223891ee2b201624882570b82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/SyliusTaxonomyBundle/zipball/ffa67fcba66d41b223891ee2b201624882570b82",
+                "reference": "ffa67fcba66d41b223891ee2b201624882570b82",
+                "shasum": ""
+            },
+            "require": {
+                "jms/translation-bundle": "1.1.*",
+                "php": ">=5.3.3",
+                "stof/doctrine-extensions-bundle": "~1.1",
+                "sylius/resource-bundle": "0.15.*@dev",
+                "sylius/taxonomy": "0.15.*@dev",
+                "symfony/framework-bundle": "~2.3"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.2",
+                "phpspec/phpspec": "~2.1",
+                "symfony/form": "~2.3",
+                "symfony/validator": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\Bundle\\TaxonomyBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylius project",
+                    "homepage": "http://sylius.org"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "http://github.com/Sylius/Sylius/contributors"
+                },
+                {
+                    "name": "Paweł Jędrzejewski",
+                    "homepage": "http://pjedrzejewski.com"
+                }
+            ],
+            "description": "Flexible categorization system for Symfony2.",
+            "homepage": "http://sylius.org",
+            "keywords": [
+                "categorization",
+                "category",
+                "ecommerce",
+                "shop",
+                "sylius",
+                "taxonomies",
+                "taxonomy"
+            ],
+            "time": "2015-09-04 07:45:57"
+        },
+        {
+            "name": "sylius/translation",
+            "version": "v0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/Translation.git",
+                "reference": "c46f6099770922bbcb099cb03ca9aa29883243e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/Translation/zipball/c46f6099770922bbcb099cb03ca9aa29883243e9",
+                "reference": "c46f6099770922bbcb099cb03ca9aa29883243e9",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/collections": "~1.2",
+                "php": ">=5.3.3",
+                "sylius/resource": "0.15.*@dev"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\Component\\Translation\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylius project",
+                    "homepage": "http://sylius.org"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "http://github.com/Sylius/Sylius/contributors"
+                },
+                {
+                    "name": "Paweł Jędrzejewski",
+                    "homepage": "http://pjedrzejewski.com"
+                }
+            ],
+            "description": "Translation component for translatable resources.",
+            "homepage": "http://sylius.org",
+            "keywords": [
+                "ecommerce",
+                "resource",
+                "sylius",
+                "translatable",
+                "translation"
+            ],
+            "time": "2015-06-23 08:19:45"
+        },
+        {
+            "name": "sylius/translation-bundle",
+            "version": "v0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sylius/SyliusTranslationBundle.git",
+                "reference": "86aa7084cf20502aba32531ba299f5a343dc8431"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sylius/SyliusTranslationBundle/zipball/86aa7084cf20502aba32531ba299f5a343dc8431",
+                "reference": "86aa7084cf20502aba32531ba299f5a343dc8431",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "stof/doctrine-extensions-bundle": "~1.1",
+                "sylius/resource-bundle": "0.15.*@dev",
+                "sylius/translation": "0.15.*@dev",
+                "symfony/framework-bundle": "~2.3"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.2",
+                "phpspec/phpspec": "~2.1",
+                "symfony/form": "~2.3",
+                "symfony/validator": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sylius\\Bundle\\TranslationBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylius project",
+                    "homepage": "http://sylius.org"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "http://github.com/Sylius/Sylius/contributors"
+                },
+                {
+                    "name": "Paweł Jędrzejewski",
+                    "homepage": "http://pjedrzejewski.com"
+                }
+            ],
+            "description": "Sylius translation bundle",
+            "homepage": "http://sylius.org",
+            "keywords": [
+                "sylius",
+                "translation"
+            ],
+            "time": "2015-07-16 14:21:24"
+        },
+        {
             "name": "sylius/user",
             "version": "v0.15.0",
             "source": {
@@ -5625,7 +5882,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/FriendlyContexts/zipball/ef37330eb4ba791d1b4c9328ace998434a90bc11",
+                "url": "https://api.github.com/repos/KnpLabs/FriendlyContexts/zipball/ae738447094ce213f05bed2593013e8f05867d82",
                 "reference": "a7b907b174ddd061db23eecd4ef16cef44663ca9",
                 "shasum": ""
             },
