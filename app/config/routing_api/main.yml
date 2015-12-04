@@ -54,3 +54,7 @@ app_api_current_customer_booking_create:
         _sylius:
             form: app_api_booking
             criteria: {user: 'expr:service("security.context").getToken().getUser()'}
+
+app_api_search:
+    prefix:   /search
+    resource: search.yml

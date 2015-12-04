@@ -1,0 +1,13 @@
+app_api_search_business_index:
+    path: /businesses
+    methods: [GET]
+    defaults:
+        _controller: app.controller.business:indexAction
+        _format: json
+
+app_api_search_services_index:
+    path: /services
+    methods: [GET]
+    defaults:
+        _controller: app.controller.service:indexAction
+        _format: json
