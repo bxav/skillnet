@@ -68,7 +68,7 @@ class ApiController extends ResourceController
     protected function isGrantedOr403($permission)
     {
 
-        if (!($this->config->getParameters()->get('authentication') == false) && !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!($this->config->getParameters()->get('authentication') === false) && !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw new AccessDeniedException(sprintf('Access denied to "%s" for "%s".', 'auth', $this->getUser() ? $this->getUser()->getUsername() : 'anon.'));
         }
 
