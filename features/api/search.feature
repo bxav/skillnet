@@ -4,12 +4,6 @@ Feature: Access to the api
     Given there is 1 business like:
       | name |
       | Haircut Master |
-    Given the following users:
-      | username | plainPassword | roles |
-      | user | user | ROLE_API |
-    Given I specified the following request oauth2 credentials:
-      | username | user |
-      | password | user |
 
   Scenario: List business
     Given there is 10 business

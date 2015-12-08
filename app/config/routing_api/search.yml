@@ -4,6 +4,8 @@ app_api_search_business_index:
     defaults:
         _controller: app.controller.business:indexAction
         _format: json
+        _sylius:
+            authentication: false
 
 app_api_search_services_index:
     path: /services
@@ -11,3 +13,5 @@ app_api_search_services_index:
     defaults:
         _controller: app.controller.service:indexAction
         _format: json
+        _sylius:
+            authentication: false

@@ -6,6 +6,7 @@ sylius_resource:
             templates: App:User
             classes:
                 model: AppBundle\Entity\Business
+                controller: AppBundle\Controller\Api\ApiController
         app.booking:
             driver: doctrine/orm
             object_manager: default
@@ -20,6 +21,7 @@ sylius_resource:
             templates: App:User
             classes:
                 model: AppBundle\Entity\User
+                controller: AppBundle\Controller\Api\ApiController
         app.employee:
             driver: doctrine/orm
             object_manager: default
@@ -33,6 +35,7 @@ sylius_resource:
             templates: App:User
             classes:
                 model: AppBundle\Entity\Customer
+                controller: AppBundle\Controller\Api\ApiController
         app.service:
             driver: doctrine/orm
             object_manager: default
@@ -40,12 +43,14 @@ sylius_resource:
             classes:
                 model: AppBundle\Entity\Service
                 repository: AppBundle\Entity\ServiceRepository
+                controller: AppBundle\Controller\Api\ApiController
         app.personalized_service:
             driver: doctrine/orm
             object_manager: default
             templates: App:User
             classes:
                 model: AppBundle\Entity\PersonalizedService
+                controller: AppBundle\Controller\Api\ApiController
         app.availability:
             driver: doctrine/orm
             object_manager: default

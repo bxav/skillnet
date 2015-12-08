@@ -11,6 +11,7 @@ security:
             pattern: ^/api/.*
             stateless: true
             fos_oauth:  true
+            anonymous:  true
 
         main:
             pattern: ^/
@@ -31,7 +32,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/doc/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, role: ROLE_API }
         - { path: ^/pro, role: ROLE_API }
         - { path: ^/admin/, role: ROLE_ADMIN }
 

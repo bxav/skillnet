@@ -13,8 +13,9 @@ namespace AppBundle\Controller\Api;
 
 use JMS\Serializer\SerializationContext;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-abstract class ApiController extends ResourceController
+class ApiController extends ResourceController
 {
     /**
      * The class name managed by the controller class.
@@ -61,6 +62,28 @@ abstract class ApiController extends ResourceController
             throw new \Exception('Class not set');
         } else {
             return $this->class;
+        }
+    }
+
+    protected function isGrantedOr403($permission)
+    {
+
+        if (!($this->config->getParameters()->get('authentication') == false) && !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw new AccessDeniedException(sprintf('Access denied to "%s" for "%s".', 'auth', $this->getUser() ? $this->getUser()->getUsername() : 'anon.'));
+        }
+
+        if (!$this->container->has('sylius.authorization_checker')) {
+            return true;
+        }
+
+        $permission = $this->config->getPermission($permission);
+
+        if ($permission) {
+            $grant = sprintf('%s.%s.%s', $this->config->getBundlePrefix(), $this->config->getResourceName(), $permission);
+
+            if (!$this->get('sylius.authorization_checker')->isGranted($grant)) {
+                throw new AccessDeniedException(sprintf('Access denied to "%s" for "%s".', $grant, $this->getUser() ? $this->getUser()->getUsername() : 'anon.'));
+            }
         }
     }
 }
