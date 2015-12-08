@@ -52,6 +52,23 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+sylius_product:
+    classes:
+        product:
+            model: AppBundle\Entity\Service
+
+
+sylius_archetype:
+    classes:
+        product:
+            subject: AppBundle\Entity\Service
+            attribute: Sylius\Component\Product\Model\Attribute
+            option: Sylius\Component\Product\Model\Option
+
+sylius_attribute: ~
+
+sylius_variation: ~
+
 sylius_taxonomy:
     driver: doctrine/orm
     classes:
