@@ -28,7 +28,7 @@ Feature: Access to the api
       | business | user |
       | Haircut Master | john |
       | Haircut Master | bea |
-    Given I prepare a GET request on "/api/businesses/1/employees"
+    Given I prepare a GET request on "/api/businesses/1/employees/"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response
@@ -84,7 +84,7 @@ Feature: Access to the api
     Given there is 5 services like:
       | business |
       | Haircut Master |
-    Given I prepare a GET request on "/api/businesses/1/services"
+    Given I prepare a GET request on "/api/businesses/1/services/"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

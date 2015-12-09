@@ -41,7 +41,7 @@ Feature: Access to the api
         "service": 1
     }
     """
-    Given I prepare a POST request on "/api/employees/1/bookings"
+    Given I prepare a POST request on "/api/employees/1/bookings/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -69,7 +69,7 @@ Feature: Access to the api
       | toto | Haircut Master |
     Given "marie" propose:
      | toto | cut |
-    Given I prepare a GET request on "/api/employees/1/services"
+    Given I prepare a GET request on "/api/employees/1/services/"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

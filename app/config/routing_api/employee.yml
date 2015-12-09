@@ -41,7 +41,7 @@ app_api_employee_update:
             form: app_api_employee
 
 app_api_employee_booking_create:
-    path: /{id}/bookings
+    path: /{id}/bookings/
     methods: [POST]
     defaults:
         _controller: app.controller.booking:createFromEmployeeAction
@@ -51,7 +51,7 @@ app_api_employee_booking_create:
             criteria: {employee: $id}
 
 app_api_employee_service_index:
-    path: /{employee}/services
+    path: /{employee}/services/
     methods: [GET]
     defaults:
         _controller: app.controller.service:indexAction

@@ -34,7 +34,7 @@ app_api_customer_update:
             form: app_api_customer
 
 app_api_customer_personalized_service_index:
-    path: /{id}/personalized-services
+    path: /{id}/personalized-services/
     methods: [GET]
     defaults:
         _controller: app.controller.personalized_service:indexAction
@@ -52,7 +52,7 @@ app_api_customer_personalized_service_show:
         _format: json
 
 app_api_customer_personalized_service_create:
-    path: /{customer}/personalized-services
+    path: /{customer}/personalized-services/
     methods: [POST]
     defaults:
         _controller: app.controller.personalized_service:createAction

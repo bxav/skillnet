@@ -46,7 +46,7 @@ app_api_current_customer_show:
 
 
 app_api_current_customer_booking_create:
-    path: /customer/bookings
+    path: /customer/bookings/
     methods: [POST]
     defaults:
         _controller: app.controller.booking:createFromCustomerAction

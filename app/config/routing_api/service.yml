@@ -14,6 +14,8 @@ app_api_service_show:
     defaults:
         _controller: app.controller.service:showAction
         _format: json
+        _sylius:
+            authentication: false
 
 app_api_service_create:
     path: /

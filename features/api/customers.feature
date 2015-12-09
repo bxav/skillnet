@@ -48,7 +48,7 @@ Feature: Access to the api
         "service": 1
     }
     """
-    Given I prepare a POST request on "/api/customer/bookings"
+    Given I prepare a POST request on "/api/customer/bookings/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response
@@ -98,7 +98,7 @@ Feature: Access to the api
       | 30 | John | Coiffure |
     Given I specified the following request queries:
       | service | 1 |
-    Given I prepare a GET request on "/api/customers/1/personalized-services"
+    Given I prepare a GET request on "/api/customers/1/personalized-services/"
     When I send the request
     Then print the last response
 
@@ -134,7 +134,7 @@ Feature: Access to the api
         "customer": 1
     }
     """
-    Given I prepare a POST request on "/api/customers/1/personalized-services"
+    Given I prepare a POST request on "/api/customers/1/personalized-services/"
     When I send the request
     Then print the last response
     Then I should receive a 201 json response

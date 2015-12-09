@@ -1,5 +1,5 @@
 app_api_search_business_index:
-    path: /businesses
+    path: /businesses/
     methods: [GET]
     defaults:
         _controller: app.controller.business:indexAction
@@ -8,7 +8,7 @@ app_api_search_business_index:
             authentication: false
 
 app_api_search_services_index:
-    path: /services
+    path: /services/
     methods: [GET]
     defaults:
         _controller: app.controller.service:indexAction

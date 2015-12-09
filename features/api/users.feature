@@ -21,7 +21,7 @@ Feature: Access to the api
 
   Scenario: List users
     Given there is 10 users
-    Given I prepare a GET request on "/api/users"
+    Given I prepare a GET request on "/api/users/"
     When I send the request
     Then print the last response
     Then I should receive a 200 json response

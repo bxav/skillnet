@@ -14,6 +14,8 @@ app_api_business_show:
     defaults:
         _controller: app.controller.business:showAction
         _format: json
+        _sylius:
+            authentication: false
 
 app_api_business_create:
     path: /
@@ -34,7 +36,7 @@ app_api_business_update:
             form: app_api_business
 
 app_api_business_employee_index:
-    path: /{id}/employees
+    path: /{id}/employees/
     methods: [GET]
     defaults:
         _controller: app.controller.employee:indexAction
@@ -45,7 +47,7 @@ app_api_business_employee_index:
             sortable: true
 
 app_api_business_service_index:
-    path: /{id}/services
+    path: /{id}/services/
     methods: [GET]
     defaults:
         _controller: app.controller.service:indexAction
@@ -54,4 +56,5 @@ app_api_business_service_index:
             paginate: $limit
             criteria: { business: $id }
             sortable: true
+            authentication: false
 
