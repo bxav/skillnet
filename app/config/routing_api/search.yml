@@ -15,3 +15,8 @@ app_api_search_services_index:
         _format: json
         _sylius:
             authentication: false
+            paginate: $limit
+            sortable: true
+            repository:
+                method:    createFilterPaginator
+                arguments: [$criteria, $sorting]

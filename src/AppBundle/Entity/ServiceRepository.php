@@ -46,6 +46,29 @@ class ServiceRepository extends EntityRepository
         return $queryBuilder;
     }
 
+
+    /**
+     * Create filter paginator.
+     *
+     * @param array $criteria
+     * @param array $sorting
+     *
+     * @return PagerfantaInterface
+     */
+    public function createFilterPaginator($criteria = array(), $sorting = array())
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+
+        if (!empty($criteria['business'])) {
+            $queryBuilder
+                ->andWhere($queryBuilder->expr()->eq('s.business', ':business'))
+                ->setParameter('business', $criteria['business'])
+            ;
+        }
+
+        return $this->getPaginator($queryBuilder);
+    }
+
     protected function getAlias()
     {
         return 's';
