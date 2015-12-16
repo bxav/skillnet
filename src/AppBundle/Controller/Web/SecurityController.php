@@ -21,6 +21,8 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
 
+        $session = $request->getSession();
+
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
@@ -28,6 +30,12 @@ class SecurityController extends Controller
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+
+        if ($session->has('_security.target_path')) {
+            if (false !== strpos($session->get('_security.target_path'), $this->generateUrl('fos_oauth_server_authorize'))) {
+                $session->set('_fos_oauth_server.ensure_logout', true);
+            }
+        }
 
         return $this->render(
             'security/login.html.twig',

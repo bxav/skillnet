@@ -25,9 +25,9 @@ class ClientManager
     public function create()
     {
         $clientManager = $this->clientManager;
-        /** @var Client $client */
         $client = $clientManager->createClient();
-        $client->setAllowedGrantTypes(['password']);
+        $client->setAllowedGrantTypes(['password', 'authorization_code', 'token']);
+        $client->setRedirectUris(['http://localhost/callback']);
         $clientManager->updateClient($client);
 
         return ['publicId' => $client->getPublicId(), 'secret' => $client->getSecret()];

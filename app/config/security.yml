@@ -13,22 +13,11 @@ security:
             fos_oauth:  true
             anonymous:  true
 
-        main:
-            pattern: ^/
-            form_login:
-                login_path: /login
-                check_path: /login_check
-                provider: user_provider
-                success_handler: app.user.success_handler
-            logout:       true
-            anonymous:    true
-
         oauth_authorize:
             pattern:    ^/oauth/v2/auth
             form_login:
-                provider: user_provider
-                check_path: _security_check
-                login_path: _demo_login
+              login_path: /oauth/v2/auth_login
+              check_path: /oauth/v2/auth_login_check
             anonymous: true
 
 
