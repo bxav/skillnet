@@ -5,4 +5,5 @@ app_api_availability_index:
         _controller: app.controller.availability:indexAction
         _format: json
         _sylius:
-             criteria: { date: $date,  service: $service }
+            criteria: { date: $date,  service: $service }
+            authentication: false
