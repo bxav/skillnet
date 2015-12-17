@@ -1,8 +1,8 @@
 AppBundle\Entity\Customer:
-    john:
+    joe:
         LastName: <lastname()>
         FirstName: john
-        User(unique): @user*
+        User(unique): @john
     cus{1..5}:
         FirstName: <firstname()>
         LastName: <lastname()>
