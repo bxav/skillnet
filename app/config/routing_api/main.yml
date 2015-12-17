@@ -53,7 +53,18 @@ app_api_current_customer_booking_create:
         _format: json
         _sylius:
             form: app_api_booking
-            criteria: {user: 'expr:service("security.context").getToken().getUser()'}
+            criteria: {customer: 'expr:service("security.context").getToken().getUser().getCustomer()'}
+
+app_api_current_customer_booking_index:
+    path: /customer/bookings/
+    methods: [GET]
+    defaults:
+        _controller: app.controller.booking:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            criteria: { customer: 'expr:service("security.context").getToken().getUser().getCustomer().getId()' }
+            sortable: true
 
 app_api_search:
     prefix:   /search

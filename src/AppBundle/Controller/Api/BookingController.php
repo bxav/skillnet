@@ -40,6 +40,8 @@ class BookingController extends ApiController
             $employee = $this->get('app.repository.employee')->find($criteria['employee']);
             $resource->setEmployee($employee);
 
+            $this->domainManager->update($resource);
+
             if ($this->config->isApiRequest()) {
                 if ($resource instanceof ResourceEvent) {
                     throw new HttpException($resource->getErrorCode(), $resource->getMessage());
@@ -91,8 +93,9 @@ class BookingController extends ApiController
             // todo add availability check
             // todo add personalization
             $criteria = $this->config->getCriteria();
-            $customer = $this->get('app.repository.customer')->findOneByUser($criteria['user']);
-            $resource->setCustomer($customer);
+            $resource->setCustomer($criteria['customer']);
+
+            $this->domainManager->update($resource);
 
             if ($this->config->isApiRequest()) {
                 if ($resource instanceof ResourceEvent) {

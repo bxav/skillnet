@@ -54,6 +54,20 @@ Feature: Access to the api
     Then I should receive a 201 json response
 
   @reset-schema
+  Scenario: get current customer bookings
+    Given there is 1 customer like:
+      | user | firstname | lastname |
+      | user | john | duff |
+    Given there is 10 bookings like:
+    | customer |
+    | john     |
+    Given I prepare a GET request on "/api/customer/bookings/"
+    When I send the request
+    Then print the last response
+    Then I should receive a 200 json response
+
+
+  @reset-schema
   Scenario: Post customer
     Given I specified the following request body:
     """
