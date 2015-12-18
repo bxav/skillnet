@@ -5,33 +5,39 @@ AppBundle\Entity\Service:
         Price: 15
         Description: Brushing
         Business: @jeanne_coupecoupe
+        Image: <serviceImage()>
     shampoing:
         Type: Shampoing
         Duration: 15
         Price: 15
         Description: Shampoing
         Business: @jeanne_coupecoupe
+        Image: <serviceImage()>
     coupe:
         Type: coupe
         Duration: 60
         Price: 60
         Description: Chignon
         Business: @jeanne_coupecoupe
+        Image: <serviceImage()>
     massage:
         Type: Massage
         Duration: 60
         Price: 60€
         Description: Massage
         Business: @beaubeau
+        Image: <serviceImage()>
     maquillage:
         Type: Maquillage
         Duration: 60
         Price: 80
         Description: Maquillage
         Business: @beaubeau
+        Image: <serviceImage()>
     service{1..5}:
         Type: <sentence()>
         Duration: <numberBetween(10, 45)>
         Price: <numberBetween(10, 45)>
         Description: <sentence()>
         Business: @biz*
+        Image: <serviceImage()>

@@ -16,6 +16,9 @@ AppBundle\Entity\Service:
         description:
             expose: true
             type: string
+        image:
+            expose: true
+            type: AppBundle\Entity\Image
         business:
             expose: true
             type: AppBundle\Entity\Business

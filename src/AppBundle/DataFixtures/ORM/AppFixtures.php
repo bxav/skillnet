@@ -84,6 +84,15 @@ class AppFixtures extends DataFixtureLoader
         return $this->getAndUploadRandomImage($filenames);
     }
 
+    public function serviceImage()
+    {
+        $filenames = array(
+            'shop',
+        );
+
+        return $this->getAndUploadRandomImage($filenames);
+    }
+
     protected function getAndUploadRandomImage($filenames)
     {
         $finder = new Finder();

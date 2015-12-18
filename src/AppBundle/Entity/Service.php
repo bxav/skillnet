@@ -47,6 +47,12 @@ class Service extends Product
     protected $description;
 
     /**
+     * @Orm\OneToOne(targetEntity="Image", cascade="all")
+     * @Orm\JoinColumn(name="image_id", referencedColumnName="id")
+     **/
+    protected $image;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Business", inversedBy="services")
      * @ORM\JoinColumn(name="business_id",referencedColumnName="id")
      */
@@ -135,6 +141,22 @@ class Service extends Product
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     /**
