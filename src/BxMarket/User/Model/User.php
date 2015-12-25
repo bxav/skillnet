@@ -27,7 +27,7 @@ class User extends BaseUser implements UserInterface
      */
     public function getEmployee()
     {
-        return $this->customer;
+        return $this->employee;
     }
     /**
      * {@inheritdoc}
