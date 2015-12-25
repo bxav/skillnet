@@ -57,12 +57,9 @@ Feature: Access to the api
 
   @reset-schema
   Scenario: get current employee bookings
-    Given there is 1 customer like:
-      | user | firstname | lastname |
-      | user | john | duff |
     Given there is 10 bookings like:
       | employee |
-      | john     |
+      | marie     |
     Given I prepare a GET request on "/api/employee/bookings/"
     When I send the request
     Then print the last response
