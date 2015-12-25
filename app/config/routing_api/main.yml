@@ -51,7 +51,7 @@ app_api_current_employee_business_show:
         _sylius:
             criteria: { id: 'expr:service("security.context").getToken().getUser().getEmployee().getBusiness().getId()' }
 
-app_api_current_customer_booking_index:
+app_api_current_employee_booking_index:
     path: /employee/bookings/
     methods: [GET]
     defaults:
