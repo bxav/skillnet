@@ -31,6 +31,37 @@ app_api_current_employee_show:
         _sylius:
             criteria: {user: 'expr:service("security.context").getToken().getUser().getId()'}
 
+app_api_current_employee_service_index:
+    path: /employee/services/
+    methods: [GET]
+    defaults:
+        _controller: app.controller.service:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            criteria: { business: 'expr:service("security.context").getToken().getUser().getEmployee().getBusiness().getId()' }
+            sortable: true
+
+app_api_current_employee_business_show:
+    path: /employee/business
+    methods: [GET]
+    defaults:
+        _controller: app.controller.business:showAction
+        _format: json
+        _sylius:
+            criteria: { id: 'expr:service("security.context").getToken().getUser().getEmployee().getBusiness().getId()' }
+
+app_api_current_customer_booking_index:
+    path: /employee/bookings/
+    methods: [GET]
+    defaults:
+        _controller: app.controller.booking:indexAction
+        _format: json
+        _sylius:
+            paginate: $limit
+            criteria: { employee: 'expr:service("security.context").getToken().getUser().getEmployee().getId()' }
+            sortable: true
+
 app_api_customer:
     prefix:   /customers
     resource: customer.yml
@@ -42,7 +73,7 @@ app_api_current_customer_show:
         _controller: app.controller.customer:showAction
         _format: json
         _sylius:
-            criteria: {id: 'expr:service("security.context").getToken().getUser().getId()'}
+            criteria: {user: 'expr:service("security.context").getToken().getUser().getId()'}
 
 
 app_api_current_customer_booking_create:
