@@ -90,9 +90,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "compile": [
-            "mkdir -p web/uploads/images",
-            "app/console doctrine:schema:update --force",
-            "app/console doctrine:fixtures:load"
+            "mkdir -p web/uploads/images"
         ]
     },
     "config": {
