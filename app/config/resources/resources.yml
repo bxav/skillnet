@@ -43,7 +43,7 @@ sylius_resource:
             classes:
                 model: AppBundle\Entity\Service
                 repository: AppBundle\Entity\ServiceRepository
-                controller: AppBundle\Controller\Api\ApiController
+                controller: AppBundle\Controller\Api\ServiceController
         app.personalized_service:
             driver: doctrine/orm
             object_manager: default

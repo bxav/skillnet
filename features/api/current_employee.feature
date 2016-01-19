@@ -65,3 +65,22 @@ Feature: Access to the api
     Then print the last response
     Then I should receive a 200 json response
 
+
+  @reset-schema
+  Scenario: post service
+    Given there is 1 services like:
+      | type | business |
+      | toto | Haircut Master |
+    Given I specified the following request body:
+    """
+    {
+        "type":"Coupe",
+        "duration": 10,
+        "description": "Lorem",
+        "price": 10
+    }
+    """
+    Given I prepare a POST request on "/api/employee/services/"
+    When I send the request
+    Then print the last response
+    Then I should receive a 201 json response

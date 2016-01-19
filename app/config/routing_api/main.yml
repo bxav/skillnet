@@ -62,6 +62,16 @@ app_api_current_employee_booking_index:
             criteria: { employee: 'expr:service("security.context").getToken().getUser().getEmployee().getId()' }
             sortable: true
 
+app_api_current_employee_service_create:
+    path: /employee/services/
+    methods: [POST]
+    defaults:
+        _controller: app.controller.service:createFromEmployeeAction
+        _format: json
+        _sylius:
+            form: app_api_service
+            criteria: {employee: 'expr:service("security.context").getToken().getUser().getEmployee().getId()'}
+
 app_api_customer:
     prefix:   /customers
     resource: customer.yml
