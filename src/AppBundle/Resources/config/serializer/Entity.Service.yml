@@ -22,3 +22,7 @@ AppBundle\Entity\Service:
         business:
             expose: true
             type: AppBundle\Entity\Business
+    relations:
+        -
+            rel: self
+            href: expr('/api/services/' ~ object.getId())
